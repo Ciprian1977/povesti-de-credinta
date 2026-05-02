@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+
+# Pagini principale
+Allow: /index.html
+Allow: /calendar.html
+Allow: /rugaciuni.html
+Allow: /acatiste.html
+Allow: /pricesne.html
+Allow: /posturi.html
+Allow: /sfinti/
+Allow: /faq.html
+Allow: /despre.html
+Allow: /contact.html
+
+# Dezactivăm indexarea fișierelor tehnice
+Disallow: /sw.js
+Disallow: /manifest.json
+
+# Sitemap
+Sitemap: https://povestidecredinta.ro/sitemap.xml
+
+# Google
+User-agent: Googlebot
+Crawl-delay: 1
+
+# Bing
+User-agent: Bingbot
+Crawl-delay: 2

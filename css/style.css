@@ -1,0 +1,985 @@
+/* ============================================
+   POVEȘTI DE CREDINȚĂ — CSS Principal
+   Design: Clasic Ortodox Românesc
+   Culori: Vișiniu + Auriu + Crem
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=IM+Fell+English:ital@0;1&display=swap');
+
+/* === VARIABILE === */
+:root {
+  --visineu: #6B1B2B;
+  --visineu-dark: #4A0F1C;
+  --visineu-light: #8B2B3B;
+  --auriu: #C9A84C;
+  --auriu-light: #E8C878;
+  --auriu-dark: #A8883C;
+  --crem: #FDF6E3;
+  --crem-dark: #F5EDD0;
+  --albastru-marial: #1B3A6B;
+  --text-dark: #2C1810;
+  --text-medium: #5C3D2E;
+  --text-light: #8B6B5A;
+  --alb: #FFFFFF;
+  --shadow: 0 4px 20px rgba(107, 27, 43, 0.15);
+  --shadow-gold: 0 2px 12px rgba(201, 168, 76, 0.3);
+  --radius: 8px;
+  --radius-lg: 16px;
+  --font-titlu: 'Playfair Display', Georgia, serif;
+  --font-text: 'Lora', Georgia, serif;
+  --font-special: 'IM Fell English', Georgia, serif;
+}
+
+/* === RESET === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-text);
+  background-color: var(--crem);
+  color: var(--text-dark);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* === PATTERN DECORATIV FUNDAL === */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    radial-gradient(ellipse at 20% 20%, rgba(201,168,76,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(107,27,43,0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* === HEADER === */
+.header {
+  background: linear-gradient(135deg, var(--visineu-dark) 0%, var(--visineu) 60%, var(--visineu-light) 100%);
+  color: var(--crem);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(74, 15, 28, 0.4);
+}
+
+.header::after {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--auriu), var(--auriu-light), var(--auriu), transparent);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--crem);
+}
+
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, var(--auriu), var(--auriu-light));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: var(--shadow-gold);
+  flex-shrink: 0;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-titlu {
+  font-family: var(--font-titlu);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  color: var(--auriu-light);
+}
+
+.logo-subtitlu {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(253, 246, 227, 0.7);
+  font-family: var(--font-text);
+}
+
+/* === NAVIGAȚIE DESKTOP === */
+.nav-desktop {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .nav-desktop {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .nav-desktop a {
+    color: var(--crem);
+    text-decoration: none;
+    font-family: var(--font-text);
+    font-size: 0.9rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: all 0.2s;
+    opacity: 0.85;
+  }
+  
+  .nav-desktop a:hover,
+  .nav-desktop a.activ {
+    background: rgba(201, 168, 76, 0.2);
+    color: var(--auriu-light);
+    opacity: 1;
+  }
+}
+
+/* === MENIU HAMBURGER MOBIL === */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--auriu-light);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+@media (min-width: 768px) {
+  .hamburger { display: none; }
+}
+
+/* === MENIU MOBIL === */
+.nav-mobil {
+  display: none;
+  background: var(--visineu-dark);
+  border-top: 1px solid rgba(201,168,76,0.2);
+}
+
+.nav-mobil.deschis {
+  display: block;
+}
+
+.nav-mobil a {
+  display: block;
+  color: var(--crem);
+  text-decoration: none;
+  padding: 14px 20px;
+  font-family: var(--font-text);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: background 0.2s;
+}
+
+.nav-mobil a:hover {
+  background: rgba(201,168,76,0.1);
+  color: var(--auriu-light);
+}
+
+/* === MAIN CONTENT === */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px 100px;
+  position: relative;
+  z-index: 1;
+}
+
+/* === CARD SFÂNTUL ZILEI === */
+.card-sfant-zilei {
+  background: linear-gradient(135deg, var(--alb) 0%, var(--crem) 100%);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: var(--radius-lg);
+  margin-top: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.card-sfant-zilei::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--visineu), var(--auriu), var(--visineu));
+}
+
+.card-sfant-header {
+  background: linear-gradient(135deg, var(--visineu) 0%, var(--visineu-dark) 100%);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.data-azi {
+  color: var(--auriu-light);
+  font-family: var(--font-text);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.badge-post {
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: var(--font-text);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.badge-post.post { background: rgba(107,27,43,0.8); color: var(--auriu-light); border: 1px solid var(--auriu); }
+.badge-post.dezlegare { background: rgba(27,107,43,0.8); color: #90EE90; border: 1px solid #90EE90; }
+.badge-post.dezlegare_peste { background: rgba(27,70,107,0.8); color: #87CEEB; border: 1px solid #87CEEB; }
+.badge-post.post_strict { background: rgba(60,10,10,0.9); color: var(--auriu-light); border: 1px solid var(--auriu); }
+
+.card-sfant-body {
+  padding: 24px 20px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.sfant-icoana {
+  width: 90px;
+  height: 110px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 2px solid var(--auriu);
+  box-shadow: var(--shadow-gold);
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--visineu-dark), var(--albastru-marial));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+
+.sfant-info { flex: 1; }
+
+.sfant-titlu-mic {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--auriu-dark);
+  font-family: var(--font-text);
+  margin-bottom: 6px;
+}
+
+.sfant-nume {
+  font-family: var(--font-titlu);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--visineu);
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+
+.sfant-scurt {
+  font-size: 0.9rem;
+  color: var(--text-medium);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.btn-citeste {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, var(--visineu), var(--visineu-dark));
+  color: var(--auriu-light);
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-family: var(--font-text);
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(107,27,43,0.3);
+}
+
+.btn-citeste:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(107,27,43,0.4);
+  color: var(--alb);
+}
+
+/* === SEPARATOR DECORATIV === */
+.separator-ortodox {
+  text-align: center;
+  margin: 28px 0 20px;
+  color: var(--auriu);
+  font-size: 1.2rem;
+  letter-spacing: 0.3em;
+  position: relative;
+}
+
+.separator-ortodox::before,
+.separator-ortodox::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 30%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--auriu));
+}
+
+.separator-ortodox::before { left: 5%; }
+.separator-ortodox::after { right: 5%; background: linear-gradient(90deg, var(--auriu), transparent); }
+
+/* === SECȚIUNE TITLU === */
+.sectiune-titlu {
+  font-family: var(--font-titlu);
+  font-size: 1.1rem;
+  color: var(--visineu);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sectiune-titlu::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--auriu), transparent);
+}
+
+/* === CALENDAR GRID === */
+.calendar-container {
+  background: var(--alb);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.calendar-header {
+  background: linear-gradient(135deg, var(--visineu), var(--visineu-dark));
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--crem);
+}
+
+.calendar-luna {
+  font-family: var(--font-titlu);
+  font-size: 1.1rem;
+  color: var(--auriu-light);
+  font-weight: 600;
+}
+
+.calendar-nav {
+  background: rgba(201,168,76,0.2);
+  border: 1px solid rgba(201,168,76,0.4);
+  color: var(--auriu-light);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.calendar-nav:hover {
+  background: rgba(201,168,76,0.4);
+  color: var(--alb);
+}
+
+.calendar-zile-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: var(--crem-dark);
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+}
+
+.calendar-zi-header {
+  text-align: center;
+  padding: 8px 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-light);
+  font-family: var(--font-text);
+}
+
+.calendar-zi-header:last-child { color: var(--visineu); }
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  background: rgba(201,168,76,0.1);
+}
+
+.calendar-zi {
+  background: var(--alb);
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+  padding: 4px 2px;
+  min-height: 44px;
+}
+
+.calendar-zi:hover {
+  background: var(--crem);
+  z-index: 1;
+}
+
+.calendar-zi.azi {
+  background: linear-gradient(135deg, var(--visineu), var(--visineu-dark));
+}
+
+.calendar-zi.azi .zi-nr { color: var(--auriu-light); }
+.calendar-zi.azi .zi-sfant { color: rgba(253,246,227,0.7); }
+
+.calendar-zi.sarbatoare::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--auriu);
+}
+
+.calendar-zi.duminica .zi-nr { color: var(--visineu); font-weight: 700; }
+.calendar-zi.alta-luna { opacity: 0.35; }
+
+.zi-nr {
+  font-family: var(--font-titlu);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1;
+}
+
+.zi-sfant {
+  font-size: 0.55rem;
+  color: var(--text-light);
+  text-align: center;
+  line-height: 1.2;
+  max-width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  padding: 2px 1px 0;
+}
+
+/* === CARD POST URMĂTOR === */
+.card-post {
+  background: linear-gradient(135deg, var(--visineu-dark) 0%, var(--visineu) 100%);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  color: var(--crem);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-post::before {
+  content: '✝';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 60px;
+  color: rgba(201,168,76,0.15);
+  font-family: serif;
+}
+
+.card-post-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--auriu);
+  margin-bottom: 6px;
+}
+
+.card-post-titlu {
+  font-family: var(--font-titlu);
+  font-size: 1.15rem;
+  color: var(--auriu-light);
+  margin-bottom: 8px;
+}
+
+.card-post-info {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+.card-post-countdown {
+  display: inline-block;
+  background: rgba(201,168,76,0.2);
+  border: 1px solid var(--auriu);
+  color: var(--auriu-light);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+
+/* === RUGĂCIUNEA ZILEI === */
+.card-rugaciune {
+  background: var(--alb);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-left: 4px solid var(--auriu);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.rugaciune-titlu {
+  font-family: var(--font-titlu);
+  font-size: 1rem;
+  color: var(--visineu);
+  margin-bottom: 12px;
+}
+
+.rugaciune-text {
+  font-family: var(--font-special);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text-medium);
+  line-height: 1.8;
+}
+
+.btn-copiere {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1px solid var(--auriu);
+  color: var(--auriu-dark);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-top: 12px;
+  font-family: var(--font-text);
+  transition: all 0.2s;
+}
+
+.btn-copiere:hover {
+  background: var(--auriu);
+  color: var(--alb);
+}
+
+/* === ADSEN BANNER === */
+.adsense-banner {
+  background: var(--crem-dark);
+  border: 1px dashed rgba(201,168,76,0.3);
+  border-radius: var(--radius);
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  font-size: 0.75rem;
+  margin: 20px 0;
+  text-align: center;
+}
+
+/* === BOTTOM NAVIGATION === */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, rgba(74,15,28,0.97) 0%, var(--visineu-dark) 100%);
+  border-top: 1px solid rgba(201,168,76,0.3);
+  display: flex;
+  z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -4px 20px rgba(74,15,28,0.4);
+}
+
+.bottom-nav::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--auriu), transparent);
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 4px;
+  text-decoration: none;
+  color: rgba(253,246,227,0.5);
+  transition: all 0.2s;
+  gap: 3px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.nav-item.activ,
+.nav-item:hover {
+  color: var(--auriu-light);
+}
+
+.nav-item.activ .nav-icon {
+  transform: scale(1.15);
+}
+
+.nav-icon {
+  font-size: 1.4rem;
+  transition: transform 0.2s;
+  line-height: 1;
+}
+
+.nav-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.03em;
+  font-family: var(--font-text);
+  line-height: 1;
+}
+
+/* === MODAL ZI === */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(74,15,28,0.7);
+  z-index: 200;
+  backdrop-filter: blur(4px);
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.modal-overlay.deschis { display: flex; }
+
+.modal-continut {
+  background: var(--crem);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: 24px 20px 40px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease;
+  border-top: 3px solid var(--auriu);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.modal-inchide {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-light);
+  padding: 4px;
+}
+
+.modal-data {
+  font-family: var(--font-titlu);
+  font-size: 1.2rem;
+  color: var(--visineu);
+}
+
+.modal-sfant {
+  font-size: 0.95rem;
+  color: var(--text-medium);
+  line-height: 1.6;
+}
+
+/* === PAGINI INTERIOARE === */
+.page-hero {
+  background: linear-gradient(135deg, var(--visineu-dark) 0%, var(--visineu) 100%);
+  padding: 40px 20px 30px;
+  text-align: center;
+  color: var(--crem);
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.page-hero::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -1px;
+  left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--auriu), transparent);
+}
+
+.page-hero h1 {
+  font-family: var(--font-titlu);
+  font-size: 1.8rem;
+  color: var(--auriu-light);
+  margin-bottom: 8px;
+}
+
+.page-hero p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* === FAQ === */
+.faq-item {
+  background: var(--alb);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(107,27,43,0.06);
+}
+
+.faq-intrebare {
+  padding: 16px 20px;
+  font-family: var(--font-titlu);
+  font-size: 0.95rem;
+  color: var(--visineu);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  user-select: none;
+}
+
+.faq-intrebare:hover { background: var(--crem); }
+
+.faq-icon {
+  color: var(--auriu);
+  font-size: 1.2rem;
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+
+.faq-item.deschis .faq-icon { transform: rotate(45deg); }
+
+.faq-raspuns {
+  display: none;
+  padding: 0 20px 16px;
+  font-size: 0.9rem;
+  color: var(--text-medium);
+  line-height: 1.7;
+  border-top: 1px solid rgba(201,168,76,0.15);
+  padding-top: 14px;
+}
+
+.faq-item.deschis .faq-raspuns { display: block; }
+
+/* === FOOTER === */
+.footer {
+  background: var(--visineu-dark);
+  color: var(--crem);
+  text-align: center;
+  padding: 30px 20px;
+  margin-bottom: 70px;
+}
+
+.footer-logo {
+  font-family: var(--font-titlu);
+  font-size: 1.2rem;
+  color: var(--auriu-light);
+  margin-bottom: 8px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.footer-links a {
+  color: rgba(253,246,227,0.6);
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--auriu-light); }
+
+.footer-social {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(253,246,227,0.7);
+  text-decoration: none;
+  font-size: 0.82rem;
+  padding: 6px 14px;
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 20px;
+  transition: all 0.2s;
+}
+
+.footer-social a:hover {
+  border-color: var(--auriu);
+  color: var(--auriu-light);
+}
+
+.footer-copy {
+  font-size: 0.72rem;
+  opacity: 0.4;
+  margin-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 16px;
+}
+
+/* === TOAST NOTIFICARE === */
+.toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--visineu);
+  color: var(--auriu-light);
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 300;
+  border: 1px solid var(--auriu);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.toast.vizibil {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* === UTILITIES === */
+.text-auriu { color: var(--auriu); }
+.text-visineu { color: var(--visineu); }
+.text-center { text-align: center; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mb-16 { margin-bottom: 16px; }
+
+/* === RESPONSIVE === */
+@media (max-width: 480px) {
+  html { font-size: 16px; }
+  .sfant-icoana { width: 70px; height: 86px; font-size: 32px; }
+  .sfant-nume { font-size: 1.1rem; }
+  .zi-sfant { display: none; }
+  .calendar-zi { min-height: 38px; }
+}
+
+@media (min-width: 768px) {
+  main { padding: 0 24px 40px; }
+  .card-sfant-body { gap: 28px; }
+  .sfant-icoana { width: 110px; height: 135px; font-size: 48px; }
+  .sfant-nume { font-size: 1.5rem; }
+  .bottom-nav { display: none; }
+  .footer { margin-bottom: 0; }
+}
+
+/* === ANIMAȚII === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card-sfant-zilei,
+.calendar-container,
+.card-post,
+.card-rugaciune {
+  animation: fadeIn 0.4s ease both;
+}
+
+.card-sfant-zilei { animation-delay: 0.05s; }
+.calendar-container { animation-delay: 0.1s; }
+.card-post { animation-delay: 0.15s; }
+.card-rugaciune { animation-delay: 0.2s; }
+
+/* === PWA INSTALL BANNER === */
+.pwa-banner {
+  background: linear-gradient(135deg, var(--albastru-marial), #2A5298);
+  color: var(--crem);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.pwa-banner-text { flex: 1; font-size: 0.88rem; }
+.pwa-banner-text strong { display: block; font-family: var(--font-titlu); color: var(--auriu-light); }
+
+.btn-instaleaza {
+  background: var(--auriu);
+  color: var(--visineu-dark);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: var(--font-text);
+  transition: all 0.2s;
+}
+
+.btn-instaleaza:hover { background: var(--auriu-light); }

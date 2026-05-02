@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#6B1B2B">
+
+  <title>Pricesne Ortodoxe Românești — Muzică Bisericească | Povești de Credință</title>
+  <meta name="description" content="Pricesne ortodoxe românești — colecție completă cu muzică bisericească, psalmii pocăinței, pricesne pentru post și rugăciuni cântate. Ascultă și descarcă gratuit.">
+  <meta name="keywords" content="pricesne ortodoxe, pricesne românești, muzică bisericească ortodoxă, psalmii pocăinței, pricesne pentru post, pricesne maica domnului">
+  <link rel="canonical" href="https://povestidecredinta.ro/pricesne.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Pricesne Ortodoxe Românești — Povești de Credință">
+  <meta property="og:description" content="Colecție completă de pricesne ortodoxe românești cu muzică bisericească. Ascultă pe YouTube.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://povestidecredinta.ro/pricesne.html">
+  <meta property="og:image" content="https://povestidecredinta.ro/images/og-image.jpg">
+  <meta property="og:locale" content="ro_RO">
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/images/icon-192.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Schema BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Acasă","item":"https://povestidecredinta.ro/"},
+      {"@type":"ListItem","position":2,"name":"Pricesne Ortodoxe","item":"https://povestidecredinta.ro/pricesne.html"}
+    ]
+  }
+  </script>
+
+  <!-- Schema CollectionPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Pricesne Ortodoxe Românești",
+    "description": "Colecție completă de pricesne ortodoxe românești — muzică bisericească, psalmii pocăinței, pricesne pentru post și Maica Domnului.",
+    "url": "https://povestidecredinta.ro/pricesne.html",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Povești de Credință",
+      "url": "https://povestidecredinta.ro"
+    }
+  }
+  </script>
+
+  <!-- Schema FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Ce sunt pricesnele ortodoxe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pricesnele (sau chinonicele) sunt cântări religioase ortodoxe intonated în timpul Sfintei Liturghii, la momentul împărtășaniei. Sunt parte esențială a tradiției muzicale bisericești românești."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Când se cântă pricesnele la biserică?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pricesnele se cântă în timpul Sfintei Liturghii, în momentul în care preotul se împărtășește în altar. Variază în funcție de ziua din săptămână, sărbătoarea zilei și perioada din an (post sau dezlegare)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Care sunt cele mai frumoase pricesne ortodoxe românești?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Printre cele mai iubite pricesne ortodoxe românești se numără pricesnele închinate Maicii Domnului, Psalmii Pocăinței, pricesnele de duminică și cele pentru perioadele de post. Le găsești pe toate pe canalul nostru YouTube."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Unde pot asculta pricesne ortodoxe românești?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Poți asculta pricesne ortodoxe românești pe canalul nostru YouTube @povestidecredinta și @povestidecredinta.rugaciune, sau chiar pe această pagină unde am adunat cele mai ascultate pricesne ale noastre."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* === STILURI SPECIFICE PRICESNE === */
+    .pricesne-intro {
+      background: white;
+      border: 1px solid rgba(201,168,76,0.25);
+      border-left: 4px solid var(--auriu);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 10px rgba(107,27,43,0.06);
+    }
+
+    .pricesne-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .priceasna-card {
+      background: white;
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(107,27,43,0.08);
+      animation: fadeIn 0.4s ease both;
+    }
+
+    .priceasna-card:nth-child(1) { animation-delay: 0.05s; }
+    .priceasna-card:nth-child(2) { animation-delay: 0.1s; }
+    .priceasna-card:nth-child(3) { animation-delay: 0.15s; }
+    .priceasna-card:nth-child(4) { animation-delay: 0.2s; }
+    .priceasna-card:nth-child(5) { animation-delay: 0.25s; }
+
+    .priceasna-header {
+      background: linear-gradient(135deg, var(--visineu), var(--visineu-dark));
+      padding: 16px 20px;
+      position: relative;
+    }
+
+    .priceasna-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--auriu), transparent);
+    }
+
+    .priceasna-nr {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--auriu);
+      margin-bottom: 4px;
+      font-family: var(--font-text);
+    }
+
+    .priceasna-titlu {
+      font-family: var(--font-titlu);
+      font-size: 1.1rem;
+      color: var(--auriu-light);
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .priceasna-meta {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .priceasna-badge {
+      font-size: 0.7rem;
+      padding: 3px 10px;
+      border-radius: 12px;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--auriu-light);
+      font-family: var(--font-text);
+    }
+
+    /* YouTube embed responsive */
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+    /* Lazy load placeholder */
+    .video-placeholder {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--visineu-dark), #1a1a2e);
+      cursor: pointer;
+    }
+
+    .video-placeholder-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .play-btn {
+      width: 64px;
+      height: 64px;
+      background: rgba(201,168,76,0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: transform 0.2s, background 0.2s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    .video-placeholder:hover .play-btn {
+      transform: scale(1.1);
+      background: var(--auriu);
+    }
+
+    .play-titlu {
+      color: var(--crem);
+      font-family: var(--font-titlu);
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 0 20px;
+      line-height: 1.4;
+    }
+
+    .play-subtitlu {
+      color: rgba(253,246,227,0.6);
+      font-size: 0.75rem;
+    }
+
+    .priceasna-body {
+      padding: 18px 20px;
+    }
+
+    .priceasna-descriere {
+      font-size: 0.9rem;
+      color: var(--text-medium);
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+
+    .priceasna-stats {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 14px;
+      padding: 10px 0;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      color: var(--text-light);
+    }
+
+    .priceasna-actiuni {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-youtube {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FF0000;
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-family: var(--font-text);
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-youtube:hover {
+      background: #CC0000;
+      transform: translateY(-1px);
+    }
+
+    .btn-share-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-family: var(--font-text);
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-share-wa:hover {
+      background: #1EA952;
+      transform: translateY(-1px);
+    }
+
+    /* Stats canal */
+    .canal-stats {
+      background: linear-gradient(135deg, var(--visineu-dark), var(--albastru-marial));
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      color: var(--crem);
+      margin-bottom: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .canal-icon { font-size: 2.5rem; flex-shrink: 0; }
+
+    .canal-info { flex: 1; }
+
+    .canal-titlu {
+      font-family: var(--font-titlu);
+      color: var(--auriu-light);
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .canal-desc {
+      font-size: 0.82rem;
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+
+    /* Categorii */
+    .categorii-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 24px;
+      scrollbar-width: none;
+    }
+
+    .categorii-nav::-webkit-scrollbar { display: none; }
+
+    .cat-btn {
+      flex-shrink: 0;
+      padding: 7px 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(201,168,76,0.3);
+      background: white;
+      color: var(--text-medium);
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: var(--font-text);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .cat-btn.activ, .cat-btn:hover {
+      background: var(--visineu);
+      color: var(--auriu-light);
+      border-color: var(--visineu);
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">🕊️</div>
+      <div class="logo-text">
+        <span class="logo-titlu">Povești de Credință</span>
+        <span class="logo-subtitlu">Calendar Ortodox Românesc</span>
+      </div>
+    </a>
+    <nav class="nav-desktop">
+      <a href="/">Acasă</a>
+      <a href="/calendar.html">Calendar</a>
+      <a href="/rugaciuni.html">Rugăciuni</a>
+      <a href="/acatiste.html">Acatiste</a>
+      <a href="/pricesne.html" class="activ">Pricesne</a>
+      <a href="/faq.html">FAQ</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Meniu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="nav-mobil" id="nav-mobil">
+    <a href="/">🏠 Acasă</a>
+    <a href="/calendar.html">📅 Calendar Ortodox 2026</a>
+    <a href="/rugaciuni.html">🙏 Rugăciuni</a>
+    <a href="/acatiste.html">📖 Acatiste</a>
+    <a href="/pricesne.html">🎵 Pricesne</a>
+    <a href="/posturi.html">🕯️ Posturi</a>
+    <a href="/faq.html">❓ FAQ</a>
+    <a href="/despre.html">✝️ Despre noi</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="page-hero">
+  <nav aria-label="Breadcrumb" style="font-size:0.75rem;margin-bottom:12px;opacity:0.7">
+    <a href="/" style="color:var(--auriu-light);text-decoration:none">Acasă</a>
+    <span style="margin:0 8px">›</span>
+    <span>Pricesne Ortodoxe</span>
+  </nav>
+  <h1>🎵 Pricesne Ortodoxe Românești</h1>
+  <p>Muzică bisericească ortodoxă — colecție completă</p>
+</div>
+
+<main>
+
+  <!-- INTRO SEO — răspuns direct din primul rând -->
+  <div class="pricesne-intro">
+    <p style="font-size:0.95rem;color:var(--text-medium);line-height:1.75;margin-bottom:10px">
+      <strong style="color:var(--visineu)">Pricesnele ortodoxe</strong> sunt cântări religioase intonated în timpul Sfintei Liturghii, la momentul împărtășaniei. Pe această pagină găsești colecția noastră completă de pricesne ortodoxe românești — muzică bisericească autentică, înregistrată cu dragoste pentru sufletele credincioase.
+    </p>
+    <p style="font-size:0.88rem;color:var(--text-light);line-height:1.6">
+      Toate videoclipurile sunt de pe canalele noastre YouTube cu peste <strong>30.000 de abonați</strong>. Ascultă, distribuie și bucură-te de frumusețea muzicii ortodoxe românești.
+    </p>
+  </div>
+
+  <!-- CANAL STATS -->
+  <div class="canal-stats">
+    <div class="canal-icon">📺</div>
+    <div class="canal-info">
+      <div class="canal-titlu">Canalul nostru YouTube</div>
+      <div class="canal-desc">
+        Peste <strong style="color:var(--auriu-light)">30.000 abonați</strong> și sute de pricesne ortodoxe românești.<br>
+        Abonează-te pentru muzică bisericească nouă în fiecare săptămână.
+      </div>
+    </div>
+    <a href="https://youtube.com/@povestidecredinta.rugaciune" target="_blank" rel="noopener noreferrer"
+       style="background:rgba(201,168,76,0.2);border:1px solid var(--auriu);color:var(--auriu-light);text-decoration:none;padding:8px 14px;border-radius:20px;font-size:0.8rem;white-space:nowrap;flex-shrink:0">
+      Abonează-te
+    </a>
+  </div>
+
+  <!-- CATEGORII -->
+  <div class="categorii-nav" role="navigation" aria-label="Categorii pricesne">
+    <button class="cat-btn activ" onclick="filtreaza('toate')">🎵 Toate</button>
+    <button class="cat-btn" onclick="filtreaza('muzica-bise')">⛪ Muzică Bis.</button>
+    <button class="cat-btn" onclick="filtreaza('psalmi')">📖 Psalmi</button>
+    <button class="cat-btn" onclick="filtreaza('post')">🕯️ Post</button>
+    <button class="cat-btn" onclick="filtreaza('maica')">🕊️ Maica Domnului</button>
+  </div>
+
+  <!-- ADSENSE BANNER -->
+  <div class="adsense-banner" aria-label="Publicitate">
+    <!-- AdSense banner 320x50 -->
+    <span>Publicitate</span>
+  </div>
+
+  <!-- PRICESNE GRID -->
+  <section class="pricesne-grid" aria-label="Colecție pricesne ortodoxe">
+
+    <!-- PRICEASNA 1 -->
+    <article class="priceasna-card" data-categorie="muzica-bise" itemscope itemtype="https://schema.org/VideoObject">
+      <div class="priceasna-header">
+        <div class="priceasna-nr">🎵 Priceasnă #1</div>
+        <h2 class="priceasna-titlu" itemprop="name">Pricesne Ortodoxe — Muzică Bisericească</h2>
+        <div class="priceasna-meta">
+          <span class="priceasna-badge">⛪ Muzică Bisericească</span>
+          <span class="priceasna-badge">📺 100K+ vizualizări</span>
+        </div>
+      </div>
+      <div class="video-placeholder" onclick="incarcaVideo(this, 'L-_7aSCdrqY')" role="button" aria-label="Redă videoclipul Pricesne Ortodoxe">
+        <img src="https://img.youtube.com/vi/L-_7aSCdrqY/maxresdefault.jpg"
+             alt="Pricesne Ortodoxe — Muzică Bisericească"
+             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7"
+             loading="lazy"
+             itemprop="thumbnailUrl">
+        <div class="video-placeholder-inner">
+          <div class="play-btn">▶</div>
+          <div class="play-titlu">Pricesne Ortodoxe<br>Muzică Bisericească</div>
+          <div class="play-subtitlu">Apasă pentru a reda</div>
+        </div>
+      </div>
+      <div class="priceasna-body">
+        <p class="priceasna-descriere">
+          O colecție frumoasă de pricesne ortodoxe românești — muzică bisericească autentică pentru suflete credincioase. Ideal pentru ascultat în zilele de duminică sau în perioadele de rugăciune.
+        </p>
+        <div class="priceasna-stats">
+          <div class="stat-item">👁️ 100.930 vizualizări</div>
+          <div class="stat-item">👍 1.400 aprecieri</div>
+        </div>
+        <div class="priceasna-actiuni">
+          <a href="https://youtu.be/L-_7aSCdrqY" target="_blank" rel="noopener noreferrer" class="btn-youtube">
+            ▶ YouTube
+          </a>
+          <a href="https://wa.me/?text=Ascultă+pricesne+ortodoxe+românești+%F0%9F%8E%B5+https://youtu.be/L-_7aSCdrqY+%7C+povestidecredinta.ro"
+             target="_blank" rel="noopener noreferrer" class="btn-share-wa">
+            💬 WhatsApp
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- PRICEASNA 2 -->
+    <article class="priceasna-card" data-categorie="muzica-bise" itemscope itemtype="https://schema.org/VideoObject">
+      <div class="priceasna-header">
+        <div class="priceasna-nr">🎵 Priceasnă #2</div>
+        <h2 class="priceasna-titlu" itemprop="name">Pricesne Orthodoxe — Muzică Bisericească Partea a 2-a</h2>
+        <div class="priceasna-meta">
+          <span class="priceasna-badge">⛪ Muzică Bisericească</span>
+          <span class="priceasna-badge">📺 93K+ vizualizări</span>
+        </div>
+      </div>
+      <div class="video-placeholder" onclick="incarcaVideo(this, 'uf4GHMEbIwo')" role="button" aria-label="Redă videoclipul Pricesne Orthodoxe Partea 2">
+        <img src="https://img.youtube.com/vi/uf4GHMEbIwo/maxresdefault.jpg"
+             alt="Pricesne Orthodoxe — Muzică Bisericească Partea 2"
+             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7"
+             loading="lazy"
+             itemprop="thumbnailUrl">
+        <div class="video-placeholder-inner">
+          <div class="play-btn">▶</div>
+          <div class="play-titlu">Pricesne Orthodoxe<br>Partea a 2-a</div>
+          <div class="play-subtitlu">Apasă pentru a reda</div>
+        </div>
+      </div>
+      <div class="priceasna-body">
+        <p class="priceasna-descriere">
+          Continuarea colecției de pricesne ortodoxe — a doua parte cu muzică bisericească românească. O oră de rugăciune cântată pentru liniștea sufletului.
+        </p>
+        <div class="priceasna-stats">
+          <div class="stat-item">👁️ 93.038 vizualizări</div>
+          <div class="stat-item">👍 2.257 aprecieri</div>
+        </div>
+        <div class="priceasna-actiuni">
+          <a href="https://youtu.be/uf4GHMEbIwo" target="_blank" rel="noopener noreferrer" class="btn-youtube">
+            ▶ YouTube
+          </a>
+          <a href="https://wa.me/?text=Ascultă+pricesne+ortodoxe+românești+%F0%9F%8E%B5+https://youtu.be/uf4GHMEbIwo+%7C+povestidecredinta.ro"
+             target="_blank" rel="noopener noreferrer" class="btn-share-wa">
+            💬 WhatsApp
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- PRICEASNA 3 -->
+    <article class="priceasna-card" data-categorie="psalmi" itemscope itemtype="https://schema.org/VideoObject">
+      <div class="priceasna-header">
+        <div class="priceasna-nr">🎵 Priceasnă #3</div>
+        <h2 class="priceasna-titlu" itemprop="name">Psalmii Pocăinței și Slavei</h2>
+        <div class="priceasna-meta">
+          <span class="priceasna-badge">📖 Psalmi</span>
+          <span class="priceasna-badge">📺 72K+ vizualizări</span>
+        </div>
+      </div>
+      <div class="video-placeholder" onclick="incarcaVideo(this, 'sg4l7SWLgJo')" role="button" aria-label="Redă videoclipul Psalmii Pocăinței și Slavei">
+        <img src="https://img.youtube.com/vi/sg4l7SWLgJo/maxresdefault.jpg"
+             alt="Psalmii Pocăinței și Slavei"
+             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7"
+             loading="lazy"
+             itemprop="thumbnailUrl">
+        <div class="video-placeholder-inner">
+          <div class="play-btn">▶</div>
+          <div class="play-titlu">Psalmii Pocăinței<br>și Slavei</div>
+          <div class="play-subtitlu">Apasă pentru a reda</div>
+        </div>
+      </div>
+      <div class="priceasna-body">
+        <p class="priceasna-descriere">
+          Psalmii Pocăinței și Slavei — cei mai frumoși psalmi cântați în tradiția ortodoxă românească. Ideal pentru rugăciunea de dimineață sau de seară, pentru pocăință și mulțumire.
+        </p>
+        <div class="priceasna-stats">
+          <div class="stat-item">👁️ 72.806 vizualizări</div>
+          <div class="stat-item">👍 1.082 aprecieri</div>
+        </div>
+        <div class="priceasna-actiuni">
+          <a href="https://youtu.be/sg4l7SWLgJo" target="_blank" rel="noopener noreferrer" class="btn-youtube">
+            ▶ YouTube
+          </a>
+          <a href="https://wa.me/?text=Psalmii+Poca%CC%86int%CC%A6ei+si+Slavei+%F0%9F%99%8F+https://youtu.be/sg4l7SWLgJo+%7C+povestidecredinta.ro"
+             target="_blank" rel="noopener noreferrer" class="btn-share-wa">
+            💬 WhatsApp
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ADSENSE RECTANGLE -->
+    <div class="adsense-banner" style="min-height:250px" aria-label="Publicitate">
+      <span>Publicitate</span>
+    </div>
+
+    <!-- PRICEASNA 4 -->
+    <article class="priceasna-card" data-categorie="post" itemscope itemtype="https://schema.org/VideoObject">
+      <div class="priceasna-header">
+        <div class="priceasna-nr">🎵 Priceasnă #4</div>
+        <h2 class="priceasna-titlu" itemprop="name">Pricesne Ortodoxe Românești — Pentru Post</h2>
+        <div class="priceasna-meta">
+          <span class="priceasna-badge">🕯️ Pricesne de Post</span>
+          <span class="priceasna-badge">📺 60K+ vizualizări</span>
+        </div>
+      </div>
+      <div class="video-placeholder" onclick="incarcaVideo(this, '2vg4JUpAMAQ')" role="button" aria-label="Redă videoclipul Pricesne pentru Post">
+        <img src="https://img.youtube.com/vi/2vg4JUpAMAQ/maxresdefault.jpg"
+             alt="Pricesne Ortodoxe Românești pentru Post"
+             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7"
+             loading="lazy"
+             itemprop="thumbnailUrl">
+        <div class="video-placeholder-inner">
+          <div class="play-btn">▶</div>
+          <div class="play-titlu">Pricesne Ortodoxe<br>Românești — Post</div>
+          <div class="play-subtitlu">Apasă pentru a reda</div>
+        </div>
+      </div>
+      <div class="priceasna-body">
+        <p class="priceasna-descriere">
+          Pricesne ortodoxe românești special selectate pentru perioadele de post. Muzică bisericească potrivită pentru Postul Mare, Postul Crăciunului și celelalte posturi de peste an.
+        </p>
+        <div class="priceasna-stats">
+          <div class="stat-item">👁️ 60.810 vizualizări</div>
+          <div class="stat-item">👍 972 aprecieri</div>
+        </div>
+        <div class="priceasna-actiuni">
+          <a href="https://youtu.be/2vg4JUpAMAQ" target="_blank" rel="noopener noreferrer" class="btn-youtube">
+            ▶ YouTube
+          </a>
+          <a href="https://wa.me/?text=Pricesne+pentru+post+%F0%9F%95%AF%EF%B8%8F+https://youtu.be/2vg4JUpAMAQ+%7C+povestidecredinta.ro"
+             target="_blank" rel="noopener noreferrer" class="btn-share-wa">
+            💬 WhatsApp
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- PRICEASNA 5 -->
+    <article class="priceasna-card" data-categorie="maica" itemscope itemtype="https://schema.org/VideoObject">
+      <div class="priceasna-header">
+        <div class="priceasna-nr">🎵 Priceasnă #5</div>
+        <h2 class="priceasna-titlu" itemprop="name">O, Maică Sfântă — Rugăciune și Priceasnă</h2>
+        <div class="priceasna-meta">
+          <span class="priceasna-badge">🕊️ Maica Domnului</span>
+          <span class="priceasna-badge">📺 54K+ vizualizări</span>
+        </div>
+      </div>
+      <div class="video-placeholder" onclick="incarcaVideo(this, 'wi_vK0iEWgI')" role="button" aria-label="Redă videoclipul O Maică Sfântă">
+        <img src="https://img.youtube.com/vi/wi_vK0iEWgI/maxresdefault.jpg"
+             alt="O Maică Sfântă — Rugăciune și Priceasnă"
+             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7"
+             loading="lazy"
+             itemprop="thumbnailUrl">
+        <div class="video-placeholder-inner">
+          <div class="play-btn">▶</div>
+          <div class="play-titlu">O, Maică Sfântă<br>Rugăciune și Priceasnă</div>
+          <div class="play-subtitlu">Apasă pentru a reda</div>
+        </div>
+      </div>
+      <div class="priceasna-body">
+        <p class="priceasna-descriere">
+          "O, Maică Sfântă, ascultă-ne rugăciunea" — una dintre cele mai iubite pricesne închinate Maicii Domnului în tradiția ortodoxă românească. O rugăciune cântată din inimă pentru toți cei care o iubesc pe Preacurata.
+        </p>
+        <div class="priceasna-stats">
+          <div class="stat-item">👁️ 54.070 vizualizări</div>
+          <div class="stat-item">👍 852 aprecieri</div>
+        </div>
+        <div class="priceasna-actiuni">
+          <a href="https://youtu.be/wi_vK0iEWgI" target="_blank" rel="noopener noreferrer" class="btn-youtube">
+            ▶ YouTube
+          </a>
+          <a href="https://wa.me/?text=O+Maica+Sfanta+%F0%9F%95%8A%EF%B8%8F+https://youtu.be/wi_vK0iEWgI+%7C+povestidecredinta.ro"
+             target="_blank" rel="noopener noreferrer" class="btn-share-wa">
+            💬 WhatsApp
+          </a>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <div class="separator-ortodox" aria-hidden="true">✦ ✝ ✦</div>
+
+  <!-- FAQ -->
+  <section aria-labelledby="faq-pricesne">
+    <h2 class="sectiune-titlu" id="faq-pricesne">❓ Întrebări frecvente</h2>
+
+    <div class="faq-item">
+      <div class="faq-intrebare">Ce sunt pricesnele ortodoxe?<span class="faq-icon">+</span></div>
+      <div class="faq-raspuns">
+        <strong>Pricesnele</strong> (sau chinonicele) sunt cântări religioase ortodoxe intonate în timpul Sfintei Liturghii, la momentul împărtășaniei. Sunt parte esențială a muzicii bisericești românești și variază în funcție de zi, sărbătoare și perioadă din an.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-intrebare">Când se cântă pricesnele la biserică?<span class="faq-icon">+</span></div>
+      <div class="faq-raspuns">
+        Pricesnele se cântă în timpul Sfintei Liturghii, când preotul se împărtășește în altar. Există pricesne specifice pentru duminici, sărbători, perioadele de post și diferite momente ale anului bisericesc.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-intrebare">Care sunt cele mai frumoase pricesne ortodoxe românești?<span class="faq-icon">+</span></div>
+      <div class="faq-raspuns">
+        Printre cele mai iubite pricesne ortodoxe românești se numără cele închinate Maicii Domnului, Psalmii Pocăinței, pricesnele de duminică și cele pentru perioadele de post. Le găsești pe toate pe această pagină și pe canalele noastre YouTube.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-intrebare">Unde mai găsesc pricesne ortodoxe românești?<span class="faq-icon">+</span></div>
+      <div class="faq-raspuns">
+        Pe canalele noastre YouTube găsești sute de pricesne ortodoxe românești: <a href="https://youtube.com/@povestidecredinta.rugaciune" target="_blank" rel="noopener" style="color:var(--visineu)">@povestidecredinta.rugaciune</a> și <a href="https://youtube.com/@povestidecredinta" target="_blank" rel="noopener" style="color:var(--visineu)">@povestidecredinta</a>. Abonează-te pentru muzică nouă în fiecare săptămână.
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ABONARE CANAL -->
+  <div style="background:linear-gradient(135deg,var(--visineu-dark),var(--visineu));border-radius:var(--radius-lg);padding:22px;text-align:center;color:var(--crem);margin-top:24px">
+    <div style="font-size:2rem;margin-bottom:8px">📺</div>
+    <div style="font-family:var(--font-titlu);color:var(--auriu-light);font-size:1.1rem;margin-bottom:8px">
+      Mai multe pricesne pe YouTube
+    </div>
+    <p style="font-size:0.85rem;opacity:0.85;margin-bottom:16px;line-height:1.6">
+      Abonează-te la canalele noastre pentru pricesne noi în fiecare săptămână.<br>Peste 30.000 de suflete ne ascultă deja.
+    </p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <a href="https://youtube.com/@povestidecredinta.rugaciune" target="_blank" rel="noopener noreferrer"
+         style="background:#FF0000;color:white;text-decoration:none;padding:10px 20px;border-radius:20px;font-size:0.85rem;font-weight:700">
+        ▶ Rugăciuni & Pricesne
+      </a>
+      <a href="https://youtube.com/@povestidecredinta" target="_blank" rel="noopener noreferrer"
+         style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:white;text-decoration:none;padding:10px 20px;border-radius:20px;font-size:0.85rem">
+        ▶ Povești de Credință
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">✝️ Povești de Credință</div>
+  <div class="footer-social">
+    <a href="https://youtube.com/@povestidecredinta" target="_blank" rel="noopener">📺 YouTube</a>
+    <a href="https://www.facebook.com/povestidecredinta" target="_blank" rel="noopener">📘 Facebook</a>
+  </div>
+  <div class="footer-links">
+    <a href="/despre.html">Despre noi</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/faq.html">FAQ</a>
+    <a href="/politica-confidentialitate.html">Confidențialitate</a>
+    <a href="/politica-cookies.html">Cookies</a>
+  </div>
+  <div class="footer-copy">© 2026 Povești de Credință — povestidecredinta.ro</div>
+</footer>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <a href="/" class="nav-item"><span class="nav-icon">🏠</span><span class="nav-label">Acasă</span></a>
+  <a href="/calendar.html" class="nav-item"><span class="nav-icon">📅</span><span class="nav-label">Calendar</span></a>
+  <a href="/rugaciuni.html" class="nav-item"><span class="nav-icon">🙏</span><span class="nav-label">Rugăciuni</span></a>
+  <a href="/pricesne.html" class="nav-item activ"><span class="nav-icon">🎵</span><span class="nav-label">Pricesne</span></a>
+  <a href="/faq.html" class="nav-item"><span class="nav-icon">❓</span><span class="nav-label">FAQ</span></a>
+</nav>
+
+<script src="/js/app.js"></script>
+<script>
+// Lazy load video — înlocuiește placeholder cu iframe YouTube
+function incarcaVideo(placeholder, videoId) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'video-wrapper';
+  wrapper.innerHTML = `<iframe 
+    src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1" 
+    title="Priceasnă ortodoxă"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen
+    loading="lazy">
+  </iframe>`;
+  placeholder.parentNode.replaceChild(wrapper, placeholder);
+}
+
+// Filtrare categorii
+function filtreaza(categorie) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('activ'));
+  event.target.classList.add('activ');
+
+  document.querySelectorAll('.priceasna-card').forEach(card => {
+    if (categorie === 'toate' || card.dataset.categorie === categorie) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#6B1B2B">
+  
+  <title>Povești de Credință — Calendar Ortodox Românesc 2026</title>
+  <meta name="description" content="Sfântul zilei, calendar ortodox 2026, rugăciuni, acatiste și pricesne ortodoxe românești. Descoperă credința ortodoxă zi de zi.">
+  <meta name="keywords" content="calendar ortodox, sfântul zilei, rugăciuni ortodoxe, acatiste, pricesne, post ortodox, calendar creștin 2026">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://povestidecredinta.ro/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Povești de Credință — Calendar Ortodox Românesc">
+  <meta property="og:description" content="Sfântul zilei, rugăciuni, acatiste și calendar ortodox complet 2026.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://povestidecredinta.ro/">
+  <meta property="og:image" content="https://povestidecredinta.ro/images/og-image.jpg">
+  <meta property="og:locale" content="ro_RO">
+  <meta property="og:site_name" content="Povești de Credință">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Povești de Credință — Calendar Ortodox">
+  <meta name="twitter:description" content="Sfântul zilei, rugăciuni și calendar ortodox 2026">
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/images/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Povești de Credință">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Schema.org Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Povești de Credință",
+    "url": "https://povestidecredinta.ro",
+    "logo": "https://povestidecredinta.ro/images/logo.png",
+    "description": "Calendar ortodox românesc, sfântul zilei, rugăciuni, acatiste și pricesne ortodoxe.",
+    "sameAs": [
+      "https://www.youtube.com/@povestidecredinta",
+      "https://www.youtube.com/@povestidecredinta.rugaciune",
+      "https://www.facebook.com/povestidecredinta"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "email": "contact@povestidecredinta.ro",
+      "availableLanguage": "Romanian"
+    }
+  }
+  </script>
+
+  <!-- Schema.org WebSite cu SearchBox -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Povești de Credință",
+    "url": "https://povestidecredinta.ro",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://povestidecredinta.ro/cautare?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">🕊️</div>
+      <div class="logo-text">
+        <span class="logo-titlu">Povești de Credință</span>
+        <span class="logo-subtitlu">Calendar Ortodox Românesc</span>
+      </div>
+    </a>
+    <nav class="nav-desktop" aria-label="Navigație principală">
+      <a href="/" class="activ">Acasă</a>
+      <a href="/calendar.html">Calendar</a>
+      <a href="/rugaciuni.html">Rugăciuni</a>
+      <a href="/acatiste.html">Acatiste</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/despre.html">Despre</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Meniu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="nav-mobil" id="nav-mobil" aria-label="Meniu mobil">
+    <a href="/">🏠 Acasă</a>
+    <a href="/calendar.html">📅 Calendar Ortodox 2026</a>
+    <a href="/rugaciuni.html">🙏 Rugăciuni</a>
+    <a href="/acatiste.html">📖 Acatiste</a>
+    <a href="/pricesne.html">🎵 Pricesne</a>
+    <a href="/posturi.html">🕯️ Posturi</a>
+    <a href="/faq.html">❓ Întrebări frecvente</a>
+    <a href="/despre.html">✝️ Despre noi</a>
+    <a href="/contact.html">📧 Contact</a>
+  </nav>
+</header>
+
+<!-- MAIN -->
+<main>
+
+  <!-- PWA INSTALL BANNER -->
+  <div class="pwa-banner" id="pwa-banner" style="display:none;">
+    <span style="font-size:1.8rem">📱</span>
+    <div class="pwa-banner-text">
+      <strong>Instalează aplicația</strong>
+      Sfântul zilei direct pe telefon, fără internet
+    </div>
+    <button class="btn-instaleaza" onclick="instaleazaPWA()">Instalează</button>
+  </div>
+
+  <!-- CARD SFÂNTUL ZILEI -->
+  <article class="card-sfant-zilei" itemscope itemtype="https://schema.org/Event">
+    <div class="card-sfant-header">
+      <span class="data-azi" id="zi-saptamana">Se încarcă...</span>
+      <span class="badge-post post" id="badge-post">🕯️ Post</span>
+    </div>
+    <div class="card-sfant-body">
+      <div class="sfant-icoana" aria-hidden="true">🕯️</div>
+      <div class="sfant-info">
+        <div class="sfant-titlu-mic">Sfântul zilei</div>
+        <h1 class="sfant-nume" id="sfant-nume" itemprop="name">Se încarcă...</h1>
+        <p class="sfant-scurt" id="sfant-scurt" itemprop="description"></p>
+        <a href="/sfinti/sfantul-zilei.html" class="btn-citeste">
+          📖 Citește mai mult
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <!-- ADSENSE BANNER 1 -->
+  <div class="adsense-banner" aria-label="Publicitate">
+    <!-- Google AdSense Banner 320x50 -->
+    <!-- <ins class="adsbygoogle" data-ad-client="ca-pub-XXXXX" data-ad-slot="XXXXX" data-ad-format="banner"></ins> -->
+    <span>Publicitate</span>
+  </div>
+
+  <!-- RUGĂCIUNEA ZILEI -->
+  <section aria-labelledby="titlu-rugaciune">
+    <h2 class="sectiune-titlu">🙏 Rugăciunea zilei</h2>
+    <div class="card-rugaciune">
+      <div class="rugaciune-titlu" id="rugaciune-titlu">Rugăciunea dimineții</div>
+      <p class="rugaciune-text" id="rugaciune-text">Se încarcă...</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+        <button class="btn-copiere" onclick="copieRugaciune()">📋 Copiază</button>
+        <button class="btn-copiere" onclick="shareWhatsApp(document.getElementById('rugaciune-text').textContent)">
+          💬 Trimite pe WhatsApp
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="separator-ortodox" aria-hidden="true">✦ ✝ ✦</div>
+
+  <!-- CALENDAR LUNAR -->
+  <section aria-labelledby="titlu-calendar">
+    <h2 class="sectiune-titlu">📅 Calendar <span id="calendar-titlu-inline"></span></h2>
+    <div class="calendar-container">
+      <div class="calendar-header">
+        <button class="calendar-nav" onclick="navigheazaCalendar(-1)" aria-label="Luna anterioară">‹</button>
+        <span class="calendar-luna" id="calendar-titlu">Mai 2026</span>
+        <button class="calendar-nav" onclick="navigheazaCalendar(1)" aria-label="Luna următoare">›</button>
+      </div>
+      <div class="calendar-zile-header" aria-hidden="true">
+        <div class="calendar-zi-header">Lun</div>
+        <div class="calendar-zi-header">Mar</div>
+        <div class="calendar-zi-header">Mie</div>
+        <div class="calendar-zi-header">Joi</div>
+        <div class="calendar-zi-header">Vin</div>
+        <div class="calendar-zi-header">Sâm</div>
+        <div class="calendar-zi-header">Dum</div>
+      </div>
+      <div class="calendar-grid" id="calendar-grid" role="grid" aria-label="Calendar luna curentă">
+        <!-- Generat de JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ADSENSE RECTANGLE -->
+  <div class="adsense-banner" style="min-height:250px" aria-label="Publicitate">
+    <!-- Google AdSense Rectangle 300x250 -->
+    <!-- <ins class="adsbygoogle" data-ad-client="ca-pub-XXXXX" data-ad-slot="XXXXX" data-ad-format="rectangle"></ins> -->
+    <span>Publicitate</span>
+  </div>
+
+  <!-- POST URMĂTOR -->
+  <section aria-labelledby="titlu-post">
+    <h2 class="sectiune-titlu">🕯️ Post ortodox</h2>
+    <div class="card-post" id="card-post-info">
+      <!-- Generat de JavaScript -->
+    </div>
+  </section>
+
+  <div class="separator-ortodox" aria-hidden="true">✦ ✝ ✦</div>
+
+  <!-- SECȚIUNI RAPIDE -->
+  <section aria-labelledby="titlu-sectiuni">
+    <h2 class="sectiune-titlu">📚 Conținut ortodox</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <a href="/rugaciuni.html" style="text-decoration:none">
+        <div style="background:white;border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
+          <div style="font-size:2rem;margin-bottom:8px">🙏</div>
+          <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.95rem;font-weight:600">Rugăciuni</div>
+          <div style="font-size:0.75rem;color:var(--text-light);margin-top:4px">De dimineață, de seară, pentru bolnavi</div>
+        </div>
+      </a>
+      <a href="/acatiste.html" style="text-decoration:none">
+        <div style="background:white;border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
+          <div style="font-size:2rem;margin-bottom:8px">📖</div>
+          <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.95rem;font-weight:600">Acatiste</div>
+          <div style="font-size:0.75rem;color:var(--text-light);margin-top:4px">Maica Domnului, Sf. Nicolae și alții</div>
+        </div>
+      </a>
+      <a href="/pricesne.html" style="text-decoration:none">
+        <div style="background:white;border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
+          <div style="font-size:2rem;margin-bottom:8px">🎵</div>
+          <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.95rem;font-weight:600">Pricesne</div>
+          <div style="font-size:0.75rem;color:var(--text-light);margin-top:4px">Pricesne ortodoxe românești</div>
+        </div>
+      </a>
+      <a href="/posturi.html" style="text-decoration:none">
+        <div style="background:white;border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
+          <div style="font-size:2rem;margin-bottom:8px">🕯️</div>
+          <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.95rem;font-weight:600">Posturi</div>
+          <div style="font-size:0.75rem;color:var(--text-light);margin-top:4px">Calendar posturi ortodoxe 2026</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- YOUTUBE EMBED -->
+  <section style="margin-top:28px" aria-labelledby="titlu-youtube">
+    <h2 class="sectiune-titlu">📺 Canalele noastre YouTube</h2>
+    <div style="background:white;border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
+      <p style="font-size:0.88rem;color:var(--text-medium);margin-bottom:14px;font-style:italic">
+        Rugăciuni, acatiste și pricesne ortodoxe românești — peste 30.000 de suflete în comunitatea noastră
+      </p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="https://youtube.com/@povestidecredinta" target="_blank" rel="noopener noreferrer"
+           style="display:flex;align-items:center;gap:10px;text-decoration:none;background:var(--crem);padding:12px;border-radius:8px;border:1px solid rgba(201,168,76,0.2)">
+          <span style="font-size:1.5rem">📺</span>
+          <div>
+            <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.9rem;font-weight:600">Povești de Credință</div>
+            <div style="font-size:0.75rem;color:var(--text-light)">@povestidecredinta</div>
+          </div>
+        </a>
+        <a href="https://youtube.com/@povestidecredinta.rugaciune" target="_blank" rel="noopener noreferrer"
+           style="display:flex;align-items:center;gap:10px;text-decoration:none;background:var(--crem);padding:12px;border-radius:8px;border:1px solid rgba(201,168,76,0.2)">
+          <span style="font-size:1.5rem">🙏</span>
+          <div>
+            <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.9rem;font-weight:600">Rugăciuni Ortodoxe</div>
+            <div style="font-size:0.75rem;color:var(--text-light)">@povestidecredinta.rugaciune</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">✝️ Povești de Credință</div>
+  <p style="font-size:0.82rem;opacity:0.65;margin-bottom:4px">Calendar Ortodox Românesc</p>
+  <div class="footer-social">
+    <a href="https://youtube.com/@povestidecredinta" target="_blank" rel="noopener">📺 YouTube</a>
+    <a href="https://www.facebook.com/povestidecredinta" target="_blank" rel="noopener">📘 Facebook</a>
+  </div>
+  <div class="footer-links">
+    <a href="/despre.html">Despre noi</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/faq.html">FAQ</a>
+    <a href="/politica-confidentialitate.html">Confidențialitate</a>
+    <a href="/politica-cookies.html">Cookies</a>
+    <a href="/sitemap.xml">Sitemap</a>
+  </div>
+  <div class="footer-copy">
+    © 2026 Povești de Credință — povestidecredinta.ro<br>
+    Conținut conform Sinaxarului Bisericii Ortodoxe Române
+  </div>
+</footer>
+
+<!-- BOTTOM NAVIGATION (mobil) -->
+<nav class="bottom-nav" aria-label="Navigație rapidă">
+  <a href="/" class="nav-item activ" aria-label="Acasă">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-label">Acasă</span>
+  </a>
+  <a href="/calendar.html" class="nav-item" aria-label="Calendar">
+    <span class="nav-icon">📅</span>
+    <span class="nav-label">Calendar</span>
+  </a>
+  <a href="/rugaciuni.html" class="nav-item" aria-label="Rugăciuni">
+    <span class="nav-icon">🙏</span>
+    <span class="nav-label">Rugăciuni</span>
+  </a>
+  <a href="/acatiste.html" class="nav-item" aria-label="Acatiste">
+    <span class="nav-icon">📖</span>
+    <span class="nav-label">Acatiste</span>
+  </a>
+  <a href="/faq.html" class="nav-item" aria-label="FAQ">
+    <span class="nav-icon">❓</span>
+    <span class="nav-label">FAQ</span>
+  </a>
+</nav>
+
+<!-- MODAL ZI -->
+<div class="modal-overlay" id="modal-zi" onclick="if(event.target===this)inchideModal()" role="dialog" aria-modal="true">
+  <div class="modal-continut">
+    <div class="modal-header">
+      <span class="modal-data" id="modal-data"></span>
+      <button class="modal-inchide" onclick="inchideModal()" aria-label="Închide">×</button>
+    </div>
+    <div class="modal-sfant" id="modal-sfant-text"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:70px;left:0;right:0;background:var(--visineu-dark);color:var(--crem);padding:14px 16px;z-index:150;border-top:1px solid rgba(201,168,76,0.3)">
+  <p style="font-size:0.82rem;margin-bottom:10px">
+    Folosim cookie-uri pentru a îmbunătăți experiența ta. 
+    <a href="/politica-cookies.html" style="color:var(--auriu-light)">Află mai mult</a>
+  </p>
+  <div style="display:flex;gap:10px">
+    <button onclick="acceptaCookies()" style="background:var(--auriu);color:var(--visineu-dark);border:none;padding:8px 16px;border-radius:20px;font-size:0.82rem;cursor:pointer;font-weight:700">
+      ✅ Accept
+    </button>
+    <button onclick="refuzaCookies()" style="background:none;border:1px solid rgba(255,255,255,0.3);color:var(--crem);padding:8px 16px;border-radius:20px;font-size:0.82rem;cursor:pointer">
+      Refuz
+    </button>
+  </div>
+</div>
+
+<script src="/js/app.js"></script>
+<script>
+// Cookie banner
+if (!localStorage.getItem('cookies-acceptate')) {
+  document.getElementById('cookie-banner').style.display = 'block';
+}
+function acceptaCookies() {
+  localStorage.setItem('cookies-acceptate', 'da');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+function refuzaCookies() {
+  localStorage.setItem('cookies-acceptate', 'nu');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+</script>
+</body>
+</html>

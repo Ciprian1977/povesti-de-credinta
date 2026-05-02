@@ -1,0 +1,96 @@
+{
+  "name": "Povești de Credință — Calendar Ortodox",
+  "short_name": "Credință",
+  "description": "Calendar ortodox românesc, sfântul zilei, rugăciuni, acatiste și pricesne ortodoxe.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#4A0F1C",
+  "theme_color": "#6B1B2B",
+  "lang": "ro",
+  "scope": "/",
+  "categories": ["lifestyle", "religion", "utilities"],
+  "icons": [
+    {
+      "src": "/images/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Sfântul zilei",
+      "short_name": "Azi",
+      "description": "Vezi sfântul zilei de astăzi",
+      "url": "/",
+      "icons": [{ "src": "/images/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Calendar ortodox",
+      "short_name": "Calendar",
+      "description": "Calendar ortodox complet",
+      "url": "/calendar.html",
+      "icons": [{ "src": "/images/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Rugăciuni",
+      "short_name": "Rugăciuni",
+      "description": "Rugăciuni ortodoxe",
+      "url": "/rugaciuni.html",
+      "icons": [{ "src": "/images/icon-96.png", "sizes": "96x96" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/screenshot-mobile.jpg",
+      "sizes": "390x844",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Calendar Ortodox — Sfântul zilei"
+    }
+  ],
+  "prefer_related_applications": false
+}

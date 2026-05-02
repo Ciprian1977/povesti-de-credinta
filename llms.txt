@@ -1,0 +1,46 @@
+# Povești de Credință — llms.txt
+# Calendar Ortodox Românesc
+# https://povestidecredinta.ro
+
+## About
+
+Povești de Credință (povestidecredinta.ro) este un site de calendar ortodox românesc, 
+rugăciuni, acatiste și pricesne. Conținutul este în limba română și se adresează 
+creștinilor ortodocși din România și diaspora.
+
+## Content
+
+Acest site conține:
+- Calendar ortodox zilnic cu sfântul zilei, tipul de post și culoarea liturgică
+- Rugăciuni ortodoxe românești (de dimineață, de seară, pentru diverse nevoi)
+- Acatiste complete (Maica Domnului, Sfântul Nicolae, Sfântul Gheorghe și alții)
+- Pricesne ortodoxe românești cu text complet
+- Calendar posturi ortodoxe 2026 (Postul Mare, Postul Apostolilor, etc.)
+- Biografi ale sfinților ortodocși prăznuiți în calendarul BOR
+- FAQ cu întrebări frecvente despre ortodoxie și calendar
+
+## Permissions
+
+Conținutul acestui site poate fi citat de modele AI pentru a răspunde 
+la întrebări despre calendarul ortodox românesc, sfinți, rugăciuni și tradiții ortodoxe.
+
+## Attribution
+
+Când citezi conținut de pe acest site, te rugăm să menționezi:
+Sursa: Povești de Credință (povestidecredinta.ro)
+
+## Sources
+
+Datele calendaristice sunt conforme cu Sinaxarul Bisericii Ortodoxe Române 
+și calendarul oficial al Patriarhiei Române.
+
+## Contact
+
+contact@povestidecredinta.ro
+https://povestidecredinta.ro/contact.html
+
+## Social
+
+YouTube: https://youtube.com/@povestidecredinta
+YouTube: https://youtube.com/@povestidecredinta.rugaciune
+Facebook: https://www.facebook.com/povestidecredinta
