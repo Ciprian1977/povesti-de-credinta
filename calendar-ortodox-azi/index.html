@@ -317,6 +317,46 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 });
 </script>
+<script src="/js/supabase-loader.js"></script>
+<script>
+(async function() {
+  const azi = new Date();
+  const dataStr = azi.toISOString().split('T')[0];
+  const date = await incarcaDateSupabase(dataStr);
+  if (!date) return;
+
+  const LUNI_RO = ['ianuarie','februarie','martie','aprilie','mai','iunie','iulie','august','septembrie','octombrie','noiembrie','decembrie'];
+  const ZILE_RO = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'];
+  const dataFormatata = ZILE_RO[azi.getDay()] + ', ' + azi.getDate() + ' ' + LUNI_RO[azi.getMonth()] + ' ' + azi.getFullYear();
+  const postLabel = {'post':'🕯️ Zi de post','dezlegare':'✅ Dezlegare la toate','dezlegare_peste':'🐟 Dezlegare la pește','dezlegare_vin_ulei':'🫒 Dezlegare la vin și untdelemn'}[date.tip_post] || '✅ Dezlegare';
+
+  // Actualizează toate secțiunile paginii calendar-ortodox-azi
+  if (date.sfant_nume) {
+    const sfEl = document.getElementById('sfant-principal');
+    if (sfEl) sfEl.textContent = date.sfant_nume;
+    const postEl = document.getElementById('post-info');
+    if (postEl) postEl.textContent = postLabel;
+    document.getElementById('meta-title').textContent = `Calendar Ortodox Azi — ${dataFormatata} | Povești de Credință`;
+    if (date.meta_description) document.getElementById('meta-desc').setAttribute('content', date.meta_description);
+  }
+  if (date.apostol_carte) {
+    const apEl = document.getElementById('apostol-card');
+    if (apEl) apEl.innerHTML = '<strong>' + date.apostol_carte + ' ' + (date.apostol_versete||'') + '</strong><br>' + (date.apostol_text||'').substring(0,150) + '...';
+  }
+  if (date.evanghelie_carte) {
+    const evEl = document.getElementById('evanghelie-card');
+    if (evEl) evEl.innerHTML = '<strong>' + date.evanghelie_carte + ' ' + (date.evanghelie_versete||'') + '</strong><br>' + (date.evanghelie_text||'').substring(0,150) + '...';
+  }
+  if (date.sinaxar) {
+    const sinEl = document.getElementById('sinaxar-card');
+    if (sinEl) sinEl.textContent = date.sinaxar.substring(0, 200) + '...';
+  }
+  if (date.predica) {
+    const prEl = document.getElementById('predica-card');
+    if (prEl) prEl.textContent = date.predica.substring(0, 200) + '...';
+  }
+})();
+</script>
 <script src="/js/app.js"></script>
 </body>
 </html>

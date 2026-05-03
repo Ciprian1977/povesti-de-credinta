@@ -245,6 +245,36 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 });
 </script>
+<script src="/js/supabase-loader.js"></script>
+<script>
+(async function() {
+  const azi = new Date();
+  const dataStr = azi.toISOString().split('T')[0];
+  const date = await incarcaDateSupabase(dataStr);
+  if (!date) return;
+
+  const LUNI_RO = ['ianuarie','februarie','martie','aprilie','mai','iunie','iulie','august','septembrie','octombrie','noiembrie','decembrie'];
+  const ZILE_RO = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'];
+  const dataFormatata = ZILE_RO[azi.getDay()] + ', ' + azi.getDate() + ' ' + LUNI_RO[azi.getMonth()] + ' ' + azi.getFullYear();
+
+  if (date.predica) {
+    const predicaEl = document.getElementById('predica-text');
+    if (predicaEl) predicaEl.textContent = date.predica;
+  }
+  if (date.cuvant_folos) {
+    const cuvantEl = document.getElementById('cuvant-folos-text');
+    if (cuvantEl) cuvantEl.textContent = date.cuvant_folos;
+  }
+  if (date.sfant_nume) {
+    document.getElementById('meta-title').textContent = `Predica Zilei — ${dataFormatata} | Povești de Credință`;
+    if (date.meta_description) document.getElementById('meta-desc').setAttribute('content', date.meta_description);
+  }
+  if (date.evanghelie_carte) {
+    const evRef = document.getElementById('evanghelie-ref-predica');
+    if (evRef) evRef.textContent = date.evanghelie_carte + ' ' + (date.evanghelie_versete || '');
+  }
+})();
+</script>
 <script src="/js/app.js"></script>
 </body>
 </html>
