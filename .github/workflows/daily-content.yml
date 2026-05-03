@@ -1,0 +1,62 @@
+name: Generează Conținut Zilnic Ortodox
+on:
+  schedule:
+    - cron: '1 22 * * *'
+  workflow_dispatch:
+    inputs:
+      data_target:
+        description: 'Data pentru care generezi (YYYY-MM-DD, gol = maine)'
+        required: false
+        default: ''
+      force_regenerate:
+        description: 'Forteaza regenerarea chiar daca exista deja'
+        required: false
+        default: 'false'
+jobs:
+  genereaza-continut:
+    name: Genereaza Continut Ortodox
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: scripts/package.json
+      - name: Instaleaza dependente
+        working-directory: scripts
+        run: npm install
+      - name: Genereaza continut ortodox
+        working-directory: scripts
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: |
+          DATA="${{ github.event.inputs.data_target }}"
+          FORCE="${{ github.event.inputs.force_regenerate }}"
+          if [ -n "$DATA" ]; then
+            if [ "$FORCE" = "true" ]; then
+              node genereaza-continut.js "$DATA" --force
+            else
+              node genereaza-continut.js "$DATA"
+            fi
+          else
+            node genereaza-continut.js
+          fi
+      - name: Verifica rezultatul in Supabase
+        working-directory: scripts
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: node verifica-supabase.js
+      - name: Raport final
+        if: always()
+        run: |
+          echo "Povesti de Credinta - Generare continut finalizata"
+          echo "Data: $(date '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "Status: ${{ job.status }}"
+
