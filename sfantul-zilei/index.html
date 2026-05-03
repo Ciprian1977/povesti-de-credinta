@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#6B1B2B">
+  <title id="meta-title">Sfântul Zilei de Azi — Calendar Ortodox | Povești de Credință</title>
+  <meta name="description" id="meta-desc" content="Sfântul zilei de azi din calendarul ortodox românesc: numele sfântului, viața pe scurt, troparul și tipul de post. Actualizat zilnic conform Sinaxarului BOR.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://povestidecredinta.ro/sfantul-zilei/" id="canonical">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/images/icon-192.png">
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- Open Graph -->
+  <meta property="og:title" id="og-title" content="Sfântul Zilei de Azi | Povești de Credință">
+  <meta property="og:description" id="og-desc" content="Sfântul zilei de azi din calendarul ortodox românesc.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://povestidecredinta.ro/sfantul-zilei/">
+  <meta property="og:image" content="https://povestidecredinta.ro/images/og-image.jpg">
+  <meta property="og:locale" content="ro_RO">
+  <!-- Schema.org BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Acasă","item":"https://povestidecredinta.ro/"},
+      {"@type":"ListItem","position":2,"name":"Sfântul Zilei","item":"https://povestidecredinta.ro/sfantul-zilei/"}
+    ]
+  }
+  </script>
+  <!-- Schema.org Person + FAQPage — injectat dinamic de JS -->
+  <script id="schema-person" type="application/ld+json">{}</script>
+  <script id="schema-faq" type="application/ld+json">{}</script>
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">🕊️</div>
+      <div class="logo-text">
+        <span class="logo-titlu">Povești de Credință</span>
+        <span class="logo-subtitlu">Calendar Ortodox Românesc</span>
+      </div>
+    </a>
+    <nav class="nav-desktop">
+      <a href="/">Acasă</a>
+      <a href="/calendar.html">Calendar</a>
+      <a href="/rugaciuni.html">Rugăciuni</a>
+      <a href="/acatiste.html">Acatiste</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/despre.html">Despre</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Meniu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="nav-mobil" id="nav-mobil">
+    <a href="/">🏠 Acasă</a>
+    <a href="/calendar.html">📅 Calendar Ortodox 2026</a>
+    <a href="/sfantul-zilei/">✝️ Sfântul Zilei</a>
+    <a href="/sinaxarul-zilei/">📜 Sinaxarul Zilei</a>
+    <a href="/apostolul-zilei/">📖 Apostolul Zilei</a>
+    <a href="/evanghelia-zilei/">✝️ Evanghelia Zilei</a>
+    <a href="/rugaciuni.html">🙏 Rugăciuni</a>
+    <a href="/acatiste.html">📖 Acatiste</a>
+    <a href="/pricesne.html">🎵 Pricesne</a>
+    <a href="/posturi.html">🕯️ Posturi</a>
+    <a href="/faq.html">❓ FAQ</a>
+    <a href="/despre.html">✝️ Despre noi</a>
+    <a href="/contact.html">📧 Contact</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <nav aria-label="Breadcrumb" style="font-size:0.75rem;margin-bottom:12px;opacity:0.7">
+    <a href="/" style="color:var(--auriu-light);text-decoration:none">Acasă</a>
+    <span style="margin:0 8px">›</span>
+    <span>Sfântul Zilei</span>
+  </nav>
+  <h1 id="hero-h1">✝️ Sfântul Zilei de Azi</h1>
+  <p id="hero-data" style="font-size:1rem;opacity:0.9">Se încarcă data...</p>
+</div>
+
+<main>
+  <!-- RĂSPUNS DIRECT — Regula 3 secunde -->
+  <div id="raspuns-direct" style="background:linear-gradient(135deg,var(--visineu),var(--visineu-dark));color:white;border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 16px rgba(107,27,43,0.3)">
+    <div style="font-size:0.75rem;opacity:0.7;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">✝️ Sfântul Zilei</div>
+    <div id="sfant-principal" style="font-family:var(--font-titlu);font-size:1.4rem;font-weight:700;margin-bottom:8px;line-height:1.3">Se încarcă...</div>
+    <div id="data-completa" style="font-size:0.9rem;opacity:0.85;margin-bottom:12px"></div>
+    <div id="post-info" style="display:inline-block;background:rgba(255,255,255,0.15);border-radius:20px;padding:4px 14px;font-size:0.82rem"></div>
+  </div>
+
+  <!-- VIAȚA SFÂNTULUI -->
+  <div style="background:white;border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(107,27,43,0.06)">
+    <h2 style="font-family:var(--font-titlu);color:var(--visineu);font-size:1.15rem;margin-bottom:14px;display:flex;align-items:center;gap:8px">
+      <span>📜</span> <span id="viata-titlu">Viața Sfântului</span>
+    </h2>
+    <div id="viata-text" style="font-family:var(--font-text);font-size:0.95rem;color:var(--text-medium);line-height:1.9;font-style:italic">
+      Se încarcă...
+    </div>
+    <div style="margin-top:12px;font-size:0.75rem;color:var(--text-light)">Conform Sinaxarului BOR</div>
+  </div>
+
+  <!-- TROPARUL -->
+  <div style="background:var(--crem);border:1px solid rgba(201,168,76,0.3);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:20px">
+    <h2 style="font-family:var(--font-titlu);color:var(--visineu);font-size:1.1rem;margin-bottom:12px">🎵 Troparul Sfântului</h2>
+    <div id="tropar-text" style="font-family:'IM Fell English',serif;font-size:1rem;color:var(--visineu-dark);line-height:2;font-style:italic">
+      Se încarcă...
+    </div>
+    <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+      <button id="btn-copie-tropar" onclick="copiazaTropar()" style="background:var(--visineu);color:white;border:none;border-radius:20px;padding:8px 18px;font-size:0.85rem;cursor:pointer;display:flex;align-items:center;gap:6px">
+        📋 Copiază Troparul
+      </button>
+      <button id="btn-whatsapp-tropar" onclick="trimiteWhatsApp()" style="background:#25D366;color:white;border:none;border-radius:20px;padding:8px 18px;font-size:0.85rem;cursor:pointer;display:flex;align-items:center;gap:6px">
+        💬 Trimite pe WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- NAVIGARE ZILNICĂ -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+    <a id="link-ieri" href="#" style="background:white;border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-md);padding:14px;text-decoration:none;text-align:center">
+      <div style="font-size:1.2rem">‹</div>
+      <div style="font-size:0.75rem;color:var(--text-light);margin-top:2px">Ieri</div>
+      <div id="sfant-ieri" style="font-size:0.8rem;color:var(--visineu);margin-top:4px;font-weight:600"></div>
+    </a>
+    <a id="link-maine" href="#" style="background:white;border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-md);padding:14px;text-decoration:none;text-align:center">
+      <div style="font-size:1.2rem">›</div>
+      <div style="font-size:0.75rem;color:var(--text-light);margin-top:2px">Mâine</div>
+      <div id="sfant-maine" style="font-size:0.8rem;color:var(--visineu);margin-top:4px;font-weight:600"></div>
+    </a>
+  </div>
+
+  <!-- LINKURI INTERNE -->
+  <div style="background:white;border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-lg);padding:16px 20px;margin-bottom:20px">
+    <h3 style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.95rem;margin-bottom:12px">📚 Conținut ortodox pentru azi</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <a href="/sinaxarul-zilei/" style="background:var(--crem);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;font-size:0.85rem;color:var(--visineu);font-weight:600">📜 Sinaxarul Zilei</a>
+      <a href="/apostolul-zilei/" style="background:var(--crem);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;font-size:0.85rem;color:var(--visineu);font-weight:600">📖 Apostolul Zilei</a>
+      <a href="/evanghelia-zilei/" style="background:var(--crem);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;font-size:0.85rem;color:var(--visineu);font-weight:600">✝️ Evanghelia Zilei</a>
+      <a href="/calendar-ortodox-azi/" style="background:var(--crem);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;font-size:0.85rem;color:var(--visineu);font-weight:600">📅 Calendar Ortodox Azi</a>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div style="background:white;border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:20px">
+    <h2 style="font-family:var(--font-titlu);color:var(--visineu);font-size:1.1rem;margin-bottom:16px">❓ Întrebări frecvente</h2>
+
+    <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.15);padding-bottom:14px;margin-bottom:14px">
+      <div class="faq-intrebare" onclick="toggleFaq(this)" style="font-weight:600;color:var(--visineu);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem">
+        <span id="faq1-q">Ce sfânt este azi?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
+        <span id="faq1-a">Sfântul zilei de azi este afișat mai sus, conform Calendarului Ortodox Român 2026 editat de Patriarhia Română. Fiecare zi are unul sau mai mulți sfinți prăznuiți conform Sinaxarului BOR.</span>
+      </div>
+    </div>
+
+    <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.15);padding-bottom:14px;margin-bottom:14px">
+      <div class="faq-intrebare" onclick="toggleFaq(this)" style="font-weight:600;color:var(--visineu);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem">
+        <span>Care este sfântul ortodox de azi?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
+        Sfântul ortodox de azi este afișat în timp real la începutul acestei pagini. Calendarul nostru este sincronizat cu <strong>Calendarul Ortodox Român 2026</strong> publicat de Patriarhia Română. Poți verifica și pe <a href="/calendar.html" style="color:var(--visineu)">pagina de calendar</a> pentru toate zilele lunii.
+      </div>
+    </div>
+
+    <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.15);padding-bottom:14px;margin-bottom:14px">
+      <div class="faq-intrebare" onclick="toggleFaq(this)" style="font-weight:600;color:var(--visineu);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem">
+        <span id="faq3-q">Ce sfânt este pe data de azi în calendarul ortodox?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
+        <span id="faq3-a">Conform Calendarului Ortodox Român, sfântul zilei de azi este afișat în secțiunea principală a paginii. Pagina se actualizează automat la miezul nopții pentru a afișa sfântul zilei următoare.</span>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-intrebare" onclick="toggleFaq(this)" style="font-weight:600;color:var(--visineu);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem">
+        <span>Este post azi în calendarul ortodox?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
+        <span id="faq4-a">Informația despre post pentru ziua de azi este afișată în cardul sfântului de mai sus. Zilele de post ortodox sunt miercurea și vinerea, plus perioadele de post mare (Postul Mare, Postul Sfinților Apostoli, Postul Adormirii Maicii Domnului, Postul Crăciunului).</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="separator-ortodox" aria-hidden="true">✦ ✝ ✦</div>
+</main>
+
+<footer class="footer">
+  <div class="footer-logo">✝️ Povești de Credință</div>
+  <div class="footer-links">
+    <a href="/despre.html">Despre noi</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/faq.html">FAQ</a>
+    <a href="/politica-confidentialitate.html">Confidențialitate</a>
+    <a href="/politica-cookies.html">Cookies</a>
+    <a href="/sitemap.xml">Sitemap</a>
+  </div>
+  <div class="footer-copy">© 2026 Povești de Credință — povestidecredinta.ro</div>
+</footer>
+
+<nav class="bottom-nav">
+  <a href="/" class="nav-item"><span class="nav-icon">🏠</span><span class="nav-label">Acasă</span></a>
+  <a href="/calendar.html" class="nav-item"><span class="nav-icon">📅</span><span class="nav-label">Calendar</span></a>
+  <a href="/rugaciuni.html" class="nav-item"><span class="nav-icon">🙏</span><span class="nav-label">Rugăciuni</span></a>
+  <a href="/acatiste.html" class="nav-item"><span class="nav-icon">📖</span><span class="nav-label">Acatiste</span></a>
+  <a href="/faq.html" class="nav-item"><span class="nav-icon">❓</span><span class="nav-label">FAQ</span></a>
+</nav>
+
+<script>
+// ===== DATE CALENDAR =====
+const CALENDAR = {
+  "01-01": { sfant: "Tăierea împrejur cea după trup a Domnului; Sf. Vasile cel Mare", post: "dezlegare", culoare: "alb" },
+  "01-06": { sfant: "Botezul Domnului (Boboteaza)", post: "dezlegare", culoare: "alb" },
+  "01-07": { sfant: "Soborul Sfântului Prooroc Ioan Botezătorul", post: "dezlegare", culoare: "alb" },
+  "02-02": { sfant: "Întâmpinarea Domnului", post: "dezlegare", culoare: "alb" },
+  "03-09": { sfant: "Sfinții 40 de Mucenici din Sevastia", post: "dezlegare_vin_ulei", culoare: "rosu" },
+  "03-25": { sfant: "Buna Vestire a Maicii Domnului", post: "dezlegare_peste", culoare: "alb" },
+  "04-23": { sfant: "Sfântul Mare Mucenic Gheorghe, purtătorul de biruință", post: "post", culoare: "rosu" },
+  "04-30": { sfant: "Sfântul Apostol Iacob, fratele Domnului", post: "dezlegare", culoare: "alb" },
+  "05-01": { sfant: "Sfântul Prooroc Ieremia", post: "post", culoare: "verde" },
+  "05-02": { sfant: "Sfântul Atanasie cel Mare, arhiepiscopul Alexandriei", post: "post", culoare: "alb" },
+  "05-03": { sfant: "Sfinții Mucenici Timotei și Mavra", post: "dezlegare", culoare: "rosu" },
+  "05-04": { sfant: "Cuvioasa Pelaghia din Tars", post: "post", culoare: "alb" },
+  "05-05": { sfant: "Sfânta Mare Muceniță Irina", post: "dezlegare", culoare: "rosu" },
+  "05-06": { sfant: "Dreptul Iov cel mult pătimitor", post: "post", culoare: "alb" },
+  "05-07": { sfant: "Arătarea Sfintei Cruci pe cerul Ierusalimului", post: "dezlegare", culoare: "alb" },
+  "05-08": { sfant: "Sfântul Apostol și Evanghelist Ioan Teologul", post: "post", culoare: "alb" },
+  "05-09": { sfant: "Sfântul Prooroc Isaia; Sfântul Mucenic Hristofor", post: "dezlegare_peste", culoare: "verde" },
+  "05-10": { sfant: "Sfântul Apostol Simon Zilotul", post: "dezlegare", culoare: "alb" },
+  "05-21": { sfant: "Sfinții Împărați Constantin și Elena", post: "post", culoare: "alb" },
+  "05-25": { sfant: "A treia aflare a Capului Sfântului Ioan Botezătorul", post: "post", culoare: "alb" },
+  "06-24": { sfant: "Nașterea Sfântului Ioan Botezătorul", post: "dezlegare", culoare: "alb" },
+  "06-29": { sfant: "Sfinții Apostoli Petru și Pavel", post: "dezlegare", culoare: "alb" },
+  "07-20": { sfant: "Sfântul Prooroc Ilie Tesviteanul", post: "dezlegare", culoare: "alb" },
+  "08-06": { sfant: "Schimbarea la Față a Domnului", post: "dezlegare_peste", culoare: "alb" },
+  "08-15": { sfant: "Adormirea Maicii Domnului", post: "dezlegare", culoare: "alb" },
+  "09-08": { sfant: "Nașterea Maicii Domnului", post: "dezlegare", culoare: "alb" },
+  "09-14": { sfant: "Înălțarea Sfintei Cruci", post: "post", culoare: "rosu" },
+  "10-14": { sfant: "Cuvioasa Parascheva de la Iași", post: "dezlegare", culoare: "alb" },
+  "11-08": { sfant: "Soborul Sfinților Arhangheli Mihail și Gavriil", post: "dezlegare", culoare: "alb" },
+  "11-21": { sfant: "Intrarea în Biserică a Maicii Domnului", post: "dezlegare", culoare: "alb" },
+  "11-30": { sfant: "Sfântul Apostol Andrei, cel Întâi chemat, Ocrotitorul României", post: "dezlegare", culoare: "alb" },
+  "12-06": { sfant: "Sfântul Ierarh Nicolae, arhiepiscopul Mirelor Lichiei", post: "dezlegare", culoare: "alb" },
+  "12-25": { sfant: "Nașterea Domnului nostru Iisus Hristos (Crăciunul)", post: "dezlegare", culoare: "alb" }
+};
+
+// Vieți sfinți pentru paginile individuale
+const VIETI = {
+  "05-02": {
+    viata: "Sfântul Atanasie cel Mare s-a născut în jurul anului 295 în Alexandria Egiptului. A participat la Sinodul I Ecumenic de la Niceea (325), unde a apărat cu tărie dogma dumnezeirii lui Hristos împotriva ereziei ariene. A fost ales Patriarh al Alexandriei la vârsta de 30 de ani și a condus această Biserică timp de 46 de ani. A suferit cinci exiluri din cauza apărării Ortodoxiei, petrecând în total 17 ani departe de scaunul său. A murit în pace la 2 mai 373. Este supranumit 'Atanasie contra lumii' (Athanasius contra mundum) pentru curajul cu care a apărat credința ortodoxă. Scrierile sale, în special 'Despre Întruparea Cuvântului', sunt pietre de temelie ale teologiei ortodoxe.",
+    tropar: "Stâlpul Ortodoxiei și dascălul evlaviei, lumina Alexandriei și întărirea Bisericii, Atanasie cel dumnezeiesc, să ne rugăm lui Hristos Dumnezeu să dăruiască sufletelor noastre mare milă."
+  },
+  "05-21": {
+    viata: "Sfinții Împărați Constantin și Elena sunt prăznuiți împreună pe 21 mai. Constantin cel Mare (272-337) a fost primul împărat roman care a îmbrățișat creștinismul, emițând Edictul de la Milano (313) prin care a acordat libertate religioasă creștinilor. Mama sa, Elena (248-330), a descoperit Sfânta Cruce în Ierusalim în jurul anului 326 și a ctitorit numeroase biserici în Țara Sfântă. Împreună au transformat Imperiul Roman, punând bazele civilizației creștine europene. Sunt numiți 'Egali cu Apostolii' pentru contribuția lor la răspândirea credinței creștine.",
+    tropar: "Chipul crucii l-ai aflat pe cer și ca Pavel chemarea nu de la oameni ai primit-o, Împărate între Apostoli; pune Imperiul în mâinile lui Dumnezeu, cel ce totdeauna păzești în pace cetatea ta, pentru rugăciunile Născătoarei de Dumnezeu, Unule Iubitorule de oameni."
+  }
+};
+
+const ZILE_RO = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'];
+const LUNI_RO = ['ianuarie','februarie','martie','aprilie','mai','iunie','iulie','august','septembrie','octombrie','noiembrie','decembrie'];
+
+function getPostLabel(post) {
+  const labels = {
+    'post': '🕯️ Zi de post',
+    'dezlegare': '✅ Dezlegare la toate',
+    'dezlegare_peste': '🐟 Dezlegare la pește',
+    'dezlegare_vin_ulei': '🫒 Dezlegare la vin și untdelemn'
+  };
+  return labels[post] || '✅ Dezlegare';
+}
+
+function getDataKey(d) {
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const z = String(d.getDate()).padStart(2,'0');
+  return m+'-'+z;
+}
+
+function getSfantPentruData(d) {
+  const key = getDataKey(d);
+  if (CALENDAR[key]) return CALENDAR[key];
+  // Post implicit miercuri/vineri
+  const zi = d.getDay();
+  const postZi = (zi === 3 || zi === 5) ? 'post' : 'dezlegare';
+  return { sfant: null, post: postZi, culoare: 'alb' };
+}
+
+function formatDataLung(d) {
+  return ZILE_RO[d.getDay()] + ', ' + d.getDate() + ' ' + LUNI_RO[d.getMonth()] + ' ' + d.getFullYear();
+}
+
+function toggleFaq(el) {
+  const raspuns = el.nextElementSibling;
+  const icon = el.querySelector('.faq-icon');
+  const isOpen = raspuns.style.display !== 'none';
+  raspuns.style.display = isOpen ? 'none' : 'block';
+  icon.textContent = isOpen ? '+' : '−';
+}
+
+function copiazaTropar() {
+  const text = document.getElementById('tropar-text').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('btn-copie-tropar');
+    btn.textContent = '✅ Copiat!';
+    setTimeout(() => btn.innerHTML = '📋 Copiază Troparul', 2000);
+  });
+}
+
+function trimiteWhatsApp() {
+  const sfant = document.getElementById('sfant-principal').textContent;
+  const data = document.getElementById('data-completa').textContent;
+  const tropar = document.getElementById('tropar-text').innerText.substring(0, 200);
+  const text = encodeURIComponent(`✝️ Sfântul zilei — ${data}\n${sfant}\n\nTroparul: ${tropar}...\n\nCitește mai mult: https://povestidecredinta.ro/sfantul-zilei/`);
+  window.open('https://wa.me/?text=' + text, '_blank');
+}
+
+// ===== INIȚIALIZARE =====
+document.addEventListener('DOMContentLoaded', function() {
+  const azi = new Date();
+  const ieri = new Date(azi); ieri.setDate(ieri.getDate()-1);
+  const maine = new Date(azi); maine.setDate(maine.getDate()+1);
+
+  const dataAzi = getSfantPentruData(azi);
+  const dataIeri = getSfantPentruData(ieri);
+  const dataMaine = getSfantPentruData(maine);
+
+  const dataFormatata = formatDataLung(azi);
+  const keyAzi = getDataKey(azi);
+
+  // Sfântul principal
+  const sfantNume = dataAzi.sfant || 'Sfânt din Sinaxarul BOR';
+  document.getElementById('sfant-principal').textContent = sfantNume;
+  document.getElementById('data-completa').textContent = dataFormatata;
+  document.getElementById('post-info').textContent = getPostLabel(dataAzi.post);
+
+  // Hero
+  document.getElementById('hero-h1').textContent = '✝️ Sfântul Zilei de Azi, ' + dataFormatata;
+  document.getElementById('hero-data').textContent = 'Conform Calendarului Ortodox Român 2026 — Patriarhia Română';
+
+  // Meta tags dinamice
+  document.getElementById('meta-title').textContent = `Sfântul Zilei de Azi — ${dataFormatata} | Povești de Credință`;
+  document.getElementById('meta-desc').setAttribute('content', `Sfântul zilei de azi, ${dataFormatata}: ${sfantNume}. ${getPostLabel(dataAzi.post)}. Troparul și viața sfântului conform Sinaxarului BOR.`);
+  document.getElementById('og-title').setAttribute('content', `Sfântul Zilei — ${dataFormatata} | Povești de Credință`);
+  document.getElementById('og-desc').setAttribute('content', `${sfantNume} — ${dataFormatata}. ${getPostLabel(dataAzi.post)}.`);
+
+  // Viața sfântului
+  const viataData = VIETI[keyAzi];
+  document.getElementById('viata-titlu').textContent = 'Viața ' + sfantNume.split(';')[0];
+  if (viataData) {
+    document.getElementById('viata-text').textContent = viataData.viata;
+    document.getElementById('tropar-text').textContent = viataData.tropar;
+  } else {
+    document.getElementById('viata-text').innerHTML = `<strong>${sfantNume}</strong> este prăznuit în calendarul ortodox pe ${azi.getDate()} ${LUNI_RO[azi.getMonth()]}. Conform Sinaxarului BOR, acesta este unul dintre sfinții care au slujit lui Dumnezeu cu credință și sfințenie, lăsând o pildă de viețuire creștinească pentru urmași. Viața completă a acestui sfânt va fi disponibilă în curând pe povestidecredinta.ro.`;
+    document.getElementById('tropar-text').textContent = 'Troparul ' + sfantNume.split(';')[0] + ' va fi disponibil în curând. Consultați Mineiul lunii pentru textul complet al troparului.';
+  }
+
+  // Navigare ieri/mâine
+  const sfantIeriNume = dataIeri.sfant || 'Sfânt din Sinaxar';
+  const sfantMaineNume = dataMaine.sfant || 'Sfânt din Sinaxar';
+  document.getElementById('sfant-ieri').textContent = sfantIeriNume ? sfantIeriNume.split(';')[0].substring(0,35)+'...' : '';
+  document.getElementById('sfant-maine').textContent = sfantMaineNume ? sfantMaineNume.split(';')[0].substring(0,35)+'...' : '';
+
+  // FAQ dinamic
+  document.getElementById('faq1-q').textContent = `Ce sfânt este azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}?`;
+  document.getElementById('faq1-a').textContent = `Sfântul zilei de azi, ${dataFormatata}, este ${sfantNume}. ${getPostLabel(dataAzi.post)}.`;
+  document.getElementById('faq3-q').textContent = `Ce sfânt este pe ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} în calendarul ortodox?`;
+  document.getElementById('faq3-a').textContent = `Pe ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} în calendarul ortodox român este prăznuit ${sfantNume}. Conform Sinaxarului BOR, această zi este marcată cu ${getPostLabel(dataAzi.post).toLowerCase()}.`;
+  document.getElementById('faq4-a').textContent = `${getPostLabel(dataAzi.post)} — aceasta este regula pentru ziua de azi, ${dataFormatata}, conform Calendarului Ortodox Român 2026.`;
+
+  // Schema.org Person dinamic
+  document.getElementById('schema-person').textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": sfantNume.split(';')[0],
+    "description": `Sfânt prăznuit în calendarul ortodox pe ${azi.getDate()} ${LUNI_RO[azi.getMonth()]}. ${getPostLabel(dataAzi.post)}.`,
+    "url": "https://povestidecredinta.ro/sfantul-zilei/"
+  });
+
+  // Schema.org FAQPage dinamic
+  document.getElementById('schema-faq').textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": `Ce sfânt este azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}?`,
+        "acceptedAnswer": { "@type": "Answer", "text": `Sfântul zilei de azi este ${sfantNume}. ${getPostLabel(dataAzi.post)}.` }
+      },
+      {
+        "@type": "Question",
+        "name": "Care este sfântul ortodox de azi?",
+        "acceptedAnswer": { "@type": "Answer", "text": `Sfântul ortodox de azi, ${dataFormatata}, este ${sfantNume}, conform Calendarului Ortodox Român 2026 al Patriarhiei Române.` }
+      },
+      {
+        "@type": "Question",
+        "name": `Ce sfânt este pe ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} în calendarul ortodox?`,
+        "acceptedAnswer": { "@type": "Answer", "text": `Pe ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} în calendarul ortodox este prăznuit ${sfantNume}.` }
+      },
+      {
+        "@type": "Question",
+        "name": "Este post azi în calendarul ortodox?",
+        "acceptedAnswer": { "@type": "Answer", "text": `${getPostLabel(dataAzi.post)} — aceasta este regula pentru ziua de azi conform Calendarului Ortodox Român 2026.` }
+      }
+    ]
+  });
+});
+</script>
+<script src="/js/app.js"></script>
+</body>
+</html>

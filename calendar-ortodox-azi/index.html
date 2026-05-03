@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#6B1B2B">
+  <title id="meta-title">Calendar Ortodox Azi — Sfântul, Apostolul și Evanghelia Zilei | Povești de Credință</title>
+  <meta name="description" id="meta-desc" content="Calendar ortodox azi: sfântul zilei, apostolul zilei, evanghelia zilei, tipul de post și culoarea liturgică. Totul pe o singură pagină, actualizat zilnic.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://povestidecredinta.ro/calendar-ortodox-azi/">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/images/icon-192.png">
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <link rel="stylesheet" href="/css/style.css">
+  <meta property="og:title" id="og-title" content="Calendar Ortodox Azi | Povești de Credință">
+  <meta property="og:description" id="og-desc" content="Calendar ortodox azi: sfântul, apostolul și evanghelia zilei pe o singură pagină.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://povestidecredinta.ro/calendar-ortodox-azi/">
+  <meta property="og:image" content="https://povestidecredinta.ro/images/og-image.jpg">
+  <meta property="og:locale" content="ro_RO">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Acasă","item":"https://povestidecredinta.ro/"},
+      {"@type":"ListItem","position":2,"name":"Calendar Ortodox Azi","item":"https://povestidecredinta.ro/calendar-ortodox-azi/"}
+    ]
+  }
+  </script>
+  <script id="schema-event" type="application/ld+json">{}</script>
+  <script id="schema-faq" type="application/ld+json">{}</script>
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">🕊️</div>
+      <div class="logo-text">
+        <span class="logo-titlu">Povești de Credință</span>
+        <span class="logo-subtitlu">Calendar Ortodox Românesc</span>
+      </div>
+    </a>
+    <nav class="nav-desktop">
+      <a href="/">Acasă</a>
+      <a href="/calendar.html">Calendar</a>
+      <a href="/rugaciuni.html">Rugăciuni</a>
+      <a href="/acatiste.html">Acatiste</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/despre.html">Despre</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Meniu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="nav-mobil" id="nav-mobil">
+    <a href="/">🏠 Acasă</a>
+    <a href="/sfantul-zilei/">✝️ Sfântul Zilei</a>
+    <a href="/sinaxarul-zilei/">📜 Sinaxarul Zilei</a>
+    <a href="/apostolul-zilei/">📖 Apostolul Zilei</a>
+    <a href="/evanghelia-zilei/">✝️ Evanghelia Zilei</a>
+    <a href="/predica-zilei/">🎙️ Predica Zilei</a>
+    <a href="/rugaciuni.html">🙏 Rugăciuni</a>
+    <a href="/acatiste.html">📖 Acatiste</a>
+    <a href="/posturi.html">🕯️ Posturi</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <nav aria-label="Breadcrumb" style="font-size:0.75rem;margin-bottom:12px;opacity:0.7">
+    <a href="/" style="color:var(--auriu-light);text-decoration:none">Acasă</a>
+    <span style="margin:0 8px">›</span>
+    <span>Calendar Ortodox Azi</span>
+  </nav>
+  <h1 id="hero-h1">📅 Calendar Ortodox Azi</h1>
+  <p id="hero-data" style="font-size:1rem;opacity:0.9">Se încarcă data...</p>
+</div>
+
+<main>
+  <!-- CARD PRINCIPAL — RĂSPUNS DIRECT 3 SECUNDE -->
+  <div style="background:linear-gradient(135deg,var(--visineu),var(--visineu-dark));color:white;border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 16px rgba(107,27,43,0.3)">
+    <div style="font-size:0.75rem;opacity:0.7;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">📅 Calendar Ortodox Azi</div>
+    <div id="data-mare" style="font-family:var(--font-titlu);font-size:1.5rem;font-weight:700;margin-bottom:4px"></div>
+    <div id="sfant-azi" style="font-size:1rem;opacity:0.9;margin-bottom:12px;line-height:1.4"></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <span id="post-badge" style="background:rgba(255,255,255,0.15);border-radius:20px;padding:4px 14px;font-size:0.82rem"></span>
+      <span id="culoare-badge" style="background:rgba(255,255,255,0.15);border-radius:20px;padding:4px 14px;font-size:0.82rem"></span>
+    </div>
+  </div>
+
+  <!-- GRID 2x2 — CONȚINUT ZILEI -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+    <!-- Sfântul -->
+    <a href="/sfantul-zilei/" style="background:white;border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-md);padding:14px;text-decoration:none;display:block;box-shadow:0 2px 8px rgba(107,27,43,0.06)">
+      <div style="font-size:1.3rem;margin-bottom:4px">✝️</div>
+      <div style="font-size:0.75rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.5px">Sfântul Zilei</div>
+      <div id="sfant-card" style="font-size:0.82rem;color:var(--visineu);font-weight:600;margin-top:4px;line-height:1.4"></div>
+    </a>
+    <!-- Sinaxarul -->
+    <a href="/sinaxarul-zilei/" style="background:white;border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-md);padding:14px;text-decoration:none;display:block;box-shadow:0 2px 8px rgba(107,27,43,0.06)">
+      <div style="font-size:1.3rem;margin-bottom:4px">📜</div>
+      <div style="font-size:0.75rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.5px">Sinaxarul Zilei</div>
+      <div style="font-size:0.82rem;color:var(--visineu);font-weight:600;margin-top:4px;line-height:1.4">Viața sfântului, troparul și condacul</div>
+    </a>
+    <!-- Apostolul -->
+    <a href="/apostolul-zilei/" style="background:white;border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-md);padding:14px;text-decoration:none;display:block;box-shadow:0 2px 8px rgba(107,27,43,0.06)">
+      <div style="font-size:1.3rem;margin-bottom:4px">📖</div>
+      <div style="font-size:0.75rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.5px">Apostolul Zilei</div>
+      <div id="apostol-card" style="font-size:0.82rem;color:var(--visineu);font-weight:600;margin-top:4px;line-height:1.4"></div>
+    </a>
+    <!-- Evanghelia -->
+    <a href="/evanghelia-zilei/" style="background:white;border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-md);padding:14px;text-decoration:none;display:block;box-shadow:0 2px 8px rgba(107,27,43,0.06)">
+      <div style="font-size:1.3rem;margin-bottom:4px">✝️</div>
+      <div style="font-size:0.75rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.5px">Evanghelia Zilei</div>
+      <div id="ev-card" style="font-size:0.82rem;color:var(--visineu);font-weight:600;margin-top:4px;line-height:1.4"></div>
+    </a>
+  </div>
+
+  <!-- RUGĂCIUNEA ZILEI -->
+  <div style="background:var(--crem);border:1px solid rgba(201,168,76,0.3);border-radius:var(--radius-lg);padding:18px 22px;margin-bottom:20px">
+    <h2 style="font-family:var(--font-titlu);color:var(--visineu);font-size:1rem;margin-bottom:10px">🙏 Rugăciunea Zilei</h2>
+    <div id="rugaciune-text" style="font-family:'IM Fell English',serif;font-size:0.95rem;color:var(--visineu-dark);line-height:2;font-style:italic"></div>
+    <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+      <button onclick="copiazaRug()" style="background:var(--visineu);color:white;border:none;border-radius:20px;padding:8px 18px;font-size:0.85rem;cursor:pointer">📋 Copiază</button>
+      <button onclick="trimiteWhatsApp()" style="background:#25D366;color:white;border:none;border-radius:20px;padding:8px 18px;font-size:0.85rem;cursor:pointer">💬 WhatsApp</button>
+    </div>
+  </div>
+
+  <!-- NAVIGARE RAPIDĂ -->
+  <div style="background:white;border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-lg);padding:16px 20px;margin-bottom:20px">
+    <h3 style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.95rem;margin-bottom:12px">📚 Mai mult conținut ortodox</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <a href="/rugaciuni.html" style="background:var(--crem);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;font-size:0.85rem;color:var(--visineu);font-weight:600">🙏 Rugăciuni</a>
+      <a href="/acatiste.html" style="background:var(--crem);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;font-size:0.85rem;color:var(--visineu);font-weight:600">📖 Acatiste</a>
+      <a href="/pricesne.html" style="background:var(--crem);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;font-size:0.85rem;color:var(--visineu);font-weight:600">🎵 Pricesne</a>
+      <a href="/posturi.html" style="background:var(--crem);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;font-size:0.85rem;color:var(--visineu);font-weight:600">🕯️ Posturi 2026</a>
+      <a href="/predica-zilei/" style="background:var(--crem);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;font-size:0.85rem;color:var(--visineu);font-weight:600">🎙️ Predica Zilei</a>
+      <a href="/calendar.html" style="background:var(--crem);border-radius:var(--radius-sm);padding:10px 12px;text-decoration:none;font-size:0.85rem;color:var(--visineu);font-weight:600">📅 Calendar 2026</a>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div style="background:white;border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:20px">
+    <h2 style="font-family:var(--font-titlu);color:var(--visineu);font-size:1.1rem;margin-bottom:16px">❓ Întrebări frecvente</h2>
+
+    <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.15);padding-bottom:14px;margin-bottom:14px">
+      <div class="faq-intrebare" onclick="toggleFaq(this)" style="font-weight:600;color:var(--visineu);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem">
+        <span id="faq1-q">Ce sfânt este azi în calendarul ortodox?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
+        <span id="faq1-a">Sfântul zilei de azi este afișat în cardul principal de mai sus.</span>
+      </div>
+    </div>
+
+    <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.15);padding-bottom:14px;margin-bottom:14px">
+      <div class="faq-intrebare" onclick="toggleFaq(this)" style="font-weight:600;color:var(--visineu);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem">
+        <span>Calendar ortodox azi — ce înseamnă culoarea liturgică?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
+        Culoarea liturgică indică tipul slujbei: <strong>alb</strong> — sărbători ale Mântuitorului și ale Maicii Domnului; <strong>roșu</strong> — sfinții mucenici; <strong>verde</strong> — cuvioși și mărturisitori; <strong>vișiniu</strong> — post și pocăință; <strong>auriu</strong> — sfinții ierarhi și apostoli.
+      </div>
+    </div>
+
+    <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.15);padding-bottom:14px;margin-bottom:14px">
+      <div class="faq-intrebare" onclick="toggleFaq(this)" style="font-weight:600;color:var(--visineu);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem">
+        <span>Este post azi în calendarul ortodox 2026?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
+        <span id="faq3-a">Informația despre post pentru ziua de azi este afișată în cardul principal. Zilele de post ortodox sunt miercurea și vinerea, plus perioadele de post mare.</span>
+      </div>
+    </div>
+
+    <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.15);padding-bottom:14px;margin-bottom:14px">
+      <div class="faq-intrebare" onclick="toggleFaq(this)" style="font-weight:600;color:var(--visineu);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem">
+        <span>Apostolul și evanghelia zilei — unde le găsesc?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
+        Apostolul și Evanghelia zilei le găsești pe această pagină în cardurile de mai sus, sau pe paginile dedicate: <a href="/apostolul-zilei/" style="color:var(--visineu)">Apostolul Zilei</a> și <a href="/evanghelia-zilei/" style="color:var(--visineu)">Evanghelia Zilei</a>, cu textul complet și tâlcuire.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-intrebare" onclick="toggleFaq(this)" style="font-weight:600;color:var(--visineu);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem">
+        <span>Calendar ortodox azi doxologia — alternativă?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
+        povestidecredinta.ro este alternativa completă pentru calendarul ortodox zilnic: sfântul zilei, sinaxarul, apostolul, evanghelia, predica zilei, rugăciunile și acatistele — toate pe un singur site, optimizat pentru mobil, cu design curat și fonturi mari pentru o lectură confortabilă.
+      </div>
+    </div>
+  </div>
+
+  <div class="separator-ortodox" aria-hidden="true">✦ ✝ ✦</div>
+</main>
+
+<footer class="footer">
+  <div class="footer-logo">✝️ Povești de Credință</div>
+  <div class="footer-links">
+    <a href="/despre.html">Despre noi</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/faq.html">FAQ</a>
+    <a href="/politica-confidentialitate.html">Confidențialitate</a>
+    <a href="/politica-cookies.html">Cookies</a>
+  </div>
+  <div class="footer-copy">© 2026 Povești de Credință — povestidecredinta.ro</div>
+</footer>
+
+<nav class="bottom-nav">
+  <a href="/" class="nav-item"><span class="nav-icon">🏠</span><span class="nav-label">Acasă</span></a>
+  <a href="/calendar.html" class="nav-item"><span class="nav-icon">📅</span><span class="nav-label">Calendar</span></a>
+  <a href="/rugaciuni.html" class="nav-item"><span class="nav-icon">🙏</span><span class="nav-label">Rugăciuni</span></a>
+  <a href="/acatiste.html" class="nav-item"><span class="nav-icon">📖</span><span class="nav-label">Acatiste</span></a>
+  <a href="/faq.html" class="nav-item"><span class="nav-icon">❓</span><span class="nav-label">FAQ</span></a>
+</nav>
+
+<script>
+const CALENDAR = {
+  "01-01":{"sfant":"Tăierea împrejur cea după trup a Domnului; Sf. Vasile cel Mare","post":"dezlegare","culoare":"alb"},
+  "01-06":{"sfant":"Botezul Domnului (Boboteaza)","post":"dezlegare","culoare":"alb"},
+  "03-25":{"sfant":"Buna Vestire a Maicii Domnului","post":"dezlegare_peste","culoare":"alb"},
+  "04-23":{"sfant":"Sfântul Mare Mucenic Gheorghe","post":"post","culoare":"rosu"},
+  "05-01":{"sfant":"Sfântul Prooroc Ieremia","post":"post","culoare":"verde"},
+  "05-02":{"sfant":"Sfântul Atanasie cel Mare, arhiepiscopul Alexandriei","post":"post","culoare":"alb"},
+  "05-03":{"sfant":"Sfinții Mucenici Timotei și Mavra","post":"dezlegare","culoare":"rosu"},
+  "05-04":{"sfant":"Cuvioasa Pelaghia din Tars","post":"post","culoare":"alb"},
+  "05-05":{"sfant":"Sfânta Mare Muceniță Irina","post":"dezlegare","culoare":"rosu"},
+  "05-06":{"sfant":"Dreptul Iov cel mult pătimitor","post":"post","culoare":"alb"},
+  "05-07":{"sfant":"Arătarea Sfintei Cruci pe cerul Ierusalimului","post":"dezlegare","culoare":"alb"},
+  "05-08":{"sfant":"Sfântul Apostol și Evanghelist Ioan Teologul","post":"post","culoare":"alb"},
+  "05-09":{"sfant":"Sfântul Prooroc Isaia; Sfântul Mucenic Hristofor","post":"dezlegare_peste","culoare":"verde"},
+  "05-10":{"sfant":"Sfântul Apostol Simon Zilotul","post":"dezlegare","culoare":"alb"},
+  "05-21":{"sfant":"Sfinții Împărați Constantin și Elena","post":"post","culoare":"alb"},
+  "05-25":{"sfant":"A treia aflare a Capului Sfântului Ioan Botezătorul","post":"post","culoare":"alb"},
+  "06-24":{"sfant":"Nașterea Sfântului Ioan Botezătorul","post":"dezlegare","culoare":"alb"},
+  "06-29":{"sfant":"Sfinții Apostoli Petru și Pavel","post":"dezlegare","culoare":"alb"},
+  "07-20":{"sfant":"Sfântul Prooroc Ilie Tesviteanul","post":"dezlegare","culoare":"alb"},
+  "08-06":{"sfant":"Schimbarea la Față a Domnului","post":"dezlegare_peste","culoare":"alb"},
+  "08-15":{"sfant":"Adormirea Maicii Domnului","post":"dezlegare","culoare":"alb"},
+  "09-08":{"sfant":"Nașterea Maicii Domnului","post":"dezlegare","culoare":"alb"},
+  "09-14":{"sfant":"Înălțarea Sfintei Cruci","post":"post","culoare":"rosu"},
+  "10-14":{"sfant":"Cuvioasa Parascheva de la Iași","post":"dezlegare","culoare":"alb"},
+  "11-08":{"sfant":"Soborul Sfinților Arhangheli Mihail și Gavriil","post":"dezlegare","culoare":"alb"},
+  "11-30":{"sfant":"Sfântul Apostol Andrei, Ocrotitorul României","post":"dezlegare","culoare":"alb"},
+  "12-06":{"sfant":"Sfântul Ierarh Nicolae, arhiepiscopul Mirelor Lichiei","post":"dezlegare","culoare":"alb"},
+  "12-25":{"sfant":"Nașterea Domnului nostru Iisus Hristos (Crăciunul)","post":"dezlegare","culoare":"alb"}
+};
+
+const APOSTOLI_SCURT = {0:"Romani 8, 14-21",1:"Romani 1, 1-7",2:"I Corinteni 13, 1-13",3:"Evrei 11, 1-10",4:"I Timotei 1, 12-17",5:"Galateni 5, 22-26",6:"I Tesaloniceni 4, 13-17"};
+const EVANGHELII_SCURT = {0:"Ioan 20, 1-10",1:"Ioan 1, 1-17",2:"Matei 5, 1-12",3:"Luca 15, 11-32",4:"Ioan 10, 1-16",5:"Luca 23, 33-43",6:"Matei 11, 25-30"};
+const RUGACIUNI_ZILEI = {0:"Doamne, Dumnezeul nostru, Cel ce ești bun și iubitor de oameni, Cel ce în ziua aceasta a Învierii Tale ne-ai luminat cu lumina sfântă a slavei Tale, dăruiește-ne să petrecem această zi sfântă în bucurie duhovnicească, ferindu-ne de tot răul. Amin.",1:"Doamne, Dumnezeule, Cel ce ești fără de început, Cel ce ești fără de sfârșit, Cel ce ești mai înainte de veci și pururea ești, luminează mintea mea, întărește inima mea, îndreptează gândurile mele, ca să petrec această zi în pace și în sfințenie. Amin.",2:"Doamne Iisuse Hristoase, Fiul lui Dumnezeu, pentru rugăciunile Preasfintei Maicii Tale și ale tuturor sfinților, miluiește-ne pe noi. Doamne, curățește-ne pe noi de toate păcatele noastre și ne ajută să facem voia Ta cea sfântă. Amin.",3:"Doamne, Dumnezeul nostru, care ești Lumina cea adevărată, luminează sufletul meu cel întunecat de păcate. Dă-mi putere să postesc cu adevărat, nu numai de mâncare, ci și de gânduri rele, de vorbe deșarte și de fapte necurate. Amin.",4:"Stăpâne, Doamne, Dumnezeul nostru, Cel ce ești îndelung răbdător și mult milostiv, primește această rugăciune a noastră și ne ajută să petrecem ziua de astăzi în pace, în sănătate și în bucurie duhovnicească. Amin.",5:"Doamne Iisuse Hristoase, Cel ce ai pătimit pentru noi pe Cruce, dăruiește-ne puterea de a purta cu răbdare și cu bucurie crucile noastre cele de zi cu zi. Ajută-ne să postim cu evlavie și să ne rugăm cu inimă curată. Amin.",6:"Doamne, Dumnezeul nostru, mulțumim Ție pentru această săptămână pe care ai binevoit să ne-o dăruiești. Iartă-ne greșelile săptămânii trecute și ajută-ne să începem săptămâna nouă cu inimă curată și cu gânduri bune. Amin."};
+const CULORI = {alb:"⬜ Alb liturgic",rosu:"🔴 Roșu liturgic",verde:"🟢 Verde liturgic",visineu:"🟣 Vișiniu",auriu:"🟡 Auriu"};
+const ZILE_RO = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'];
+const LUNI_RO = ['ianuarie','februarie','martie','aprilie','mai','iunie','iulie','august','septembrie','octombrie','noiembrie','decembrie'];
+
+function getDataKey(d){return String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function getPostLabel(p){const l={'post':'🕯️ Zi de post','dezlegare':'✅ Dezlegare la toate','dezlegare_peste':'🐟 Dezlegare la pește','dezlegare_vin_ulei':'🫒 Dezlegare la vin și untdelemn'};return l[p]||'✅ Dezlegare';}
+function toggleFaq(el){const r=el.nextElementSibling;const i=el.querySelector('.faq-icon');const o=r.style.display!=='none';r.style.display=o?'none':'block';i.textContent=o?'+':'−';}
+function copiazaRug(){navigator.clipboard.writeText(document.getElementById('rugaciune-text').innerText).then(()=>alert('Rugăciunea a fost copiată!'));}
+function trimiteWhatsApp(){
+  const s=document.getElementById('sfant-azi').textContent;
+  const d=document.getElementById('data-mare').textContent;
+  const msg=encodeURIComponent(`📅 Calendar Ortodox Azi — ${d}\n${s}\n\nhttps://povestidecredinta.ro/calendar-ortodox-azi/`);
+  window.open('https://wa.me/?text='+msg,'_blank');
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  const azi=new Date();
+  const zi=azi.getDay();
+  const key=getDataKey(azi);
+  const data=CALENDAR[key]||{sfant:'Sfânt din Sinaxarul BOR',post:(zi===3||zi===5)?'post':'dezlegare',culoare:'alb'};
+  const df=ZILE_RO[zi]+', '+azi.getDate()+' '+LUNI_RO[azi.getMonth()]+' '+azi.getFullYear();
+
+  document.getElementById('data-mare').textContent=df;
+  document.getElementById('sfant-azi').textContent='✝️ '+data.sfant;
+  document.getElementById('post-badge').textContent=getPostLabel(data.post);
+  document.getElementById('culoare-badge').textContent=CULORI[data.culoare]||'⬜ Alb liturgic';
+  document.getElementById('hero-h1').textContent='📅 Calendar Ortodox Azi — '+df;
+  document.getElementById('hero-data').textContent='Conform Calendarului Ortodox Român 2026 — Patriarhia Română';
+
+  const sfantScurt=data.sfant.split(';')[0].substring(0,50)+(data.sfant.length>50?'...':'');
+  document.getElementById('sfant-card').textContent=sfantScurt;
+  document.getElementById('apostol-card').textContent=APOSTOLI_SCURT[zi];
+  document.getElementById('ev-card').textContent=EVANGHELII_SCURT[zi];
+  document.getElementById('rugaciune-text').textContent=RUGACIUNI_ZILEI[zi];
+
+  document.getElementById('meta-title').textContent=`Calendar Ortodox Azi, ${df} — Sfântul, Apostolul și Evanghelia Zilei | Povești de Credință`;
+  document.getElementById('meta-desc').setAttribute('content',`Calendar ortodox azi, ${df}: ${data.sfant}. ${getPostLabel(data.post)}. Apostolul: ${APOSTOLI_SCURT[zi]}. Evanghelia: ${EVANGHELII_SCURT[zi]}.`);
+  document.getElementById('og-title').setAttribute('content',`Calendar Ortodox Azi — ${df} | Povești de Credință`);
+  document.getElementById('og-desc').setAttribute('content',`${data.sfant}. ${getPostLabel(data.post)}. Apostolul: ${APOSTOLI_SCURT[zi]}.`);
+
+  document.getElementById('faq1-q').textContent=`Ce sfânt este azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}, în calendarul ortodox?`;
+  document.getElementById('faq1-a').textContent=`Azi, ${df}, este prăznuit ${data.sfant}. ${getPostLabel(data.post)}.`;
+  document.getElementById('faq3-a').textContent=`${getPostLabel(data.post)} — aceasta este regula pentru ziua de azi, ${df}, conform Calendarului Ortodox Român 2026.`;
+
+  document.getElementById('schema-event').textContent=JSON.stringify({
+    "@context":"https://schema.org","@type":"Event",
+    "name":`Calendar Ortodox — ${df}`,
+    "description":`Sfântul zilei: ${data.sfant}. ${getPostLabel(data.post)}.`,
+    "startDate":azi.toISOString().split('T')[0],
+    "endDate":azi.toISOString().split('T')[0],
+    "url":"https://povestidecredinta.ro/calendar-ortodox-azi/",
+    "organizer":{"@type":"Organization","name":"Povești de Credință","url":"https://povestidecredinta.ro"}
+  });
+  document.getElementById('schema-faq').textContent=JSON.stringify({
+    "@context":"https://schema.org","@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":`Ce sfânt este azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}?`,"acceptedAnswer":{"@type":"Answer","text":`Azi este prăznuit ${data.sfant}. ${getPostLabel(data.post)}.`}},
+      {"@type":"Question","name":"Calendar ortodox azi — ce înseamnă culoarea liturgică?","acceptedAnswer":{"@type":"Answer","text":"Culoarea liturgică indică tipul slujbei: alb pentru sărbători ale Mântuitorului, roșu pentru mucenici, verde pentru cuvioși, vișiniu pentru post."}},
+      {"@type":"Question","name":"Este post azi în calendarul ortodox 2026?","acceptedAnswer":{"@type":"Answer","text":`${getPostLabel(data.post)} — aceasta este regula pentru ziua de azi conform Calendarului Ortodox Român 2026.`}},
+      {"@type":"Question","name":"Apostolul și evanghelia zilei — unde le găsesc?","acceptedAnswer":{"@type":"Answer","text":"Apostolul și Evanghelia zilei le găsești pe povestidecredinta.ro/apostolul-zilei/ și povestidecredinta.ro/evanghelia-zilei/ cu textul complet."}},
+      {"@type":"Question","name":"Calendar ortodox azi doxologia — alternativă?","acceptedAnswer":{"@type":"Answer","text":"povestidecredinta.ro este alternativa completă: sfântul zilei, sinaxarul, apostolul, evanghelia, predica zilei, rugăciunile și acatistele — toate pe un singur site optimizat pentru mobil."}}
+    ]
+  });
+});
+</script>
+<script src="/js/app.js"></script>
+</body>
+</html>
