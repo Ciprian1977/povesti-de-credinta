@@ -508,15 +508,15 @@ JSON exact (toate câmpurile obligatorii):
 // —— Salvare în Supabase ————————————————————————————————————————————
 async function salveazaInSupabase(data, continut) {
   const inregistrare = {
-    date: data,
+    data_calendaristica: data,
     ...continut
   };
 
   delete inregistrare.creat_la;
 
-  const { date: rezultat, error } = await supabase
+  const { data: rezultat, error } = await supabase
     .from('zile_ortodoxe')
-    .upsert(inregistrare, { onConflict: 'date', ignoreDuplicates: false });
+    .upsert(inregistrare, { onConflict: 'data_calendaristica', ignoreDuplicates: false });
 
   if (error) {
     console.error('❌ Eroare Supabase:', error.message);
@@ -577,8 +577,8 @@ async function main() {
   // Verifică dacă există deja în Supabase
   const { data: existent, error: checkError } = await supabase
     .from('zile_ortodoxe')
-    .select('date, sfant_nume')
-    .eq('date', dataTarget)
+    .select('data_calendaristica, sfant_nume')
+    .eq('data_calendaristica', dataTarget)
     .single();
 
   if (existent && !process.argv.includes('--force')) {
