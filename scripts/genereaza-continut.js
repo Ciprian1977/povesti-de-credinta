@@ -512,9 +512,11 @@ async function salveazaInSupabase(data, continut) {
     ...continut
   };
 
+  delete inregistrare.creat_la;
+
   const { date: rezultat, error } = await supabase
     .from('zile_ortodoxe')
-    .upsert(inregistrare, { onConflict: 'date' });
+    .upsert(inregistrare, { onConflict: 'date', ignoreDuplicates: false });
 
   if (error) {
     console.error('❌ Eroare Supabase:', error.message);
