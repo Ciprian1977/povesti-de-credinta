@@ -23,8 +23,8 @@ async function main() {
 
   const { data, error } = await supabase
     .from('zile_ortodoxe')
-    .select('data, sfant_nume, tip_post, apostol_carte, apostol_versete, evanghelie_carte, evanghelie_versete')
-    .eq('data', dataStr)
+    .select('data_calendaristica, sfant_nume, tip_post, apostol_carte, apostol_versete, evanghelie_carte, evanghelie_versete')
+    .eq('data_calendaristica', dataStr)
     .single();
 
   if (error || !data) {
@@ -33,7 +33,7 @@ async function main() {
   }
 
   console.log('\n✅ Verificare Supabase — OK');
-  console.log(`   Data: ${data.data}`);
+  console.log(`   Data: ${data.data_calendaristica}`);
   console.log(`   Sfânt: ${data.sfant_nume}`);
   console.log(`   Post: ${data.tip_post}`);
   console.log(`   Apostol: ${data.apostol_carte} ${data.apostol_versete}`);
@@ -42,13 +42,13 @@ async function main() {
   // Verifică și câteva zile recente
   const { data: recent } = await supabase
     .from('zile_ortodoxe')
-    .select('data, sfant_nume')
-    .order('data', { ascending: false })
+    .select('data_calendaristica, sfant_nume')
+    .order('data_calendaristica', { ascending: false })
     .limit(5);
 
   if (recent && recent.length > 0) {
     console.log('\n📅 Ultimele 5 zile în Supabase:');
-    recent.forEach(r => console.log(`   ${r.data} — ${r.sfant_nume}`));
+    recent.forEach(r => console.log(`   ${r.data_calendaristica} — ${r.sfant_nume}`));
   }
 }
 
