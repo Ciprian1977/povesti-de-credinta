@@ -11,6 +11,7 @@
 
 const { createClient } = require('@supabase/supabase-js');
 const OpenAI = require('openai');
+const ws = require('ws');
 
 // —— Configurare ————————————————————————————————————————————————————
 const SUPABASE_URL = process.env.SUPABASE_URL || 'https://smuqpipxeotkbttolivp.supabase.co';
@@ -30,7 +31,10 @@ if (!OPENAI_API_KEY) {
 }
 
 // —— Clienti ————————————————————————————————————————————————————————
-const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
+const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY, {
+  global: { fetch: fetch },
+  realtime: { transport: ws }
+});
 const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
 
 // —— Calendar de date ortodox static (de rezervă) ———————————————————

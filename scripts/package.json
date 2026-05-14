@@ -10,10 +10,11 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.0",
-    "openai": "^4.28.0"
+    "openai": "^4.28.0",
+    "ws": "^8.16.0"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.0.0"
   },
   "author": "Povești de Credință — povestidecredinta.ro",
   "license": "UNLICENSED"
