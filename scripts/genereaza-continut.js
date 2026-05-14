@@ -12,6 +12,21 @@
 const { createClient } = require('@supabase/supabase-js');
 const OpenAI = require('openai');
 const ws = require('ws');
+const fs = require('fs');
+const path = require('path');
+
+// —— Lecționar static BOR — texte sacre EXACTE (Apostol, Evanghelie, Tropar) ——
+// Sursă: Biblia Sinodală BOR 1988/2001 + Mineiele BOR
+// OpenAI NU generează aceste texte — sunt preluate din fișierul static
+let LECTIONAR = {};
+try {
+  const lectionarPath = path.join(__dirname, '..', 'data', 'lectionar.json');
+  const raw = fs.readFileSync(lectionarPath, 'utf8');
+  LECTIONAR = JSON.parse(raw);
+  console.log(`📖 Lecționar BOR încărcat: ${Object.keys(LECTIONAR).length} zile cu texte sacre exacte`);
+} catch (e) {
+  console.warn('⚠️ Lecționar static nu a putut fi încărcat:', e.message);
+}
 
 // —— Configurare ————————————————————————————————————————————————————
 const SUPABASE_URL = process.env.SUPABASE_URL || 'https://smuqpipxeotkbttolivp.supabase.co';
@@ -453,60 +468,91 @@ async function genereazaContiut(date) {
   const sfantDefault = getSfantDefault(date);
   const tipPost = getTipPostDefault(date);
 
+  // —— PASUL 1: Preluare texte sacre EXACTE din lecționarul static BOR ——
+  // Textele Apostolului, Evangheliei și Troparului NU se generează cu AI
+  // pentru a evita parafrazarea sau halucinațiile LLM pe texte sacre.
+  // Sursă: Biblia Sinodală BOR 1988/2001 + Mineiele BOR
+  const cheiaLectionar = date.substring(5); // 'MM-DD' din 'YYYY-MM-DD'
+  const texteStatice = LECTIONAR[cheiaLectionar] || null;
+
+  if (texteStatice) {
+    console.log(`📖 Texte sacre exacte găsite în lecționar pentru ${cheiaLectionar}`);
+  } else {
+    console.warn(`⚠️ Ziua ${cheiaLectionar} nu este în lecționar — câmpurile Apostol/Evanghelie/Tropar vor fi marcate`);
+  }
+
+  // —— PASUL 2: Generare conținut CREATIV cu OpenAI ——
+  // OpenAI generează DOAR: sfant_viata, sinaxar, predica, cuvant_folos,
+  // rugaciunea_zilei, sfinti_secundari, meta_description
+  // NU generează texte liturgice sacre (Apostol, Evanghelie, Tropar)
   const prompt = `Ești un preot ortodox român erudit și un expert în Sinaxarul Bisericii Ortodoxe Române.
-Generează conținut complet pentru calendarul ortodox pentru date ${date}.
+Generează conținut CREATIV (nu texte liturgice) pentru calendarul ortodox pentru data ${date}.
 Sfântul principal al zilei este: ${sfantDefault}
-Tipul postării: ${tipPost}
+Tipul postului: ${tipPost}
+
+ATENȚIE: NU genera textele Apostolului, Evangheliei sau Troparului — acestea sunt preluate din surse exacte BOR.
+Generează DOAR câmpurile creative și analitice de mai jos.
 
 Răspunde DOAR cu JSON valid, fără alte texte, fără markdown, fără explicații.
 Folosește diacritice românești corecte (ă, â, î, ș, ț).
-Toate textele trebuie să fie autentice, ortodoxe și conform tradiției BOR.
-
 JSON exact (toate câmpurile obligatorii):
 {
   "sfant_nume": "numele complet al sfântului principal conform Sinaxarului BOR",
-  "sfant_viata": "viața sfântului în 250-300 cuvinte, scrisă cu evlavie, cu date istorice exacte",
-  "tropar": "troparul complet al sfântului (glasul și textul integral)",
+  "sfant_viata": "viața sfântului în 250-300 cuvinte, scrisă cu evlavie, cu date istorice exacte conform Sinaxarului BOR",
   "culoare_liturgica": "una din: alb / rosu / verde / violet / negru",
   "rugaciunea_zilei": "o rugăciune ortodoxă completă potrivită zilei, de 50-80 cuvinte",
-  "sinaxar": "sinaxarul zilei în 180-220 cuvinte, cu toți sfinții zilei",
-  "apostol_carte": "cartea Apostolului (ex: Romani)",
-  "apostol_versete": "versetele exacte (ex: 8:1-14)",
-  "apostol_text": "textul complet al Apostolului zilei conform lectinarului ortodox",
-  "evanghelie_carte": "cartea Evangheliei (ex: Ioan)",
-  "evanghelie_versete": "versetele exacte (ex: 1:1-17)",
-  "evanghelie_text": "textul complet al Evangheliei zilei conform lectinarului ortodox",
-  "predica": "predică scurtă de 150-180 cuvinte bazată pe Evanghelia zilei, cu aplicare practică",
-  "cuvant_folos": "citat patristic autentic relevant pentru ziua respectivă, cu sursa exactă",
-  "sfinti_secundari": "alți sfinți prăznuiți în această zi, separați prin punct și virgulă",
-  "meta_descriere": "descriere SEO de exact 150-160 caractere pentru această zi, cu sfântul și datele"
+  "sinaxar": "sinaxarul zilei în 180-220 cuvinte, cu toți sfinții zilei, conform tradiției BOR",
+  "predica": "predică scurtă de 150-180 cuvinte bazată pe pericopa evanghelică a zilei, cu aplicare practică pentru credinciosul de rând",
+  "cuvant_folos": "citat patristic autentic relevant pentru ziua respectivă, cu sursa exactă (autor, carte, capitol)",
+  "sfinti_secundari": "alți sfinți prăznuiți în această zi conform Calendarului BOR, separați prin punct și virgulă",
+  "meta_description": "descriere SEO de exact 150-160 caractere pentru această zi, cu sfântul și data"
 }`;
 
-  console.log(`\n🔄 Generez conținut pentru ${date} – ${sfantDefault}`);
-
+  console.log(`\n🔄 Generez conținut creativ pentru ${date} – ${sfantDefault}`);
   const response = await openai.chat.completions.create({
     model: 'gpt-4.1-mini',
     messages: [
       {
         role: 'system',
-        content: 'Ești un preot ortodox român erudit. Răspunzi DOAR cu JSON valid, fără alte texte. Folosești diacritice românești corecte.'
+        content: 'Ești un preot ortodox român erudit. Răspunzi DOAR cu JSON valid, fără alte texte. Folosești diacritice românești corecte. Nu inventezi texte liturgice — generezi doar conținut creativ și analitic.'
       },
       { role: 'user', content: prompt }
     ],
     temperature: 0.3,
-    max_tokens: 3000
+    max_tokens: 2000
   });
 
   const continut = response.choices[0].message.content.trim();
-
-  // Curăță răspunsul de eventuale blocuri markdown
   const jsonCurat = continut
     .replace(/^```json\s*/i, '')
     .replace(/^```\s*/i, '')
     .replace(/\s*```$/i, '')
     .trim();
+  const continutAI = JSON.parse(jsonCurat);
 
-  return JSON.parse(jsonCurat);
+  // —— PASUL 3: Combinare texte sacre exacte + conținut AI ——
+  // Textele sacre din lecționar suprascriu orice ar genera AI
+  if (texteStatice) {
+    continutAI.apostol_carte = texteStatice.apostol_carte;
+    continutAI.apostol_versete = texteStatice.apostol_versete;
+    continutAI.apostol_text = texteStatice.apostol_text;
+    continutAI.evanghelie_carte = texteStatice.evanghelie_carte;
+    continutAI.evanghelie_versete = texteStatice.evanghelie_versete;
+    continutAI.evanghelie_text = texteStatice.evanghelie_text;
+    continutAI.tropar = texteStatice.tropar;
+    console.log(`✅ Texte sacre exacte BOR aplicate pentru ${cheiaLectionar}`);
+  } else {
+    // Fallback: marchează câmpurile ca nedisponibile în lecționar
+    continutAI.apostol_carte = continutAI.apostol_carte || 'Vezi Mineiul zilei';
+    continutAI.apostol_versete = continutAI.apostol_versete || '';
+    continutAI.apostol_text = '⚠️ Textul exact al Apostolului pentru această zi nu este disponibil în lecționarul nostru. Consultați Mineiul sau Apostolul BOR.';
+    continutAI.evanghelie_carte = continutAI.evanghelie_carte || 'Vezi Mineiul zilei';
+    continutAI.evanghelie_versete = continutAI.evanghelie_versete || '';
+    continutAI.evanghelie_text = '⚠️ Textul exact al Evangheliei pentru această zi nu este disponibil în lecționarul nostru. Consultați Mineiul sau Evangheliarul BOR.';
+    continutAI.tropar = continutAI.tropar || '⚠️ Troparul exact pentru această zi nu este disponibil în lecționarul nostru. Consultați Mineiul BOR.';
+  }
+
+  return continutAI;
 }
 
 // —— Salvare în Supabase ————————————————————————————————————————————
