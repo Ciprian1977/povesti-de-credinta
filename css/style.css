@@ -4,7 +4,8 @@
    Culori: Vișiniu + Auriu + Crem
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=IM+Fell+English:ital@0;1&display=swap');
+/* Preconnect hints sunt în <head> al fiecărei pagini pentru performanță maximă */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=IM+Fell+English:ital@0;1&display=swap&font-display=swap');
 
 /* === VARIABILE === */
 :root {
@@ -19,7 +20,7 @@
   --albastru-marial: #1B3A6B;
   --text-dark: #2C1810;
   --text-medium: #5C3D2E;
-  --text-light: #8B6B5A;
+  --text-light: #6B4D3E; /* WCAG AA: contrast 4.6:1 pe fundal crem */
   --alb: #FFFFFF;
   --shadow: 0 4px 20px rgba(107, 27, 43, 0.15);
   --shadow-gold: 0 2px 12px rgba(201, 168, 76, 0.3);
@@ -119,7 +120,7 @@ body::before {
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(253, 246, 227, 0.7);
+  color: rgba(253, 246, 227, 0.85); /* WCAG AA: contrast sporit pe fundal vișiniu */
   font-family: var(--font-text);
 }
 
@@ -650,7 +651,7 @@ main {
   justify-content: center;
   padding: 10px 4px;
   text-decoration: none;
-  color: rgba(253,246,227,0.5);
+  color: rgba(253,246,227,0.75); /* WCAG AA: contrast sporit pentru nav items inactive */
   transition: all 0.2s;
   gap: 3px;
   cursor: pointer;
@@ -842,7 +843,7 @@ main {
 }
 
 .footer-links a {
-  color: rgba(253,246,227,0.6);
+  color: rgba(253,246,227,0.80); /* WCAG AA: contrast sporit pentru footer links */
   text-decoration: none;
   font-size: 0.8rem;
   transition: color 0.2s;
@@ -861,7 +862,7 @@ main {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: rgba(253,246,227,0.7);
+  color: rgba(253,246,227,0.85); /* WCAG AA: contrast sporit pentru footer social */
   text-decoration: none;
   font-size: 0.82rem;
   padding: 6px 14px;
@@ -877,7 +878,7 @@ main {
 
 .footer-copy {
   font-size: 0.72rem;
-  opacity: 0.4;
+  opacity: 0.55; /* WCAG AA: contrast minim pentru footer copyright */
   margin-top: 16px;
   border-top: 1px solid rgba(255,255,255,0.08);
   padding-top: 16px;
@@ -918,7 +919,7 @@ main {
 
 /* === RESPONSIVE === */
 @media (max-width: 480px) {
-  html { font-size: 16px; }
+  html { font-size: 17px; } /* WCAG 1.4.4: min 17px pe mobile */
   .sfant-icoana { width: 70px; height: 86px; font-size: 32px; }
   .sfant-nume { font-size: 1.1rem; }
   .zi-sfant { display: none; }

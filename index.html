@@ -136,7 +136,7 @@
   </div>
 
   <!-- CARD SFÂNTUL ZILEI -->
-  <article class="card-sfant-zilei" itemscope itemtype="https://schema.org/Event">
+  <article class="card-sfant-zilei" itemscope itemtype="https://schema.org/Article">
     <div class="card-sfant-header">
       <span class="data-azi" id="zi-saptamana">Se încarcă...</span>
       <span class="badge-post post" id="badge-post">🕯️ Post</span>
@@ -145,7 +145,9 @@
       <div class="sfant-icoana" aria-hidden="true">🕯️</div>
       <div class="sfant-info">
         <div class="sfant-titlu-mic">Sfântul zilei</div>
-        <h1 class="sfant-nume" id="sfant-nume" itemprop="name">Se încarcă...</h1>
+        <h1 class="sfant-nume" id="sfant-nume" itemprop="headline">Se încarcă...</h1>
+        <meta itemprop="datePublished" id="meta-date-published" content="">
+        <meta itemprop="author" content="Povești de Credință">
         <p class="sfant-scurt" id="sfant-scurt" itemprop="description"></p>
         <a href="/sfinti/sfantul-zilei.html" class="btn-citeste">
           📖 Citește mai mult
@@ -358,7 +360,7 @@
 </footer>
 
 <!-- BOTTOM NAVIGATION (mobil) -->
-<nav class="bottom-nav" aria-label="Navigație rapidă">
+<nav class="bottom-nav" role="navigation" aria-label="Navigație principală mobil">
   <a href="/" class="nav-item activ" aria-label="Acasă">
     <span class="nav-icon">🏠</span>
     <span class="nav-label">Acasă</span>
@@ -411,7 +413,7 @@
   </div>
 </div>
 
-<script src="/js/app.js"></script>
+<script src="/js/app.js" defer></script>
 <script>
 // Cookie banner
 if (!localStorage.getItem('cookies-acceptate')) {
