@@ -442,7 +442,7 @@ function getDataMaine() {
 }
 
 function getDataKey(dataStr) {
-  return dataStr.substring(5); // ZZ-LL din AAAA-ZZ-LL
+  return dataStr.substring(5); // MM-DD din AAAA-MM-DD
 }
 
 function getZiuaSaptamanii(dataStr) {
@@ -453,8 +453,28 @@ function getZiuaSaptamanii(dataStr) {
 function getTipPostDefault(dataStr) {
   const zi = getZiuaSaptamanii(dataStr);
   const key = getDataKey(dataStr);
+
+  // ══ REGULA CANONICĂ ORTODOXĂ ══
+  // Duminica este zi de prăznuire — NICIODATĂ zi de post,
+  // indiferent de ce apare în calendarul static.
+  // Conform Canonului 64 Apostolic și tradiției BOR.
+  if (zi === 0) return 'dezlegare'; // 0 = Duminică
+
+  // Sâmbăta este zi de dezlegare (cu excepția Sâmbetei Mari)
+  // Sâmbăta Mare este gestionată prin CALENDAR_STATIC (post_strict)
+  if (zi === 6) {
+    // Verificăm dacă e Sâmbăta Mare (excepție canonică)
+    if (CALENDAR_STATIC[key] && CALENDAR_STATIC[key].post === 'post_strict') {
+      return 'post_strict';
+    }
+    return 'dezlegare'; // 6 = Sâmbătă — dezlegare în general
+  }
+
+  // Pentru celelalte zile: consultăm calendarul static BOR
   if (CALENDAR_STATIC[key]) return CALENDAR_STATIC[key].post;
-  if (zi === 3 || zi === 5) return 'post'; // Miercuri și Vineri
+
+  // Fallback: Miercuri (3) și Vineri (5) sunt zile de post
+  if (zi === 3 || zi === 5) return 'post';
   return 'dezlegare';
 }
 
