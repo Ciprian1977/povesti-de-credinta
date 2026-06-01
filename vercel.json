@@ -37,7 +37,18 @@
     }
   ],
   "rewrites": [
-    { "source": "/sitemap.xml", "destination": "/sitemap.xml" }
+    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+    { "source": "/sw.js", "destination": "/sw.js" },
+    { "source": "/manifest.json", "destination": "/manifest.json" },
+    { "source": "/offline.html", "destination": "/offline.html" },
+    { "source": "/robots.txt", "destination": "/robots.txt" },
+    { "source": "/css/(.*)", "destination": "/css/$1" },
+    { "source": "/js/(.*)", "destination": "/js/$1" },
+    { "source": "/images/(.*)", "destination": "/images/$1" },
+    { "source": "/data/(.*)", "destination": "/data/$1" },
+    { "source": "/rugaciuni/(.*)", "destination": "/rugaciuni/$1" },
+    { "source": "/(.*)\\.html", "destination": "/$1.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ],
   "redirects": [
     { "source": "/home", "destination": "/", "permanent": true }
