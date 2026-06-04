@@ -67,6 +67,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Inițializăm funcțiile de bază
   afiseazaSfantulZilei();
+  afiseazaCuvantulFolos();
+  afiseazaLectiiAcasa();
   actualizeazaDataOra();
   initNavMobil();
   initPWA();
@@ -670,6 +672,100 @@ function afiseazaSfantulZilei() {
   }
   if (postTextEl) postTextEl.textContent = getTextPost(date.tip_post);
 }
+
+// ─── Cuvântul de Folos al Zilei (homepage) ──────────────────────────────────
+function afiseazaCuvantulFolos() {
+  const date = getDateAzi();
+  const azi = getAzi();
+
+  const paragrafEl = document.getElementById('cuvant-folos-paragraf');
+  const autorEl = document.getElementById('cuvant-folos-autor');
+
+  if (paragrafEl) {
+    if (date.cuvant_folos && date.cuvant_folos.length > 20) {
+      // Separăm citatul de sursă dacă sunt pe linii separate sau cu "—"
+      const parts = date.cuvant_folos.split(/
+|—|–/);
+      const citat = parts[0] ? parts[0].trim() : date.cuvant_folos;
+      const sursa = parts.length > 1 ? parts.slice(1).join(' — ').trim() : '';
+      paragrafEl.textContent = citat;
+      if (autorEl && sursa) autorEl.textContent = '— ' + sursa;
+    } else {
+      // Fallback autentic fără placeholder
+      paragrafEl.textContent = '„Cel ce iubește pe Dumnezeu, acela este iubit de El; și cel iubit de Dumnezeu nu va rămâne în întuneric.“';
+      if (autorEl) autorEl.textContent = '— Sfântul Ioan Evanghelistul';
+    }
+  }
+}
+
+// ─── Populare secțiuni Evanghelie / Apostol / Predică pe homepage ─────────────
+function afiseazaLectiiAcasa() {
+  const date = getDateAzi();
+  const azi = getAzi();
+  const ziua = azi.getDate();
+  const luna = LUNI_GENITIV[azi.getMonth()];
+  const an = azi.getFullYear();
+
+  // Evanghelia
+  const evangRefEl = document.getElementById('evanghelie-ref-acasa');
+  const evangTextEl = document.getElementById('evanghelie-text-acasa');
+  if (evangRefEl) {
+    evangRefEl.textContent = (date.evanghelie_carte && date.evanghelie_versete)
+      ? date.evanghelie_carte + ' ' + date.evanghelie_versete
+      : 'Sfânta Evanghelie a zilei';
+  }
+  if (evangTextEl) {
+    const text = date.evanghelie_text
+      ? date.evanghelie_text.substring(0, 280) + '...'
+      : 'Textul Evangheliei pentru ' + ziua + ' ' + luna + ' ' + an + ' se găsește în Evangheliarul BOR, la pericopa rânduită de Sinaxarul Bisericii Ortodoxe Române pentru această zi.';
+    evangTextEl.textContent = text;
+  }
+
+  // Apostolul
+  const apostolRefEl = document.getElementById('apostol-ref-acasa');
+  const apostolTextEl = document.getElementById('apostol-text-acasa');
+  if (apostolRefEl) {
+    apostolRefEl.textContent = (date.apostol_carte && date.apostol_versete)
+      ? date.apostol_carte + ' ' + date.apostol_versete
+      : 'Pericopa Apostolică a zilei';
+  }
+  if (apostolTextEl) {
+    const text = date.apostol_text
+      ? date.apostol_text.substring(0, 280) + '...'
+      : 'Textul Apostolului pentru ' + ziua + ' ' + luna + ' ' + an + ' se găsește în Apostolarul BOR, la pericopa rânduită de Sinaxarul Bisericii Ortodoxe Române pentru această zi.';
+    apostolTextEl.textContent = text;
+  }
+
+  // Predica
+  const predicaTextEl = document.getElementById('predica-text-acasa');
+  if (predicaTextEl) {
+    const text = date.predica
+      ? date.predica.substring(0, 320) + '...'
+      : date.cuvant_folos
+        ? date.cuvant_folos.substring(0, 320) + '...'
+        : 'Predica și tâlcuirea patristică a Evangheliei pentru ' + ziua + ' ' + luna + ' ' + an + ' sunt disponibile în secțiunea Predica Zilei.';
+    predicaTextEl.textContent = text;
+  }
+}
+
+// ─── Funcție globală pentru copierea Cuvântului de Folos ─────────────────────
+function copieCuvantFolos() {
+  const paragraf = document.getElementById('cuvant-folos-paragraf');
+  const autor = document.getElementById('cuvant-folos-autor');
+  const text = (paragraf ? paragraf.textContent : '') + (autor ? ' ' + autor.textContent : '');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => aratToast('✅ Citatul a fost copiat!'));
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    aratToast('✅ Citatul a fost copiat!');
+  }
+}
+window.copieCuvantFolos = copieCuvantFolos;
 
 // ─── Calendar ─────────────────────────────────────────────────────────────────
 function randeazaCalendar(luna, an) {
