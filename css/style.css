@@ -1223,3 +1223,85 @@ main {
   .card-cuvant-folos, .card-lectie { padding: 18px 14px; }
   .cuvant-folos-citat p { font-size: 1rem; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   MOBILE-FIRST TIPOGRAFIE OBLIGATORIE — 19px, line-height 1.7, padding 20px
+   Textul sacru trebuie să fie MARE, FERM, NEGRU pe fundal crem.
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Paragrafele de text sacru — toate secțiunile de conținut */
+.rugaciune-text,
+.lectie-text,
+.cuvant-folos-citat p,
+.ruta-container p,
+.ruta-container .text-complet,
+#evanghelie-text-acasa,
+#apostol-text-acasa,
+#predica-text-acasa,
+#rugaciune-text {
+  font-size: 19px !important;
+  line-height: 1.7 !important;
+  color: #2c2c2c !important;
+  text-align: justify;
+  font-style: normal !important;
+  font-weight: 400;
+}
+
+/* Padding lateral pe containere — textul respira */
+main,
+.card-sfant-zilei,
+.card-cuvant-folos,
+.card-rugaciune,
+.card-lectie,
+.ruta-container,
+.sectiune-cuvant-folos {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+/* Eliminare font cursiv / italic de pe textul sacru */
+.cuvant-folos-citat p,
+.rugaciune-text,
+blockquote p {
+  font-style: normal !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* Eliminare line-clamp pe lectii — afisam textul complet */
+.lectie-text {
+  -webkit-line-clamp: unset !important;
+  overflow: visible !important;
+  display: block !important;
+}
+
+/* Media query mobil — garantam 19px minim pe orice ecran */
+@media (max-width: 768px) {
+  .rugaciune-text,
+  .lectie-text,
+  .cuvant-folos-citat p,
+  #evanghelie-text-acasa,
+  #apostol-text-acasa,
+  #predica-text-acasa,
+  #rugaciune-text {
+    font-size: 19px !important;
+    line-height: 1.7 !important;
+    color: #2c2c2c !important;
+  }
+
+  main,
+  .card-sfant-zilei,
+  .card-cuvant-folos,
+  .card-rugaciune,
+  .card-lectie,
+  .sectiune-cuvant-folos {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  .sfant-scurt,
+  .card-post-info,
+  .card-post-titlu {
+    font-size: 17px !important;
+    line-height: 1.6 !important;
+  }
+}
