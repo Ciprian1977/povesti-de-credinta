@@ -523,7 +523,7 @@ REGULI STRICTE:
 1. NU genera textele Apostolului, Evangheliei sau Troparului — acestea sunt preluate din surse exacte BOR.
 2. NU folosi niciodată texte placeholder sau fraze generice de tipul "disponibil în curând", "Sfânt din Sinaxarul BOR" etc.
 3. Câmpul "titlu_sfinti" trebuie să conțină GRUPUL COMPLET de sfinți ai zilei (ex: "Sfinții Mucenici Zotic, Atal, Camasie și Filip de la Niculițel"), nu doar un sfânt secundar.
-4. Câmpul "sinaxar_complet" trebuie să fie un text extins de 400-500 cuvinte, cu date istorice exacte, potrivit pentru indexare SEO profundă.
+4. Câmpul "sinaxar_complet" trebuie să fie un text ACADEMIC EXTINS de minimum 600 cuvinte (1500+ caractere), cu date istorice exacte, context teologic profund, referințe patristice, importanță liturgică și relevanță pentru credinciosul ortodox român — text complet pentru indexare SEO profundă. NU trunchia textul.
 5. Toate câmpurile sunt OBLIGATORII — nu lăsa niciun câmp gol sau cu text generic.
 
 Răspunde DOAR cu JSON valid, fără alte texte, fără markdown, fără explicații.
@@ -532,12 +532,12 @@ JSON exact (toate câmpurile obligatorii):
 {
   "sfant_nume": "numele complet al sfântului principal conform Sinaxarului BOR",
   "titlu_sfinti": "GRUPUL COMPLET de sfinți ai zilei, exact cum apare în Calendarul BOR (ex: Sfinții Mucenici Zotic, Atal, Camasie și Filip de la Niculițel)",
-  "sfant_viata": "viața sfântului în 300-350 cuvinte, scrisă cu evlavie, cu date istorice exacte conform Sinaxarului BOR, fără texte generice",
-  "sinaxar_complet": "sinaxarul extins al zilei în 400-500 cuvinte, cu toți sfinții zilei, date istorice, context teologic și importanță liturgică — text complet pentru SEO profund, conform tradiției BOR",
+  "sfant_viata": "viața sfântului principal în 400-500 cuvinte, scrisă cu evlavie academică, cu date istorice exacte conform Sinaxarului BOR, locul nașterii, perioada istorică, faptele de credință, modul muceniciei sau al sfințeniei, canonizarea și moaștele — fără texte generice",
+  "sinaxar_complet": "sinaxarul ACADEMIC EXTINS al zilei în minimum 600 cuvinte (1500+ caractere): prezintă toți sfinții zilei cu viețile lor complete, contextul istoric al epocii, persecuțiile suferite, minunile săvârșite, importanța lor pentru Biserica Ortodoxă Română, referințe patristice și liturgice, semnificația culorii liturgice și a tipului de post — text dens pentru indexare SEO profundă, conform tradiției BOR",
   "culoare_liturgica": "una din: alb / rosu / verde / violet / negru",
   "rugaciunea_zilei": "o rugăciune ortodoxă completă potrivită zilei, de 60-80 cuvinte",
   "sinaxar": "sinaxarul scurt al zilei în 180-220 cuvinte, cu toți sfinții zilei, conform tradiției BOR",
-  "predica": "predică scurtă de 150-180 cuvinte bazată pe pericopa evanghelică a zilei, cu aplicare practică pentru credinciosul de rând",
+  "predica": "predică de 250-300 cuvinte bazată pe pericopa evanghelică a zilei, cu tâlcuire patristică (citând un Sfânt Părinte), aplicare practică pentru credinciosul ortodox român de azi și îndemnuri concrete pentru viața duhovnicească",
   "cuvant_folos": "citat patristic autentic relevant pentru ziua respectivă, cu sursa exactă (autor, carte, capitol)",
   "sfinti_secundari": "alți sfinți prăznuiți în această zi conform Calendarului BOR, separați prin punct și virgulă",
   "post_info": "descriere completă a tipului de post/dezlegare pentru această zi conform tradiției ortodoxe (ex: Dezlegare deplină la toate — zi de prăznuire; sau: Post — abstinență de la carne, lactate și ouă)",
@@ -555,7 +555,7 @@ JSON exact (toate câmpurile obligatorii):
       { role: 'user', content: prompt }
     ],
     temperature: 0.3,
-    max_tokens: 2000
+    max_tokens: 3500
   });
 
   const continut = response.choices[0].message.content.trim();
