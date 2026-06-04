@@ -1,0 +1,19 @@
+{
+  "name": "povesti-de-credinta",
+  "version": "1.0.0",
+  "description": "Calendar Ortodox Românesc - Povești de Credință",
+  "scripts": {
+    "build": "echo 'Static site - no build required'"
+  },
+  "keywords": [
+    "calendar",
+    "ortodox",
+    "romanian",
+    "orthodox"
+  ],
+  "author": "Povești de Credință",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^1.6.1"
+  }
+}
