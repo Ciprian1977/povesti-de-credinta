@@ -50,6 +50,11 @@ const RUTE_SPA = {
     container: 'ruta-predica-zilei',
     titluFn: (d, azi) => `Predica și Tâlcuirea Evangheliei de azi, ${azi.getDate()} ${LUNI[azi.getMonth()]} ${azi.getFullYear()} | Povești de Credință`,
     descFn: (d, azi) => `Tâlcuire patristică și cuvânt de folos duhovnicesc pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}. Omilie și predică ortodoxă.`.substring(0, 160)
+  },
+  '/rugaciunea-zilei': {
+    container: 'ruta-rugaciunea-zilei',
+    titluFn: () => { const z = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'][new Date().getDay()]; return `Rugăciunea Zilei — ${z} | Calendar Ortodox | Povești de Credință`; },
+    descFn: () => { const z = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'][new Date().getDay()]; return `Rugăciunile oficiale ale fiecărei zile din săptămână în tradiția Bisericii Ortodoxe. Azi: ${z}.`.substring(0, 160); }
   }
 };
 
@@ -230,6 +235,24 @@ function handleRoute(pathname) {
   // Ascundem pagina principală
   if (paginaAcasa) { paginaAcasa.style.display = 'none'; paginaAcasa.setAttribute('aria-hidden', 'true'); }
 
+  // Gestionăm subruta /rugaciunea-zilei/:slug
+  const rugaciuneMatch = path.match(/^\/rugaciunea-zilei\/([a-z]+)$/);
+  if (rugaciuneMatch) {
+    const slug = rugaciuneMatch[1];
+    const rugaciune = (typeof getRugaciuneaDupaSlug !== 'undefined') ? getRugaciuneaDupaSlug(slug) : null;
+    const containerZi = document.getElementById('ruta-rugaciunea-zi');
+    if (containerZi) {
+      containerZi.style.display = 'block';
+      containerZi.removeAttribute('aria-hidden');
+      randeazaRugaciuneaZi(slug);
+      if (rugaciune) {
+        actualizeazaMetaTaguriRugaciune(rugaciune);
+        injecteazaJsonLdRugaciune(rugaciune, path);
+      }
+    }
+    return;
+  }
+
   const rutaConfig = RUTE_SPA[path];
   if (!rutaConfig) {
     // Rută necunoscută → redirecționăm la home
@@ -288,6 +311,10 @@ function populeazaRuta(path, container, date, azi) {
       break;
     case '/predica-zilei':
       populeazaPredica(container, date, azi, titluSfinti, dataFormatata);
+      break;
+    case '/rugaciunea-zilei':
+      randeazaHubRugaciuni();
+      actualizeazaMetaTaguriHubRugaciuni();
       break;
   }
 }
@@ -900,3 +927,287 @@ window.copieRugaciune = copieRugaciune;
 window.aratPagina = aratPagina;
 window.shareWhatsApp = shareWhatsApp;
 window.navigheazaLaRuta = navigheazaLaRuta;
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// MODULUL RUGĂCIUNEA ZILEI — Hub & Spoke (8 rute SPA)
+// /rugaciunea-zilei  → hub cu toate cele 7 zile
+// /rugaciunea-zilei/luni, /marti, /miercuri, /joi, /vineri, /sambata, /duminica
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// ─── Randare Hub (/rugaciunea-zilei) ─────────────────────────────────────────
+function randeazaHubRugaciuni() {
+  const container = document.getElementById('ruta-rugaciunea-zilei');
+  if (!container) return;
+
+  const azi = new Date();
+  const ziCurenta = azi.getDay();
+  const rugAzi = (typeof RUGACIUNI_SAPTAMANA !== 'undefined') ? RUGACIUNI_SAPTAMANA[ziCurenta] : null;
+  const zileList = (typeof ZILE_RUGACIUNI !== 'undefined') ? ZILE_RUGACIUNI : [];
+
+  const carduriZile = zileList.map(z => {
+    const r = (typeof RUGACIUNI_SAPTAMANA !== 'undefined') ? RUGACIUNI_SAPTAMANA[
+      ['duminica','luni','marti','miercuri','joi','vineri','sambata'].indexOf(z.slug)
+    ] : null;
+    const esteAzi = r && r.slug === (rugAzi ? rugAzi.slug : '');
+    return `
+      <a href="/rugaciunea-zilei/${z.slug}"
+         data-ruta="/rugaciunea-zilei/${z.slug}"
+         class="card-zi-rugaciune${esteAzi ? ' card-zi-azi' : ''}"
+         style="border-left:4px solid ${r ? r.culoare : '#8B1A1A'}"
+         aria-label="Rugăciunea de ${z.zi}">
+        <span class="card-zi-icon">${z.icon}</span>
+        <div class="card-zi-info">
+          <strong>${z.zi}</strong>
+          <span>${r ? r.dedicatie.substring(0, 60) + '…' : ''}</span>
+        </div>
+        ${esteAzi ? '<span class="badge-azi">Azi</span>' : ''}
+      </a>`;
+  }).join('');
+
+  container.innerHTML = `
+    <button class="btn-inapoi" onclick="navigheazaLaRuta('/')" aria-label="Înapoi la pagina principală">
+      ← Înapoi
+    </button>
+    <div class="ruta-header" style="border-left:4px solid #8B1A1A">
+      <h1 class="ruta-titlu">🙏 Rugăciunea Zilei — Calendar Ortodox</h1>
+      <p class="ruta-subtitlu">
+        Fiecare zi a săptămânii are o rugăciune specială în tradiția Bisericii Ortodoxe.
+        Alege ziua pentru care vrei să citești rugăciunea completă.
+      </p>
+    </div>
+
+    ${rugAzi ? `
+    <div class="card-rugaciune-azi" style="background:linear-gradient(135deg,#fdf6ec,#fff8f0);border:2px solid ${rugAzi.culoare}">
+      <div style="font-size:2rem;margin-bottom:.5rem">${rugAzi.icon}</div>
+      <h2 style="color:var(--visineu);font-family:var(--font-titlu);margin:0 0 .5rem">
+        Rugăciunea de Azi — ${rugAzi.zi}
+      </h2>
+      <p style="color:#5a3e2b;margin:0 0 1rem;font-size:.95rem">${rugAzi.dedicatie}</p>
+      <a href="/rugaciunea-zilei/${rugAzi.slug}"
+         data-ruta="/rugaciunea-zilei/${rugAzi.slug}"
+         class="btn-primar" style="display:inline-block">
+        Citește Rugăciunea de ${rugAzi.zi} →
+      </a>
+    </div>` : ''}
+
+    <h2 style="color:var(--visineu);font-family:var(--font-titlu);margin:1.5rem 0 1rem;font-size:1.3rem">
+      📅 Toate Rugăciunile Săptămânii
+    </h2>
+    <div class="grid-zile-rugaciuni">${carduriZile}</div>
+
+    <div class="interlinking-box">
+      <h3>📖 Explorează și alte secțiuni</h3>
+      <div class="interlinking-links">
+        <a href="/sfintii-zilei" data-ruta="/sfintii-zilei">👼 Sfinții Zilei</a>
+        <a href="/sinaxar" data-ruta="/sinaxar">📜 Sinaxarul Zilei</a>
+        <a href="/apostolul-zilei" data-ruta="/apostolul-zilei">📖 Apostolul Zilei</a>
+        <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei">✝️ Evanghelia Zilei</a>
+        <a href="/predica-zilei" data-ruta="/predica-zilei">🎙️ Predica Zilei</a>
+      </div>
+    </div>
+
+    <section class="faq-sectiune" aria-label="Întrebări frecvente">
+      <h2 class="faq-titlu">❓ Întrebări Frecvente</h2>
+      <div class="faq-lista">
+        ${[
+          { q: 'Ce este Rugăciunea Zilei în tradiția Ortodoxă?', a: 'În Biserica Ortodoxă, fiecare zi a săptămânii are o semnificație teologică unică și este ocrotită de anumiți sfinți sau puteri cerești. Lunea este dedicată Sfinților Îngeri, Marțea Sfântului Ioan Botezătorul, Miercurea și Vinerea Sfintei Cruci, Joia Sfinților Apostoli și Sfântului Nicolae, Sâmbăta celor adormiți, iar Duminica Învierii Domnului.' },
+          { q: 'De ce este important să citim rugăciunea specifică fiecărei zile?', a: 'Citirea rugăciunii rânduite pentru ziua respectivă ne ajută să rămânem în comuniune cu ritmul liturgic al Bisericii, aducând mulțumire, cereri de iertare și ocrotire adaptate momentului din săptămână. Această practică ne ancorează viața cotidiană în spiritualitatea ortodoxă.' },
+          { q: 'Unde pot găsi textul integral pentru rugăciunile săptămânii?', a: 'Platforma „Povești de Credință" oferă textul oficial, curat și integral al tuturor celor 7 rugăciuni ale săptămânii, conform tradiției Bisericii Ortodoxe Române. Fiecare pagină conține și troparul zilei, condacul și FAQ teologic.' },
+          { q: 'Pot citi rugăciunile offline pe telefon?', a: 'Da! Aplicația „Povești de Credință" este o PWA (Progressive Web App) care poate fi instalată pe telefon și funcționează complet offline, inclusiv cu toate rugăciunile săptămânii disponibile fără conexiune la internet.' }
+        ].map(f => `
+          <div class="faq-item">
+            <button class="faq-intrebare" aria-expanded="false">
+              ${f.q}<span class="faq-icon">+</span>
+            </button>
+            <div class="faq-raspuns"><p>${f.a}</p></div>
+          </div>`).join('')}
+      </div>
+    </section>`;
+
+  // Re-inițializează FAQ și interceptează linkurile noi
+  initFAQ();
+  intercepteazaLinkuriRuta(container);
+}
+
+// ─── Randare Subpagină Zi (/rugaciunea-zilei/:slug) ───────────────────────────
+function randeazaRugaciuneaZi(slug) {
+  const container = document.getElementById('ruta-rugaciunea-zi');
+  if (!container) return;
+
+  const rugaciune = (typeof getRugaciuneaDupaSlug !== 'undefined')
+    ? getRugaciuneaDupaSlug(slug)
+    : null;
+
+  if (!rugaciune) {
+    container.innerHTML = `
+      <button class="btn-inapoi" onclick="navigheazaLaRuta('/rugaciunea-zilei')">← Înapoi</button>
+      <p style="text-align:center;padding:2rem;color:#666">Rugăciunea pentru această zi nu a fost găsită.</p>`;
+    return;
+  }
+
+  const zileList = (typeof ZILE_RUGACIUNI !== 'undefined') ? ZILE_RUGACIUNI : [];
+  const linkuriZile = zileList
+    .filter(z => z.slug !== slug)
+    .map(z => `<a href="/rugaciunea-zilei/${z.slug}" data-ruta="/rugaciunea-zilei/${z.slug}">${z.icon} ${z.zi}</a>`)
+    .join('');
+
+  const textHTML = rugaciune.paragrafe.map(p => {
+    if (p === '— — —') return '<hr style="border:none;border-top:1px solid #d4b896;margin:1.5rem 0">';
+    if (p.endsWith(':')) return `<h3 style="color:var(--visineu);font-family:var(--font-titlu);margin:1.5rem 0 .5rem;font-size:1.05rem">${p}</h3>`;
+    return `<p style="margin-bottom:1.2em;line-height:1.8;font-size:1.05rem;color:#3a2a1a">${p}</p>`;
+  }).join('');
+
+  const faqHTML = rugaciune.faq.map(f => `
+    <div class="faq-item">
+      <button class="faq-intrebare" aria-expanded="false">
+        ${f.q}<span class="faq-icon">+</span>
+      </button>
+      <div class="faq-raspuns"><p>${f.a}</p></div>
+    </div>`).join('');
+
+  container.innerHTML = `
+    <button class="btn-inapoi" onclick="navigheazaLaRuta('/rugaciunea-zilei')" aria-label="Înapoi la toate rugăciunile">
+      ← Înapoi la Rugăciunile Săptămânii
+    </button>
+
+    <div class="ruta-header" style="border-left:4px solid ${rugaciune.culoare}">
+      <div style="font-size:2.5rem;margin-bottom:.5rem">${rugaciune.icon}</div>
+      <h1 class="ruta-titlu">${rugaciune.titlu}</h1>
+      <p class="ruta-subtitlu">${rugaciune.dedicatie}</p>
+    </div>
+
+    <div class="rugaciune-text-container" style="background:#fdf6ec;border-radius:12px;padding:1.5rem;margin:1rem 0 1.5rem;border:1px solid #e8d5b7">
+      <div class="rugaciune-text-body" style="font-family:var(--font-titlu);font-style:italic">
+        ${textHTML}
+      </div>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem">
+        <button onclick="copieTextRugaciuneZi('${slug}')" class="btn-secundar" style="background:#4a2c2a;color:#fff;border:none;padding:.6rem 1.2rem;border-radius:8px;cursor:pointer;font-size:.9rem">
+          📋 Copiază Rugăciunea
+        </button>
+        <button onclick="shareWhatsApp('${rugaciune.titlu}\\n\\n' + document.querySelector('.rugaciune-text-body').innerText.substring(0,300) + '...')" class="btn-whatsapp" style="background:#25D366;color:#fff;border:none;padding:.6rem 1.2rem;border-radius:8px;cursor:pointer;font-size:.9rem">
+          💬 Trimite pe WhatsApp
+        </button>
+      </div>
+    </div>
+
+    <div class="interlinking-box" style="margin:1.5rem 0">
+      <h3>🗓️ Rugăciunile celorlalte zile</h3>
+      <div class="interlinking-links">${linkuriZile}</div>
+    </div>
+
+    <div class="interlinking-box">
+      <h3>📖 Explorează și alte secțiuni</h3>
+      <div class="interlinking-links">
+        <a href="/sfintii-zilei" data-ruta="/sfintii-zilei">👼 Sfinții Zilei</a>
+        <a href="/sinaxar" data-ruta="/sinaxar">📜 Sinaxarul Zilei</a>
+        <a href="/apostolul-zilei" data-ruta="/apostolul-zilei">📖 Apostolul Zilei</a>
+        <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei">✝️ Evanghelia Zilei</a>
+        <a href="/predica-zilei" data-ruta="/predica-zilei">🎙️ Predica Zilei</a>
+      </div>
+    </div>
+
+    <section class="faq-sectiune" aria-label="Întrebări frecvente">
+      <h2 class="faq-titlu">❓ Întrebări Frecvente</h2>
+      <div class="faq-lista">${faqHTML}</div>
+    </section>`;
+
+  // Re-inițializează FAQ și interceptează linkurile noi
+  initFAQ();
+  intercepteazaLinkuriRuta(container);
+}
+
+// ─── Copiere text rugăciune zi ────────────────────────────────────────────────
+function copieTextRugaciuneZi(slug) {
+  const rugaciune = (typeof getRugaciuneaDupaSlug !== 'undefined') ? getRugaciuneaDupaSlug(slug) : null;
+  if (!rugaciune) return;
+  const text = rugaciune.paragrafe.filter(p => p !== '— — —').join('\n\n');
+  navigator.clipboard.writeText(rugaciune.titlu + '\n\n' + text)
+    .then(() => aratToast('✅ Rugăciunea a fost copiată!'))
+    .catch(() => aratToast('Selectează și copiază manual'));
+}
+
+// ─── Meta tags pentru rugăciunile zilei ──────────────────────────────────────
+function actualizeazaMetaTaguriRugaciune(rugaciune) {
+  if (!rugaciune) return;
+  document.title = rugaciune.titluSeo + ' | Povești de Credință';
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.setAttribute('content', rugaciune.descSeo.substring(0, 160));
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.setAttribute('content', rugaciune.titluSeo);
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) ogDesc.setAttribute('content', rugaciune.descSeo.substring(0, 160));
+}
+
+function actualizeazaMetaTaguriHubRugaciuni() {
+  const azi = new Date();
+  const ziSapt = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'][azi.getDay()];
+  document.title = `Rugăciunea Zilei — ${ziSapt} | Calendar Ortodox | Povești de Credință`;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.setAttribute('content',
+    `Rugăciunile oficiale ale fiecărei zile din săptămână în tradiția Bisericii Ortodoxe. Texte integrale, curate, din Ceaslovul BOR. Azi: ${ziSapt}.`
+  );
+}
+
+// ─── JSON-LD pentru rugăciunile zilei ────────────────────────────────────────
+function injecteazaJsonLdRugaciune(rugaciune, path) {
+  document.querySelectorAll('[id^="jsonld-rug"]').forEach(el => el.remove());
+  if (!rugaciune) return;
+
+  const siteUrl = 'https://povestidecredinta.ro';
+  const dataISO = new Date().toISOString().split('T')[0];
+
+  const scriptArticle = document.createElement('script');
+  scriptArticle.type = 'application/ld+json';
+  scriptArticle.id = 'jsonld-rug-article';
+  scriptArticle.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": rugaciune.titlu,
+    "description": rugaciune.descSeo.substring(0, 300),
+    "articleBody": rugaciune.paragrafe.filter(p => p !== '— — —').join(' ').substring(0, 2000),
+    "datePublished": dataISO,
+    "dateModified": dataISO,
+    "author": { "@type": "Organization", "name": "Povești de Credință", "url": siteUrl },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Povești de Credință",
+      "logo": { "@type": "ImageObject", "url": `${siteUrl}/images/logo.png` }
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": `${siteUrl}${path}` },
+    "keywords": `rugăciunea de ${rugaciune.zi.toLowerCase()}, rugăciune ortodoxă, calendar ortodox, ${rugaciune.zi.toLowerCase()} rugăciune, Povești de Credință`
+  });
+  document.head.appendChild(scriptArticle);
+
+  if (rugaciune.faq && rugaciune.faq.length > 0) {
+    const scriptFaq = document.createElement('script');
+    scriptFaq.type = 'application/ld+json';
+    scriptFaq.id = 'jsonld-rug-faq';
+    scriptFaq.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": rugaciune.faq.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    });
+    document.head.appendChild(scriptFaq);
+  }
+}
+
+// ─── Interceptare linkuri cu data-ruta din containerele dinamice ──────────────
+function intercepteazaLinkuriRuta(container) {
+  if (!container) return;
+  container.querySelectorAll('[data-ruta]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigheazaLaRuta(link.getAttribute('data-ruta'));
+    });
+  });
+}
+
+// ─── Expune funcțiile noi global ──────────────────────────────────────────────
+window.randeazaHubRugaciuni = randeazaHubRugaciuni;
+window.randeazaRugaciuneaZi = randeazaRugaciuneaZi;
+window.copieTextRugaciuneZi = copieTextRugaciuneZi;
+window.intercepteazaLinkuriRuta = intercepteazaLinkuriRuta;
