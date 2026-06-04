@@ -1,6 +1,6 @@
 // POVEȘTI DE CREDINȚĂ — JavaScript Principal
 // ============================================
-// Versiunea 2.0 — cu integrare Supabase + fallback calendar.json
+// Versiunea 3.0 — SEO agresiv + modal detalii SPA + JSON-LD dinamic
 
 // ─── Configurare Supabase ─────────────────────────────────────────────────────
 const SUPABASE_URL = 'https://smuqpipxeotkbttolivp.supabase.co';
@@ -21,12 +21,13 @@ let deferredPrompt = null;
 
 // ─── Inițializare ─────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
-  // Încarcă în paralel: Supabase + calendar.json
   await Promise.all([
     incarcaDateSupabase(),
     incarcaDate()
   ]);
   afiseazaSfantulZilei();
+  actualizeazaMetaTaguri();
+  actualizeazaJsonLd();
   afiseazaApostolulZilei();
   afiseazaEvanghelia();
   afiseazaSinaxarul();
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initPWA();
   initFAQ();
   actualizeazaDataOra();
+  initModalDetalii();
 });
 
 // ─── Supabase: Încarcă date pentru ziua de azi ────────────────────────────────
@@ -62,7 +64,7 @@ async function incarcaDateSupabase() {
 
     if (rows && rows.length > 0) {
       supabaseData = rows[0];
-      console.log('✅ Date Supabase încărcate:', supabaseData.sfant_nume);
+      console.log('✅ Date Supabase încărcate:', supabaseData.titlu_sfinti || supabaseData.sfant_nume);
     } else {
       console.log('ℹ️  Nu există date Supabase pentru azi — folosesc fallback');
     }
@@ -78,6 +80,7 @@ function getDateAzi() {
   const sfantData = getSfantPentruData(azi);
   return {
     sfant_nume: sfantData?.sfant || 'Sfântul zilei',
+    titlu_sfinti: sfantData?.sfant || 'Sfântul zilei',
     tip_post: sfantData?.post || 'dezlegare',
     culoare_liturgica: sfantData?.culoare || 'alb',
     rugaciunea_zilei: null,
@@ -88,9 +91,11 @@ function getDateAzi() {
     evanghelie_versete: null,
     evanghelie_text: null,
     sinaxar: null,
+    sinaxar_complet: null,
     predica: null,
     cuvant_folos: null,
-    tropar: null
+    tropar: null,
+    post_info: null
   };
 }
 
@@ -128,7 +133,7 @@ function getSfantPentruData(data) {
   }
   const zilePost = [3, 5];
   const ziSapt = data.getDay();
-  const estePost = zilePost.includes(ziSapt);
+  const estePost = zilePost.includes(ziSapt) && ziSapt !== 0; // Duminica nu e post
   return { sfant: 'Sfântul zilei', post: estePost ? 'post' : 'dezlegare', culoare: 'verde' };
 }
 
@@ -165,19 +170,176 @@ function afiseazaSfantulZilei() {
   const dataFormatata = `${ziSapt}, ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}`;
 
   if (ziSaptEl) ziSaptEl.textContent = dataFormatata;
-  if (sfantNumeEl) sfantNumeEl.textContent = date.sfant_nume;
+
+  // Folosim titlu_sfinti (grup complet) dacă există, altfel sfant_nume
+  const titluComplet = date.titlu_sfinti || date.sfant_nume;
+  if (sfantNumeEl) sfantNumeEl.textContent = titluComplet;
+
   if (sfantScurtEl) {
-    sfantScurtEl.textContent = date.sinaxar
-      ? date.sinaxar.substring(0, 120) + '...'
-      : `Prăznuit în calendarul ortodox pe ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]}.`;
+    const textScurt = date.sinaxar || date.sfant_viata || date.sinaxar_complet;
+    sfantScurtEl.textContent = textScurt
+      ? textScurt.substring(0, 150) + '...'
+      : `Prăznuit în calendarul ortodox pe ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`;
   }
   if (badgePostEl) {
     badgePostEl.textContent = getTextPost(date.tip_post);
     badgePostEl.className = `badge-post ${getBadgeClass(date.tip_post)}`;
   }
   if (postTextEl) postTextEl.textContent = getTextPost(date.tip_post);
+}
 
-  document.title = `${date.sfant_nume} — ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()} | Povești de Credință`;
+// ─── Meta Tags Dinamice SEO ───────────────────────────────────────────────────
+function actualizeazaMetaTaguri() {
+  const azi = getAzi();
+  const date = getDateAzi();
+  const titluComplet = date.titlu_sfinti || date.sfant_nume || 'Sfântul zilei';
+  const ziua = azi.getDate();
+  const luna = LUNI[azi.getMonth()];
+  const an = azi.getFullYear();
+
+  // Title dinamic: Calendar Ortodox [Ziua] [Luna] [An] - [Nume Sfinți]
+  const titleNou = `Calendar Ortodox ${ziua} ${luna} ${an} — ${titluComplet} | Povești de Credință`;
+  document.title = titleNou;
+
+  // Meta description dinamică
+  const descNou = date.meta_description ||
+    `Sfântul zilei ${ziua} ${LUNI_GENITIV[azi.getMonth()]} ${an}: ${titluComplet}. Calendar ortodox românesc, sinaxar, tropar și rugăciuni. Povești de Credință.`;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.setAttribute('content', descNou.substring(0, 160));
+
+  // Open Graph dinamic
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.setAttribute('content', `${titluComplet} — Calendar Ortodox ${ziua} ${luna} ${an}`);
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) ogDesc.setAttribute('content', descNou.substring(0, 160));
+
+  // Twitter Card dinamic
+  const twTitle = document.querySelector('meta[name="twitter:title"]');
+  if (twTitle) twTitle.setAttribute('content', `${titluComplet} — ${ziua} ${luna} ${an}`);
+
+  // itemprop datePublished
+  const metaDatePublished = document.getElementById('meta-date-published');
+  if (metaDatePublished) metaDatePublished.setAttribute('content', azi.toISOString().split('T')[0]);
+}
+
+// ─── JSON-LD Article Dinamic ──────────────────────────────────────────────────
+function actualizeazaJsonLd() {
+  const azi = getAzi();
+  const date = getDateAzi();
+  const titluComplet = date.titlu_sfinti || date.sfant_nume || 'Sfântul zilei';
+  const dataISO = azi.toISOString().split('T')[0];
+  const descriere = date.sinaxar_complet || date.sinaxar || date.sfant_viata ||
+    `${titluComplet} este prăznuit în calendarul ortodox pe ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`;
+
+  // Elimină JSON-LD Article existent dacă există
+  const existent = document.getElementById('jsonld-article-dinamic');
+  if (existent) existent.remove();
+
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.id = 'jsonld-article-dinamic';
+  script.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": titluComplet,
+    "name": titluComplet,
+    "description": descriere.substring(0, 300),
+    "datePublished": dataISO,
+    "dateModified": dataISO,
+    "author": {
+      "@type": "Organization",
+      "name": "Povești de Credință",
+      "url": "https://povestidecredinta.ro"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Povești de Credință",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://povestidecredinta.ro/images/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://povestidecredinta.ro/sfantul-zilei/`
+    },
+    "about": {
+      "@type": "Event",
+      "name": titluComplet,
+      "startDate": dataISO,
+      "description": `Prăznuirea ${titluComplet} în calendarul ortodox românesc`
+    },
+    "keywords": `calendar ortodox, sfântul zilei, ${titluComplet}, ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}, sinaxar, tropar, rugăciuni ortodoxe`
+  });
+  document.head.appendChild(script);
+}
+
+// ─── Modal Detalii SPA (butonul "Citește mai mult") ───────────────────────────
+function initModalDetalii() {
+  // Interceptăm click-ul pe butonul "Citește mai mult"
+  const btnCiteste = document.getElementById('btn-citeste-mai-mult');
+  if (btnCiteste) {
+    btnCiteste.addEventListener('click', function(e) {
+      e.preventDefault();
+      deschideModalDetalii();
+    });
+  }
+}
+
+function deschideModalDetalii() {
+  const date = getDateAzi();
+  const azi = getAzi();
+  const modal = document.getElementById('modal-detalii-sfant');
+  if (!modal) return;
+
+  const titluComplet = date.titlu_sfinti || date.sfant_nume || 'Sfântul zilei';
+  const ziSapt = ZILE_LUNGI[azi.getDay()];
+  const dataFormatata = `${ziSapt}, ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}`;
+
+  // Populăm modalul cu date complete din Supabase
+  const el = (id) => document.getElementById(id);
+
+  if (el('modal-detalii-data')) el('modal-detalii-data').textContent = dataFormatata;
+  if (el('modal-detalii-titlu')) el('modal-detalii-titlu').textContent = titluComplet;
+
+  // Post info
+  if (el('modal-detalii-post')) {
+    el('modal-detalii-post').textContent = date.post_info || getTextPost(date.tip_post);
+  }
+
+  // Sinaxar complet sau scurt
+  const textSinaxar = date.sinaxar_complet || date.sinaxar || date.sfant_viata;
+  if (el('modal-detalii-sinaxar')) {
+    el('modal-detalii-sinaxar').textContent = textSinaxar ||
+      `${titluComplet} este prăznuit în calendarul ortodox pe ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`;
+  }
+
+  // Tropar
+  if (el('modal-detalii-tropar')) {
+    el('modal-detalii-tropar').textContent = date.tropar ||
+      'Troparul sfântului se găsește în Mineiul lunii, la ziua respectivă.';
+  }
+
+  // Cuvânt de folos
+  if (el('modal-detalii-cuvant')) {
+    el('modal-detalii-cuvant').textContent = date.cuvant_folos || '';
+    const sectCuvant = document.getElementById('modal-sectiune-cuvant');
+    if (sectCuvant) sectCuvant.style.display = date.cuvant_folos ? 'block' : 'none';
+  }
+
+  // Link către pagina SEO completă
+  if (el('modal-detalii-link')) {
+    el('modal-detalii-link').href = '/sfantul-zilei/';
+  }
+
+  modal.classList.add('deschis');
+  document.body.style.overflow = 'hidden';
+}
+
+function inchideModalDetalii() {
+  const modal = document.getElementById('modal-detalii-sfant');
+  if (modal) modal.classList.remove('deschis');
+  document.body.style.overflow = '';
 }
 
 // ─── Apostolul Zilei (secțiune homepage) ─────────────────────────────────────
@@ -220,9 +382,10 @@ function afiseazaSinaxarul() {
   const sectiune = document.getElementById('sinaxarul-zilei');
   if (!sectiune) return;
 
-  if (date.sinaxar) {
+  if (date.sinaxar || date.sinaxar_complet) {
     const textEl = document.getElementById('sinaxar-text');
-    if (textEl) textEl.textContent = date.sinaxar.substring(0, 250) + '...';
+    const text = date.sinaxar || date.sinaxar_complet;
+    if (textEl) textEl.textContent = text.substring(0, 250) + '...';
     sectiune.style.display = 'block';
   } else {
     sectiune.style.display = 'none';
@@ -280,7 +443,7 @@ function randeazaCalendar(luna, an) {
     if (esteSarbatoare) clase += ' sarbatoare';
 
     const sfantNume = sfantData ? sfantData.sfant : '';
-    const sfantScurt = sfantNume.replace('Sfântul ', 'Sf. ').replace('Sfânta ', 'Sf. ').split(';')[0];
+    const sfantScurt = sfantNume.replace('Sfântul ', 'Sf. ').replace('Sfânta ', 'Sf. ').substring(0, 18);
 
     html += `
       <div class="${clase}" onclick="deschideModalZi(${zi}, ${luna}, ${an})">
@@ -305,7 +468,7 @@ function navigheazaCalendar(directie) {
   randeazaCalendar(lunaAfisata, anAfisat);
 }
 
-// ─── Modal zi ─────────────────────────────────────────────────────────────────
+// ─── Modal zi calendar ────────────────────────────────────────────────────────
 function deschideModalZi(zi, luna, an) {
   const data = new Date(an, luna, zi);
   const sfantData = getSfantPentruData(data);
@@ -395,7 +558,6 @@ function afiseazaRugaciuneaZilei() {
   const azi = getAzi();
   const date = getDateAzi();
 
-  // Folosește rugăciunea din Supabase dacă există, altfel fallback local
   const rugaciuneText = date.rugaciunea_zilei || rugaciuni[azi.getDay()].text;
   const rugaciuneTitlu = date.rugaciunea_zilei ? `Rugăciunea zilei de ${LUNI_GENITIV[azi.getMonth()]}` : rugaciuni[azi.getDay()].titlu;
 
@@ -513,6 +675,7 @@ function aratPagina(pagina) {
 window.navigheazaCalendar = navigheazaCalendar;
 window.deschideModalZi = deschideModalZi;
 window.inchideModal = inchideModal;
+window.inchideModalDetalii = inchideModalDetalii;
 window.instaleazaPWA = instaleazaPWA;
 window.copieRugaciune = copieRugaciune;
 window.aratPagina = aratPagina;
