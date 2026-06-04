@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#6B1B2B">
   
-  <title>Povești de Credință — Calendar Ortodox Românesc 2026</title>
-  <meta name="description" content="Sfântul zilei, calendar ortodox 2026, rugăciuni, acatiste și pricesne ortodoxe românești. Descoperă credința ortodoxă zi de zi.">
+  <title id="page-title">Povești de Credință — Calendar Ortodox Românesc 2026 | Sfântul Zilei</title>
+  <meta name="description" id="page-description" content="Sfântul zilei, calendar ortodox 2026, rugăciuni, acatiste și pricesne ortodoxe românești. Cine este sfântul de azi — sinaxar, tropar și rugăciuni.">
   <meta name="keywords" content="calendar ortodox, sfântul zilei, rugăciuni ortodoxe, acatiste, pricesne, post ortodox, calendar creștin 2026">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://povestidecredinta.ro/">
@@ -149,9 +149,9 @@
         <meta itemprop="datePublished" id="meta-date-published" content="">
         <meta itemprop="author" content="Povești de Credință">
         <p class="sfant-scurt" id="sfant-scurt" itemprop="description"></p>
-        <a href="/sfantul-zilei/" class="btn-citeste">
+        <button id="btn-citeste-mai-mult" class="btn-citeste" aria-label="Citește viața sfântului zilei">
           📖 Citește mai mult
-        </a>
+        </button>
       </div>
     </div>
   </article>
@@ -391,6 +391,38 @@
       <button class="modal-inchide" onclick="inchideModal()" aria-label="Închide">×</button>
     </div>
     <div class="modal-sfant" id="modal-sfant-text"></div>
+  </div>
+</div>
+
+<!-- MODAL DETALII SFÂNTUL ZILEI (SPA — fără reîncărcare pagină) -->
+<div class="modal-overlay" id="modal-detalii-sfant" onclick="if(event.target===this)inchideModalDetalii()" role="dialog" aria-modal="true" aria-labelledby="modal-detalii-titlu">
+  <div class="modal-continut modal-detalii-continut">
+    <div class="modal-header">
+      <span class="modal-data" id="modal-detalii-data"></span>
+      <button class="modal-inchide" onclick="inchideModalDetalii()" aria-label="Închide">×</button>
+    </div>
+    <div class="modal-sfant">
+      <h2 id="modal-detalii-titlu" style="color:var(--visineu);font-family:var(--font-titlu);font-size:1.15rem;margin-bottom:10px;line-height:1.3"></h2>
+      <div id="modal-detalii-post" style="font-size:0.85rem;color:var(--text-light);margin-bottom:14px;font-style:italic"></div>
+      <h3 style="font-family:var(--font-titlu);color:var(--visineu-dark);font-size:0.95rem;margin-bottom:8px">📜 Sinaxarul zilei</h3>
+      <p id="modal-detalii-sinaxar" style="font-size:0.9rem;line-height:1.7;color:var(--text-dark);margin-bottom:16px"></p>
+      <div id="modal-sectiune-tropar" style="margin-bottom:16px">
+        <h3 style="font-family:var(--font-titlu);color:var(--visineu-dark);font-size:0.95rem;margin-bottom:8px">🎵 Troparul sfântului</h3>
+        <p id="modal-detalii-tropar" style="font-size:0.88rem;line-height:1.7;color:var(--text-dark);font-style:italic;background:rgba(201,168,76,0.08);padding:12px;border-radius:8px;border-left:3px solid var(--auriu)"></p>
+      </div>
+      <div id="modal-sectiune-cuvant" style="margin-bottom:16px;display:none">
+        <h3 style="font-family:var(--font-titlu);color:var(--visineu-dark);font-size:0.95rem;margin-bottom:8px">✏️ Cuvânt de folos</h3>
+        <p id="modal-detalii-cuvant" style="font-size:0.88rem;line-height:1.7;color:var(--text-dark);font-style:italic"></p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+        <a id="modal-detalii-link" href="/sfantul-zilei/" style="background:var(--visineu);color:white;border:none;padding:10px 18px;border-radius:22px;font-size:0.88rem;cursor:pointer;text-decoration:none;font-family:var(--font-titlu);font-weight:700">
+          ↗️ Pagină completă
+        </a>
+        <button onclick="inchideModalDetalii()" style="background:none;border:1px solid var(--visineu);color:var(--visineu);padding:10px 18px;border-radius:22px;font-size:0.88rem;cursor:pointer;font-family:var(--font-titlu)">
+          × Închide
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 
