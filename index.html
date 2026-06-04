@@ -137,7 +137,7 @@
     <button class="btn-instaleaza" onclick="instaleazaPWA()">Instalează</button>
   </div>
 
-  <!-- CARD SFÂNTUL ZILEI -->
+  <!-- 1. CARD SFÂNTUL ZILEI -->
   <article class="card-sfant-zilei" itemscope itemtype="https://schema.org/Article">
     <div class="card-sfant-header">
       <span class="data-azi" id="zi-saptamana">Se încarcă...</span>
@@ -151,29 +151,25 @@
         <meta itemprop="datePublished" id="meta-date-published" content="">
         <meta itemprop="author" content="Povești de Credință">
         <p class="sfant-scurt" id="sfant-scurt" itemprop="description"></p>
-        <button id="btn-citeste-mai-mult" class="btn-citeste" aria-label="Citește viața sfântului zilei" data-ruta="/sfintii-zilei">
+        <a href="/sfintii-zilei" data-ruta="/sfintii-zilei" id="btn-citeste-mai-mult" class="btn-citeste" aria-label="Citește viața sfântului zilei">
           📖 Citește mai mult
-        </button>
+        </a>
       </div>
     </div>
   </article>
 
-  <!-- ADSENSE BANNER 1 -->
-  <div class="adsense-banner" aria-label="Publicitate">
-    <!-- Google AdSense Banner 320x50 -->
-    <!-- <ins class="adsbygoogle" data-ad-client="ca-pub-XXXXX" data-ad-slot="XXXXX" data-ad-format="banner"></ins> -->
-    <span>Publicitate</span>
-  </div>
-
-  <!-- RUGĂCIUNEA ZILEI -->
-  <section aria-labelledby="titlu-rugaciune">
-    <h2 class="sectiune-titlu">🙏 Rugăciunea zilei</h2>
-    <div class="card-rugaciune">
-      <div class="rugaciune-titlu" id="rugaciune-titlu">Rugăciunea dimineții</div>
-      <p class="rugaciune-text" id="rugaciune-text">Se încarcă...</p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-        <button class="btn-copiere" onclick="copieRugaciune()">📋 Copiază</button>
-        <button class="btn-copiere" onclick="shareWhatsApp(document.getElementById('rugaciune-text').textContent)">
+  <!-- 2. CUVÂNTUL DE FOLOS AL ZILEI -->
+  <section class="sectiune-cuvant-folos" aria-labelledby="titlu-cuvant-folos">
+    <h2 class="sectiune-titlu" id="titlu-cuvant-folos">✨ Cuvântul de Folos al Zilei</h2>
+    <div class="card-cuvant-folos" id="card-cuvant-folos">
+      <div class="ghilimele-mari" aria-hidden="true">❝</div>
+      <blockquote class="cuvant-folos-citat" id="cuvant-folos-text">
+        <p id="cuvant-folos-paragraf">Se încarcă...</p>
+        <footer class="cuvant-folos-autor" id="cuvant-folos-autor">— Sfânt Părinte</footer>
+      </blockquote>
+      <div class="cuvant-folos-actiuni">
+        <button class="btn-copiere" onclick="copieCuvantFolos()">📋 Copiază citatul</button>
+        <button class="btn-copiere btn-wa" onclick="shareWhatsApp(document.getElementById('cuvant-folos-paragraf').textContent + ' — ' + document.getElementById('cuvant-folos-autor').textContent)">
           💬 Trimite pe WhatsApp
         </button>
       </div>
@@ -182,93 +178,53 @@
 
   <div class="separator-ortodox" aria-hidden="true">✦ ✝ ✦</div>
 
-  <!-- CALENDAR LUNAR -->
-  <section aria-labelledby="titlu-calendar">
-    <h2 class="sectiune-titlu">📅 Calendar <span id="calendar-titlu-inline"></span></h2>
-    <div class="calendar-container">
-      <div class="calendar-header">
-        <button class="calendar-nav" onclick="navigheazaCalendar(-1)" aria-label="Luna anterioară">‹</button>
-        <span class="calendar-luna" id="calendar-titlu">Mai 2026</span>
-        <button class="calendar-nav" onclick="navigheazaCalendar(1)" aria-label="Luna următoare">›</button>
+  <!-- 3. RUGĂCIUNEA ZILEI -->
+  <section aria-labelledby="titlu-rugaciune">
+    <h2 class="sectiune-titlu">🙏 Rugăciunea zilei</h2>
+    <div class="card-rugaciune">
+      <div class="rugaciune-titlu" id="rugaciune-titlu">Rugăciunea dimineții</div>
+      <p class="rugaciune-text" id="rugaciune-text">Se încarcă...</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+        <button class="btn-copiere" onclick="copieRugaciune()">📋 Copiază</button>
+        <button class="btn-copiere btn-wa" onclick="shareWhatsApp(document.getElementById('rugaciune-text').textContent)">
+          💬 Trimite pe WhatsApp
+        </button>
       </div>
-      <div class="calendar-zile-header" aria-hidden="true">
-        <div class="calendar-zi-header">Lun</div>
-        <div class="calendar-zi-header">Mar</div>
-        <div class="calendar-zi-header">Mie</div>
-        <div class="calendar-zi-header">Joi</div>
-        <div class="calendar-zi-header">Vin</div>
-        <div class="calendar-zi-header">Sâm</div>
-        <div class="calendar-zi-header">Dum</div>
-      </div>
-      <div class="calendar-grid" id="calendar-grid" role="grid" aria-label="Calendar luna curentă">
-        <!-- Generat de JavaScript -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ADSENSE RECTANGLE -->
-  <div class="adsense-banner" style="min-height:250px" aria-label="Publicitate">
-    <!-- Google AdSense Rectangle 300x250 -->
-    <!-- <ins class="adsbygoogle" data-ad-client="ca-pub-XXXXX" data-ad-slot="XXXXX" data-ad-format="rectangle"></ins> -->
-    <span>Publicitate</span>
-  </div>
-
-  <!-- POST URMĂTOR -->
-  <section aria-labelledby="titlu-post">
-    <h2 class="sectiune-titlu">🕯️ Post ortodox</h2>
-    <div class="card-post" id="card-post-info">
-      <!-- Generat de JavaScript -->
     </div>
   </section>
 
   <div class="separator-ortodox" aria-hidden="true">✦ ✝ ✦</div>
 
-  <!-- SECȚIUNI ZILEI — SEO PRIORITAR -->
-  <section aria-labelledby="titlu-zilei" style="margin-bottom:20px">
-    <h2 class="sectiune-titlu">📅 Conținut ortodox pentru azi</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-      <a href="/sfintii-zilei" data-ruta="/sfintii-zilei" style="text-decoration:none">
-        <div style="background:linear-gradient(135deg,var(--visineu),var(--visineu-dark));color:white;border-radius:12px;padding:14px;text-align:center;box-shadow:0 3px 12px rgba(107,27,43,0.25)">
-          <div style="font-size:1.8rem;margin-bottom:6px">✝️</div>
-          <div style="font-family:var(--font-titlu);font-size:0.9rem;font-weight:700">Sfântul Zilei</div>
-          <div style="font-size:0.72rem;opacity:0.8;margin-top:3px">Cine este sfântul de azi</div>
-        </div>
-      </a>
-      <a href="/sinaxar" data-ruta="/sinaxar" style="text-decoration:none">
-        <div style="background:white;border:2px solid var(--auriu);border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
-          <div style="font-size:1.8rem;margin-bottom:6px">📜</div>
-          <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.9rem;font-weight:700">Sinaxarul Zilei</div>
-          <div style="font-size:0.72rem;color:var(--text-light);margin-top:3px">Viața sfântului + tropar</div>
-        </div>
-      </a>
-      <a href="/apostolul-zilei" data-ruta="/apostolul-zilei" style="text-decoration:none">
-        <div style="background:white;border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
-          <div style="font-size:1.8rem;margin-bottom:6px">📖</div>
-          <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.9rem;font-weight:700">Apostolul Zilei</div>
-          <div style="font-size:0.72rem;color:var(--text-light);margin-top:3px">Text complet + tâlcuire</div>
-        </div>
-      </a>
-      <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei" style="text-decoration:none">
-        <div style="background:white;border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
-          <div style="font-size:1.8rem;margin-bottom:6px">✝️</div>
-          <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.9rem;font-weight:700">Evanghelia Zilei</div>
-          <div style="font-size:0.72rem;color:var(--text-light);margin-top:3px">Text complet + tâlcuire</div>
-        </div>
-      </a>
-      <a href="/predica-zilei" data-ruta="/predica-zilei" style="text-decoration:none">
-        <div style="background:white;border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
-          <div style="font-size:1.8rem;margin-bottom:6px">🎙️</div>
-          <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.9rem;font-weight:700">Predica Zilei</div>
-          <div style="font-size:0.72rem;color:var(--text-light);margin-top:3px">Cuvânt de folos duhovnicesc</div>
-        </div>
-      </a>
-      <a href="/calendar-ortodox-azi/" style="text-decoration:none">
-        <div style="background:white;border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
-          <div style="font-size:1.8rem;margin-bottom:6px">📅</div>
-          <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.9rem;font-weight:700">Calendar Ortodox Azi</div>
-          <div style="font-size:0.72rem;color:var(--text-light);margin-top:3px">Tot conținutul zilei</div>
-        </div>
-      </a>
+  <!-- 4. EVANGHELIA ZILEI -->
+  <section aria-labelledby="titlu-evanghelie-acasa">
+    <h2 class="sectiune-titlu">✝️ Evanghelia zilei</h2>
+    <div class="card-lectie" id="card-evanghelie-acasa">
+      <div class="lectie-referinta" id="evanghelie-ref-acasa">Se încarcă...</div>
+      <div class="lectie-text" id="evanghelie-text-acasa">Se încarcă textul Evangheliei...</div>
+      <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei" class="btn-lectie-mai-mult">📖 Citește tâlcuirea completă →</a>
+    </div>
+  </section>
+
+  <div class="separator-ortodox" aria-hidden="true">✦ ✝ ✦</div>
+
+  <!-- 5. APOSTOLUL ZILEI -->
+  <section aria-labelledby="titlu-apostol-acasa">
+    <h2 class="sectiune-titlu">📖 Apostolul zilei</h2>
+    <div class="card-lectie" id="card-apostol-acasa">
+      <div class="lectie-referinta" id="apostol-ref-acasa">Se încarcă...</div>
+      <div class="lectie-text" id="apostol-text-acasa">Se încarcă textul Apostolului...</div>
+      <a href="/apostolul-zilei" data-ruta="/apostolul-zilei" class="btn-lectie-mai-mult">📖 Citește tâlcuirea completă →</a>
+    </div>
+  </section>
+
+  <div class="separator-ortodox" aria-hidden="true">✦ ✝ ✦</div>
+
+  <!-- 6. PREDICA ZILEI -->
+  <section aria-labelledby="titlu-predica-acasa">
+    <h2 class="sectiune-titlu">🎙️ Predica zilei</h2>
+    <div class="card-lectie" id="card-predica-acasa">
+      <div class="lectie-text" id="predica-text-acasa">Se încarcă predica...</div>
+      <a href="/predica-zilei" data-ruta="/predica-zilei" class="btn-lectie-mai-mult">📖 Citește predica completă →</a>
     </div>
   </section>
 
