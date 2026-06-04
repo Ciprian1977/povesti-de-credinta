@@ -1,0 +1,15 @@
+# Exclud directorul de scripturi de automatizare din deploy-ul Vercel
+# Aceste scripturi rulează doar în GitHub Actions, nu pe Vercel
+scripts/
+scripts/node_modules/
+scripts/package.json
+scripts/package-lock.json
+
+# Fisiere Python de utilitar (nu fac parte din site)
+*.py
+add_supabase_to_pages.py
+gen_rugaciuni.py
+
+# Archive
+*.zip
+povesti-de-credinta-v1.zip
