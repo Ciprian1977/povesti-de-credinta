@@ -480,7 +480,13 @@ function getTipPostDefault(dataStr) {
 
 function getSfantDefault(dataStr) {
   const key = getDataKey(dataStr);
-  return CALENDAR_STATIC[key]?.sfant || `Sfânt din Sinaxarul BOR pentru ${dataStr}`;
+  // Returnăm sfântul din calendarul static sau un mesaj neutru fără placeholder vizibil
+  return CALENDAR_STATIC[key]?.sfant || 'Sfântul zilei conform Calendarului Ortodox BOR';
+}
+
+function getTitluSfintiDefault(dataStr) {
+  const key = getDataKey(dataStr);
+  return CALENDAR_STATIC[key]?.sfant || 'Sfinții zilei conform Calendarului Ortodox BOR';
 }
 
 // —— Generare conținut cu OpenAI ————————————————————————————————————
@@ -505,26 +511,36 @@ async function genereazaContiut(date) {
   // OpenAI generează DOAR: sfant_viata, sinaxar, predica, cuvant_folos,
   // rugaciunea_zilei, sfinti_secundari, meta_description
   // NU generează texte liturgice sacre (Apostol, Evanghelie, Tropar)
-  const prompt = `Ești un preot ortodox român erudit și un expert în Sinaxarul Bisericii Ortodoxe Române.
-Generează conținut CREATIV (nu texte liturgice) pentru calendarul ortodox pentru data ${date}.
-Sfântul principal al zilei este: ${sfantDefault}
+  // Construieste lista completa de sfinti din CALENDAR_STATIC pentru context AI
+  const sfantiZilei = CALENDAR_STATIC[cheiaLectionar]?.sfant || sfantDefault;
+
+  const prompt = `Ești un preot ortodox român erudit și un expert în Sinaxarul Bisericii Ortodoxe Române (BOR).
+Generează conținut COMPLET și AUTENTIC pentru calendarul ortodox pentru data ${date}.
+Sfinții principali ai zilei conform Calendarului BOR: ${sfantiZilei}
 Tipul postului: ${tipPost}
 
-ATENȚIE: NU genera textele Apostolului, Evangheliei sau Troparului — acestea sunt preluate din surse exacte BOR.
-Generează DOAR câmpurile creative și analitice de mai jos.
+REGULI STRICTE:
+1. NU genera textele Apostolului, Evangheliei sau Troparului — acestea sunt preluate din surse exacte BOR.
+2. NU folosi niciodată texte placeholder sau fraze generice de tipul "disponibil în curând", "Sfânt din Sinaxarul BOR" etc.
+3. Câmpul "titlu_sfinti" trebuie să conțină GRUPUL COMPLET de sfinți ai zilei (ex: "Sfinții Mucenici Zotic, Atal, Camasie și Filip de la Niculițel"), nu doar un sfânt secundar.
+4. Câmpul "sinaxar_complet" trebuie să fie un text extins de 400-500 cuvinte, cu date istorice exacte, potrivit pentru indexare SEO profundă.
+5. Toate câmpurile sunt OBLIGATORII — nu lăsa niciun câmp gol sau cu text generic.
 
 Răspunde DOAR cu JSON valid, fără alte texte, fără markdown, fără explicații.
 Folosește diacritice românești corecte (ă, â, î, ș, ț).
 JSON exact (toate câmpurile obligatorii):
 {
   "sfant_nume": "numele complet al sfântului principal conform Sinaxarului BOR",
-  "sfant_viata": "viața sfântului în 250-300 cuvinte, scrisă cu evlavie, cu date istorice exacte conform Sinaxarului BOR",
+  "titlu_sfinti": "GRUPUL COMPLET de sfinți ai zilei, exact cum apare în Calendarul BOR (ex: Sfinții Mucenici Zotic, Atal, Camasie și Filip de la Niculițel)",
+  "sfant_viata": "viața sfântului în 300-350 cuvinte, scrisă cu evlavie, cu date istorice exacte conform Sinaxarului BOR, fără texte generice",
+  "sinaxar_complet": "sinaxarul extins al zilei în 400-500 cuvinte, cu toți sfinții zilei, date istorice, context teologic și importanță liturgică — text complet pentru SEO profund, conform tradiției BOR",
   "culoare_liturgica": "una din: alb / rosu / verde / violet / negru",
-  "rugaciunea_zilei": "o rugăciune ortodoxă completă potrivită zilei, de 50-80 cuvinte",
-  "sinaxar": "sinaxarul zilei în 180-220 cuvinte, cu toți sfinții zilei, conform tradiției BOR",
+  "rugaciunea_zilei": "o rugăciune ortodoxă completă potrivită zilei, de 60-80 cuvinte",
+  "sinaxar": "sinaxarul scurt al zilei în 180-220 cuvinte, cu toți sfinții zilei, conform tradiției BOR",
   "predica": "predică scurtă de 150-180 cuvinte bazată pe pericopa evanghelică a zilei, cu aplicare practică pentru credinciosul de rând",
   "cuvant_folos": "citat patristic autentic relevant pentru ziua respectivă, cu sursa exactă (autor, carte, capitol)",
   "sfinti_secundari": "alți sfinți prăznuiți în această zi conform Calendarului BOR, separați prin punct și virgulă",
+  "post_info": "descriere completă a tipului de post/dezlegare pentru această zi conform tradiției ortodoxe (ex: Dezlegare deplină la toate — zi de prăznuire; sau: Post — abstinență de la carne, lactate și ouă)",
   "meta_description": "descriere SEO de exact 150-160 caractere pentru această zi, cu sfântul și data"
 }`;
 
@@ -562,15 +578,56 @@ JSON exact (toate câmpurile obligatorii):
     continutAI.tropar = texteStatice.tropar;
     console.log(`✅ Texte sacre exacte BOR aplicate pentru ${cheiaLectionar}`);
   } else {
-    // Fallback: marchează câmpurile ca nedisponibile în lecționar
-    continutAI.apostol_carte = continutAI.apostol_carte || 'Vezi Mineiul zilei';
+    // Fallback: text informativ fără placeholder vizibil
+    continutAI.apostol_carte = continutAI.apostol_carte || 'Apostolul zilei';
     continutAI.apostol_versete = continutAI.apostol_versete || '';
-    continutAI.apostol_text = '⚠️ Textul exact al Apostolului pentru această zi nu este disponibil în lecționarul nostru. Consultați Mineiul sau Apostolul BOR.';
-    continutAI.evanghelie_carte = continutAI.evanghelie_carte || 'Vezi Mineiul zilei';
+    continutAI.apostol_text = continutAI.apostol_text || 'Textul Apostolului pentru această zi se găsește în Apostolul BOR, la pericopa rânduită de Sinaxarul Bisericii Ortodoxe Române.';
+    continutAI.evanghelie_carte = continutAI.evanghelie_carte || 'Evanghelia zilei';
     continutAI.evanghelie_versete = continutAI.evanghelie_versete || '';
-    continutAI.evanghelie_text = '⚠️ Textul exact al Evangheliei pentru această zi nu este disponibil în lecționarul nostru. Consultați Mineiul sau Evangheliarul BOR.';
-    continutAI.tropar = continutAI.tropar || '⚠️ Troparul exact pentru această zi nu este disponibil în lecționarul nostru. Consultați Mineiul BOR.';
+    continutAI.evanghelie_text = continutAI.evanghelie_text || 'Textul Evangheliei pentru această zi se găsește în Evangheliarul BOR, la pericopa rânduită de Sinaxarul Bisericii Ortodoxe Române.';
+    continutAI.tropar = continutAI.tropar || 'Troparul sfântului se găsește în Mineiul lunii, la ziua respectivă, conform rânduielii Bisericii Ortodoxe Române.';
   }
+
+  // —— PASUL 4: Adaugă câmpurile obligatorii calculate server-side ——
+  // tip_post este calculat din logica canonică, nu din AI
+  continutAI.tip_post = tipPost;
+
+  // Calculează post_info (descriere completă a postului)
+  const postInfoMap = {
+    'post': 'Zi de post — abstinență de la carne, lactate, ouă, pește, vin și untdelemn, conform rânduielii Bisericii Ortodoxe.',
+    'post_strict': 'Post negru (post aspru) — abstinență totală de la hrană sau hrană uscată, conform rânduielii Bisericii Ortodoxe.',
+    'dezlegare_peste': 'Dezlegare la pește, vin și untdelemn — zi de sărbătoare cu dezlegare parțială.',
+    'dezlegare_vin_ulei': 'Dezlegare la vin și untdelemn — zi cu dezlegare parțială conform Tipicului BOR.',
+    'dezlegare': 'Dezlegare deplină la toate — zi de prăznuire, fără restricții alimentare conform rânduielii ortodoxe.'
+  };
+  const postInfoText = continutAI.post_info || postInfoMap[tipPost] || 'Dezlegare deplină la toate.';
+
+  // titlu_sfinti: grupul complet de sfinți (fallback la sfant_nume)
+  const titluSfintiText = (continutAI.titlu_sfinti && !continutAI.titlu_sfinti.includes('Sinaxarul BOR'))
+    ? continutAI.titlu_sfinti
+    : continutAI.sfant_nume;
+
+  // sinaxar_complet: text extins pentru SEO (fallback la sfant_viata sau sinaxar)
+  const sinaxarCompletText = (continutAI.sinaxar_complet && continutAI.sinaxar_complet.length >= 100)
+    ? continutAI.sinaxar_complet
+    : (continutAI.sfant_viata || continutAI.sinaxar || continutAI.sfant_nume);
+
+  // MAPĂM câmpurile noi la coloanele EXISTENTE în Supabase
+  // (până la migrarea SQL care adaugă coloanele titlu_sfinti, sinaxar_complet, post_info)
+  // titlu_sfinti → sfant_nume (suprascrie cu grupul complet)
+  continutAI.sfant_nume = titluSfintiText;
+  // sinaxar_complet → sinaxar (extinde sinaxarul scurt cu versiunea lungă)
+  continutAI.sinaxar = sinaxarCompletText;
+  // post_info → stocat în meta_description ca prefix (până la migrare)
+  // Asigurăm că meta_description include informația de post
+  if (!continutAI.meta_description || continutAI.meta_description.length < 50) {
+    continutAI.meta_description = `${titluSfintiText.substring(0,80)} — ${postInfoText.substring(0,60)}. Calendar ortodox ${date}.`;
+  }
+
+  // Eliminăm câmpurile care nu există în schema Supabase (evităm eroarea PGRST204)
+  delete continutAI.titlu_sfinti;
+  delete continutAI.sinaxar_complet;
+  delete continutAI.post_info;
 
   return continutAI;
 }
@@ -677,15 +734,26 @@ async function main() {
   } catch (eroare) {
     console.error('\n❌ Eroare în generarea conținutului:', eroare.message);
 
-    // Fallback: salvează date minime din calendar static
+    // Fallback: salvează date minime din calendar static — fără placeholder-uri vizibile
     console.log('⚠️ Salvez data fallback din calendar static...');
     const sfantFallback = getSfantDefault(dataTarget);
+    const tipPostFallback = getTipPostDefault(dataTarget);
+    const postInfoFallback = {
+      'post': 'Zi de post — abstinență de la carne, lactate, ouă, pește, vin și untdelemn.',
+      'dezlegare': 'Dezlegare deplină la toate — zi de prăznuire.',
+      'dezlegare_peste': 'Dezlegare la pește, vin și untdelemn.',
+      'post_strict': 'Post negru — abstinență totală.'
+    }[tipPostFallback] || 'Dezlegare deplină la toate.';
     const fallbackRecord = {
       sfant_nume: sfantFallback,
-      tip_post: getTipPostDefault(dataTarget),
+      titlu_sfinti: sfantFallback,
+      tip_post: tipPostFallback,
+      post_info: postInfoFallback,
       culoare_liturgica: 'alb',
-      sfant_viata: `${sfantFallback} – Conform Sinaxarului Bisericii Ortodoxe Române.`,
-      meta_descriere: `Calendar ortodox ${dataTarget}: ${sfantFallback.substring(0, 100)}.`
+      sfant_viata: `${sfantFallback} este prăznuit în calendarul ortodox pe ${dataTarget}. Conform Sinaxarului Bisericii Ortodoxe Române, acesta este unul dintre sfinții care au slujit lui Dumnezeu cu credință și sfințenie.`,
+      sinaxar_complet: `${sfantFallback} este prăznuit în calendarul ortodox pe ${dataTarget}. Conform Sinaxarului Bisericii Ortodoxe Române, viața și faptele acestui sfânt reprezintă o pildă de credință pentru toți creștinii ortodocși.`,
+      sinaxar: `${sfantFallback} este prăznuit în calendarul ortodox pe ${dataTarget}.`,
+      meta_description: `Calendar ortodox ${dataTarget}: ${sfantFallback.substring(0, 100)}. Sinaxar, tropar și rugăciuni ortodoxe.`
     };
 
     await salveazaInSupabase(dataTarget, fallbackRecord);
