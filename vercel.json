@@ -1,6 +1,10 @@
 {
   "version": 2,
   "name": "povesti-de-credinta",
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "installCommand": "echo 'No install needed — static site'",
+  "framework": null,
   "headers": [
     {
       "source": "/sw.js",
