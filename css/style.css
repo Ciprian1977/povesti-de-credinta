@@ -984,3 +984,27 @@ main {
 }
 
 .btn-instaleaza:hover { background: var(--auriu-light); }
+
+/* === MODULUL RUGĂCIUNEA ZILEI === */
+.grid-zile-rugaciuni { display:flex; flex-direction:column; gap:.75rem; margin:1rem 0 1.5rem; }
+.card-zi-rugaciune { display:flex; align-items:center; gap:1rem; background:#fff; border-radius:12px; padding:.9rem 1rem; text-decoration:none; color:inherit; box-shadow:0 2px 8px rgba(139,26,26,.08); transition:transform .15s,box-shadow .15s; position:relative; }
+.card-zi-rugaciune:hover,.card-zi-rugaciune:focus { transform:translateY(-2px); box-shadow:0 4px 16px rgba(139,26,26,.15); }
+.card-zi-azi { background:linear-gradient(135deg,#fdf6ec,#fff8f0); }
+.card-zi-icon { font-size:1.8rem; flex-shrink:0; width:2.5rem; text-align:center; }
+.card-zi-info { display:flex; flex-direction:column; gap:.2rem; flex:1; }
+.card-zi-info strong { font-family:var(--font-titlu); color:var(--visineu); font-size:1rem; }
+.card-zi-info span { font-size:.82rem; color:var(--text-light); line-height:1.4; }
+.badge-azi { background:var(--visineu); color:#fff; font-size:.72rem; font-weight:700; padding:.2rem .5rem; border-radius:20px; font-family:var(--font-titlu); flex-shrink:0; }
+.card-rugaciune-azi { border-radius:14px; padding:1.25rem; margin:1rem 0 1.5rem; text-align:center; }
+.interlinking-box { background:#f8f4ef; border-radius:12px; padding:1rem 1.25rem; margin:1.25rem 0; border:1px solid #e8d5b7; }
+.interlinking-box h3 { font-family:var(--font-titlu); color:var(--visineu); font-size:.95rem; margin:0 0 .75rem; }
+.interlinking-links { display:flex; flex-wrap:wrap; gap:.5rem; }
+.interlinking-links a { background:#fff; color:var(--visineu); border:1px solid var(--visineu); border-radius:20px; padding:.35rem .85rem; font-size:.82rem; text-decoration:none; font-family:var(--font-titlu); transition:background .15s,color .15s; }
+.interlinking-links a:hover,.interlinking-links a:focus { background:var(--visineu); color:#fff; }
+.rugaciune-text-body p { margin-bottom:1.2em; line-height:1.85; font-size:1.05rem; color:#3a2a1a; }
+.btn-primar { background:var(--visineu); color:#fff; border:none; padding:.65rem 1.4rem; border-radius:22px; font-size:.9rem; cursor:pointer; text-decoration:none; font-family:var(--font-titlu); font-weight:700; display:inline-block; transition:background .15s; }
+.btn-primar:hover { background:var(--visineu-dark); }
+.btn-whatsapp { background:#25D366; color:#fff; border:none; padding:.6rem 1.2rem; border-radius:8px; cursor:pointer; font-size:.9rem; font-family:var(--font-titlu); transition:background .15s; }
+.btn-whatsapp:hover { background:#1ebe5d; }
+.faq-sectiune { margin-top:2rem; border-top:1px solid #e8d5b7; padding-top:1.25rem; }
+.faq-titlu { font-family:var(--font-titlu); color:var(--visineu); font-size:1.1rem; margin-bottom:1rem; }
