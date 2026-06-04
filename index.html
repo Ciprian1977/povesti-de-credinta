@@ -123,7 +123,7 @@
 </header>
 
 <!-- MAIN -->
-<main>
+<main id="pagina-acasa">
 
   <!-- PWA INSTALL BANNER -->
   <div class="pwa-banner" id="pwa-banner" style="display:none;">
@@ -149,7 +149,7 @@
         <meta itemprop="datePublished" id="meta-date-published" content="">
         <meta itemprop="author" content="Povești de Credință">
         <p class="sfant-scurt" id="sfant-scurt" itemprop="description"></p>
-        <button id="btn-citeste-mai-mult" class="btn-citeste" aria-label="Citește viața sfântului zilei">
+        <button id="btn-citeste-mai-mult" class="btn-citeste" aria-label="Citește viața sfântului zilei" data-ruta="/sfintii-zilei">
           📖 Citește mai mult
         </button>
       </div>
@@ -225,35 +225,35 @@
   <section aria-labelledby="titlu-zilei" style="margin-bottom:20px">
     <h2 class="sectiune-titlu">📅 Conținut ortodox pentru azi</h2>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-      <a href="/sfantul-zilei/" style="text-decoration:none">
+      <a href="/sfintii-zilei" data-ruta="/sfintii-zilei" style="text-decoration:none">
         <div style="background:linear-gradient(135deg,var(--visineu),var(--visineu-dark));color:white;border-radius:12px;padding:14px;text-align:center;box-shadow:0 3px 12px rgba(107,27,43,0.25)">
           <div style="font-size:1.8rem;margin-bottom:6px">✝️</div>
           <div style="font-family:var(--font-titlu);font-size:0.9rem;font-weight:700">Sfântul Zilei</div>
           <div style="font-size:0.72rem;opacity:0.8;margin-top:3px">Cine este sfântul de azi</div>
         </div>
       </a>
-      <a href="/sinaxarul-zilei/" style="text-decoration:none">
+      <a href="/sinaxar" data-ruta="/sinaxar" style="text-decoration:none">
         <div style="background:white;border:2px solid var(--auriu);border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
           <div style="font-size:1.8rem;margin-bottom:6px">📜</div>
           <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.9rem;font-weight:700">Sinaxarul Zilei</div>
           <div style="font-size:0.72rem;color:var(--text-light);margin-top:3px">Viața sfântului + tropar</div>
         </div>
       </a>
-      <a href="/apostolul-zilei/" style="text-decoration:none">
+      <a href="/apostolul-zilei" data-ruta="/apostolul-zilei" style="text-decoration:none">
         <div style="background:white;border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
           <div style="font-size:1.8rem;margin-bottom:6px">📖</div>
           <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.9rem;font-weight:700">Apostolul Zilei</div>
           <div style="font-size:0.72rem;color:var(--text-light);margin-top:3px">Text complet + tâlcuire</div>
         </div>
       </a>
-      <a href="/evanghelia-zilei/" style="text-decoration:none">
+      <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei" style="text-decoration:none">
         <div style="background:white;border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
           <div style="font-size:1.8rem;margin-bottom:6px">✝️</div>
           <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.9rem;font-weight:700">Evanghelia Zilei</div>
           <div style="font-size:0.72rem;color:var(--text-light);margin-top:3px">Text complet + tâlcuire</div>
         </div>
       </a>
-      <a href="/predica-zilei/" style="text-decoration:none">
+      <a href="/predica-zilei" data-ruta="/predica-zilei" style="text-decoration:none">
         <div style="background:white;border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:14px;text-align:center;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
           <div style="font-size:1.8rem;margin-bottom:6px">🎙️</div>
           <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.9rem;font-weight:700">Predica Zilei</div>
@@ -336,6 +336,160 @@
   </section>
 
 </main>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- CONTAINERE RUTE SPA — ascunse implicit, afișate de router (app.js) -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+
+<!-- RUTA: /sfintii-zilei -->
+<div id="ruta-sfintii-zilei" class="ruta-container" style="display:none" aria-hidden="true">
+  <div class="ruta-header">
+    <button class="btn-inapoi" onclick="navigheazaLaRuta('/')" aria-label="Inapoi la pagina principala">← Înapoi</button>
+    <span class="ruta-data-live"></span>
+  </div>
+  <article class="ruta-articol" itemscope itemtype="https://schema.org/Article">
+    <h1 id="sfintii-titlu" class="ruta-titlu-sfinti" itemprop="headline">Sfinții zilei</h1>
+    <div id="sfintii-post" class="badge-post dezlegare" style="margin-bottom:16px">Dezlegare</div>
+    <section style="margin-bottom:24px">
+      <h2 style="font-family:var(--font-titlu);color:var(--visineu-dark);font-size:1rem;margin-bottom:12px">Troparul sfântului</h2>
+      <div style="background:rgba(201,168,76,0.08);border-left:3px solid var(--auriu);border-radius:0 8px 8px 0;padding:16px;margin-bottom:12px">
+        <p id="sfintii-tropar" style="font-style:italic;line-height:1.8;font-size:0.95rem;color:var(--text-dark)"></p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button id="btn-copie-tropar" class="btn-copiere">Copiaza troparul</button>
+        <button id="btn-wa-tropar" class="btn-copiere" style="background:#25D366;color:white;border-color:transparent">Trimite pe WhatsApp</button>
+      </div>
+    </section>
+    <nav class="ruta-linkuri-interne" aria-label="Continut inrudit">
+      <h3 style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.9rem;margin-bottom:10px">Continut inrudit pentru azi</h3>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <a href="/sinaxar" data-ruta="/sinaxar" class="link-intern-ruta">Sinaxarul zilei — Viata completa a sfantului</a>
+        <a href="/apostolul-zilei" data-ruta="/apostolul-zilei" class="link-intern-ruta">Apostolul zilei — Pericopa apostolica</a>
+        <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei" class="link-intern-ruta">Evanghelia zilei — Textul integral</a>
+        <a href="/predica-zilei" data-ruta="/predica-zilei" class="link-intern-ruta">Predica zilei — Cuvant de folos</a>
+      </div>
+    </nav>
+  </article>
+</div>
+
+<!-- RUTA: /sinaxar -->
+<div id="ruta-sinaxar" class="ruta-container" style="display:none" aria-hidden="true">
+  <div class="ruta-header">
+    <button class="btn-inapoi" onclick="navigheazaLaRuta('/')" aria-label="Inapoi">← Înapoi</button>
+    <span class="ruta-data-live"></span>
+  </div>
+  <article class="ruta-articol" itemscope itemtype="https://schema.org/Article">
+    <h1 id="sinaxar-titlu-principal" itemprop="headline">Sinaxarul zilei</h1>
+    <div id="sinaxar-culoare" style="font-size:0.82rem;color:var(--text-light);margin-bottom:16px"></div>
+    <div id="sinaxar-text-complet" itemprop="articleBody" style="color:var(--text-dark)"></div>
+    <section class="faq-sectiune" style="margin-top:32px">
+      <h2 style="font-family:var(--font-titlu);color:var(--visineu);font-size:1rem;margin-bottom:16px">Intrebari frecvente despre Sinaxar</h2>
+      <div class="faq-lista">
+        <div class="faq-item"><div class="faq-intrebare">Ce este Sinaxarul in Biserica Ortodoxa? <span class="faq-icon">+</span></div><div class="faq-raspuns">Sinaxarul este cartea liturgica ortodoxa care cuprinde vietile sfintilor prazanuiti in fiecare zi a anului, citite la Utrenie. Cuvantul vine din grecescul synaxis (adunare).</div></div>
+        <div class="faq-item"><div class="faq-intrebare">Cum se deosebeste Sinaxarul de Mineiu? <span class="faq-icon">+</span></div><div class="faq-raspuns">Mineiurile sunt carti liturgice lunare care contin slujbele complete ale sfintilor, in timp ce Sinaxarul cuprinde doar vietile sfintilor, citite ca lectura la Utrenie.</div></div>
+        <div class="faq-item"><div class="faq-intrebare">De ce este importanta cunoasterea vietii sfintilor? <span class="faq-icon">+</span></div><div class="faq-raspuns">Vietile sfintilor sunt exemple concrete de implinire a Evangheliei in viata cotidiana. Ele ne inspira, ne intaresc credinta si ne arata ca sfintenia este posibila pentru orice crestin.</div></div>
+      </div>
+    </section>
+    <nav class="ruta-linkuri-interne" aria-label="Continut inrudit">
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:16px">
+        <a href="/sfintii-zilei" data-ruta="/sfintii-zilei" class="link-intern-ruta">Sfintii zilei — Troparul si prazanuirea</a>
+        <a href="/apostolul-zilei" data-ruta="/apostolul-zilei" class="link-intern-ruta">Apostolul zilei</a>
+        <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei" class="link-intern-ruta">Evanghelia zilei</a>
+      </div>
+    </nav>
+  </article>
+</div>
+
+<!-- RUTA: /apostolul-zilei -->
+<div id="ruta-apostolul-zilei" class="ruta-container" style="display:none" aria-hidden="true">
+  <div class="ruta-header">
+    <button class="btn-inapoi" onclick="navigheazaLaRuta('/')" aria-label="Inapoi">← Înapoi</button>
+    <span class="ruta-data-live"></span>
+  </div>
+  <article class="ruta-articol" itemscope itemtype="https://schema.org/Article">
+    <div style="font-size:0.82rem;color:var(--text-light);margin-bottom:6px">Pericopa Apostolica</div>
+    <h1 id="apostol-referinta" itemprop="headline" style="font-size:1.2rem">Apostolul zilei</h1>
+    <div id="apostol-text-complet" itemprop="articleBody" style="margin-top:16px;color:var(--text-dark)"></div>
+    <div style="margin-top:16px">
+      <button id="btn-copie-apostol" class="btn-copiere">Copiaza textul</button>
+    </div>
+    <section class="faq-sectiune" style="margin-top:32px">
+      <h2 style="font-family:var(--font-titlu);color:var(--visineu);font-size:1rem;margin-bottom:16px">Intrebari frecvente despre Apostol</h2>
+      <div class="faq-lista">
+        <div class="faq-item"><div class="faq-intrebare">Ce este Apostolul in cadrul Sfintei Liturghii? <span class="faq-icon">+</span></div><div class="faq-raspuns">Apostolul este pericopa din Epistolele Apostolice citita la Sfanta Liturghie inainte de Evanghelie, conform randuielii liturgice ortodoxe.</div></div>
+        <div class="faq-item"><div class="faq-intrebare">De ce se citeste Apostolul la Liturghie? <span class="faq-icon">+</span></div><div class="faq-raspuns">Apostolul face parte din Liturghia Cuvantului. Prin el, credinciosii asculta invatatura apostolica si sunt pregatiti pentru primirea Cuvantului lui Dumnezeu din Evanghelie.</div></div>
+        <div class="faq-item"><div class="faq-intrebare">Ce este o pericopa apostolica? <span class="faq-icon">+</span></div><div class="faq-raspuns">Pericopa apostolica este un fragment din Epistolele Apostolice, selectat de Tipicul Bisericii pentru a fi citit intr-o anumita zi liturgica.</div></div>
+      </div>
+    </section>
+    <nav class="ruta-linkuri-interne" aria-label="Continut inrudit">
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:16px">
+        <a href="/sfintii-zilei" data-ruta="/sfintii-zilei" class="link-intern-ruta">Sfintii zilei</a>
+        <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei" class="link-intern-ruta">Evanghelia zilei</a>
+        <a href="/predica-zilei" data-ruta="/predica-zilei" class="link-intern-ruta">Predica zilei</a>
+      </div>
+    </nav>
+  </article>
+</div>
+
+<!-- RUTA: /evanghelia-zilei -->
+<div id="ruta-evanghelia-zilei" class="ruta-container" style="display:none" aria-hidden="true">
+  <div class="ruta-header">
+    <button class="btn-inapoi" onclick="navigheazaLaRuta('/')" aria-label="Inapoi">← Înapoi</button>
+    <span class="ruta-data-live"></span>
+  </div>
+  <article class="ruta-articol" itemscope itemtype="https://schema.org/Article">
+    <div style="font-size:0.82rem;color:var(--text-light);margin-bottom:6px">Sfanta Evanghelie a zilei</div>
+    <h1 id="evanghelie-referinta" itemprop="headline" style="font-size:1.2rem">Evanghelia zilei</h1>
+    <div id="evanghelie-text-complet" itemprop="articleBody" style="margin-top:16px;color:var(--text-dark)"></div>
+    <div style="margin-top:16px">
+      <button id="btn-copie-evanghelie" class="btn-copiere">Copiaza textul</button>
+    </div>
+    <section class="faq-sectiune" style="margin-top:32px">
+      <h2 style="font-family:var(--font-titlu);color:var(--visineu);font-size:1rem;margin-bottom:16px">Intrebari frecvente despre Evanghelie</h2>
+      <div class="faq-lista">
+        <div class="faq-item"><div class="faq-intrebare">Ce este Evanghelia zilei in calendarul ortodox? <span class="faq-icon">+</span></div><div class="faq-raspuns">Evanghelia zilei este pericopa din una dintre cele patru Evanghelii randuita de Tipicul Bisericii pentru a fi citita la Sfanta Liturghie in ziua respectiva.</div></div>
+        <div class="faq-item"><div class="faq-intrebare">De ce se citeste Evanghelia in picioare? <span class="faq-icon">+</span></div><div class="faq-raspuns">Credinciosii stau in picioare la citirea Evangheliei ca semn de respect fata de Cuvantul lui Dumnezeu si ca pregatire pentru primirea lui Hristos in Sfanta Euharistie.</div></div>
+        <div class="faq-item"><div class="faq-intrebare">Ce reprezinta cele patru Evanghelii? <span class="faq-icon">+</span></div><div class="faq-raspuns">Cele patru Evanghelii (Matei, Marcu, Luca, Ioan) sunt marturiile inspirate ale vietii, invataturii, mortii si invierii Mantuitorului Iisus Hristos, scrise de Sfintii Evanghelisti.</div></div>
+      </div>
+    </section>
+    <nav class="ruta-linkuri-interne" aria-label="Continut inrudit">
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:16px">
+        <a href="/apostolul-zilei" data-ruta="/apostolul-zilei" class="link-intern-ruta">Apostolul zilei</a>
+        <a href="/predica-zilei" data-ruta="/predica-zilei" class="link-intern-ruta">Predica si talcuirea</a>
+        <a href="/sfintii-zilei" data-ruta="/sfintii-zilei" class="link-intern-ruta">Sfintii zilei</a>
+      </div>
+    </nav>
+  </article>
+</div>
+
+<!-- RUTA: /predica-zilei -->
+<div id="ruta-predica-zilei" class="ruta-container" style="display:none" aria-hidden="true">
+  <div class="ruta-header">
+    <button class="btn-inapoi" onclick="navigheazaLaRuta('/')" aria-label="Inapoi">← Înapoi</button>
+    <span class="ruta-data-live"></span>
+  </div>
+  <article class="ruta-articol" itemscope itemtype="https://schema.org/Article">
+    <h1 id="predica-titlu-principal" itemprop="headline" style="font-size:1.1rem">Predica zilei</h1>
+    <div id="predica-text-complet" itemprop="articleBody" style="margin-top:16px;color:var(--text-dark)"></div>
+    <section class="faq-sectiune" style="margin-top:32px">
+      <h2 style="font-family:var(--font-titlu);color:var(--visineu);font-size:1rem;margin-bottom:16px">Intrebari frecvente despre Predica</h2>
+      <div class="faq-lista">
+        <div class="faq-item"><div class="faq-intrebare">Ce este predica in cadrul Sfintei Liturghii? <span class="faq-icon">+</span></div><div class="faq-raspuns">Predica este cuvantul de invatatura rostit de preot sau episcop dupa citirea Evangheliei, prin care se talcuiesc textele scripturistice si se aplica la viata crestinilor.</div></div>
+        <div class="faq-item"><div class="faq-intrebare">Ce este talcuirea patristica a Evangheliei? <span class="faq-icon">+</span></div><div class="faq-raspuns">Talcuirea patristica este interpretarea Evangheliei de catre Sfintii Parinti ai Bisericii (Sf. Ioan Gura de Aur, Sf. Chiril al Alexandriei etc.), care constituie traditia vie a Bisericii.</div></div>
+        <div class="faq-item"><div class="faq-intrebare">Ce este omilia crestina? <span class="faq-icon">+</span></div><div class="faq-raspuns">Omilia (din gr. homilia = convorbire) este un tip de predica care urmareste pas cu pas textul scripturistic, comentand si explicand fiecare verset in parte.</div></div>
+      </div>
+    </section>
+    <nav class="ruta-linkuri-interne" aria-label="Continut inrudit">
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:16px">
+        <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei" class="link-intern-ruta">Evanghelia zilei</a>
+        <a href="/apostolul-zilei" data-ruta="/apostolul-zilei" class="link-intern-ruta">Apostolul zilei</a>
+        <a href="/sinaxar" data-ruta="/sinaxar" class="link-intern-ruta">Sinaxarul zilei</a>
+      </div>
+    </nav>
+  </article>
+</div>
+
 
 <!-- FOOTER -->
 <footer class="footer">
