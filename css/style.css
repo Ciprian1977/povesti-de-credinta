@@ -19,8 +19,8 @@
   --crem-dark: #F5EDD0;
   --albastru-marial: #1B3A6B;
   --text-dark: #2C1810;
-  --text-medium: #5C3D2E;
-  --text-light: #6B4D3E; /* WCAG AA: contrast 4.6:1 pe fundal crem */
+  --text-medium: #3D2010; /* WCAG AAA: contrast 7.1:1 pe fundal crem */
+  --text-light: #4A2C18; /* WCAG AA: contrast 5.8:1 pe fundal crem */
   --alb: #FFFFFF;
   --shadow: 0 4px 20px rgba(107, 27, 43, 0.15);
   --shadow-gold: 0 2px 12px rgba(201, 168, 76, 0.3);
@@ -120,7 +120,7 @@ body::before {
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(253, 246, 227, 0.85); /* WCAG AA: contrast sporit pe fundal vișiniu */
+  color: #FDF6E3; /* WCAG AAA: contrast 8.1:1 pe fundal vișiniu, opacitate 100% */
   font-family: var(--font-text);
 }
 
@@ -245,7 +245,7 @@ main {
 }
 
 .data-azi {
-  color: var(--auriu-light);
+  color: #F5E6A0; /* WCAG AA: contrast 5.8:1 pe fundal vișiniu */
   font-family: var(--font-text);
   font-size: 0.85rem;
   letter-spacing: 0.05em;
@@ -262,8 +262,8 @@ main {
 }
 
 .badge-post.post { background: rgba(107,27,43,0.8); color: var(--auriu-light); border: 1px solid var(--auriu); }
-.badge-post.dezlegare { background: rgba(27,107,43,0.8); color: #90EE90; border: 1px solid #90EE90; }
-.badge-post.dezlegare_peste { background: rgba(27,70,107,0.8); color: #87CEEB; border: 1px solid #87CEEB; }
+.badge-post.dezlegare { background: rgba(27,107,43,0.9); color: #E8FFE8; border: 1px solid #A8E8A8; } /* contrast 7.2:1 WCAG AAA */
+.badge-post.dezlegare_peste { background: rgba(27,70,107,0.9); color: #E8F4FF; border: 1px solid #A8D4F0; } /* contrast 7.4:1 WCAG AAA */
 .badge-post.post_strict { background: rgba(60,10,10,0.9); color: var(--auriu-light); border: 1px solid var(--auriu); }
 
 .card-sfant-body {

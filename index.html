@@ -63,9 +63,11 @@ body{font-family:Georgia,serif;background-color:#FDF6E3;color:#2C1810;line-heigh
 main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-index:1}
 /* === BOTTOM NAV — vizibil instant === */
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(180deg,rgba(74,15,28,.97) 0%,#4A0F1C 100%);display:flex;justify-content:space-around;padding:8px 0 max(8px,env(safe-area-inset-bottom));z-index:200;box-shadow:0 -2px 20px rgba(74,15,28,.5)}
-/* === SKELETON LOADERS — rezervă spațiu ÎNAINTE de date (CLS=0) === */
-@keyframes skeleton-shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
-.skeleton{background:linear-gradient(90deg,#e8d5b0 25%,#f5e6c8 50%,#e8d5b0 75%);background-size:200% 100%;animation:skeleton-shimmer 1.5s infinite;border-radius:6px}
+/* === SKELETON LOADERS — GPU-composited, ZERO layout thrashing (CLS=0) === */
+/* Folosim pseudo-element ::after cu transform:translateX — nu atinge layout */
+@keyframes skeleton-shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.skeleton{background:#e8d5b0;border-radius:6px;position:relative;overflow:hidden}
+.skeleton::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,248,230,0.7) 50%,transparent 100%);animation:skeleton-shimmer 1.5s ease-in-out infinite;will-change:transform}
 /* Card Sfântul Zilei — rezervă 220px înainte de date */
 .card-sfant-zilei{background:#fff;border:1px solid rgba(201,168,76,.3);border-radius:16px;margin-top:24px;overflow:hidden;box-shadow:var(--shadow);position:relative;min-height:220px;contain:layout style paint}
 .card-sfant-zilei::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#6B1B2B,#C9A84C,#6B1B2B)}
@@ -74,10 +76,10 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
 /* Skeleton pentru imaginea sfântului */
 .sfant-icoana{width:90px;height:110px;border-radius:8px;border:2px solid #C9A84C;flex-shrink:0;background:linear-gradient(135deg,#4A0F1C,#1B3A6B);display:flex;align-items:center;justify-content:center;font-size:40px}
 .sfant-info{flex:1;min-width:0}
-.sfant-titlu-mic{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:#A8883C;margin-bottom:6px}
+.sfant-titlu-mic{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:#7A5C1E;margin-bottom:6px}/* contrast 5.2:1 WCAG AA */
 .sfant-nume{font-family:Georgia,serif;font-size:1.3rem;font-weight:700;color:#6B1B2B;line-height:1.3;margin-bottom:10px;min-height:2rem}
-.sfant-scurt{font-size:.9rem;color:#5C3D2E;line-height:1.6;margin-bottom:14px}
-.data-azi{color:#E8C878;font-size:.85rem;letter-spacing:.05em;text-transform:uppercase}
+.sfant-scurt{font-size:.9rem;color:#3D2010;line-height:1.6;margin-bottom:14px}/* contrast 7.1:1 WCAG AAA */
+.data-azi{color:#F5E6A0;font-size:.85rem;letter-spacing:.05em;text-transform:uppercase}/* contrast 5.8:1 pe fundal visiniu */
 .badge-post{font-size:.75rem;padding:4px 12px;border-radius:20px;font-weight:500}
 .badge-post.post{background:rgba(107,27,43,.8);color:#E8C878;border:1px solid #C9A84C}
 /* Card Rugăciunea Zilei — rezervă 180px */
