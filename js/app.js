@@ -997,17 +997,56 @@ const rugaciuni = [
 ];
 
 function afiseazaRugaciuneaZilei() {
-  const azi = getAzi();
-  const date = getDateAzi();
-  const rugaciuneText = date.rugaciunea_zilei || rugaciuni[azi.getDay()].text;
-  const rugaciuneTitlu = date.rugaciunea_zilei
-    ? `Rugăciunea zilei de ${LUNI_GENITIV[azi.getMonth()]}`
-    : rugaciuni[azi.getDay()].titlu;
+  try {
+    const azi = getAzi();
+    const date = getDateAzi();
+    const ziIndex = azi.getDay();
 
-  const titluEl = document.getElementById('rugaciune-titlu');
-  const textEl = document.getElementById('rugaciune-text');
-  if (titluEl) titluEl.textContent = rugaciuneTitlu;
-  if (textEl) textEl.textContent = rugaciuneText;
+    // Obținem datele din modulul rugaciuniSaptamana
+    let rugData = null;
+    if (typeof rugaciuniSaptamana !== 'undefined' && rugaciuniSaptamana[ziIndex]) {
+      rugData = rugaciuniSaptamana[ziIndex];
+    }
+
+    // Titlul rugăciunii
+    const rugaciuneTitlu = rugData ? rugData.titlu
+      : (date.rugaciunea_zilei ? 'Rugăciunea Zilei' : 'Rugăciunea Zilei');
+
+    // Preview 300 caractere din primul paragraf real
+    let rugaciunePreview = '';
+    if (rugData && rugData.paragrafe && rugData.paragrafe.length > 0) {
+      const primaFraza = rugData.paragrafe.find(p => p !== '— — —' && p.length > 30) || rugData.paragrafe[0];
+      rugaciunePreview = primaFraza.substring(0, 300) + (primaFraza.length > 300 ? '...' : '');
+    } else if (date.rugaciunea_zilei && date.rugaciunea_zilei.length > 10) {
+      rugaciunePreview = date.rugaciunea_zilei.substring(0, 300) + '...';
+    } else {
+      rugaciunePreview = 'Doamne Iisuse Hristoase, Fiul lui Dumnezeu, miluieste-ma pe mine, pacatosul. Da-mi putere sa traiesc aceasta zi in credinta, nadejde si dragoste fata de Tine si fata de aproapele meu...';
+    }
+
+    const titluEl = document.getElementById('rugaciune-titlu');
+    const textEl = document.getElementById('rugaciune-text');
+    if (titluEl) titluEl.textContent = rugaciuneTitlu;
+    if (textEl) textEl.textContent = rugaciunePreview;
+
+    // Actualizăm dinamic butonul cu slug-ul zilei curente
+    const btnComplet = document.getElementById('btn-rugaciune-completa');
+    if (btnComplet && rugData) {
+      const slug = rugData.slug;
+      const ziNume = rugData.zi;
+      btnComplet.href = '/rugaciunea-zilei/' + slug;
+      btnComplet.setAttribute('data-ruta', '/rugaciunea-zilei/' + slug);
+      btnComplet.textContent = '🙏 Citeste Rugaciunea de ' + ziNume + ' Completa';
+      btnComplet.addEventListener('click', function(e) {
+        e.preventDefault();
+        navigheazaLaRuta('/rugaciunea-zilei/' + slug);
+      });
+    }
+  } catch (e) {
+    const textEl = document.getElementById('rugaciune-text');
+    if (textEl && textEl.textContent === 'Se incarca...') {
+      textEl.textContent = 'Doamne Iisuse Hristoase, Fiul lui Dumnezeu, miluieste-ma pe mine, pacatosul. Amin.';
+    }
+  }
 }
 
 function copieRugaciune() {
