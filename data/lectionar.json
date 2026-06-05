@@ -1,6 +1,4 @@
 {
-  "_info": "Lecționar ortodox BOR — texte sacre exacte conform Sinaxarului și Tipicului Bisericii Ortodoxe Române. Sursă: Biblia Sinodală BOR 1988/2001.",
-  "_nota": "Troparele sunt conform Mineielor BOR. Apostolul și Evanghelia urmează rânduiala zilnică a Octoihului și Mineiului.",
   "01-01": {
     "apostol_carte": "Coloseni",
     "apostol_versete": "2:8-12",
@@ -252,5 +250,267 @@
     "evanghelie_versete": "8, 5-13",
     "evanghelie_text": "În vremea aceea, intrând Iisus în Capernaum, s-a apropiat de El un sutaș, rugându-L și zicând: Doamne, sluga mea zace în casă, slăbănog, chinuindu-se cumplit. Și Iisus i-a zis: Venind, îl voi vindeca. Dar sutașul, răspunzând, a zis: Doamne, nu sunt vrednic să intri sub acoperișul meu, ci numai zi cu cuvântul și se va vindeca sluga mea. Că și eu sunt om sub stăpânire și am sub mine ostași și zic acestuia: Du-te, și se duce; și celuilalt: Vino, și vine; și slugii mele: Fă aceasta, și face. Auzind Iisus, S-a minunat și a zis celor ce veneau după El: Adevărat zic vouă: la nimeni în Israel n-am găsit atâta credință. Și zic vouă că mulți de la răsărit și de la apus vor veni și vor sta la masă cu Avraam, cu Isaac și cu Iacov în împărăția cerurilor; iar fiii împărăției vor fi aruncați în întunericul cel mai din afară; acolo va fi plângerea și scrâșnirea dinților. Și a zis Iisus sutașului: Du-te, fie ție după cum ai crezut. Și s-a vindecat sluga lui în ceasul acela.",
     "tip_zi": "Duminica IV după Rusalii (Vindecarea slugii sutașului)"
-  }
+  },
+  "2026-07-05": {
+    "sfant": "Duminica a V-a după Rusalii (Vindecarea celor doi demonizați din ținutul Gadarei)",
+    "apostol_carte": "Romani",
+    "apostol_versete": "X, 1-10",
+    "apostol_text": "Ap. Romani X, 1-10",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "VIII, 28-34",
+    "evanghelie_text": "Ev. Matei VIII, 28-34; IX, 1",
+    "tropar": ""
+  },
+  "2026-07-12": {
+    "sfant": "Duminica a VI-a după Rusalii (Vindecarea paraliticului din Capernaum)",
+    "apostol_carte": "Romani",
+    "apostol_versete": "XII, 6-14",
+    "apostol_text": "Ap. Romani XII, 6-14",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "IX, 1-8",
+    "evanghelie_text": "Ev. Matei IX, 1-8",
+    "tropar": ""
+  },
+  "2026-07-19": {
+    "sfant": "Duminica a VII-a după Rusalii (a Sf. Părinți de la Sinodul al IV-lea Ecumenic; Vindecarea a doi orbi și a unui mut)",
+    "apostol_carte": "Romani",
+    "apostol_versete": "XV, 1-7",
+    "apostol_text": "Ap. Romani XV, 1-7",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "IX, 27-35",
+    "evanghelie_text": "Ev. Matei IX, 27-35; Ioan XVII, 1-13",
+    "tropar": ""
+  },
+  "2026-07-26": {
+    "sfant": "Duminica a VIII-a după Rusalii (Înmulțirea pâinilor)",
+    "apostol_carte": "I Corinteni",
+    "apostol_versete": "I, 10-17",
+    "apostol_text": "Ap. I Corinteni I, 10-17",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "XIV, 14-22",
+    "evanghelie_text": "Ev. Matei XIV, 14-22",
+    "tropar": ""
+  },
+  "2026-08-02": {
+    "sfant": "Duminica a IX-a după Rusalii (a Sf. Părinți de la primele șase Sinoade Ecumenice; Umblarea pe mare)",
+    "apostol_carte": "I Corinteni",
+    "apostol_versete": "III, 9-17",
+    "apostol_text": "Ap. I Corinteni III, 9-17",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "XIV, 22-34",
+    "evanghelie_text": "Ev. Matei XIV, 22-34",
+    "tropar": ""
+  },
+  "2026-08-09": {
+    "sfant": "Duminica a X-a după Rusalii (Vindecarea lunaticului)",
+    "apostol_carte": "I Corinteni",
+    "apostol_versete": "IV, 9-16",
+    "apostol_text": "Ap. I Corinteni IV, 9-16",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "XVII, 14-23",
+    "evanghelie_text": "Ev. Matei XVII, 14-23",
+    "tropar": ""
+  },
+  "2026-08-16": {
+    "sfant": "Duminica a XI-a după Rusalii (Pilda datornicului nemilostiv)",
+    "apostol_carte": "I Corinteni",
+    "apostol_versete": "IX, 2-12",
+    "apostol_text": "Ap. I Corinteni IX, 2-12",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "XVIII, 23-35",
+    "evanghelie_text": "Ev. Matei XVIII, 23-35",
+    "tropar": ""
+  },
+  "2026-08-23": {
+    "sfant": "Duminica a XII-a după Rusalii (Tânărul bogat)",
+    "apostol_carte": "I Corinteni",
+    "apostol_versete": "XV, 1-11",
+    "apostol_text": "Ap. I Corinteni XV, 1-11",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "XIX, 16-26",
+    "evanghelie_text": "Ev. Matei XIX, 16-26",
+    "tropar": ""
+  },
+  "2026-08-30": {
+    "sfant": "Duminica a XIII-a după Rusalii (Pilda lucrătorilor răi)",
+    "apostol_carte": "I Corinteni",
+    "apostol_versete": "XVI, 13-24",
+    "apostol_text": "Ap. I Corinteni XVI, 13-24",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "XXI, 33-44",
+    "evanghelie_text": "Ev. Matei XXI, 33-44",
+    "tropar": ""
+  },
+  "2026-09-06": {
+    "sfant": "Duminica a XIV-a după Rusalii (Pilda nunții fiului de împărat)",
+    "apostol_carte": "II Corinteni",
+    "apostol_versete": "I, 21-24; II, 1-4",
+    "apostol_text": "Ap. II Corinteni I, 21-24; II, 1-4",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "XXII, 1-14",
+    "evanghelie_text": "Ev. Matei XXII, 1-14",
+    "tropar": ""
+  },
+  "2026-09-13": {
+    "sfant": "Duminica dinaintea Înălțării Sf. Cruci (Convorbirea lui Iisus cu Nicodim)",
+    "apostol_carte": "Galateni",
+    "apostol_versete": "VI, 11-18",
+    "apostol_text": "Ap. Galateni VI, 11-18",
+    "evanghelie_carte": "Ioan",
+    "evanghelie_versete": "III, 13-17",
+    "evanghelie_text": "Ev. Ioan III, 13-17",
+    "tropar": ""
+  },
+  "2026-09-20": {
+    "sfant": "Duminica după Înălțarea Sf. Cruci (Luarea crucii și urmarea lui Hristos)",
+    "apostol_carte": "Galateni",
+    "apostol_versete": "II, 16-20",
+    "apostol_text": "Ap. Galateni II, 16-20",
+    "evanghelie_carte": "Marcu",
+    "evanghelie_versete": "VIII, 34-38",
+    "evanghelie_text": "Ev. Marcu VIII, 34-38; IX, 1",
+    "tropar": ""
+  },
+  "2026-09-27": {
+    "sfant": "Duminica a XVIII-a după Rusalii (Pescuirea minunată)",
+    "apostol_carte": "II Corinteni",
+    "apostol_versete": "IX, 6-11",
+    "apostol_text": "Ap. II Corinteni IX, 6-11",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "V, 1-11",
+    "evanghelie_text": "Ev. Luca V, 1-11",
+    "tropar": ""
+  },
+  "2026-10-04": {
+    "sfant": "Duminica a XIX-a după Rusalii (Predica de pe munte. Iubirea vrăjmașilor)",
+    "apostol_carte": "II Corinteni",
+    "apostol_versete": "XI, 31-33; XII, 1-9",
+    "apostol_text": "Ap. II Corinteni XI, 31-33; XII, 1-9",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "VI, 31-36",
+    "evanghelie_text": "Ev. Luca VI, 31-36",
+    "tropar": ""
+  },
+  "2026-10-11": {
+    "sfant": "Duminica a XXI-a după Rusalii (a Sf. Părinți de la Sinodul al VII-lea Ecumenic; Pilda semănătorului)",
+    "apostol_carte": "Galateni II, 16-20; Tit III,",
+    "apostol_versete": "8-15",
+    "apostol_text": "Ap. Galateni II, 16-20; Tit III, 8-15",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "VIII, 5-15",
+    "evanghelie_text": "Ev. Luca VIII, 5-15; Ioan XVII, 1-13",
+    "tropar": ""
+  },
+  "2026-10-18": {
+    "sfant": "Duminica a XX-a după Rusalii (Învierea fiului văduvei din Nain)",
+    "apostol_carte": "Galateni",
+    "apostol_versete": "I, 11-19",
+    "apostol_text": "Ap. Galateni I, 11-19",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "VII, 11-16",
+    "evanghelie_text": "Ev. Luca VII, 11-16",
+    "tropar": ""
+  },
+  "2026-10-25": {
+    "sfant": "Duminica a XXIII-a după Rusalii (Vindecarea demonizatului din ținutul Gherghesenilor)",
+    "apostol_carte": "Efeseni",
+    "apostol_versete": "II, 4-10",
+    "apostol_text": "Ap. Efeseni II, 4-10",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "VIII, 26-39",
+    "evanghelie_text": "Ev. Luca VIII, 26-39",
+    "tropar": ""
+  },
+  "2026-11-01": {
+    "sfant": "Duminica a XXII-a după Rusalii (Bogatul nemilostiv și săracul Lazăr)",
+    "apostol_carte": "Galateni",
+    "apostol_versete": "VI, 11-18",
+    "apostol_text": "Ap. Galateni VI, 11-18",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "XVI, 19-31",
+    "evanghelie_text": "Ev. Luca XVI, 19-31",
+    "tropar": ""
+  },
+  "2026-11-08": {
+    "sfant": "Duminica a XXIV-a după Rusalii (Învierea fiicei lui Iair)",
+    "apostol_carte": "Evrei II, 2-10; Efeseni II,",
+    "apostol_versete": "14-22",
+    "apostol_text": "Ap. Evrei II, 2-10; Efeseni II, 14-22",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "X, 16-21",
+    "evanghelie_text": "Ev. Luca X, 16-21; Luca VIII, 41-56",
+    "tropar": ""
+  },
+  "2026-11-15": {
+    "sfant": "Duminica a XXV-a după Rusalii (Pilda samarineanului milostiv)",
+    "apostol_carte": "Efeseni",
+    "apostol_versete": "IV, 1-7",
+    "apostol_text": "Ap. Efeseni IV, 1-7",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "X, 25-37",
+    "evanghelie_text": "Ev. Luca X, 25-37",
+    "tropar": ""
+  },
+  "2026-11-22": {
+    "sfant": "Duminica a XXVI-a după Rusalii (Pilda bogatului căruia i-a rodit țarina)",
+    "apostol_carte": "Efeseni",
+    "apostol_versete": "V, 9-19",
+    "apostol_text": "Ap. Efeseni V, 9-19",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "XII, 16-21",
+    "evanghelie_text": "Ev. Luca XII, 16-21",
+    "tropar": ""
+  },
+  "2026-11-29": {
+    "sfant": "Duminica a XXX-a după Rusalii (Dregătorul bogat - Păzirea poruncilor)",
+    "apostol_carte": "Coloseni",
+    "apostol_versete": "III, 12-16",
+    "apostol_text": "Ap. Coloseni III, 12-16",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "XVIII, 18-27",
+    "evanghelie_text": "Ev. Luca XVIII, 18-27",
+    "tropar": ""
+  },
+  "2026-12-06": {
+    "sfant": "Duminica a XXVII-a după Rusalii (Tămăduirea femeii gârbove)",
+    "apostol_carte": "Evrei XIII, 17-21; Efeseni VI,",
+    "apostol_versete": "10-17",
+    "apostol_text": "Ap. Evrei XIII, 17-21; Efeseni VI, 10-17",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "VI, 17-23",
+    "evanghelie_text": "Ev. Luca VI, 17-23; Luca XIII, 10-17",
+    "tropar": ""
+  },
+  "2026-12-13": {
+    "sfant": "Duminica a XXVIII-a după Rusalii (a Sf. Strămoși; Pilda celor poftiți la cină)",
+    "apostol_carte": "Coloseni",
+    "apostol_versete": "III, 4-11",
+    "apostol_text": "Ap. Coloseni III, 4-11",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "XIV, 16-24",
+    "evanghelie_text": "Ev. Luca XIV, 16-24",
+    "tropar": ""
+  },
+  "2026-12-20": {
+    "sfant": "Duminica dinaintea Nașterii Domnului (a Sf. Părinți după trup ai Domnului; Genealogia Mântuitorului)",
+    "apostol_carte": "Evrei",
+    "apostol_versete": "XI, 9-10; 32-40",
+    "apostol_text": "Ap. Evrei XI, 9-10; 32-40",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "I, 1-25",
+    "evanghelie_text": "Ev. Matei I, 1-25",
+    "tropar": ""
+  },
+  "2026-12-27": {
+    "sfant": "Duminica după Nașterea Domnului (a Sf. Iosif, David Proorocul și Iacob; Fuga în Egipt)",
+    "apostol_carte": "Fapte VI, 8-15; VII, 1-5; 47-60; Galateni I,",
+    "apostol_versete": "11-19",
+    "apostol_text": "Ap. Fapte VI, 8-15; VII, 1-5; 47-60; Galateni I, 11-19",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "XXI, 33-44",
+    "evanghelie_text": "Ev. Matei XXI, 33-44; Matei II, 13-23",
+    "tropar": ""
+  },
+  "_info": "Lecționar ortodox BOR — texte sacre exacte conform Sinaxarului și Tipicului Bisericii Ortodoxe Române. Sursă: Biblia Sinodală BOR 1988/2001.",
+  "_nota": "Troparele sunt conform Mineielor BOR. Apostolul și Evanghelia urmează rânduiala zilnică a Octoihului și Mineiului."
 }
