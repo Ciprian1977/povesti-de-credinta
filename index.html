@@ -178,18 +178,22 @@
 
   <div class="separator-ortodox" aria-hidden="true">✦ ✝ ✦</div>
 
-  <!-- 3. RUGĂCIUNEA ZILEI -->
+  <!-- 3. RUGĂCIUNEA ZILEI — Preview dinamic + buton Hub -->
   <section aria-labelledby="titlu-rugaciune">
     <h2 class="sectiune-titlu">🙏 Rugăciunea zilei</h2>
     <div class="card-rugaciune">
       <div class="rugaciune-titlu" id="rugaciune-titlu">Rugăciunea dimineții</div>
-      <p class="rugaciune-text" id="rugaciune-text">Se încarcă...</p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+      <p class="rugaciune-text" id="rugaciune-text" style="font-size:19px;line-height:1.7;color:#2c2c2c;text-align:justify;padding:0 4px">Se încarcă...</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
         <button class="btn-copiere" onclick="copieRugaciune()">📋 Copiază</button>
         <button class="btn-copiere btn-wa" onclick="shareWhatsApp(document.getElementById('rugaciune-text').textContent)">
           💬 Trimite pe WhatsApp
         </button>
       </div>
+      <a id="btn-rugaciune-completa" href="/rugaciunea-zilei/vineri" data-ruta="/rugaciunea-zilei/vineri"
+         style="display:block;margin-top:16px;padding:14px 20px;background:linear-gradient(135deg,#6b1b2b,#4a0e17);color:#f5e6c8;text-align:center;border-radius:12px;text-decoration:none;font-size:1rem;font-weight:600;letter-spacing:0.3px;box-shadow:0 4px 14px rgba(107,27,43,0.25)">
+        🙏 Citește Rugăciunea Completă
+      </a>
     </div>
   </section>
 
