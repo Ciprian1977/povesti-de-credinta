@@ -2,83 +2,289 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- PAGINI PRINCIPALE -->
+  <!-- ═══════════════════════════════════════════════════════════
+       PAGINI PRINCIPALE — prioritate maximă, actualizare zilnică
+       ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://povestidecredinta.ro/</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ro" href="https://povestidecredinta.ro/"/>
   </url>
 
+  <!-- ═══════════════════════════════════════════════════════════
+       CONȚINUT ZILNIC — sfântul, liturghia, predica
+       ═══════════════════════════════════════════════════════════ -->
   <url>
-    <loc>https://povestidecredinta.ro/calendar.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <loc>https://povestidecredinta.ro/sfantul-zilei/</loc>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/sinaxarul-zilei/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/evanghelia-zilei/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/apostolul-zilei/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/predica-zilei/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/calendar-ortodox-azi/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
   </url>
 
+  <!-- ═══════════════════════════════════════════════════════════
+       RUTE SPA — conținut dinamic din index.html
+       ═══════════════════════════════════════════════════════════ -->
+  <url>
+    <loc>https://povestidecredinta.ro/sinaxar</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/sfintii-zilei</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/apostolul-zilei</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/evanghelia-zilei</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/predica-zilei</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       RUGĂCIUNILE ZILEI — hub + 7 subpagini (câte una per zi)
+       ═══════════════════════════════════════════════════════════ -->
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciunea-zilei</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciunea-zilei/luni</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciunea-zilei/marti</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciunea-zilei/miercuri</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciunea-zilei/joi</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciunea-zilei/vineri</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciunea-zilei/sambata</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciunea-zilei/duminica</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       RUGĂCIUNI — pagina hub + 12 rugăciuni individuale
+       ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://povestidecredinta.ro/rugaciuni.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciuni/rugaciunea-diminetii/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciuni/rugaciunea-serii/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciuni/tatal-nostru/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciuni/rugaciunea-lui-iisus/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciuni/catre-maica-domnului/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciuni/pentru-bolnavi/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciuni/pentru-morti/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciuni/de-multumire/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciuni/inainte-de-masa/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciuni/dupa-masa/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciuni/pentru-calatorie/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://povestidecredinta.ro/rugaciuni/pentru-copii/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
   </url>
 
+  <!-- ═══════════════════════════════════════════════════════════
+       CALENDAR, ACATISTE, PRICESNE, POSTURI
+       ═══════════════════════════════════════════════════════════ -->
+  <url>
+    <loc>https://povestidecredinta.ro/calendar.html</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
   <url>
     <loc>https://povestidecredinta.ro/acatiste.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.85</priority>
   </url>
-
   <url>
     <loc>https://povestidecredinta.ro/pricesne.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.80</priority>
   </url>
-
   <url>
     <loc>https://povestidecredinta.ro/posturi.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.80</priority>
   </url>
 
+  <!-- ═══════════════════════════════════════════════════════════
+       PAGINI INFORMATIVE
+       ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://povestidecredinta.ro/faq.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.75</priority>
   </url>
-
   <url>
     <loc>https://povestidecredinta.ro/despre.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.60</priority>
   </url>
-
   <url>
     <loc>https://povestidecredinta.ro/contact.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.55</priority>
   </url>
 
+  <!-- ═══════════════════════════════════════════════════════════
+       PAGINI LEGALE — prioritate minimă
+       ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://povestidecredinta.ro/politica-confidentialitate.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.30</priority>
   </url>
-
   <url>
     <loc>https://povestidecredinta.ro/politica-cookies.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.30</priority>
   </url>
 
 </urlset>
