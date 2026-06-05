@@ -27,7 +27,7 @@ async function incarcaDateSupabase(dataStr = null) {
 
   try {
     const response = await fetch(
-      `${SUPABASE_URL}/rest/v1/zile_ortodoxe?data=eq.${dataStr}&limit=1`,
+      `${SUPABASE_URL}/rest/v1/zile_ortodoxe?data_calendaristica=eq.${dataStr}&limit=1`,
       {
         headers: {
           'apikey': SUPABASE_ANON_KEY,
