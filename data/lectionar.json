@@ -1,180 +1,256 @@
 {
   "_info": "Lecționar ortodox BOR — texte sacre exacte conform Sinaxarului și Tipicului Bisericii Ortodoxe Române. Sursă: Biblia Sinodală BOR 1988/2001.",
   "_nota": "Troparele sunt conform Mineielor BOR. Apostolul și Evanghelia urmează rânduiala zilnică a Octoihului și Mineiului.",
-
   "01-01": {
-    "apostol_carte": "Coloseni", "apostol_versete": "2:8-12",
+    "apostol_carte": "Coloseni",
+    "apostol_versete": "2:8-12",
     "apostol_text": "Fraților, luați seama să nu vă fure mințile cineva cu filozofia și cu deșarta înșelăciune din predania omenească, după stihiile lumii și nu după Hristos. Căci în El locuiește trupește toată plinătatea Dumnezeirii. Și voi sunteți plini în El, Care este capul oricărei domnii și stăpânii. În El ați fost și tăiați împrejur cu tăiere împrejur nefăcută de mână, prin dezbrăcarea de trupul cărnii, în tăierea împrejur a lui Hristos. Înmormântați cu El prin botez, cu El ați și înviat prin credința în lucrarea lui Dumnezeu, Care L-a înviat pe El din morți.",
-    "evanghelie_carte": "Luca", "evanghelie_versete": "2:20-21, 40-52",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "2:20-21, 40-52",
     "evanghelie_text": "În vremea aceea, păstorii s-au întors, slăvind și lăudând pe Dumnezeu pentru toate câte auziseră și văzuseră, precum li se spusese. Și după ce s-au împlinit opt zile, ca să-L taie împrejur pe Prunc, I-au pus numele Iisus, cum fusese numit de înger mai înainte de a Se zămisli în pântece. Iar Pruncul creștea și Se întărea cu duhul, umplându-Se de înțelepciune, și harul lui Dumnezeu era asupra Lui. Și părinții Lui mergeau în fiecare an la Ierusalim, la sărbătoarea Paștilor.",
     "tropar": "Glasul 1: Bunătatea Ta cea negrăită, Hristoase Dumnezeule, și a Ta nemăsurată iubire de oameni, cu care ai binevoit a Te întrupa pentru noi, nu au lăsat pe Vasile, robul Tău, să se depărteze de la Tine; ci l-ai luminat pe el cu darurile Tale cele bogate. Roagă-te pentru noi, Sfinte Ierarhe Vasile."
   },
-
   "01-06": {
-    "apostol_carte": "Tit", "apostol_versete": "2:11-14; 3:4-7",
+    "apostol_carte": "Tit",
+    "apostol_versete": "2:11-14; 3:4-7",
     "apostol_text": "Iubite Tite, harul lui Dumnezeu, mântuitor pentru toți oamenii, s-a arătat, învățându-ne pe noi să lepădăm fărădelegea și poftele lumești și să trăim în veacul de acum cu înțelepciune, cu dreptate și cu evlavie, așteptând fericita nădejde și arătarea slavei marelui Dumnezeu și Mântuitorului nostru Iisus Hristos. El S-a dat pe Sine pentru noi, ca să ne izbăvească de toată fărădelegea și să-Și curățească Lui un popor ales, râvnitor de fapte bune. Dar când s-a arătat bunătatea lui Dumnezeu, Mântuitorul nostru, și iubirea Lui de oameni, nu din faptele cele întru dreptate, săvârșite de noi, ci după a Lui îndurare, El ne-a mântuit, prin baia nașterii celei de a doua și prin înnoirea Duhului Sfânt, pe Care L-a vărsat peste noi din belșug, prin Iisus Hristos, Mântuitorul nostru.",
-    "evanghelie_carte": "Matei", "evanghelie_versete": "3:13-17",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "3:13-17",
     "evanghelie_text": "În vremea aceea, a venit Iisus din Galileea la Iordan, la Ioan, ca să fie botezat de el. Ioan însă Îl oprea, zicând: Eu am trebuință să fiu botezat de Tine, și Tu vii la mine? Și răspunzând, Iisus a zis către el: Lasă acum, că așa se cuvine nouă să împlinim toată dreptatea. Atunci L-a lăsat. Și botezându-Se Iisus, îndată a ieșit din apă și iată cerurile s-au deschis și a văzut Duhul lui Dumnezeu coborând ca un porumbel și venind peste El. Și iată glas din ceruri zicând: Acesta este Fiul Meu cel iubit întru Care am binevoit.",
     "tropar": "Glasul 1: Când Te-ai botezat Tu în Iordan, Doamne, închinarea Treimii s-a arătat; că glasul Părintelui a mărturisit Ție, Fiu iubit pe Tine numindu-Te, și Duhul în chip de porumbel a adeverit întărirea cuvântului. Cel ce Te-ai arătat, Hristoase Dumnezeule, și lumea ai luminat, slavă Ție."
   },
-
   "01-07": {
-    "apostol_carte": "Fapte", "apostol_versete": "19:1-8",
+    "apostol_carte": "Fapte",
+    "apostol_versete": "19:1-8",
     "apostol_text": "În zilele acelea, pe când Apolo era în Corint, Pavel, trecând prin ținuturile de sus, a venit la Efes și, găsind acolo niște ucenici, le-a zis: Primit-ați voi Duhul Sfânt când ați crezut? Iar ei i-au răspuns: Nici n-am auzit dacă este Duh Sfânt. Și el a zis: Deci cu ce botez v-ați botezat? Ei au răspuns: Cu botezul lui Ioan. Iar Pavel a zis: Ioan a botezat cu botezul pocăinței, spunând poporului să creadă în Cel ce vine după el, adică în Iisus Hristos. Auzind ei acestea, s-au botezat în numele Domnului Iisus. Și punând Pavel mâinile peste ei, Duhul Sfânt a venit asupra lor și grăiau în limbi și proroceau.",
-    "evanghelie_carte": "Ioan", "evanghelie_versete": "1:29-34",
+    "evanghelie_carte": "Ioan",
+    "evanghelie_versete": "1:29-34",
     "evanghelie_text": "În vremea aceea, a văzut Ioan pe Iisus venind către el și a zis: Iată Mielul lui Dumnezeu, Cel ce ridică păcatul lumii. Acesta este despre Care eu am zis: După mine vine un bărbat Care a fost înaintea mea, fiindcă mai înainte de mine era. Și eu nu-L știam, dar ca să fie arătat lui Israel, de aceea am venit eu botezând cu apă. Și a mărturisit Ioan, zicând: Am văzut Duhul coborând ca un porumbel din cer și a rămas peste El. Și eu nu-L știam, dar Cel ce m-a trimis să botez cu apă, Acela mi-a zis: Peste Care vei vedea Duhul coborând și rămânând peste El, Acela este Cel ce botează cu Duh Sfânt. Și eu am văzut și am mărturisit că Acesta este Fiul lui Dumnezeu.",
     "tropar": "Glasul 2: Pomenirea dreptului cu laude; iar ție îți este de ajuns mărturia Domnului, Înaintemergătorule; că te-ai arătat cu adevărat și mai mare decât prorocii, că ai învrednicit a boteza în ape pe Cel propovăduit. Drept aceea, pentru adevăr luptând, bucurându-te, ai binevestit și celor din iad pe Dumnezeu Cel arătat în trup, Cel ce a ridicat păcatul lumii și ne-a dăruit nouă mare milă."
   },
-
   "01-17": {
-    "apostol_carte": "Evrei", "apostol_versete": "13:17-21",
+    "apostol_carte": "Evrei",
+    "apostol_versete": "13:17-21",
     "apostol_text": "Fraților, ascultați pe mai-marii voștri și vă supuneți lor, fiindcă ei priveghează pentru sufletele voastre, ca unii care vor să dea socoteală, ca să facă aceasta cu bucurie, nu suspinând; căci aceasta nu v-ar fi de folos. Rugați-vă pentru noi; căci suntem încredințați că avem cuget bun, dorind să ne purtăm bine în toate. Și vă rog cu atât mai mult să faceți aceasta, ca să vi se dea înapoi mai curând. Iar Dumnezeul păcii, Care a adus înapoi din morți pe Marele Păstor al oilor, cu sângele legământului celui veșnic, pe Domnul nostru Iisus Hristos, să vă întărească în tot lucrul bun, ca să faceți voia Lui, lucrând în voi ceea ce este bine plăcut înaintea Lui, prin Iisus Hristos, Căruia fie slava în vecii vecilor. Amin.",
-    "evanghelie_carte": "Luca", "evanghelie_versete": "6:17-23",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "6:17-23",
     "evanghelie_text": "În vremea aceea, Iisus a coborât cu cei doisprezece și a stat la loc șes. Și era mulțime multă de ucenici ai Lui și mulțime mare de popor din toată Iudeea și din Ierusalim și de pe litoralul Tirului și al Sidonului, care veniseră să-L asculte și să se vindece de bolile lor. Și cei chinuiți de duhuri necurate se vindecau. Și toată mulțimea căuta să se atingă de El, că putere ieșea din El și-i vindeca pe toți. Și El, ridicând ochii Săi spre ucenicii Săi, zicea: Fericiți voi cei săraci, că a voastră este împărăția lui Dumnezeu. Fericiți voi cei ce flămânziți acum, că vă veți sătura. Fericiți voi cei ce plângeți acum, că veți râde. Fericiți veți fi când oamenii vă vor urî pe voi și vă vor izgoni dintre ei și vă vor ocărî și vor lepăda numele vostru ca rău, din cauza Fiului Omului. Bucurați-vă în ziua aceea și vă veseliți, că iată plata voastră multă este în cer.",
     "tropar": "Glasul 4: Cel ce ai petrecut în pustie cu îngerii, și în lume ai întors pe mulți la pocăință, Cuvioase Antonie, cu rugăciunile tale mântuiește sufletele noastre."
   },
-
   "01-30": {
-    "apostol_carte": "Evrei", "apostol_versete": "13:7-16",
+    "apostol_carte": "Evrei",
+    "apostol_versete": "13:7-16",
     "apostol_text": "Fraților, aduceți-vă aminte de mai-marii voștri, care v-au grăit vouă cuvântul lui Dumnezeu; priviți cu luare aminte cum și-au încheiat viața și urmați-le credința. Iisus Hristos, ieri și azi și în veci, este același. Nu vă lăsați atrași de învățături străine și felurite; căci bine este să întărești inima cu har, nu cu mâncăruri, care n-au adus nici un folos celor ce s-au ținut de ele. Avem un altar din care n-au dreptul să mănânce cei ce slujesc cortului. Căci trupurile acelor animale, al căror sânge este adus de arhiereu în sfânta sfintelor pentru păcat, sunt arse afară din tabără. De aceea și Iisus, ca să sfințească poporul cu propriul Său sânge, a pătimit afară din poartă. Să ieșim deci la El, afară din tabără, luând asupra noastră ocara Lui. Că n-avem aici cetate stătătoare, ci o căutăm pe aceea ce va să fie. Prin El să aducem totdeauna lui Dumnezeu jertfă de laudă, adică rodul buzelor care mărturisesc numelui Lui. Iar binefacerea și împărtășirea nu le uitați, căci lui Dumnezeu unele ca acestea jertfe Îi sunt plăcute.",
-    "evanghelie_carte": "Matei", "evanghelie_versete": "5:14-19",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "5:14-19",
     "evanghelie_text": "Zis-a Domnul: Voi sunteți lumina lumii; nu poate o cetate să se ascundă, stând pe vârf de munte. Nici nu aprind făclie și o pun sub obroc, ci în sfeșnic, și luminează tuturor celor din casă. Așa să lumineze lumina voastră înaintea oamenilor, ca să vadă faptele voastre cele bune și să slăvească pe Tatăl vostru Cel din ceruri. Să nu socotiți că am venit să stric Legea sau Prorocii; n-am venit să stric, ci să împlinesc. Căci adevărat zic vouă: Înainte de a trece cerul și pământul, o iotă sau o cirtă din Lege nu va trece, până ce se vor împlini toate. Deci cel ce va strica una din aceste porunci mici și va învăța pe oameni așa, mic se va chema în împărăția cerurilor; iar cel ce va face și va învăța, acesta mare se va chema în împărăția cerurilor.",
     "tropar": "Glasul 4: Și părtaș obiceiurilor și următor scaunelor Apostolilor fiind, lucrare ai aflat, de Dumnezeu insuflate, spre suirea privirii la cele înalte. Pentru aceasta, cuvântul adevărului drept învățând și cu credință răbdând până la sânge, Sfinte Ierarhe Grigorie, roagă-te lui Hristos Dumnezeu să mântuiască sufletele noastre."
   },
-
   "02-02": {
-    "apostol_carte": "Evrei", "apostol_versete": "7:7-17",
+    "apostol_carte": "Evrei",
+    "apostol_versete": "7:7-17",
     "apostol_text": "Fraților, fără nici o îndoială, cel mai mic este binecuvântat de cel mai mare. Și aici oameni muritori primesc zeciuieli, dar acolo unul despre care se mărturisește că trăiește. Și ca să spun astfel, prin Avraam a dat zeciuială și Levi, cel ce primește zeciuieli; căci el era încă în coapsele tatălui său, când l-a întâmpinat Melhisedec. Deci, dacă desăvârșirea ar fi fost prin preoția levitică, căci sub ea a primit poporul Legea, ce nevoie mai era să se ridice un alt preot după rânduiala lui Melhisedec și să nu fie numit după rânduiala lui Aaron? Fiindcă dacă se schimbă preoția, neapărat trebuie să se schimbe și Legea. Căci Cel despre Care se spun acestea este din altă seminție, din care nimeni n-a slujit altarului. Căci este limpede că Domnul nostru a răsărit din Iuda, seminție despre care Moise n-a spus nimic în legătură cu preoția. Și aceasta este și mai limpede dacă se ridică un alt preot după asemănarea lui Melhisedec, Care n-a devenit preot după legea unei porunci trupești, ci după puterea unei vieți nepieritoare. Căci i se mărturisește: Tu ești preot în veac după rânduiala lui Melhisedec.",
-    "evanghelie_carte": "Luca", "evanghelie_versete": "2:22-40",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "2:22-40",
     "evanghelie_text": "În vremea aceea, când s-au împlinit zilele curățirii lor, după Legea lui Moise, au adus Pruncul la Ierusalim ca să-L pună înaintea Domnului, precum este scris în Legea Domnului: Tot cel întâi-născut de parte bărbătească să fie închinat Domnului, și să dea jertfă, după cum s-a zis în Legea Domnului: o pereche de turturele sau doi pui de porumbel. Și iată era în Ierusalim un om cu numele Simeon; și omul acesta era drept și temător de Dumnezeu, așteptând mângâierea lui Israel, și Duhul Sfânt era asupra lui. Și lui i se vestise de către Duhul Sfânt că nu va vedea moartea până ce nu va vedea pe Hristosul Domnului. Și a venit, în Duh, la templu. Și când părinții au adus înăuntru pe Pruncul Iisus, ca să facă pentru El după obiceiul Legii, el L-a primit în brațele sale și a binecuvântat pe Dumnezeu și a zis: Acum slobozește pe robul Tău, Stăpâne, după cuvântul Tău, în pace. Că ochii mei văzură mântuirea Ta, pe care ai gătit-o înaintea feței tuturor popoarelor: lumină spre descoperirea neamurilor și slavă poporului Tău Israel.",
     "tropar": "Glasul 1: Bucură-te, ceea ce ești plină de har, Născătoare de Dumnezeu Fecioară, că din tine a răsărit Soarele dreptății, Hristos Dumnezeul nostru, luminând pe cei din întuneric. Veselește-te și tu, bătrâne drepte, primind în brațe pe Izbăvitorul sufletelor noastre, Cel ce ne dăruiește nouă și Învierea."
   },
-
   "02-10": {
-    "apostol_carte": "1 Corinteni", "apostol_versete": "12:27-13:8",
+    "apostol_carte": "1 Corinteni",
+    "apostol_versete": "12:27-13:8",
     "apostol_text": "Fraților, voi sunteți trupul lui Hristos și mădulare fiecare în parte. Și pe unii i-a pus Dumnezeu în Biserică: întâi apostoli, al doilea proroci, al treilea învățători, apoi pe cei ce au darul de a face minuni, apoi darurile vindecărilor, ajutorările, cârmuirile, felurile limbilor. Oare toți sunt apostoli? Oare toți sunt proroci? Oare toți sunt învățători? Oare toți au puterea de a face minuni? Oare toți au darurile vindecărilor? Oare toți vorbesc în limbi? Oare toți tâlcuiesc? Râvniți însă la darurile cele mai bune. Și vă arăt o cale care le întrece pe toate. De aș grăi în limbile oamenilor și ale îngerilor, iar dragoste nu am, făcutu-m-am aramă sunătoare și chimval răsunător. Și de aș avea darul prorociei și tainele toate le-aș cunoaște și orice știință, și de aș avea atâta credință încât să mut și munții, iar dragoste nu am, nimic nu sunt. Dragostea îndelung rabdă; dragostea este binevoitoare, dragostea nu pizmuiește, nu se laudă, nu se trufește.",
-    "evanghelie_carte": "Ioan", "evanghelie_versete": "15:17-16:2",
+    "evanghelie_carte": "Ioan",
+    "evanghelie_versete": "15:17-16:2",
     "evanghelie_text": "Zis-a Domnul ucenicilor Săi: Aceasta vă poruncesc: să vă iubiți unul pe altul. Dacă vă urăște pe voi lumea, să știți că pe Mine mai înainte decât pe voi M-a urât. Dacă ați fi din lume, lumea ar iubi ce este al său; dar pentru că nu sunteți din lume, ci Eu v-am ales pe voi din lume, de aceea lumea vă urăște. Aduceți-vă aminte de cuvântul pe care vi l-am spus: Nu este sluga mai mare decât stăpânul său. Dacă pe Mine M-au prigonit, și pe voi vă vor prigoni; dacă au păzit cuvântul Meu, și pe al vostru îl vor păzi. Dar toate acestea vi le vor face vouă din cauza numelui Meu, fiindcă ei nu cunosc pe Cel ce M-a trimis.",
     "tropar": "Glasul 4: Mucenicul Tău, Doamne, Haralambie, întru nevoinţa sa, cununa nestricăciunii a dobândit de la Tine, Dumnezeul nostru. Că având puterea Ta, pe chinuitori a învins; zdrobit-a şi ale demonilor neputincioase îndrăzniri. Pentru rugăciunile lui, mântuieşte sufletele noastre."
   },
-
   "03-09": {
-    "apostol_carte": "Evrei", "apostol_versete": "11:32-40",
+    "apostol_carte": "Evrei",
+    "apostol_versete": "11:32-40",
     "apostol_text": "Fraților, ce voi mai zice? Căci timpul nu-mi va ajunge ca să vorbesc despre Ghedeon, despre Barac, despre Samson, despre Ieftae, despre David, despre Samuel și despre proroci, care prin credință au biruit împărății, au făcut dreptate, au dobândit făgăduințele, au astupat gurile leilor, au stins puterea focului, au scăpat de ascuțișul sabiei, s-au întărit din slăbiciune, s-au făcut viteji în război, au întors taberele vrăjmașilor pe fugă. Femei și-au primit morții lor prin înviere; alții au fost chinuiți, neprimind izbăvirea, ca să dobândească o mai bună înviere. Alții au suferit batjocuri și biciuiri, ba chiar lanțuri și închisoare. Au fost uciși cu pietre, au fost puși la cazne, au fost tăiați cu fierăstrăul, au murit uciși cu sabia, au pribegit în piei de oaie și în piei de capră, lipsiți, strâmtorați, rău tratați. Ei, de care lumea nu era vrednică, au rătăcit în pustii și în munți și în peșteri și în crăpăturile pământului. Și toți aceștia, mărturisiți prin credință, n-au primit făgăduința, pentru că Dumnezeu rânduise pentru noi ceva mai bun, ca ei să nu ia fără noi desăvârșirea.",
-    "evanghelie_carte": "Matei", "evanghelie_versete": "20:1-16",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "20:1-16",
     "evanghelie_text": "Zis-a Domnul această pildă: Împărăția cerurilor se aseamănă cu un om, stăpân al casei, care a ieșit dis-de-dimineață să angajeze lucrători la via sa. Și învoind cu lucrătorii cu câte un dinar pe zi, i-a trimis la vie. Și ieșind pe la ceasul al treilea, a văzut pe alții stând în piață fără lucru. Și le-a zis: Mergeți și voi în via mea și vă voi da ce va fi cu dreptul. Iar ei s-au dus. Iarăși ieșind pe la ceasul al șaselea și al nouălea, a făcut tot astfel. Iar pe la ceasul al unsprezecelea, ieșind, a găsit pe alții stând și le-a zis: De ce stați aici toată ziua fără lucru? Ei i-au zis: Fiindcă nimeni nu ne-a tocmit. El le-a zis: Mergeți și voi în via mea. Iar când s-a făcut seară, stăpânul viei a zis îngrijitorului său: Cheamă pe lucrători și plătește-le simbria, începând de la cei de pe urmă până la cei dintâi.",
     "tropar": "Glasul 1: Durerea rănilor voastre a sfințit toate marginile lumii, și minunile voastre au luminat sufletele credincioșilor; ceată sfântă, oaste a lui Hristos, Sfinților patruzeci de Mucenici, rugați-vă cu deadinsul să se mântuiască sufletele noastre."
   },
-
   "03-25": {
-    "apostol_carte": "Evrei", "apostol_versete": "2:11-18",
+    "apostol_carte": "Evrei",
+    "apostol_versete": "2:11-18",
     "apostol_text": "Fraților, Cel ce sfințește și cei ce se sfințesc, dintr-Unul sunt toți; de aceea nu Se rușinează să-i numească pe ei frați, zicând: Voi vesti numele Tău fraților Mei, în mijlocul adunării Te voi lăuda. Și iarăși: Eu voi pune nădejdea în El. Și iarăși: Iată Eu și pruncii pe care Mi i-a dat Dumnezeu. Deci, de vreme ce pruncii sunt părtași sângelui și trupului, și El Însuși a fost deopotrivă părtaș la acestea, ca prin moarte să nimicească pe cel ce are puterea morții, adică pe diavolul, și să izbăvească pe aceia pe care frica morții îi ținea în robie toată viața. Căci, desigur, nu îngeri ia în ajutor, ci sămânța lui Avraam ia în ajutor. De aceea dator era întru toate să Se asemene fraților, ca să fie milostiv și credincios Arhiereu în cele către Dumnezeu, pentru curățirea păcatelor poporului. Căci prin ceea ce a pătimit El Însuși, fiind ispitit, poate și celor ce sunt ispitiți să le ajute.",
-    "evanghelie_carte": "Luca", "evanghelie_versete": "1:24-38",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "1:24-38",
     "evanghelie_text": "În zilele acelea, Elisabeta, femeia lui Zaharia, a zămislit și s-a ascuns cinci luni, zicând: Că așa mi-a făcut mie Domnul în zilele în care a binevoit să ridice ocara mea dintre oameni. Iar în luna a șasea, îngerul Gavriil a fost trimis de Dumnezeu într-o cetate din Galileea, al cărei nume era Nazaret, către o fecioară logodită cu un bărbat care se chema Iosif, din casa lui David; iar numele fecioarei era Maria. Și intrând îngerul la ea, a zis: Bucură-te, ceea ce ești plină de har, Domnul este cu tine. Binecuvântată ești tu între femei. Iar ea, văzându-l, s-a tulburat de cuvântul lui și cugeta în sine: Ce fel de salutare este aceasta? Și îngerul i-a zis: Nu te teme, Marie, căci ai aflat har la Dumnezeu. Și iată vei zămisli în pântece și vei naște fiu și vei chema numele Lui Iisus.",
     "tropar": "Glasul 4: Astăzi este începutul mântuirii noastre și arătarea tainei celei din veac; Fiul lui Dumnezeu, Fiu al Fecioarei Se face și Gavriil harul îl binevestește. Pentru aceasta și noi împreună cu el Născătoarei de Dumnezeu să-i strigăm: Bucură-te, ceea ce ești plină de har, Domnul este cu tine."
   },
-
   "04-23": {
-    "apostol_carte": "2 Timotei", "apostol_versete": "2:1-10",
+    "apostol_carte": "2 Timotei",
+    "apostol_versete": "2:1-10",
     "apostol_text": "Fiule Timotei, întărește-te în harul care este în Hristos Iisus. Și cele ce ai auzit de la mine, cu mulți martori de față, acestea le încredințează la oameni credincioși, care vor fi destoinici să învețe și pe alții. Suferă împreună cu mine, ca un bun ostaș al lui Hristos Iisus. Nici un ostaș nu se încurcă cu treburile vieții, ca să placă celui ce l-a înrolat. Și dacă se luptă cineva în întrecere, nu este încununat dacă nu s-a luptat după lege. Plugarul care se ostenește trebuie să fie cel dintâi care se bucură de roade. Înțelege ce-ți spun; căci Domnul îți va da pricepere în toate. Adu-ți aminte de Iisus Hristos, Cel înviat din morți, din sămânța lui David, după Evanghelia mea, pentru care sufăr până la lanțuri, ca un făcător de rele; dar cuvântul lui Dumnezeu nu este legat. De aceea rabd toate pentru cei aleși, ca și ei să dobândească mântuirea cea în Hristos Iisus, cu slavă veșnică.",
-    "evanghelie_carte": "Ioan", "evanghelie_versete": "15:17-16:2",
+    "evanghelie_carte": "Ioan",
+    "evanghelie_versete": "15:17-16:2",
     "evanghelie_text": "Zis-a Domnul ucenicilor Săi: Aceasta vă poruncesc: să vă iubiți unul pe altul. Dacă vă urăște pe voi lumea, să știți că pe Mine mai înainte decât pe voi M-a urât. Dacă ați fi din lume, lumea ar iubi ce este al său; dar pentru că nu sunteți din lume, ci Eu v-am ales pe voi din lume, de aceea lumea vă urăște. Aduceți-vă aminte de cuvântul pe care vi l-am spus: Nu este sluga mai mare decât stăpânul său. Dacă pe Mine M-au prigonit, și pe voi vă vor prigoni; dacă au păzit cuvântul Meu, și pe al vostru îl vor păzi. Dar toate acestea vi le vor face vouă din cauza numelui Meu, fiindcă ei nu cunosc pe Cel ce M-a trimis.",
     "tropar": "Glasul 4: Ca un eliberator al celor robiți și apărător al celor săraci, doctor al bolnavilor, luptător al împăraților, purtătorule de biruință, Mare Mucenice Gheorghe, roagă-te lui Hristos Dumnezeu să mântuiască sufletele noastre."
   },
-
   "05-21": {
-    "apostol_carte": "Galateni", "apostol_versete": "1:11-19",
+    "apostol_carte": "Galateni",
+    "apostol_versete": "1:11-19",
     "apostol_text": "Fraților, vă fac cunoscut că Evanghelia propovăduită de mine nu este după om; pentru că eu n-am primit-o de la om, nici n-am învățat-o, ci prin descoperirea lui Iisus Hristos. Ați auzit, desigur, de purtarea mea de altădată în iudaism: că prigoneam peste măsură Biserica lui Dumnezeu și o pustiiam și că întreceam în iudaism pe mulți din neamul meu, de o vârstă cu mine, arătând mult mai mult zel pentru tradițiile părinților mei. Dar când Cel ce m-a ales din pântecele maicii mele și m-a chemat prin harul Său a binevoit să descopere în mine pe Fiul Său, ca să-L binevestesc între neamuri, îndată n-am cerut sfat de la trup și sânge, nici nu m-am suit la Ierusalim, la apostolii cei dinaintea mea, ci m-am dus în Arabia și m-am întors iarăși la Damasc. Apoi, după trei ani, m-am suit la Ierusalim, să-l cunosc pe Petru, și am rămas la el cincisprezece zile. Iar pe altul dintre apostoli n-am văzut, fără numai pe Iacov, fratele Domnului.",
-    "evanghelie_carte": "Ioan", "evanghelie_versete": "19:25-27; 21:24-25",
+    "evanghelie_carte": "Ioan",
+    "evanghelie_versete": "19:25-27; 21:24-25",
     "evanghelie_text": "În vremea aceea, stăteau lângă crucea lui Iisus mama Lui și sora mamei Lui, Maria lui Cleopa, și Maria Magdalena. Deci Iisus, văzând pe mama Sa și pe ucenicul pe care Îl iubea stând alături, a zis mamei Sale: Femeie, iată fiul tău! Apoi a zis ucenicului: Iată mama ta! Și din ceasul acela ucenicul a luat-o la sine. Acesta este ucenicul care mărturisește despre acestea și care a scris acestea și știm că mărturia lui este adevărată. Dar mai sunt și alte multe lucruri pe care le-a făcut Iisus, care, dacă s-ar fi scris cu de-amănuntul, cred că lumea aceasta n-ar cuprinde cărțile ce s-ar fi scris.",
     "tropar": "Glasul 8: Crucii Tale ne închinăm, Stăpâne, și Sfântă Învierea Ta o lăudăm și o slăvim. Că Tu ești Dumnezeul nostru, afară de Tine altul nu știm, numele Tău numim. Veniți toți credincioșii să ne închinăm Sfintei Învierii lui Hristos, că iată a venit prin Cruce bucurie la toată lumea. Totdeauna binecuvântând pe Domnul, lăudăm Învierea Lui, că răstignire răbdând pentru noi, cu moartea pe moarte a stricat."
   },
-
   "06-24": {
-    "apostol_carte": "Romani", "apostol_versete": "13:11-14:4",
+    "apostol_carte": "Romani",
+    "apostol_versete": "13:11-14:4",
     "apostol_text": "Fraților, știind că este ceasul să vă treziți din somn; căci acum mântuirea este mai aproape de noi decât atunci când am crezut. Noaptea e pe sfârșite; ziua s-a apropiat. Să lepădăm deci lucrurile întunericului și să ne îmbrăcăm cu armele luminii. Să umblăm cuviincios, ca ziua: nu în ospeții și în beții, nu în desfrânări și în fapte de rușine, nu în ceartă și în pizmă. Ci îmbrăcați-vă în Domnul Iisus Hristos și grija de trup să n-o faceți spre pofte. Pe cel slab în credință primiți-l, dar nu spre judecarea gândurilor. Unul crede că poate să mănânce de toate; cel slab mănâncă legume. Cel ce mănâncă să nu-l disprețuiască pe cel ce nu mănâncă; iar cel ce nu mănâncă să nu-l judece pe cel ce mănâncă, căci Dumnezeu l-a primit. Tu cine ești de judeci pe sluga altuia? El stă sau cade înaintea Stăpânului său.",
-    "evanghelie_carte": "Luca", "evanghelie_versete": "1:1-25, 57-68, 76, 80",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "1:1-25, 57-68, 76, 80",
     "evanghelie_text": "Fiindcă mulți s-au apucat să alcătuiască o istorisire despre faptele deplin adeverite între noi, după cum ni le-au predat cei ce le-au văzut de la început cu ochii lor și au fost slujitori ai Cuvântului, am găsit și eu cu cale, preaputernice Teofile, după ce am cercetat cu de-amănuntul toate de la obârșie, să ți le scriu pe rând, ca să cunoști temeinicia cuvintelor în care ai fost învățat. Pe vremea lui Irod, regele Iudeii, era un preot cu numele Zaharia, din ceata lui Abia; femeia lui era din fiicele lui Aaron și se chema Elisabeta. Amândoi erau drepți înaintea lui Dumnezeu, umblând fără prihană în toate poruncile și rânduielile Domnului. Dar nu aveau copii, fiindcă Elisabeta era stearpă și amândoi erau înaintați în vârstă.",
     "tropar": "Glasul 4: Proorocule și Înaintemergătorule al venirii lui Hristos, vrednic a te lăuda pe tine nu putem noi cei ce cu dragoste te cinstim; că nașterea ta cea de cinste și nunta cea mai presus de fire a maicii tale și binevestirea îngerului au dezlegat neputința de a grăi a tatălui tău, vestind lumii pe Fiul lui Dumnezeu."
   },
-
   "06-29": {
-    "apostol_carte": "2 Corinteni", "apostol_versete": "11:21-12:9",
+    "apostol_carte": "2 Corinteni",
+    "apostol_versete": "11:21-12:9",
     "apostol_text": "Fraților, în ceea ce îndrăznește cineva, vorbesc în nebunie, îndrăznesc și eu. Sunt ei evrei? Și eu sunt. Sunt ei israeliți? Și eu sunt. Sunt ei sămânța lui Avraam? Și eu sunt. Sunt ei slujitori ai lui Hristos? Vorbesc ca un nebun: eu mai mult! În osteneli mai mult, în temniță mai mult, în bătăi peste măsură, la moarte adeseori. De la iudei am primit de cinci ori câte patruzeci de lovituri fără una. De trei ori am fost bătut cu vergi, o dată am fost bătut cu pietre, de trei ori am suferit naufragiu, o noapte și o zi am petrecut în largul mării. Adeseori în călătorii, în primejdii de ape, în primejdii de tâlhari, în primejdii de la neamul meu, în primejdii de la păgâni, în primejdii în cetăți, în primejdii în pustie, în primejdii pe mare, în primejdii între frații mincinoși.",
-    "evanghelie_carte": "Matei", "evanghelie_versete": "16:13-19",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "16:13-19",
     "evanghelie_text": "În vremea aceea, venind Iisus în părțile Cezareei lui Filip, îi întreba pe ucenicii Săi, zicând: Cine zic oamenii că este Fiul Omului? Iar ei au răspuns: Unii, Ioan Botezătorul; alții, Ilie; alții, Ieremia sau unul dintre proroci. Și El le-a zis: Dar voi cine ziceți că sunt? Răspunzând Simon Petru, a zis: Tu ești Hristosul, Fiul lui Dumnezeu Celui viu. Iar Iisus, răspunzând, i-a zis: Fericit ești Simone, fiul lui Iona, că nu trup și sânge ți-a descoperit ție aceasta, ci Tatăl Meu, Cel din ceruri. Și Eu îți zic că tu ești Petru și pe această piatră voi zidi Biserica Mea și porțile iadului nu o vor birui. Și îți voi da cheile împărăției cerurilor și orice vei lega pe pământ va fi legat și în ceruri, și orice vei dezlega pe pământ va fi dezlegat și în ceruri.",
     "tropar": "Glasul 4: Ca unor mai-mari între Apostoli și lumii învățători, pe stăpânul tuturor rugați-l, Doamne, pace lumii să dăruiască și sufletelor noastre mare milă."
   },
-
   "08-06": {
-    "apostol_carte": "2 Petru", "apostol_versete": "1:10-19",
+    "apostol_carte": "2 Petru",
+    "apostol_versete": "1:10-19",
     "apostol_text": "Iubiților, sârguiți-vă cu atât mai mult să faceți statornică chemarea și alegerea voastră, căci dacă faceți acestea, nu veți greși niciodată. Căci astfel vi se va da din belșug intrare în împărăția veșnică a Domnului și Mântuitorului nostru Iisus Hristos. De aceea nu voi întârzia să vă amintesc totdeauna de acestea, cu toate că le știți și sunteți întăriți în adevărul de față. Socotesc că este drept, atâta timp cât sunt în acest cort, să vă trezesc prin amintire, știind că dezbrăcarea de cortul meu va veni curând, după cum mi-a arătat și Domnul nostru Iisus Hristos. Și mă voi sili ca, după plecarea mea, voi să puteți oricând să vă aduceți aminte de acestea. Căci nu am urmat unor basme meșteșugit alcătuite, când v-am făcut cunoscut puterea și venirea Domnului nostru Iisus Hristos, ci am văzut cu ochii noștri mărirea Lui.",
-    "evanghelie_carte": "Matei", "evanghelie_versete": "17:1-9",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "17:1-9",
     "evanghelie_text": "În vremea aceea, Iisus a luat cu Sine pe Petru și pe Iacov și pe Ioan, fratele lui, și i-a dus într-un munte înalt, de o parte. Și S-a schimbat la față înaintea lor și a strălucit fața Lui ca soarele, iar veșmintele Lui s-au făcut albe ca lumina. Și iată, Moise și Ilie s-au arătat lor, vorbind cu El. Și răspunzând, Petru a zis lui Iisus: Doamne, bine este să fim noi aici; dacă voiești, voi face aici trei colibe: Ție una, și lui Moise una, și lui Ilie una. Vorbind el încă, iată un nor luminos i-a umbrit pe ei și iată glas din nor zicând: Acesta este Fiul Meu Cel iubit, în Care am binevoit; pe Acesta ascultați-L. Și auzind, ucenicii au căzut cu fața la pământ și s-au înfricoșat foarte. Și Iisus S-a apropiat, i-a atins și le-a zis: Sculați-vă și nu vă temeți. Și ridicând ochii lor, nu au văzut pe nimeni, decât numai pe Iisus singur.",
     "tropar": "Glasul 7: Schimbatu-Te-ai la față în munte, Hristoase Dumnezeule, arătând ucenicilor Tăi slava Ta pe cât li se putea; strălucească și nouă, păcătoșilor, lumina Ta cea pururea fiitoare, pentru rugăciunile Născătoarei de Dumnezeu, Dătătorule de lumină, slavă Ție."
   },
-
   "08-15": {
-    "apostol_carte": "Filipeni", "apostol_versete": "2:5-11",
+    "apostol_carte": "Filipeni",
+    "apostol_versete": "2:5-11",
     "apostol_text": "Fraților, să aveți în voi gândul acesta, care era și în Hristos Iisus, Care, Dumnezeu fiind în chip, n-a socotit o știrbire a fi El întocmai cu Dumnezeu, ci S-a deșertat pe Sine, chip de rob luând, făcându-Se asemenea oamenilor, și la înfățișare aflându-Se ca un om, S-a smerit pe Sine, ascultător făcându-Se până la moarte, și încă moarte pe cruce. Pentru aceea, și Dumnezeu L-a preaînălțat și I-a dăruit Lui nume, care este mai presus de orice nume; ca întru numele lui Iisus tot genunchiul să se plece, al celor cerești și al celor pământești și al celor de dedesubt. Și să mărturisească toată limba că Domn este Iisus Hristos, întru slava lui Dumnezeu-Tatăl.",
-    "evanghelie_carte": "Luca", "evanghelie_versete": "10:38-42; 11:27-28",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "10:38-42; 11:27-28",
     "evanghelie_text": "În vremea aceea, Iisus a intrat într-un sat și o femeie, cu numele Marta, L-a primit în casa ei. Și ea avea o soră ce se numea Maria, care, așezându-se la picioarele Domnului, asculta cuvântul Lui. Iar Marta se silea cu multă slujire și, apropiindu-se, a zis: Doamne, au nu-Ți pasă că sora mea m-a lăsat singură să slujesc? Spune-i deci să-mi ajute. Și răspunzând, Domnul i-a zis: Marto, Marto, te îngrijești și te frămânți pentru multe, dar un lucru trebuie: Maria și-a ales partea cea bună, care nu i se va lua. Și pe când zicea El acestea, o femeie din mulțime, ridicând glasul, I-a zis: Fericit este pântecele care Te-a purtat și fericiți sunt sânii la care ai supt! Iar El a zis: Fericiți sunt cei ce ascultă cuvântul lui Dumnezeu și-l păzesc.",
     "tropar": "Glasul 1: Întru naștere, fecioria ai păzit, întru adormire, lumea nu ai părăsit, Născătoare de Dumnezeu; mutat-te-ai la viață, Maică fiind a Vieții, și prin rugăciunile tale izbăvești din moarte sufletele noastre."
   },
-
   "09-08": {
-    "apostol_carte": "Filipeni", "apostol_versete": "2:5-11",
+    "apostol_carte": "Filipeni",
+    "apostol_versete": "2:5-11",
     "apostol_text": "Fraților, să aveți în voi gândul acesta, care era și în Hristos Iisus, Care, Dumnezeu fiind în chip, n-a socotit o știrbire a fi El întocmai cu Dumnezeu, ci S-a deșertat pe Sine, chip de rob luând, făcându-Se asemenea oamenilor, și la înfățișare aflându-Se ca un om, S-a smerit pe Sine, ascultător făcându-Se până la moarte, și încă moarte pe cruce. Pentru aceea, și Dumnezeu L-a preaînălțat și I-a dăruit Lui nume, care este mai presus de orice nume; ca întru numele lui Iisus tot genunchiul să se plece, al celor cerești și al celor pământești și al celor de dedesubt.",
-    "evanghelie_carte": "Luca", "evanghelie_versete": "10:38-42; 11:27-28",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "10:38-42; 11:27-28",
     "evanghelie_text": "În vremea aceea, Iisus a intrat într-un sat și o femeie, cu numele Marta, L-a primit în casa ei. Și ea avea o soră ce se numea Maria, care, așezându-se la picioarele Domnului, asculta cuvântul Lui. Iar Marta se silea cu multă slujire și, apropiindu-se, a zis: Doamne, au nu-Ți pasă că sora mea m-a lăsat singură să slujesc? Spune-i deci să-mi ajute. Și răspunzând, Domnul i-a zis: Marto, Marto, te îngrijești și te frămânți pentru multe, dar un lucru trebuie: Maria și-a ales partea cea bună, care nu i se va lua.",
     "tropar": "Glasul 4: Nașterea ta, Născătoare de Dumnezeu Fecioară, bucurie a vestit la toată lumea; că din tine a răsărit Soarele dreptății, Hristos Dumnezeul nostru, și dezlegând blestemul, a dat binecuvântare, și stricând moartea, ne-a dăruit nouă viață veșnică."
   },
-
   "09-14": {
-    "apostol_carte": "1 Corinteni", "apostol_versete": "1:18-24",
+    "apostol_carte": "1 Corinteni",
+    "apostol_versete": "1:18-24",
     "apostol_text": "Fraților, cuvântul crucii, pentru cei ce pier, este nebunie; iar pentru noi, cei ce ne mântuim, este puterea lui Dumnezeu. Căci scris este: Pierde-voi înțelepciunea înțelepților și știința celor pricepuți voi nimici-o. Unde este înțeleptul? Unde este cărturarul? Unde este cercetătorul acestui veac? Au n-a dovedit Dumnezeu nebună înțelepciunea lumii acesteia? Căci de vreme ce lumea, întru înțelepciunea lui Dumnezeu, n-a cunoscut prin înțelepciune pe Dumnezeu, a binevoit Dumnezeu să mântuiască pe cei ce cred prin nebunia propovăduirii. Fiindcă și iudeii cer semne, și elinii caută înțelepciune; dar noi propovăduim pe Hristos cel răstignit: pentru iudei, sminteală; pentru neamuri, nebunie; dar pentru cei chemați, și iudei și elini: pe Hristos, puterea lui Dumnezeu și înțelepciunea lui Dumnezeu.",
-    "evanghelie_carte": "Ioan", "evanghelie_versete": "19:6-11, 13-20, 25-28, 30-35",
+    "evanghelie_carte": "Ioan",
+    "evanghelie_versete": "19:6-11, 13-20, 25-28, 30-35",
     "evanghelie_text": "În vremea aceea, când L-au văzut pe Iisus arhiereii și slujitorii, au strigat zicând: Răstignește-L, răstignește-L! Pilat le-a zis: Luați-L voi și răstigniți-L, căci eu nu găsesc în El nici o vină. Iudeii i-au răspuns: Noi avem lege și după legea noastră El trebuie să moară, căci S-a făcut pe Sine Fiu al lui Dumnezeu. Deci Pilat, auzind acest cuvânt, s-a temut și mai tare. Și a intrat iarăși în pretoriu și I-a zis lui Iisus: De unde ești Tu? Dar Iisus nu i-a dat nici un răspuns. Zis-a deci Pilat: Mie nu-mi vorbești? Nu știi că am putere să Te eliberez și putere am să Te răstignesc? Iisus a răspuns: N-ai avea nici o putere asupra Mea, dacă nu ți-ar fi fost dat de sus.",
     "tropar": "Glasul 1: Mântuiește, Doamne, poporul Tău și binecuvântează moștenirea Ta, biruință binecredincioșilor creștini asupra celui potrivnic dăruiește și cu Crucea Ta păzește pe poporul Tău."
   },
-
   "10-14": {
-    "apostol_carte": "2 Timotei", "apostol_versete": "3:10-15",
+    "apostol_carte": "2 Timotei",
+    "apostol_versete": "3:10-15",
     "apostol_text": "Fiule Timotei, tu ai urmat îndeaproape învățăturii mele, purtării, hotărârii mele, credinței, îndelungii mele răbdări, dragostei, stăruinței, prigonirilor, suferințelor care mi s-au întâmplat în Antiohia, în Iconiu, în Listra; câte prigoniri am răbdat! Și din toate m-a izbăvit Domnul. Dar și toți cei ce voiesc să trăiască cucernic în Hristos Iisus vor fi prigoniți. Iar oamenii răi și amăgitori vor merge spre tot mai rău, rătăcind și rătăciți. Tu însă rămâi în cele ce ai învățat și de care ești încredințat, știind de la cine le-ai învățat și că de mic copil cunoști Sfintele Scripturi, care pot să te înțelepțească spre mântuire, prin credința cea în Hristos Iisus.",
-    "evanghelie_carte": "Luca", "evanghelie_versete": "8:5-15",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "8:5-15",
     "evanghelie_text": "Zis-a Domnul această pildă: Ieșit-a semănătorul să semene sămânța sa. Și semănând el, una a căzut lângă drum și a fost călcată în picioare și păsările cerului au mâncat-o. Și alta a căzut pe piatră și, răsărind, s-a uscat, pentru că nu avea umezeală. Și alta a căzut între spini și spinii, crescând cu ea, au înăbușit-o. Și alta a căzut pe pământ bun și, crescând, a făcut rod însutit. Acestea zicând, striga: Cine are urechi de auzit să audă! Ucenicii Lui Îl întrebau ce înseamnă pilda aceasta. El a zis: Vouă vi s-a dat să cunoașteți tainele împărăției lui Dumnezeu, iar celorlalți în pilde, ca, văzând, să nu vadă și, auzind, să nu înțeleagă.",
     "tropar": "Glasul 4: Și părtaș obiceiurilor și următor scaunelor Apostolilor fiind, lucrare ai aflat, de Dumnezeu insuflate, spre suirea privirii la cele înalte. Pentru aceasta, cuvântul adevărului drept învățând și cu credință răbdând până la sânge, Sfinte Parasceve, roagă-te lui Hristos Dumnezeu să mântuiască sufletele noastre."
   },
-
   "11-08": {
-    "apostol_carte": "Evrei", "apostol_versete": "2:2-10",
+    "apostol_carte": "Evrei",
+    "apostol_versete": "2:2-10",
     "apostol_text": "Fraților, dacă cuvântul grăit prin îngeri a fost întărit și orice călcare de lege și orice neascultare și-a primit dreapta răsplătire, cum vom scăpa noi dacă vom nesocoti o mântuire atât de mare? Ea, luând început să fie vestită prin Domnul, ne-a fost adeverită de cei ce au auzit-o, întărindu-ne și Dumnezeu mărturie, cu semne și cu minuni și cu felurite puteri și cu darurile Duhului Sfânt, împărțite după voia Sa. Căci nu îngerilor a supus El lumea care va să fie, despre care vorbim. Dar cineva a mărturisit undeva, zicând: Ce este omul că-Ți aduci aminte de el, sau fiul omului că-l cercetezi? L-ai micșorat cu puțin față de îngeri, cu slavă și cu cinste l-ai încununat și l-ai pus peste lucrul mâinilor Tale. Toate le-ai supus sub picioarele lui. Căci supunând lui toate, n-a lăsat nimic nesupus lui. Acum însă nu vedem încă toate supuse lui. Dar pe Cel ce a fost micșorat cu puțin față de îngeri, pe Iisus, Îl vedem încununat cu slavă și cu cinste pentru că a suferit moartea, pentru ca, prin harul lui Dumnezeu, să guste moartea pentru toți.",
-    "evanghelie_carte": "Luca", "evanghelie_versete": "10:16-21",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "10:16-21",
     "evanghelie_text": "Zis-a Domnul ucenicilor Săi: Cel ce vă ascultă pe voi pe Mine Mă ascultă; și cel ce se leapădă de voi se leapădă de Mine; iar cel ce se leapădă de Mine se leapădă de Cel ce M-a trimis pe Mine. Întors-au-se cei șaptezeci cu bucurie, zicând: Doamne, și demonii ni se supun în numele Tău. Și El le-a zis: Am văzut pe satana ca un fulger căzând din cer. Iată, v-am dat putere să călcați peste șerpi și peste scorpii și peste toată puterea vrăjmașului, și nimic nu vă va vătăma. Dar nu vă bucurați de aceasta, că duhurile vi se supun, ci vă bucurați că numele voastre sunt scrise în ceruri. În aceeași clipă, Iisus S-a bucurat în Duhul Sfânt și a zis: Te laud pe Tine, Tată, Doamne al cerului și al pământului, că ai ascuns acestea de cei înțelepți și pricepuți și le-ai descoperit pruncilor.",
     "tropar": "Glasul 4: Căpeteniile ostilor cerești, rugămu-vă pe voi, noi nevrednicii, ca prin rugăciunile voastre să ne acoperiți cu acoperământul aripilor slavei voastre celei netrupești, păzindu-ne pe noi, cei ce cădem cu dinadinsul și strigăm: Izbăviți-ne din nevoi, ca niște căpetenii ale puterilor celor de sus."
   },
-
   "11-30": {
-    "apostol_carte": "1 Corinteni", "apostol_versete": "4:9-16",
+    "apostol_carte": "1 Corinteni",
+    "apostol_versete": "4:9-16",
     "apostol_text": "Fraților, mi se pare că pe noi, apostolii, Dumnezeu ne-a arătat ca pe cei din urmă oameni, ca pe niște osândiți la moarte, fiindcă ne-am făcut priveliște lumii și îngerilor și oamenilor. Noi suntem nebuni pentru Hristos, voi însă înțelepți în Hristos; noi suntem slabi, voi însă tari; voi sunteți întru cinste, noi suntem întru necinste. Până în ceasul de față flămânzim și însetăm și suntem goi și suntem pălmuiți și pribegim și ne ostenim lucrând cu mâinile noastre. Ocărâți fiind, binecuvântăm; prigoniți fiind, răbdăm; huliți fiind, mângâiem; ca niște gunoaie ale lumii ne-am făcut, ca o lepădătură a tuturor, până acum. Nu ca să vă rușinez vă scriu acestea, ci ca să vă îndrept ca pe niște copii ai mei iubiți. Căci de ați avea zeci de mii de pedagogi în Hristos, totuși nu aveți mulți părinți; căci eu v-am născut în Hristos Iisus, prin Evanghelie. Vă rog deci, fiți următori ai mei.",
-    "evanghelie_carte": "Ioan", "evanghelie_versete": "1:35-51",
+    "evanghelie_carte": "Ioan",
+    "evanghelie_versete": "1:35-51",
     "evanghelie_text": "În vremea aceea, Ioan stătea cu doi dintre ucenicii săi. Și privind pe Iisus care trecea, a zis: Iată Mielul lui Dumnezeu. Și cei doi ucenici l-au auzit vorbind și au mers după Iisus. Iar Iisus, întorcându-Se și văzând că merg după El, le-a zis: Ce căutați? Ei I-au zis: Rabi, care se tâlcuiește Învățătorule, unde locuiești? El le-a zis: Veniți și vedeți. Au venit deci și au văzut unde locuia; și au rămas la El în ziua aceea. Era cam al zecelea ceas. Unul din cei doi care auziseră de la Ioan și merseseră după Iisus era Andrei, fratele lui Simon Petru. Acesta a găsit întâi pe Simon, fratele său, și i-a zis: Am găsit pe Mesia, care se tâlcuiește Hristos. Și l-a adus la Iisus.",
     "tropar": "Glasul 4: Ca cel dintâi chemat dintre Apostoli și fratelui celui mai mare de-a dreapta, Stăpânului tuturor roagă-te, Andrei, pace lumii să dăruiască și sufletelor noastre mare milă."
   },
-
   "12-06": {
-    "apostol_carte": "Evrei", "apostol_versete": "13:17-21",
+    "apostol_carte": "Evrei",
+    "apostol_versete": "13:17-21",
     "apostol_text": "Fraților, ascultați pe mai-marii voștri și vă supuneți lor, fiindcă ei priveghează pentru sufletele voastre, ca unii care vor să dea socoteală, ca să facă aceasta cu bucurie, nu suspinând; căci aceasta nu v-ar fi de folos. Rugați-vă pentru noi; căci suntem încredințați că avem cuget bun, dorind să ne purtăm bine în toate. Și vă rog cu atât mai mult să faceți aceasta, ca să vi se dea înapoi mai curând. Iar Dumnezeul păcii, Care a adus înapoi din morți pe Marele Păstor al oilor, cu sângele legământului celui veșnic, pe Domnul nostru Iisus Hristos, să vă întărească în tot lucrul bun, ca să faceți voia Lui, lucrând în voi ceea ce este bine plăcut înaintea Lui, prin Iisus Hristos, Căruia fie slava în vecii vecilor. Amin.",
-    "evanghelie_carte": "Luca", "evanghelie_versete": "6:17-23",
+    "evanghelie_carte": "Luca",
+    "evanghelie_versete": "6:17-23",
     "evanghelie_text": "În vremea aceea, Iisus a coborât cu cei doisprezece și a stat la loc șes. Și era mulțime multă de ucenici ai Lui și mulțime mare de popor din toată Iudeea și din Ierusalim și de pe litoralul Tirului și al Sidonului, care veniseră să-L asculte și să se vindece de bolile lor. Și cei chinuiți de duhuri necurate se vindecau. Și toată mulțimea căuta să se atingă de El, că putere ieșea din El și-i vindeca pe toți. Și El, ridicând ochii Săi spre ucenicii Săi, zicea: Fericiți voi cei săraci, că a voastră este împărăția lui Dumnezeu. Fericiți voi cei ce flămânziți acum, că vă veți sătura. Fericiți voi cei ce plângeți acum, că veți râde.",
     "tropar": "Glasul 4: Îndreptător credinței și chip blândeților, învățător înfrânării te-a arătat pe tine, turmei tale, adevărul lucrurilor. Pentru aceasta ai dobândit cu smerenia cele înalte, cu sărăcia cele bogate. Sfinte Ierarhe Nicolae, roagă-te lui Hristos Dumnezeu să mântuiască sufletele noastre."
   },
-
   "12-25": {
-    "apostol_carte": "Galateni", "apostol_versete": "4:4-7",
+    "apostol_carte": "Galateni",
+    "apostol_versete": "4:4-7",
     "apostol_text": "Fraților, când a venit plinirea vremii, Dumnezeu a trimis pe Fiul Său, născut din femeie, născut sub Lege, ca să-i răscumpere pe cei de sub Lege, ca să dobândim înfierea. Și pentru că sunteți fii, a trimis Dumnezeu pe Duhul Fiului Său în inimile noastre, care strigă: Avva, Părinte! Astfel, nu ești rob, ci fiu; iar dacă ești fiu, ești și moștenitor prin Dumnezeu.",
-    "evanghelie_carte": "Matei", "evanghelie_versete": "2:1-12",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "2:1-12",
     "evanghelie_text": "Iar dacă S-a născut Iisus în Betleemul Iudeii, în zilele regelui Irod, iată magii de la Răsărit au venit în Ierusalim, întrebând: Unde este regele iudeilor, Cel ce S-a născut? Căci am văzut la Răsărit steaua Lui și am venit să ne închinăm Lui. Și auzind, regele Irod s-a tulburat și tot Ierusalimul împreună cu el. Și adunând pe toți arhiereii și cărturarii poporului, îi întreba unde este să Se nască Hristos. Iar ei i-au zis: În Betleemul Iudeii, că așa este scris de proorocul: Și tu, Betleeme, pământul lui Iuda, nicidecum nu ești cel mai mic între căpeteniile lui Iuda, căci din tine va ieși Conducătorul care va paște pe poporul Meu Israel. Atunci Irod, chemând în taină pe magi, a aflat de la ei lămurit vremea în care s-a arătat steaua. Și trimițându-i la Betleem, le-a zis: Mergeți și cercetați cu de-amănuntul despre Prunc și, când Îl veți afla, vestiți-mi și mie, ca venind și eu să mă închin Lui.",
     "tropar": "Glasul 4: Nașterea Ta, Hristoase Dumnezeul nostru, răsărit-a lumii lumina cunoștinței; că întru dânsa cei ce slujeau stelelor de la stea s-au învățat să se închine Ție, Soarelui dreptății, și să Te cunoască pe Tine, Răsăritul cel de sus. Doamne, slavă Ție."
+  },
+  "2026-01-04": {
+    "apostol_carte": "2 Timotei",
+    "apostol_versete": "4, 5-8",
+    "apostol_text": "Fii treaz în toate, suferă răul, fă lucrul unui evanghelist, slujba ta fă-o deplin. Căci eu sunt gata să fiu jertfit și vremea despărțirii mele s-a apropiat. Lupta cea bună m-am luptat, călătoria am săvârșit, credința am păzit. De acum mi s-a gătit cununa dreptății, pe care Domnul îmi va da-o în ziua aceea, El, Dreptul Judecător; și nu numai mie, ci și tuturor celor ce au iubit arătarea Lui.",
+    "evanghelie_carte": "Marcu",
+    "evanghelie_versete": "1, 1-8",
+    "evanghelie_text": "Începutul Evangheliei lui Iisus Hristos, Fiul lui Dumnezeu. Precum este scris în Isaia proorocul: Iată, Eu trimit îngerul Meu înaintea feței Tale, care va pregăti calea Ta. Glasul celui ce strigă în pustie: Pregătiți calea Domnului, drepte faceți cărările Lui. Ioan boteza în pustie și propovăduia botezul pocăinței spre iertarea păcatelor. Și ieșeau la el tot ținutul Iudeii și toți cei din Ierusalim și se botezau de către el în râul Iordan, mărturisindu-și păcatele. Și Ioan era îmbrăcat cu păr de cămilă, avea cingătoare de piele împrejurul mijlocului și mânca lăcuste și miere sălbatică. Și propovăduia, zicând: Vine după mine Cel ce este mai tare decât mine, Căruia nu sunt vrednic să mă aplec și să-I dezleg cureaua încălțămintelor. Eu v-am botezat cu apă, El însă vă va boteza cu Duhul Sfânt.",
+    "tip_zi": "Duminica dinaintea Botezului Domnului (Predica Sf. Ioan Botezătorul)"
+  },
+  "2026-01-11": {
+    "apostol_carte": "Efeseni",
+    "apostol_versete": "4, 7-13",
+    "apostol_text": "Fraților, fiecăruia dintre noi i s-a dat harul după măsura darului lui Hristos. De aceea zice: Suindu-Se la înălțime, a robit robime și a dat daruri oamenilor. Iar că S-a suit, ce înseamnă decât că S-a și coborât în părțile cele mai de jos ale pământului? Cel ce S-a coborât, Acela este Care S-a suit mai presus de toate cerurile, ca pe toate să le umple. Și El a dat pe unii apostoli, pe alții prooroci, pe alții evangheliști, pe alții păstori și învățători, spre desăvârșirea sfinților, la lucrul slujirii, la zidirea trupului lui Hristos, până vom ajunge toți la unitatea credinței și a cunoașterii Fiului lui Dumnezeu, la starea bărbatului desăvârșit, la măsura vârstei deplinătății lui Hristos.",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "4, 12-17",
+    "evanghelie_text": "În vremea aceea, auzind Iisus că Ioan a fost întemniţat, a plecat în Galileea. Şi, lăsând Nazaretul, a venit şi S-a aşezat în Capernaum, lângă mare, în hotarele lui Zabulon şi Neftali, ca să se împlinească ce s-a zis prin Isaia proorocul: Pământul lui Zabulon şi pământul lui Neftali, spre mare, dincolo de Iordan, Galileea neamurilor; poporul care stătea în întuneric a văzut lumină mare şi celor ce şedeau în latura şi în umbra morţii lumină le-a răsărit. De atunci a început Iisus să propovăduiască şi să spună: Pocăiţi-vă, că s-a apropiat împărăţia cerurilor.",
+    "tip_zi": "Duminica după Botezul Domnului (Începutul propovăduirii Domnului)"
+  },
+  "2026-06-07": {
+    "apostol_carte": "Evrei",
+    "apostol_versete": "11, 33-40; 12, 1-2",
+    "apostol_text": "Fraților, sfinții prin credință au biruit împărății, au făcut dreptate, au dobândit făgăduințele, au astupat gurile leilor, au stins puterea focului, au scăpat de ascuțișul sabiei, s-au întărit din slăbiciune, s-au făcut tari în război, au întors taberele vrăjmașilor pe fugă. Femei au primit pe morții lor înviați; alții au fost chinuiți, neprimind izbăvirea, ca să dobândească o mai bună înviere. Alții au suferit batjocuri și biciuiri, ba chiar lanțuri și închisoare. Au fost uciși cu pietre, au fost puși la cazne, au fost tăiați cu fierăstrăul, au murit uciși cu sabia, au pribegit în piei de oaie și în piei de capră, lipsiți, strâmtorați, rău primiți — ei, de care lumea nu era vrednică — rătăcind în pustii și în munți și în peșteri și în crăpăturile pământului. Și toți aceștia, mărturisiți fiind prin credință, n-au primit făgăduința, pentru că Dumnezeu rânduise pentru noi ceva mai bun, ca ei să nu ia fără noi desăvârșirea. De aceea și noi, având împrejurul nostru atâta nor de mărturii, să lepădăm orice povară și păcatul ce grabnic ne împresoară și să alergăm cu stăruință în lupta care ne stă înainte, cu ochii ațintiți la Iisus, începătorul și plinitorul credinței.",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "10, 32-33; 37-38; 19, 27-30",
+    "evanghelie_text": "Zis-a Domnul: Oricine va mărturisi pentru Mine înaintea oamenilor, mărturisi-voi și Eu pentru el înaintea Tatălui Meu, Care este în ceruri. Iar de cel ce se va lepăda de Mine înaintea oamenilor, Mă voi lepăda și Eu de el înaintea Tatălui Meu, Care este în ceruri. Cel ce iubește pe tată ori pe mamă mai mult decât pe Mine nu este vrednic de Mine; cel ce iubește pe fiu ori pe fiică mai mult decât pe Mine nu este vrednic de Mine. Și cel ce nu-și ia crucea și nu-Mi urmează Mie nu este vrednic de Mine. Atunci Petru, răspunzând, I-a zis: Iată, noi am lăsat toate și Ți-am urmat Ție; ce va fi deci nouă? Iar Iisus le-a zis: Adevărat zic vouă că voi, cei ce Mi-ați urmat Mie, la înnoirea lumii, când Fiul Omului va ședea pe tronul slavei Sale, veți ședea și voi pe douăsprezece tronuri, judecând cele douăsprezece seminții ale lui Israel. Și oricine a lăsat case sau frați sau surori sau tată sau mamă sau femeie sau copii sau țarine pentru numele Meu, înmulțit va lua înapoi și va moșteni viața veșnică. Și mulți dintâi vor fi pe urmă și cei de pe urmă vor fi întâi.",
+    "tip_zi": "Duminica I după Rusalii (a Tuturor Sfinților; Urmarea lui Hristos)"
+  },
+  "2026-06-14": {
+    "apostol_carte": "Romani",
+    "apostol_versete": "2, 10-16",
+    "apostol_text": "Fraților, slavă, cinste și pace vor fi pentru oricine face binele: mai întâi pentru iudeu, apoi pentru elin. Căci la Dumnezeu nu este părtinire. Câți au păcătuit fără lege, fără lege vor pieri; și câți au păcătuit în lege, prin lege vor fi judecați. Căci nu cei ce aud legea sunt drepți la Dumnezeu, ci cei ce împlinesc legea vor fi îndreptățiți. Că atunci când neamurile, care nu au lege, din fire fac ale legii, acestea, neavând lege, își sunt loruși lege, ceea ce arată fapta legii scrisă în inimile lor, prin mărturia conștiinței lor și prin judecățile lor, care îi învinuiesc sau îi și apără, în ziua în care Dumnezeu va judeca, prin Iisus Hristos, după Evanghelia mea, cele ascunse ale oamenilor.",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "4, 18-23",
+    "evanghelie_text": "În vremea aceea, umblând Iisus pe lângă Marea Galileii, a văzut doi frați, pe Simon ce se numea Petru și pe Andrei, fratele lui, care aruncau mreaja în mare, căci erau pescari. Și le-a zis: Veniți după Mine și vă voi face pescari de oameni. Iar ei, îndată lăsând mrejele, au mers după El. Și mergând de acolo mai departe, a văzut alți doi frați, pe Iacov al lui Zevedeu și pe Ioan, fratele lui, în corabie cu Zevedeu, tatăl lor, dreguindu-și mrejele, și i-a chemat. Iar ei, îndată lăsând corabia și pe tatăl lor, au mers după El. Și Iisus străbătea toată Galileea, învățând în sinagogile lor și propovăduind Evanghelia împărăției și tămăduind toată boala și toată neputința în popor.",
+    "tip_zi": "Duminica II după Rusalii (a Sfinților Români; Chemarea primilor Apostoli)"
+  },
+  "2026-06-21": {
+    "apostol_carte": "Romani",
+    "apostol_versete": "5, 1-10",
+    "apostol_text": "Fraților, îndreptați fiind prin credință, avem pace cu Dumnezeu, prin Domnul nostru Iisus Hristos, prin Care am avut și apropiere, prin credință, la harul acesta în care stăm și ne lăudăm în nădejdea slavei lui Dumnezeu. Și nu numai atât, ci ne lăudăm și în suferințe, bine știind că suferința aduce răbdare, și răbdarea — încercare, și încercarea — nădejde, iar nădejdea nu rușinează, pentru că iubirea lui Dumnezeu s-a vărsat în inimile noastre, prin Duhul Sfânt, Cel dăruit nouă. Căci Hristos, pe când noi eram încă neputincioși, la timpul hotărât a murit pentru cei nelegiuiți. Că cu greu va muri cineva pentru un drept; dar pentru cel bun poate că cineva ar îndrăzni să moară. Dumnezeu Își arată dragostea Lui față de noi prin aceea că, pentru noi, Hristos a murit când noi eram încă păcătoși. Cu atât mai mult deci, acum, îndreptați prin sângele Lui, vom fi mântuiți prin El de mânie. Căci dacă, pe când eram vrăjmași, ne-am împăcat cu Dumnezeu prin moartea Fiului Său, cu atât mai mult, împăcați fiind, ne vom mântui prin viața Lui.",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "6, 22-33",
+    "evanghelie_text": "Zis-a Domnul: Luminătorul trupului este ochiul; de va fi ochiul tău curat, tot trupul tău va fi luminat. Iar de va fi ochiul tău rău, tot trupul tău va fi întunecat. Deci, dacă lumina care este în tine este întuneric, dar întunericul cu cât mai mult! Nimeni nu poate să slujească la doi domni, căci sau pe unul îl va urî și pe celălalt îl va iubi, sau de unul se va lipi și pe celălalt îl va disprețui; nu puteți să slujiți lui Dumnezeu și lui mamona. De aceea vă spun vouă: Nu vă îngrijiți pentru sufletul vostru ce veți mânca, nici pentru trupul vostru cu ce vă veți îmbrăca; au nu este sufletul mai mult decât hrana și trupul mai mult decât îmbrăcămintea? Priviți la păsările cerului, că nu seamănă, nici nu seceră, nici nu adună în jitniță, și Tatăl vostru Cel ceresc le hrănește. Oare nu sunteți voi cu mult mai presus decât ele? Și cine dintre voi, îngrijindu-se, poate să adauge staturii sale un cot? Iar de îmbrăcăminte de ce vă îngrijiți? Luați seama la crinii câmpului cum cresc: nu se ostenesc, nici nu torc. Și vă spun vouă că nici Solomon, în toată mărirea lui, nu s-a îmbrăcat ca unul dintre aceștia. Iar dacă iarba câmpului, care astăzi este și mâine se aruncă în cuptor, Dumnezeu astfel o îmbracă, oare nu cu mult mai mult pe voi, puțin credincioșilor? Deci nu duceți grijă, spunând: Ce vom mânca, ori ce vom bea, ori cu ce ne vom îmbrăca? Că după toate acestea se străduiesc neamurile; știe doar Tatăl vostru Cel ceresc că aveți nevoie de ele. Căutați mai întâi împărăția lui Dumnezeu și dreptatea Lui și toate acestea se vor adăuga vouă.",
+    "tip_zi": "Duminica III după Rusalii (a Sfinților Athoniți; Despre grijile vieții)"
+  },
+  "2026-06-28": {
+    "apostol_carte": "Romani",
+    "apostol_versete": "6, 18-23",
+    "apostol_text": "Fraților, dezrobiți de păcat, v-ați făcut robi ai dreptății. Vorbesc omenește, din pricina slăbiciunii firii voastre: după cum ați pus mădularele voastre în slujba necurăției și a fărădelegii, spre fărădelege, tot astfel puneți acum mădularele voastre în slujba dreptății, spre sfințenie. Căci, când erați robi ai păcatului, erați liberi față de dreptate. Deci ce roadă aveați atunci? Roade de care acum vă este rușine; pentru că sfârșitul acelora este moartea. Dar acum, dezrobiți de păcat și robi lui Dumnezeu, aveți rodul vostru spre sfințenie, iar ca sfârșit — viața veșnică. Fiindcă plata păcatului este moartea, iar harul lui Dumnezeu este viața veșnică, în Hristos Iisus, Domnul nostru.",
+    "evanghelie_carte": "Matei",
+    "evanghelie_versete": "8, 5-13",
+    "evanghelie_text": "În vremea aceea, intrând Iisus în Capernaum, s-a apropiat de El un sutaș, rugându-L și zicând: Doamne, sluga mea zace în casă, slăbănog, chinuindu-se cumplit. Și Iisus i-a zis: Venind, îl voi vindeca. Dar sutașul, răspunzând, a zis: Doamne, nu sunt vrednic să intri sub acoperișul meu, ci numai zi cu cuvântul și se va vindeca sluga mea. Că și eu sunt om sub stăpânire și am sub mine ostași și zic acestuia: Du-te, și se duce; și celuilalt: Vino, și vine; și slugii mele: Fă aceasta, și face. Auzind Iisus, S-a minunat și a zis celor ce veneau după El: Adevărat zic vouă: la nimeni în Israel n-am găsit atâta credință. Și zic vouă că mulți de la răsărit și de la apus vor veni și vor sta la masă cu Avraam, cu Isaac și cu Iacov în împărăția cerurilor; iar fiii împărăției vor fi aruncați în întunericul cel mai din afară; acolo va fi plângerea și scrâșnirea dinților. Și a zis Iisus sutașului: Du-te, fie ție după cum ai crezut. Și s-a vindecat sluga lui în ceasul acela.",
+    "tip_zi": "Duminica IV după Rusalii (Vindecarea slugii sutașului)"
   }
 }

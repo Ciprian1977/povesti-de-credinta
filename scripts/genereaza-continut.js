@@ -499,10 +499,13 @@ async function genereazaContiut(date) {
   // pentru a evita parafrazarea sau halucinațiile LLM pe texte sacre.
   // Sursă: Biblia Sinodală BOR 1988/2001 + Mineiele BOR
   const cheiaLectionar = date.substring(5); // 'MM-DD' din 'YYYY-MM-DD'
-  const texteStatice = LECTIONAR[cheiaLectionar] || null;
+  // Căutăm mai întâi cu cheia completă YYYY-MM-DD (pentru Duminici mobile și zile speciale 2026)
+  // apoi cu MM-DD (pentru sărbători fixe: Crăciun, Bobotează, Sf. Apostoli etc.)
+  const texteStatice = LECTIONAR[date] || LECTIONAR[cheiaLectionar] || null;
 
   if (texteStatice) {
-    console.log(`📖 Texte sacre exacte găsite în lecționar pentru ${cheiaLectionar}`);
+    const cheiaGasita = LECTIONAR[date] ? date : cheiaLectionar;
+    console.log(`📖 Texte sacre exacte găsite în lecționar pentru ${cheiaGasita}`);
   } else {
     console.warn(`⚠️ Ziua ${cheiaLectionar} nu este în lecționar — câmpurile Apostol/Evanghelie/Tropar vor fi marcate`);
   }
