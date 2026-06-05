@@ -1023,25 +1023,26 @@ function afiseazaRugaciuneaZilei() {
     const date = getDateAzi();
     const ziIndex = azi.getDay();
 
-    // Obținem datele din modulul rugaciuniSaptamana
+    // ─── SURSĂ UNICĂ: RUGACIUNI_SAPTAMANA din Ceaslov (rugaciuni-saptamana.js) ───
+    // NU se citește niciodată din Supabase pentru textul de pe homepage.
+    // Textul de preview trebuie să fie IDENTIC cu cel de pe pagina dedicată.
     let rugData = null;
-    if (typeof rugaciuniSaptamana !== 'undefined' && rugaciuniSaptamana[ziIndex]) {
-      rugData = rugaciuniSaptamana[ziIndex];
+    if (typeof RUGACIUNI_SAPTAMANA !== 'undefined' && RUGACIUNI_SAPTAMANA[ziIndex]) {
+      rugData = RUGACIUNI_SAPTAMANA[ziIndex];
     }
 
-    // Titlul rugăciunii
-    const rugaciuneTitlu = rugData ? rugData.titlu
-      : (date.rugaciunea_zilei ? 'Rugăciunea Zilei' : 'Rugăciunea Zilei');
+    // Titlul din Ceaslov
+    const rugaciuneTitlu = rugData ? rugData.titlu : 'Rugăciunea Zilei';
 
-    // Preview 300 caractere din primul paragraf real
+    // Preview 300 caractere din primul paragraf autentic din Ceaslov
     let rugaciunePreview = '';
     if (rugData && rugData.paragrafe && rugData.paragrafe.length > 0) {
+      // Găsim primul paragraf real (sărităm separatoarele '— — —' și textele scurte)
       const primaFraza = rugData.paragrafe.find(p => p !== '— — —' && p.length > 30) || rugData.paragrafe[0];
       rugaciunePreview = primaFraza.substring(0, 300) + (primaFraza.length > 300 ? '...' : '');
-    } else if (date.rugaciunea_zilei && date.rugaciunea_zilei.length > 10) {
-      rugaciunePreview = date.rugaciunea_zilei.substring(0, 300) + '...';
     } else {
-      rugaciunePreview = 'Doamne Iisuse Hristoase, Fiul lui Dumnezeu, miluieste-ma pe mine, pacatosul. Da-mi putere sa traiesc aceasta zi in credinta, nadejde si dragoste fata de Tine si fata de aproapele meu...';
+      // Fallback minimal — NICIODATĂ din Supabase
+      rugaciunePreview = 'Doamne Iisuse Hristoase, Fiul lui Dumnezeu, miluiește-mă pe mine, păcătosul. Amin.';
     }
 
     const titluEl = document.getElementById('rugaciune-titlu');
