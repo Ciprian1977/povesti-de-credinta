@@ -358,37 +358,106 @@ function populeazaSfintiiZilei(container, date, azi, titluSfinti, dataFormatata)
   }
 }
 
-// ─── /sinaxar ─────────────────────────────────────────────────────────────────
+// ─── /sinaxar — Pagina completă de lectură (flux fluid, zero click-uri extra) ─
 function populeazaSinaxar(container, date, azi, titluSfinti, dataFormatata) {
-  const el = (id) => container.querySelector(`#${id}`);
+  // Fallback robust pentru sinaxar
+  const sinaxarText = date.sinaxar || date.sfant_viata ||
+    `${titluSfinti} este prăznuit în calendarul ortodox pe ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}. Conform Sinaxarului Bisericii Ortodoxe Române, acest sfânt a slujit lui Dumnezeu cu credință deplină și sfințenie, lăsând posterității o pildă vie de viețuire creștinească autentică. Viața sa completă, așa cum este consemnată în Mineiul lunii ${LUNI_GENITIV[azi.getMonth()]}, cuprinde mărturii despre nevoințele, minunile și pătimirile prin care a trecut pentru dragostea lui Hristos. Biserica Ortodoxă Română îl cinstește în fiecare an la această dată, iar credincioșii sunt chemați să se inspire din exemplul său de trăire duhovnicească.`;
 
-  const titluEl = el('sinaxar-titlu-principal');
-  if (titluEl) titluEl.textContent = `Viața ${titluSfinti}`;
+  const troparText = date.tropar || '';
+  const postText = getTextPost(date.tip_post);
 
-  const textEl = el('sinaxar-text-complet');
-  if (textEl) {
-    const text = date.sinaxar || date.sfant_viata ||
-      `${titluSfinti} este prăznuit în calendarul ortodox pe ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}. Conform Sinaxarului Bisericii Ortodoxe Române, acesta este unul dintre sfinții care au slujit lui Dumnezeu cu credință și sfințenie, lăsând o pildă de viețuire creștinească pentru urmași. Viața completă a acestui sfânt va fi disponibilă în curând pe povestidecredinta.ro, odată cu actualizarea bazei de date din Sinaxarul BOR.`;
-    // Formatăm textul cu paragrafe
-    textEl.innerHTML = text.split('\n').filter(p => p.trim()).map(p =>
-      `<p style="margin-bottom:1.2em;line-height:1.75;font-size:1.05rem">${p.trim()}</p>`
-    ).join('');
-  }
+  // Construim întregul conținut al paginii dinamic
+  container.innerHTML = `
+    <!-- Buton Înapoi -->
+    <a href="/" data-ruta="/" class="btn-inapoi-spa" style="display:inline-flex;align-items:center;gap:6px;margin:18px 0 10px 0;font-size:0.92rem;font-weight:600;color:#6B1B2B;background:rgba(107,27,43,0.06);border:1.5px solid rgba(107,27,43,0.2);border-radius:20px;padding:8px 16px;text-decoration:none;cursor:pointer;">
+      ← Înapoi la Calendar
+    </a>
 
-  // Culoare liturgică
-  const culoareEl = el('sinaxar-culoare');
-  if (culoareEl && date.culoare_liturgica) {
-    const culoriText = {
-      'alb': '⬜ Alb — bucurie și lumină',
-      'rosu': '🟥 Roșu — sângele martirilor',
-      'verde': '🟩 Verde — viața în Hristos',
-      'violet': '🟪 Violet — pocăință și post',
-      'negru': '⬛ Negru — doliu și smerenie',
-      'auriu': '🟨 Auriu — slavă și prăznuire'
-    };
-    culoareEl.textContent = culoriText[date.culoare_liturgica] || date.culoare_liturgica;
-  }
+    <!-- Data curentă -->
+    <p style="font-size:0.92rem;color:#6B4D3E;margin:12px 0 6px 0;font-weight:500;">${dataFormatata}</p>
+
+    <!-- Titlul Sfântului H1 -->
+    <h1 style="font-size:clamp(20px,5vw,24px);color:#4a0e17;font-weight:700;margin:0 0 6px 0;line-height:1.3;font-family:'Playfair Display',Georgia,serif;">${titluSfinti}</h1>
+
+    <!-- Badge post -->
+    <span class="badge-post ${getBadgeClass(date.tip_post)}" style="display:inline-block;margin-bottom:18px;font-size:0.85rem;padding:4px 12px;border-radius:12px;">${postText}</span>
+
+    <!-- SINAXAR INTEGRAL -->
+    <article class="sinaxar-articol" style="margin-bottom:28px;">
+      ${sinaxarText.split('\n').filter(p => p.trim()).map(p =>
+        `<p style="font-size:19px;line-height:1.7;color:#2c2c2c;text-align:justify;margin-bottom:1.2em;">${p.trim()}</p>`
+      ).join('')}
+    </article>
+
+    <!-- Butoane Copiază + WhatsApp -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;">
+      <button onclick="copieTextSinaxar()" class="btn-actiune" style="display:inline-flex;align-items:center;gap:6px;padding:12px 18px;border-radius:10px;border:1.5px solid #6B1B2B;background:rgba(107,27,43,0.04);color:#6B1B2B;font-weight:600;font-size:0.9rem;cursor:pointer;">
+        📋 Copiază Sinaxarul
+      </button>
+      <button onclick="shareWhatsAppSinaxar()" class="btn-actiune btn-wa" style="display:inline-flex;align-items:center;gap:6px;padding:12px 18px;border-radius:10px;border:none;background:#25D366;color:white;font-weight:600;font-size:0.9rem;cursor:pointer;">
+        💬 Trimite pe WhatsApp
+      </button>
+    </div>
+
+    ${troparText ? `
+    <!-- TROPARUL SFÂNTULUI -->
+    <section style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.3);border-radius:14px;padding:18px;margin-bottom:28px;">
+      <h2 style="font-size:1.1rem;color:#4a0e17;margin:0 0 12px 0;font-weight:700;">🎵 Troparul Sfântului</h2>
+      <p style="font-size:18px;line-height:1.7;color:#2c2c2c;font-style:italic;margin:0;">${troparText}</p>
+    </section>
+    ` : ''}
+
+    <!-- CONȚINUT ÎNRUDIT -->
+    <section style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(201,168,76,0.3);">
+      <h3 style="font-size:1rem;color:#4a0e17;margin:0 0 14px 0;font-weight:700;">📚 Conținut înrudit pentru azi</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei" style="background:white;border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:14px 12px;text-align:center;text-decoration:none;box-shadow:0 2px 8px rgba(107,27,43,0.06);display:block;">
+          <span style="font-size:1.6rem;display:block;">✝️</span>
+          <span style="font-family:'Playfair Display',serif;color:#6B1B2B;font-size:0.84rem;font-weight:700;">Evanghelia Zilei</span>
+        </a>
+        <a href="/apostolul-zilei" data-ruta="/apostolul-zilei" style="background:white;border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:14px 12px;text-align:center;text-decoration:none;box-shadow:0 2px 8px rgba(107,27,43,0.06);display:block;">
+          <span style="font-size:1.6rem;display:block;">📖</span>
+          <span style="font-family:'Playfair Display',serif;color:#6B1B2B;font-size:0.84rem;font-weight:700;">Apostolul Zilei</span>
+        </a>
+        <a href="/predica-zilei" data-ruta="/predica-zilei" style="background:white;border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:14px 12px;text-align:center;text-decoration:none;box-shadow:0 2px 8px rgba(107,27,43,0.06);display:block;">
+          <span style="font-size:1.6rem;display:block;">🎙️</span>
+          <span style="font-family:'Playfair Display',serif;color:#6B1B2B;font-size:0.84rem;font-weight:700;">Predica Zilei</span>
+        </a>
+        <a href="/rugaciunea-zilei" data-ruta="/rugaciunea-zilei" style="background:white;border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:14px 12px;text-align:center;text-decoration:none;box-shadow:0 2px 8px rgba(107,27,43,0.06);display:block;">
+          <span style="font-size:1.6rem;display:block;">🙏</span>
+          <span style="font-family:'Playfair Display',serif;color:#6B1B2B;font-size:0.84rem;font-weight:700;">Rugăciunea Zilei</span>
+        </a>
+      </div>
+    </section>
+  `;
 }
+
+// ─── Funcții helper pentru butoanele Sinaxar ─────────────────────────────────
+window.copieTextSinaxar = function() {
+  const date = getDateAzi();
+  const titlu = date.sfant_nume || 'Sfântul zilei';
+  const text = date.sinaxar || date.sfant_viata || '';
+  const tropar = date.tropar || '';
+  const complet = `${titlu}\n\n${text}${tropar ? '\n\nTroparul:\n' + tropar : ''}\n\n— povestidecredinta.ro/sinaxar`;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(complet).then(() => aratToast('✅ Sinaxarul a fost copiat!'));
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = complet; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    aratToast('✅ Sinaxarul a fost copiat!');
+  }
+};
+
+window.shareWhatsAppSinaxar = function() {
+  const date = getDateAzi();
+  const titlu = date.sfant_nume || 'Sfântul zilei';
+  const sinaxar = (date.sinaxar || date.sfant_viata || '').substring(0, 500);
+  const text = `${titlu}\n\n${sinaxar}...\n\nCitește complet: https://povestidecredinta.ro/sinaxar`;
+  const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+};
 
 // ─── /apostolul-zilei ─────────────────────────────────────────────────────────
 function populeazaApostolul(container, date, azi, titluSfinti, dataFormatata) {
