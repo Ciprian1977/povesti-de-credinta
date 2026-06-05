@@ -200,25 +200,32 @@ const RUGACIUNI_SAPTAMANA = {
   5: {
     zi: 'Vineri',
     slug: 'vineri',
-    titlu: 'Rugăciunea Zilei de Vineri — Patimile și Crucea Domnului',
-    titluSeo: '🙏 Rugăciunea Zilei de Vineri — Patimile Domnului | Text Integral',
-    descSeo: 'Rugăciunea oficială a zilei de vineri din tradiția Bisericii Ortodoxe, dedicată Patimilor și Crucii Mântuitorului. Text integral din Ceaslovul BOR.',
-    dedicatie: 'Vinerea este zi de post și de cinstire a Patimilor Mântuitorului, amintind de răstignirea și moartea Sa pe Cruce.',
+    titlu: 'Rugăciunea de Vineri — Rânduiala de umilință către Sfânta Cruce',
+    titluSeo: 'Rugăciunea de Vineri - Textul Integral din Ceaslov | Calendar Ortodox',
+    descSeo: 'Citește rugăciunea puternică de vineri pentru ocrotire, izbăvire de boală și necazuri. Textul ortodox integral din Ceaslov, dedicat Sfintei Cruci.',
+    dedicatie: 'Vinerea este zi de post și de cinstire a Patimilor Mântuitorului, amintind de răstignirea și moartea Sa pe Cruce. În această zi, Biserica ne cheamă la pocăință, post și închinare înaintea Sfintei Cruci.',
     culoare: '#C62828',
     icon: '☩',
     paragrafe: [
-      'Doamne Iisuse Hristoase, Fiul lui Dumnezeu, Cel ce ai pătimit pentru noi și ai murit pe Cruce, ridicând păcatele lumii, miluiește-ne pe noi, păcătoșii.',
-      'Patimile Tale, Hristoase, le cinstim și Sfânta Ta Cruce o sărutăm, și Învierea Ta o slăvim.',
+      'Doamne Iisuse Hristoase, Fiul lui Dumnezeu Celui viu, Creatorul cerului și al pământului, Mântuitorul lumii, iată eu, nevrednicul și păcătosul, mă închin cu smerenie înaintea Sfintei Tale Cruci, pe care ai purtat-o cu iubire pentru mântuirea mea.',
+      'Sfântă Cruce a Domnului, ocrotitoarea creștinilor, apărătoarea celor năpăstuiți, vindecătoarea bolnavilor, mângâietoarea celor întristați — fii-mi milă de mine, păcătosul, și acoperă-mă cu puterea ta cea dumnezeiască.',
       '— — —',
       'Doamne Iisuse Hristoase, în această zi de vineri, când ne aducem aminte de pătimirile Tale pentru noi, inimile noastre se umplu de durere și de recunoștință. Tu, Cel fără de păcat, ai primit să fii batjocorit, biciuit, încoronat cu spini și răstignit pe Cruce, pentru ca noi, cei plini de păcate, să fim mântuiți.',
       'Doamne, Tu ai purtat pe umerii Tăi Crucea cea grea, mergând pe drumul Golgotei, și nu Te-ai întors înapoi din iubire față de noi. Ajută-ne și pe noi să purtăm cu răbdare crucea vieții noastre, știind că Tu ești cu noi în toate suferințele noastre.',
       'Tu, Cel ce ai strigat pe Cruce: „Tată, iartă-le lor, că nu știu ce fac", ajută-ne și pe noi să iertăm pe cei ce ne-au greșit, să nu purtăm ură și să nu căutăm răzbunare, ci să urmăm pilda iubirii Tale.',
       'Tu, Cel ce ai zis: „Însetat sunt", și ai primit oțet și fiere în loc de apă, ajută-ne să însetăm după dreptate și sfințenie, să nu ne mulțumim cu puțin în viața duhovnicească, ci să căutăm mereu mai mult din harul Tău.',
       'Tu, Cel ce ai zis: „Săvârșitu-s-a", și Ți-ai dat duhul în mâinile Tatălui, ajută-ne să ne încredințăm și noi viața noastră în mâinile lui Dumnezeu, în fiecare zi, cu credință și cu pace.',
-      'Doamne Iisuse Hristoase, prin Patimile Tale cele mântuitoare, iartă-ne păcatele, vindecă bolile noastre, mângâie întristările noastre și dă-ne putere să trăim această zi de vineri în post, rugăciune și pocăință. Amin.',
+      '— — —',
+      'Sfântă Cruce, apărătoarea lumii, în tine este mântuirea noastră. Prin tine a fost biruită moartea și iadul a fost desființat. Prin tine, Adam a fost ridicat din cădere și Eva a fost eliberată din robia păcatului. Prin tine, toți credincioșii au primit putere împotriva vrăjmașului.',
+      'Sfântă Cruce, pe tine te sărutăm cu evlavie și cu lacrimi de pocăință. Prin tine ne închinăm, prin tine ne rugăm, prin tine cerem de la Dumnezeu iertare, vindecare și ocrotire.',
+      'Doamne Iisuse Hristoase, prin Patimile Tale cele mântuitoare, iartă-ne păcatele, vindecă bolile noastre, mângâie întristările noastre și dă-ne putere să trăim această zi de vineri în post, rugăciune și pocăință.',
+      'Ocrotitoarea noastră, Sfânta Cruce, păzește-ne de tot răul, de boli, de necazuri, de ispitele vrăjmașului și de toate primejdiile. Fii cu noi în această zi de vineri și în toate zilele vieții noastre. Amin.',
       '— — —',
       'Tropar al Sfintei Cruci (glasul 1):',
       'Mântuiește, Doamne, poporul Tău și binecuvântează moștenirea Ta, biruință binecredincioșilor creștini asupra celui potrivnic dăruiește și cu Crucea Ta păzește pe poporul Tău.',
+      '— — —',
+      'Condac al Sfintei Cruci (glasul 4):',
+      'Cel ce Te-ai înălțat pe Cruce de bunăvoie, dăruiește îndurările Tale cetii Tale celei noi, numite după Tine, Hristoase Dumnezeule; veselește cu puterea Ta pe credincioșii noștri, dânduile biruință asupra vrăjmașilor; ajutorul Tău să aibă ei, armele păcii, nebiruita biruință.',
     ],
     faq: [
       {
@@ -226,12 +233,12 @@ const RUGACIUNI_SAPTAMANA = {
         a: 'Vinerea este zi de post în amintirea răstignirii și morții Mântuitorului Iisus Hristos pe Cruce, care a avut loc într-o vineri. Postul de vineri este o formă de participare la suferințele lui Hristos și de recunoștință față de jertfa Sa pentru mântuirea noastră.'
       },
       {
-        q: 'Ce este Rugăciunea Zilei în tradiția Ortodoxă?',
-        a: 'În Biserica Ortodoxă, fiecare zi a săptămânii are o semnificație teologică unică și este ocrotită de anumiți sfinți sau puteri cerești. Lunea este dedicată Sfinților Îngeri, Joia Sfinților Apostoli și Sfântului Nicolae. Rugăciunile zilnice consacrate reflectă aceste rânduieli neschimbate.'
+        q: 'Ce rugăciune se citește vinerea în tradiția ortodoxă?',
+        a: 'Vinerea se citește Rânduiala de umilință către Sfânta Cruce, care cuprinde rugăciuni de pocăință, cinstire a Patimilor Mântuitorului și cereri de ocrotire prin puterea Crucii. Troparul Sfintei Cruci și Condacul sunt parte integrantă a acestei rânduieli liturgice.'
       },
       {
-        q: 'De ce este important să citim rugăciunea specifică fiecărei zile?',
-        a: 'Citirea rugăciunii rânduite pentru ziua respectivă ne ajută să rămânem în comuniune cu ritmul liturgic al Bisericii, aducând mulțumire, cereri de iertare și ocrotire adaptate momentului din săptămână.'
+        q: 'Cum ne ajută rugăciunea de vineri în viața de zi cu zi?',
+        a: 'Rugăciunea de vineri ne ajută să ne amintim de jertfa lui Hristos pentru noi, să cultivăm iertarea față de semeni, să purtăm cu răbdare greutățile vieții și să cerem ocrotire prin puterea Sfintei Cruci împotriva bolilor, necazurilor și ispitelor.'
       },
       {
         q: 'Unde pot găsi textul integral pentru rugăciunile săptămânii?',
