@@ -606,21 +606,6 @@ main {
   color: var(--alb);
 }
 
-/* === ADSEN BANNER === */
-.adsense-banner {
-  background: var(--crem-dark);
-  border: 1px dashed rgba(201,168,76,0.3);
-  border-radius: var(--radius);
-  min-height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-light);
-  font-size: 0.75rem;
-  margin: 20px 0;
-  text-align: center;
-}
-
 /* === BOTTOM NAVIGATION === */
 .bottom-nav {
   position: fixed;
