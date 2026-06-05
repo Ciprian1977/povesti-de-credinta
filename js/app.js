@@ -378,55 +378,55 @@ function populeazaSinaxar(container, date, azi, titluSfinti, dataFormatata) {
     <p style="font-size:0.92rem;color:#6B4D3E;margin:12px 0 6px 0;font-weight:500;">${dataFormatata}</p>
 
     <!-- Titlul Sfântului H1 -->
-    <h1 style="font-size:clamp(20px,5vw,24px);color:#4a0e17;font-weight:700;margin:0 0 6px 0;line-height:1.3;font-family:'Playfair Display',Georgia,serif;">${titluSfinti}</h1>
+    <h1 class="sfinti-titlu">${titluSfinti}</h1>
 
     <!-- Badge post -->
-    <span class="badge-post ${getBadgeClass(date.tip_post)}" style="display:inline-block;margin-bottom:18px;font-size:0.85rem;padding:4px 12px;border-radius:12px;">${postText}</span>
+    <span class="badge-post ${getBadgeClass(date.tip_post)}" >${postText}</span>
 
     <!-- SINAXAR INTEGRAL -->
-    <article class="sinaxar-articol" style="margin-bottom:28px;">
+    <article class="sinaxar-articol" class="sinaxar-articol-body">
       ${sinaxarText.split('\n').filter(p => p.trim()).map(p =>
-        `<p style="font-size:19px;line-height:1.7;color:#2c2c2c;text-align:justify;margin-bottom:1.2em;">${p.trim()}</p>`
+        `<p class="sinaxar-para">${p.trim()}</p>`
       ).join('')}
     </article>
 
     <!-- Butoane Copiază + WhatsApp -->
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;">
-      <button onclick="copieTextSinaxar()" class="btn-actiune" style="display:inline-flex;align-items:center;gap:6px;padding:12px 18px;border-radius:10px;border:1.5px solid #6B1B2B;background:rgba(107,27,43,0.04);color:#6B1B2B;font-weight:600;font-size:0.9rem;cursor:pointer;">
+    <div class="btn-grup">
+      <button onclick="copieTextSinaxar()" class="btn-actiune" class="btn-actiune btn-copie">
         📋 Copiază Sinaxarul
       </button>
-      <button onclick="shareWhatsAppSinaxar()" class="btn-actiune btn-wa" style="display:inline-flex;align-items:center;gap:6px;padding:12px 18px;border-radius:10px;border:none;background:#25D366;color:white;font-weight:600;font-size:0.9rem;cursor:pointer;">
+      <button onclick="shareWhatsAppSinaxar()" class="btn-actiune btn-wa" class="btn-actiune btn-wa">
         💬 Trimite pe WhatsApp
       </button>
     </div>
 
     ${troparText ? `
     <!-- TROPARUL SFÂNTULUI -->
-    <section style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.3);border-radius:14px;padding:18px;margin-bottom:28px;">
-      <h2 style="font-size:1.1rem;color:#4a0e17;margin:0 0 12px 0;font-weight:700;">🎵 Troparul Sfântului</h2>
-      <p style="font-size:18px;line-height:1.7;color:#2c2c2c;font-style:italic;margin:0;">${troparText}</p>
+    <section class="tropar-sectiune">
+      <h2 class="tropar-titlu">🎵 Troparul Sfântului</h2>
+      <p class="tropar-text">${troparText}</p>
     </section>
     ` : ''}
 
     <!-- CONȚINUT ÎNRUDIT -->
-    <section style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(201,168,76,0.3);">
-      <h3 style="font-size:1rem;color:#4a0e17;margin:0 0 14px 0;font-weight:700;">📚 Conținut înrudit pentru azi</h3>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei" style="background:white;border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:14px 12px;text-align:center;text-decoration:none;box-shadow:0 2px 8px rgba(107,27,43,0.06);display:block;">
-          <span style="font-size:1.6rem;display:block;">✝️</span>
-          <span style="font-family:'Playfair Display',serif;color:#6B1B2B;font-size:0.84rem;font-weight:700;">Evanghelia Zilei</span>
+    <section class="continut-inrudit">
+      <h3 class="continut-inrudit-titlu">📚 Conținut înrudit pentru azi</h3>
+      <div class="linkuri-interne-grid">
+        <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei" class="link-intern-card">
+          <span class="link-intern-icon">✝️</span>
+          <span class="link-intern-titlu">Evanghelia Zilei</span>
         </a>
-        <a href="/apostolul-zilei" data-ruta="/apostolul-zilei" style="background:white;border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:14px 12px;text-align:center;text-decoration:none;box-shadow:0 2px 8px rgba(107,27,43,0.06);display:block;">
-          <span style="font-size:1.6rem;display:block;">📖</span>
-          <span style="font-family:'Playfair Display',serif;color:#6B1B2B;font-size:0.84rem;font-weight:700;">Apostolul Zilei</span>
+        <a href="/apostolul-zilei" data-ruta="/apostolul-zilei" class="link-intern-card">
+          <span class="link-intern-icon">📖</span>
+          <span class="link-intern-titlu">Apostolul Zilei</span>
         </a>
-        <a href="/predica-zilei" data-ruta="/predica-zilei" style="background:white;border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:14px 12px;text-align:center;text-decoration:none;box-shadow:0 2px 8px rgba(107,27,43,0.06);display:block;">
-          <span style="font-size:1.6rem;display:block;">🎙️</span>
-          <span style="font-family:'Playfair Display',serif;color:#6B1B2B;font-size:0.84rem;font-weight:700;">Predica Zilei</span>
+        <a href="/predica-zilei" data-ruta="/predica-zilei" class="link-intern-card">
+          <span class="link-intern-icon">🎙️</span>
+          <span class="link-intern-titlu">Predica Zilei</span>
         </a>
-        <a href="/rugaciunea-zilei" data-ruta="/rugaciunea-zilei" style="background:white;border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:14px 12px;text-align:center;text-decoration:none;box-shadow:0 2px 8px rgba(107,27,43,0.06);display:block;">
-          <span style="font-size:1.6rem;display:block;">🙏</span>
-          <span style="font-family:'Playfair Display',serif;color:#6B1B2B;font-size:0.84rem;font-weight:700;">Rugăciunea Zilei</span>
+        <a href="/rugaciunea-zilei" data-ruta="/rugaciunea-zilei" class="link-intern-card">
+          <span class="link-intern-icon">🙏</span>
+          <span class="link-intern-titlu">Rugăciunea Zilei</span>
         </a>
       </div>
     </section>
@@ -475,7 +475,7 @@ function populeazaApostolul(container, date, azi, titluSfinti, dataFormatata) {
     const text = date.apostol_text ||
       `Textul Apostolului pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()} se găsește în Apostolarul Bisericii Ortodoxe Române, la pericopa rânduită de Sinaxarul BOR pentru această zi. Apostolul este citit la Sfânta Liturghie după Heruvic, înainte de Evanghelie, conform rânduielii liturgice ortodoxe.`;
     textEl.innerHTML = text.split('\n').filter(p => p.trim()).map(p =>
-      `<p style="margin-bottom:1.2em;line-height:1.75;font-size:1.05rem">${p.trim()}</p>`
+      `<p class="lectie-para">${p.trim()}</p>`
     ).join('');
   }
 
@@ -512,7 +512,7 @@ function populeazaEvanghelia(container, date, azi, titluSfinti, dataFormatata) {
     const text = date.evanghelie_text ||
       `Textul Evangheliei pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()} se găsește în Evangheliarul Bisericii Ortodoxe Române, la pericopa rânduită de Sinaxarul BOR. Evanghelia este citită la Sfânta Liturghie după Apostol, conform rânduielii liturgice ortodoxe. Cuvântul lui Dumnezeu luminează calea credincioșilor în fiecare zi.`;
     textEl.innerHTML = text.split('\n').filter(p => p.trim()).map(p =>
-      `<p style="margin-bottom:1.2em;line-height:1.75;font-size:1.05rem">${p.trim()}</p>`
+      `<p class="lectie-para">${p.trim()}</p>`
     ).join('');
   }
 
@@ -547,7 +547,7 @@ function populeazaPredica(container, date, azi, titluSfinti, dataFormatata) {
     const text = date.predica || date.cuvant_folos ||
       `Cuvântul de folos duhovnicesc pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()} va fi disponibil în curând. Predica și tâlcuirea patristică a Evangheliei zilei sunt pregătite zilnic de echipa Povești de Credință, în conformitate cu învățătura Sfinților Părinți ai Bisericii Ortodoxe. Vă invităm să reveniți pentru a citi cuvântul de folos al zilei.`;
     textEl.innerHTML = text.split('\n').filter(p => p.trim()).map(p =>
-      `<p style="margin-bottom:1.2em;line-height:1.75;font-size:1.05rem">${p.trim()}</p>`
+      `<p class="lectie-para">${p.trim()}</p>`
     ).join('');
   }
 
