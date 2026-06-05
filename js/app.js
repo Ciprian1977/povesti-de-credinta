@@ -1233,15 +1233,15 @@ function randeazaHubRugaciuni() {
       <h2 style="color:var(--visineu);font-family:var(--font-titlu);margin:0 0 .5rem">
         Rugăciunea de Azi — ${rugAzi.zi}
       </h2>
-      <p style="color:#5a3e2b;margin:0 0 1rem;font-size:.95rem">${rugAzi.dedicatie}</p>
+      <p class="rug-dedicatie">${rugAzi.dedicatie}</p>
       <a href="/rugaciunea-zilei/${rugAzi.slug}"
          data-ruta="/rugaciunea-zilei/${rugAzi.slug}"
-         class="btn-primar" style="display:inline-block">
+         class="btn-primar">
         Citește Rugăciunea de ${rugAzi.zi} →
       </a>
     </div>` : ''}
 
-    <h2 style="color:var(--visineu);font-family:var(--font-titlu);margin:1.5rem 0 1rem;font-size:1.3rem">
+    <h2 class="sectiune-titlu-h2">
       📅 Toate Rugăciunile Săptămânii
     </h2>
     <div class="grid-zile-rugaciuni">${carduriZile}</div>

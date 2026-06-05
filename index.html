@@ -69,7 +69,7 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
 .skeleton{background:#e8d5b0;border-radius:6px;position:relative;overflow:hidden}
 .skeleton::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,248,230,0.7) 50%,transparent 100%);animation:skeleton-shimmer 1.5s ease-in-out infinite;will-change:transform}
 /* Card Sfântul Zilei — rezervă 220px înainte de date */
-.card-sfant-zilei{background:#fff;border:1px solid rgba(201,168,76,.3);border-radius:16px;margin-top:24px;overflow:hidden;box-shadow:var(--shadow);position:relative;min-height:220px;contain:layout style paint}
+.card-sfant-zilei{background:#fff;border:1px solid rgba(201,168,76,.3);border-radius:16px;margin-top:24px;overflow:hidden;box-shadow:var(--shadow);position:relative;min-height:380px!important;contain:layout style paint}
 .card-sfant-zilei::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#6B1B2B,#C9A84C,#6B1B2B)}
 .card-sfant-header{background:linear-gradient(135deg,#6B1B2B 0%,#4A0F1C 100%);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;min-height:56px}
 .card-sfant-body{padding:24px 20px;display:flex;gap:20px;align-items:flex-start;min-height:164px}
@@ -83,11 +83,11 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
 .badge-post{font-size:.75rem;padding:4px 12px;border-radius:20px;font-weight:500}
 .badge-post.post{background:rgba(107,27,43,.8);color:#E8C878;border:1px solid #C9A84C}
 /* Card Rugăciunea Zilei — rezervă 180px */
-.card-rugaciune{background:#fff;border:1px solid rgba(201,168,76,.25);border-left:4px solid #C9A84C;border-radius:8px;padding:20px;box-shadow:var(--shadow);min-height:180px;contain:layout style paint}
+.card-rugaciune{background:#fff;border:1px solid rgba(201,168,76,.25);border-left:4px solid #C9A84C;border-radius:8px;padding:20px;box-shadow:var(--shadow);min-height:240px!important;contain:layout style paint}
 /* Card Cuvântul de Folos — rezervă 160px */
-.card-cuvant-folos{background:linear-gradient(135deg,#fdf6e3,#fef9f0);border:2px solid #C9A84C;border-radius:16px;padding:24px 20px 20px;box-shadow:0 4px 20px rgba(201,168,76,.18);position:relative;overflow:hidden;min-height:160px;contain:layout style paint}
+.card-cuvant-folos{background:linear-gradient(135deg,#fdf6e3,#fef9f0);border:2px solid #C9A84C;border-radius:16px;padding:24px 20px 20px;box-shadow:0 4px 20px rgba(201,168,76,.18);position:relative;overflow:hidden;min-height:280px!important;contain:layout style paint}
 /* Card Lectie (Evanghelie/Apostol/Predică) — rezervă 140px */
-.card-lectie{background:#fff;border:1px solid rgba(201,168,76,.25);border-radius:14px;padding:18px 16px;box-shadow:0 2px 10px rgba(107,27,43,.07);min-height:140px;contain:layout style paint}
+.card-lectie{background:#fff;border:1px solid rgba(201,168,76,.25);border-radius:14px;padding:18px 16px;box-shadow:0 2px 10px rgba(107,27,43,.07);min-height:180px!important;contain:layout style paint}
 /* Secțiunea titlu */
 .separator-ortodox{text-align:center;margin:28px 0 20px;color:#C9A84C;font-size:1.2rem;letter-spacing:.3em}
 .sectiune-titlu{font-family:Georgia,serif;font-size:1.1rem;color:#6B1B2B;margin-bottom:14px;display:flex;align-items:center;gap:10px}
@@ -280,7 +280,7 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
         </button>
       </div>
       <a id="btn-rugaciune-completa" href="/rugaciunea-zilei/vineri" data-ruta="/rugaciunea-zilei/vineri"
-         style="display:block;margin-top:16px;padding:14px 20px;background:linear-gradient(135deg,#6b1b2b,#4a0e17);color:#f5e6c8;text-align:center;border-radius:12px;text-decoration:none;font-size:1rem;font-weight:600;letter-spacing:0.3px;box-shadow:0 4px 14px rgba(107,27,43,0.25)">
+         class="btn-rugaciune-completa">
         🙏 Citește Rugăciunea Completă
       </a>
     </div>
