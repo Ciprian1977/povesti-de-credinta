@@ -520,7 +520,7 @@ Sfinții principali ai zilei conform Calendarului BOR: ${sfantiZilei}
 Tipul postului: ${tipPost}
 
 REGULI STRICTE:
-1. NU genera textele Apostolului, Evangheliei sau Troparului — acestea sunt preluate din surse exacte BOR.
+1. GENEREAZĂ textele Apostolului, Evangheliei și Troparului dacă nu sunt furnizate. Folosește traducerea sinodală BOR.
 2. NU folosi niciodată texte placeholder sau fraze generice de tipul "disponibil în curând", "Sfânt din Sinaxarul BOR" etc.
 3. Câmpul "titlu_sfinti" trebuie să conțină GRUPUL COMPLET de sfinți ai zilei (ex: "Sfinții Mucenici Zotic, Atal, Camasie și Filip de la Niculițel"), nu doar un sfânt secundar.
 4. Câmpul "sinaxar_complet" trebuie să fie un text ACADEMIC EXTINS de minimum 600 cuvinte (1500+ caractere), cu date istorice exacte, context teologic profund, referințe patristice, importanță liturgică și relevanță pentru credinciosul ortodox român — text complet pentru indexare SEO profundă. NU trunchia textul.
@@ -541,7 +541,12 @@ JSON exact (toate câmpurile obligatorii):
   "cuvant_folos": "citat patristic autentic relevant pentru ziua respectivă, cu sursa exactă (autor, carte, capitol)",
   "sfinti_secundari": "alți sfinți prăznuiți în această zi conform Calendarului BOR, separați prin punct și virgulă",
   "post_info": "descriere completă a tipului de post/dezlegare pentru această zi conform tradiției ortodoxe (ex: Dezlegare deplină la toate — zi de prăznuire; sau: Post — abstinență de la carne, lactate și ouă)",
-  "meta_description": "descriere SEO de exact 150-160 caractere pentru această zi, cu sfântul și data"
+  "meta_description": "descriere SEO de exact 150-160 caractere pentru această zi, cu sfântul și data",
+  "apostol_carte": "cartea și versetele Apostolului zilei (ex: Romani 1:1-7)",
+  "apostol_text": "textul integral al Apostolului zilei în limba română, conform traducerii sinodale BOR",
+  "evanghelie_carte": "cartea și versetele Evangheliei zilei (ex: Matei 5:1-10)",
+  "evanghelie_text": "textul integral al Evangheliei zilei în limba română, conform traducerii sinodale BOR",
+  "tropar": "troparul sfântului zilei, conform Mineiului BOR"
 }`;
 
   console.log(`\n🔄 Generez conținut creativ pentru ${date} – ${sfantDefault}`);
@@ -581,10 +586,10 @@ JSON exact (toate câmpurile obligatorii):
     // Fallback: text informativ fără placeholder vizibil
     continutAI.apostol_carte = continutAI.apostol_carte || 'Apostolul zilei';
     continutAI.apostol_versete = continutAI.apostol_versete || '';
-    continutAI.apostol_text = continutAI.apostol_text || 'Textul Apostolului pentru această zi se găsește în Apostolul BOR, la pericopa rânduită de Sinaxarul Bisericii Ortodoxe Române.';
+    continutAI.apostol_text = continutAI.apostol_text && continutAI.apostol_text.length > 50 ? continutAI.apostol_text : 'Textul Apostolului pentru această zi se găsește în Apostolul BOR, la pericopa rânduită de Sinaxarul Bisericii Ortodoxe Române.';
     continutAI.evanghelie_carte = continutAI.evanghelie_carte || 'Evanghelia zilei';
     continutAI.evanghelie_versete = continutAI.evanghelie_versete || '';
-    continutAI.evanghelie_text = continutAI.evanghelie_text || 'Textul Evangheliei pentru această zi se găsește în Evangheliarul BOR, la pericopa rânduită de Sinaxarul Bisericii Ortodoxe Române.';
+    continutAI.evanghelie_text = continutAI.evanghelie_text && continutAI.evanghelie_text.length > 50 ? continutAI.evanghelie_text : 'Textul Evangheliei pentru această zi se găsește în Evangheliarul BOR, la pericopa rânduită de Sinaxarul Bisericii Ortodoxe Române.';
     continutAI.tropar = continutAI.tropar || 'Troparul sfântului se găsește în Mineiul lunii, la ziua respectivă, conform rânduielii Bisericii Ortodoxe Române.';
   }
 

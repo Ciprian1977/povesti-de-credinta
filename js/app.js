@@ -487,6 +487,13 @@ function populeazaApostolul(container, date, azi, titluSfinti, dataFormatata) {
       navigator.clipboard.writeText(txt).then(() => aratToast('✅ Apostolul a fost copiat!'));
     };
   }
+
+  // ─── Linkuri interne SEO ──────────────────────────────────────────────────────
+  const linkuriApostol = el('apostol-linkuri-interne');
+  if (linkuriApostol) {
+    linkuriApostol.innerHTML = genereazaLinkuriInterne('apostol', date, azi);
+    intercepteazaLinkuriRuta(linkuriApostol);
+  }
 }
 
 // ─── /evanghelia-zilei ────────────────────────────────────────────────────────
@@ -517,6 +524,13 @@ function populeazaEvanghelia(container, date, azi, titluSfinti, dataFormatata) {
       navigator.clipboard.writeText(txt).then(() => aratToast('✅ Evanghelia a fost copiată!'));
     };
   }
+
+  // ─── Linkuri interne SEO ──────────────────────────────────────────────────────
+  const linkuriEvanghelia = el('evanghelie-linkuri-interne');
+  if (linkuriEvanghelia) {
+    linkuriEvanghelia.innerHTML = genereazaLinkuriInterne('evanghelie', date, azi);
+    intercepteazaLinkuriRuta(linkuriEvanghelia);
+  }
 }
 
 // ─── /predica-zilei ───────────────────────────────────────────────────────────
@@ -535,6 +549,13 @@ function populeazaPredica(container, date, azi, titluSfinti, dataFormatata) {
     textEl.innerHTML = text.split('\n').filter(p => p.trim()).map(p =>
       `<p style="margin-bottom:1.2em;line-height:1.75;font-size:1.05rem">${p.trim()}</p>`
     ).join('');
+  }
+
+  // ─── Linkuri interne SEO ──────────────────────────────────────────────────────
+  const linkuriPredica = el('predica-linkuri-interne');
+  if (linkuriPredica) {
+    linkuriPredica.innerHTML = genereazaLinkuriInterne('predica', date, azi);
+    intercepteazaLinkuriRuta(linkuriPredica);
   }
 }
 
@@ -1423,6 +1444,60 @@ function injecteazaJsonLdRugaciune(rugaciune, path) {
     });
     document.head.appendChild(scriptFaq);
   }
+}
+
+// ─── Generator linkuri interne SEO (hub & spoke) ────────────────────────────
+function genereazaLinkuriInterne(tipPagina, date, azi) {
+  const titluSfinti = date.sfant_nume || 'Sfântul zilei';
+  const zi = azi.getDate();
+  const luna = LUNI_GENITIV[azi.getMonth()];
+  const an = azi.getFullYear();
+  const dataStr = `${zi} ${luna} ${an}`;
+
+  const linkuriConfig = {
+    apostol: [
+      { href: '/evanghelia-zilei', icon: '✝️', titlu: 'Evanghelia Zilei', desc: `Textul integral al Evangheliei pentru ${dataStr}` },
+      { href: '/predica-zilei', icon: '🎙️', titlu: 'Predica Zilei', desc: 'Tâlcuirea patristică a Evangheliei de azi' },
+      { href: '/sinaxar', icon: '📜', titlu: 'Sinaxarul Zilei', desc: `Viața ${titluSfinti}` },
+      { href: '/rugaciunea-zilei', icon: '🙏', titlu: 'Rugăciunea Zilei', desc: 'Rugăciunea din Ceaslov pentru azi' },
+    ],
+    evanghelie: [
+      { href: '/apostolul-zilei', icon: '📖', titlu: 'Apostolul Zilei', desc: `Pericopa apostolică pentru ${dataStr}` },
+      { href: '/predica-zilei', icon: '🎙️', titlu: 'Predica Zilei', desc: 'Tâlcuirea patristică a Evangheliei de azi' },
+      { href: '/sinaxar', icon: '📜', titlu: 'Sinaxarul Zilei', desc: `Viața ${titluSfinti}` },
+      { href: '/rugaciunea-zilei', icon: '🙏', titlu: 'Rugăciunea Zilei', desc: 'Rugăciunea din Ceaslov pentru azi' },
+    ],
+    predica: [
+      { href: '/evanghelia-zilei', icon: '✝️', titlu: 'Evanghelia Zilei', desc: `Textul integral al Evangheliei pentru ${dataStr}` },
+      { href: '/apostolul-zilei', icon: '📖', titlu: 'Apostolul Zilei', desc: `Pericopa apostolică pentru ${dataStr}` },
+      { href: '/sinaxar', icon: '📜', titlu: 'Sinaxarul Zilei', desc: `Viața ${titluSfinti}` },
+      { href: '/rugaciunea-zilei', icon: '🙏', titlu: 'Rugăciunea Zilei', desc: 'Rugăciunea din Ceaslov pentru azi' },
+    ],
+  };
+
+  const linkuri = linkuriConfig[tipPagina] || linkuriConfig.evanghelie;
+
+  return `
+  <section style="margin-top:32px;padding-top:24px;border-top:2px solid rgba(201,168,76,0.3);">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#4a0e17;margin:0 0 16px 0;font-weight:700;">📚 Continuă lectura duhovnicească</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      ${linkuri.map(l => `
+      <a href="${l.href}" data-ruta="${l.href}" style="background:white;border:1.5px solid rgba(201,168,76,0.3);border-radius:14px;padding:16px 12px;text-align:center;text-decoration:none;box-shadow:0 2px 10px rgba(107,27,43,0.07);display:block;" aria-label="${l.titlu} — ${l.desc}">
+        <span style="font-size:1.8rem;display:block;margin-bottom:6px;">${l.icon}</span>
+        <span style="font-family:'Playfair Display',serif;color:#6B1B2B;font-size:0.85rem;font-weight:700;display:block;margin-bottom:4px;">${l.titlu}</span>
+        <span style="color:#666;font-size:0.75rem;line-height:1.4;display:block;">${l.desc}</span>
+      </a>`).join('')}
+    </div>
+    <div style="margin-top:16px;padding:14px;background:rgba(201,168,76,0.06);border-radius:12px;border:1px solid rgba(201,168,76,0.2);">
+      <p style="margin:0;font-size:0.85rem;color:#555;text-align:center;">
+        📅 <a href="/" data-ruta="/" style="color:#6B1B2B;font-weight:600;text-decoration:none;">Calendar Ortodox ${dataStr}</a>
+        &nbsp;·&nbsp;
+        <a href="/sfintii-zilei" data-ruta="/sfintii-zilei" style="color:#6B1B2B;font-weight:600;text-decoration:none;">Sfinții Zilei</a>
+        &nbsp;·&nbsp;
+        <a href="/rugaciunea-zilei" data-ruta="/rugaciunea-zilei" style="color:#6B1B2B;font-weight:600;text-decoration:none;">Rugăciuni</a>
+      </p>
+    </div>
+  </section>`;
 }
 
 // ─── Interceptare linkuri cu data-ruta din containerele dinamice ──────────────
