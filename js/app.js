@@ -59,7 +59,24 @@ const RUTE_SPA = {
 };
 
 // ─── Inițializare ─────────────────────────────────────────────────────────────
+// ─── Verificare automată la schimbarea zilei (miezul nopții Bucharest) ─────────
+let _ultimaDataBucharest = null;
+function verificaSchimbareZi() {
+  const dataAzi = getDataStrBucharest();
+  if (_ultimaDataBucharest && _ultimaDataBucharest !== dataAzi) {
+    console.log('🌅 Zi nouă detectată:', dataAzi, '— reîncărcare completă');
+    // Ștergem cache-ul și reîncărcăm pagina pentru noua zi liturgică
+    try { localStorage.removeItem(PDC_CACHE_KEY); } catch(e) {}
+    window.location.reload();
+  }
+  _ultimaDataBucharest = dataAzi;
+}
+// Verificăm la fiecare 60 secunde (nu afectează performanța)
+setInterval(verificaSchimbareZi, 60000);
+
 document.addEventListener('DOMContentLoaded', async () => {
+  // Inițializăm data Bucharest pentru detectarea schimbării zilei
+  _ultimaDataBucharest = getDataStrBucharest();
   await Promise.all([
     incarcaDateSupabase(),
     incarcaDate()
@@ -84,19 +101,39 @@ document.addEventListener('DOMContentLoaded', async () => {
   handleRoute(window.location.pathname);
 });
 
-// ─── Supabase: Încarcă date pentru ziua de azi ────────────────────────────────
+// ─── Supabase: Încarcă date pentru ziua de azi (fus orar Bucharest + cache) ────
+const PDC_CACHE_KEY = 'pdc_cache_v2';
 async function incarcaDateSupabase() {
   try {
-    const azi = new Date();
-    const dataStr = azi.toISOString().split('T')[0];
+    // ① Data corectă în fusul orar al României (nu UTC!)
+    const dataStr = getDataStrBucharest(); // ex: "2026-06-06"
 
+    // ② Verificăm cache-ul localStorage — valid DOAR pentru ziua curentă Bucharest
+    try {
+      const cached = localStorage.getItem(PDC_CACHE_KEY);
+      if (cached) {
+        const obj = JSON.parse(cached);
+        if (obj.data === dataStr && obj.rows && obj.rows.length > 0) {
+          supabaseData = obj.rows[0];
+          console.log('✅ Date din cache (Bucharest):', dataStr, supabaseData.sfant_nume);
+          return;
+        } else {
+          // Ziua s-a schimbat în Bucharest — ștergem cache-ul vechi
+          localStorage.removeItem(PDC_CACHE_KEY);
+          console.log('🔄 Cache invalidat — zi nouă Bucharest:', dataStr);
+        }
+      }
+    } catch(cacheErr) { /* localStorage indisponibil (modul privat etc.) */ }
+
+    // ③ Fetch din Supabase cu data Bucharest + no-cache
     const response = await fetch(
       `${SUPABASE_URL}/rest/v1/zile_ortodoxe?data_calendaristica=eq.${dataStr}&select=*&limit=1`,
       {
         headers: {
           'apikey': SUPABASE_ANON_KEY,
           'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Cache-Control': 'no-cache'
         }
       }
     );
@@ -106,9 +143,13 @@ async function incarcaDateSupabase() {
 
     if (rows && rows.length > 0) {
       supabaseData = rows[0];
-      console.log('✅ Date Supabase încărcate:', supabaseData.sfant_nume);
+      console.log('✅ Date Supabase încărcate (Bucharest):', dataStr, supabaseData.sfant_nume);
+      // ④ Salvăm în cache cu data Bucharest ca cheie
+      try {
+        localStorage.setItem(PDC_CACHE_KEY, JSON.stringify({ data: dataStr, rows }));
+      } catch(e) { /* localStorage plin sau indisponibil */ }
     } else {
-      console.log('ℹ️  Nu există date Supabase pentru azi — folosesc fallback');
+      console.log('ℹ️  Nu există date Supabase pentru', dataStr, '— folosesc fallback');
     }
   } catch (e) {
     console.warn('⚠️  Supabase indisponibil, folosesc fallback:', e.message);
@@ -126,8 +167,38 @@ async function incarcaDate() {
   }
 }
 
-// ─── Helper: obține date pentru azi ──────────────────────────────────────────
-function getAzi() { return new Date(); }
+// ─── Helper: obține data corectă în fusul orar Europe/Bucharest ──────────────
+/**
+ * Returnează un obiect Date care reflectă ZIUA CALENDARISTICĂ din Romania.
+ * Folosim Intl.DateTimeFormat pentru a extrage an/lună/zi în Europe/Bucharest,
+ * indiferent de ora UTC a serverului sau a dispozitivului utilizatorului.
+ */
+function getAziBucharest() {
+  const now = new Date();
+  const fmt = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Bucharest',
+    year: 'numeric', month: '2-digit', day: '2-digit'
+  });
+  // en-CA produce formatul YYYY-MM-DD direct
+  const dataStr = fmt.format(now); // ex: "2026-06-06"
+  const [an, luna, zi] = dataStr.split('-').map(Number);
+  // Construim un Date la miezul nopții în Bucharest (ora 00:00:00 locală)
+  // pentru a păstra compatibilitatea cu getDay(), getMonth() etc.
+  return new Date(an, luna - 1, zi, 0, 0, 0, 0);
+}
+function getAzi() { return getAziBucharest(); }
+
+/**
+ * Returnează data de azi în format YYYY-MM-DD conform Europe/Bucharest.
+ * ACEASTA este cheia folosită pentru interogarea Supabase.
+ */
+function getDataStrBucharest() {
+  const fmt = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Bucharest',
+    year: 'numeric', month: '2-digit', day: '2-digit'
+  });
+  return fmt.format(new Date()); // ex: "2026-06-06"
+}
 
 function getDateAzi() {
   if (supabaseData) return supabaseData;
@@ -562,7 +633,7 @@ function populeazaPredica(container, date, azi, titluSfinti, dataFormatata) {
 // ─── JSON-LD Dinamic (Article + FAQPage per rută) ─────────────────────────────
 function actualizeazaJsonLd(path, date, azi) {
   const titluSfinti = date.sfant_nume || 'Sfântul zilei';
-  const dataISO = azi.toISOString().split('T')[0];
+  const dataISO = getDataStrBucharest();
   const siteUrl = 'https://povestidecredinta.ro';
 
   // Elimină JSON-LD dinamic existent
@@ -730,7 +801,7 @@ function actualizeazaMetaTaguri() {
   if (ogDesc) ogDesc.setAttribute('content', descNou.substring(0, 160));
 
   const metaDatePublished = document.getElementById('meta-date-published');
-  if (metaDatePublished) metaDatePublished.setAttribute('content', azi.toISOString().split('T')[0]);
+  if (metaDatePublished) metaDatePublished.setAttribute('content', getDataStrBucharest());
 }
 
 // ─── Sfântul Zilei (homepage) ─────────────────────────────────────────────────
@@ -1406,7 +1477,7 @@ function injecteazaJsonLdRugaciune(rugaciune, path) {
   if (!rugaciune) return;
 
   const siteUrl = 'https://povestidecredinta.ro';
-  const dataISO = new Date().toISOString().split('T')[0];
+  const dataISO = getDataStrBucharest();
 
   const scriptArticle = document.createElement('script');
   scriptArticle.type = 'application/ld+json';
