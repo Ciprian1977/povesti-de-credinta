@@ -450,30 +450,106 @@ function getZiuaSaptamanii(dataStr) {
   return d.getDay(); // 0=Duminica, 1=Luni, ... 6=Sâmbătă
 }
 
+// ══════════════════════════════════════════════════════════════════
+// PERIOADELE MOBILE DE POST BOR — calculate pe baza Pascaliei
+// Paști 2026: 5 Aprilie 2026
+// Paști 2027: 25 Aprilie 2027
+// ══════════════════════════════════════════════════════════════════
+const PASTE_ORTODOX = {
+  2026: new Date('2026-04-05T00:00:00'),
+  2027: new Date('2027-04-25T00:00:00'),
+  2028: new Date('2028-04-16T00:00:00'),
+  2029: new Date('2029-04-01T00:00:00'),
+  2030: new Date('2030-04-21T00:00:00'),
+};
+
+function getPasteAnului(an) {
+  return PASTE_ORTODOX[an] || null;
+}
+
+function getPerioadePostMobile(an) {
+  const paste = getPasteAnului(an);
+  if (!paste) return [];
+  const P = paste.getTime();
+  const zi = 24 * 60 * 60 * 1000;
+  // Postul Apostolilor: începe Luni după Duminica Tuturor Sfinților (Paști+57 zile)
+  // Se termină întotdeauna pe 28 iunie
+  const startApostoli = new Date(P + 57 * zi);
+  const endApostoli = new Date(an + '-06-28T00:00:00');
+  return [
+    { start: new Date(P - 48 * zi), end: new Date(P - 1 * zi), tip: 'postul_mare' },
+    { start: new Date(P), end: new Date(P + 6 * zi), tip: 'saptamana_luminata' },
+    { start: startApostoli, end: endApostoli, tip: 'postul_apostolilor' },
+    { start: new Date(an + '-08-01T00:00:00'), end: new Date(an + '-08-14T00:00:00'), tip: 'postul_adormirii' },
+    { start: new Date(an + '-11-15T00:00:00'), end: new Date(an + '-12-24T00:00:00'), tip: 'postul_craciunului' },
+  ];
+}
+
+function getTipPostInPerioadaMobila(dataStr) {
+  const d = new Date(dataStr + 'T00:00:00');
+  const an = d.getFullYear();
+  const perioade = getPerioadePostMobile(an);
+  const key = getDataKey(dataStr);
+  const zi = d.getDay();
+
+  for (const p of perioade) {
+    if (d >= p.start && d <= p.end) {
+      if (p.tip === 'saptamana_luminata') return 'dezlegare';
+
+      if (p.tip === 'postul_mare') {
+        const paste = getPasteAnului(an);
+        const sambataMare = new Date(paste.getTime() - 24 * 60 * 60 * 1000);
+        if (dataStr === sambataMare.toISOString().split('T')[0]) return 'post_strict';
+        if (zi === 0) return 'dezlegare_peste';
+        if (zi === 6) return 'dezlegare_ulei';
+        if (key === '03-25') return 'dezlegare_peste'; // Buna Vestire
+        if (zi === 3 || zi === 5) return 'post_aspru';
+        return 'post';
+      }
+
+      if (p.tip === 'postul_apostolilor') {
+        if (key === '06-24') return 'dezlegare_peste'; // Nașterea Sf. Ioan Botezătorul
+        if (zi === 0 || zi === 6) return 'dezlegare_peste';
+        if (zi === 3 || zi === 5) return 'post_aspru';
+        return 'dezlegare_ulei';
+      }
+
+      if (p.tip === 'postul_adormirii') {
+        if (key === '08-06') return 'dezlegare_peste'; // Schimbarea la Față
+        if (zi === 0 || zi === 6) return 'dezlegare_peste';
+        if (zi === 3 || zi === 5) return 'post_aspru';
+        return 'post';
+      }
+
+      if (p.tip === 'postul_craciunului') {
+        if (zi === 0 || zi === 6) return 'dezlegare_peste';
+        if (zi === 3 || zi === 5) return 'post_aspru';
+        return 'post';
+      }
+    }
+  }
+  return null;
+}
+
 function getTipPostDefault(dataStr) {
   const zi = getZiuaSaptamanii(dataStr);
   const key = getDataKey(dataStr);
 
-  // ══ REGULA CANONICĂ ORTODOXĂ ══
-  // Duminica este zi de prăznuire — NICIODATĂ zi de post,
-  // indiferent de ce apare în calendarul static.
-  // Conform Canonului 64 Apostolic și tradiției BOR.
-  if (zi === 0) return 'dezlegare'; // 0 = Duminică
+  // ══ PASUL 1: Perioadele MOBILE de post (prioritate maximă) ══
+  const tipPostMobil = getTipPostInPerioadaMobila(dataStr);
+  if (tipPostMobil !== null) return tipPostMobil;
 
-  // Sâmbăta este zi de dezlegare (cu excepția Sâmbetei Mari)
-  // Sâmbăta Mare este gestionată prin CALENDAR_STATIC (post_strict)
+  // ══ PASUL 2: Reguli canonice generale (Canon 64 Apostolic) ══
+  if (zi === 0) return 'dezlegare'; // Duminica — NICIODATĂ post
   if (zi === 6) {
-    // Verificăm dacă e Sâmbăta Mare (excepție canonică)
-    if (CALENDAR_STATIC[key] && CALENDAR_STATIC[key].post === 'post_strict') {
-      return 'post_strict';
-    }
-    return 'dezlegare'; // 6 = Sâmbătă — dezlegare în general
+    if (CALENDAR_STATIC[key] && CALENDAR_STATIC[key].post === 'post_strict') return 'post_strict';
+    return 'dezlegare'; // Sâmbăta — dezlegare
   }
 
-  // Pentru celelalte zile: consultăm calendarul static BOR
+  // ══ PASUL 3: Calendar static BOR pentru sărbători fixe ══
   if (CALENDAR_STATIC[key]) return CALENDAR_STATIC[key].post;
 
-  // Fallback: Miercuri (3) și Vineri (5) sunt zile de post
+  // ══ PASUL 4: Fallback — Miercuri și Vineri sunt zile de post de rând ══
   if (zi === 3 || zi === 5) return 'post';
   return 'dezlegare';
 }
