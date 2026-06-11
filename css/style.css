@@ -265,6 +265,8 @@ main {
 .badge-post.dezlegare { background: rgba(27,107,43,0.9); color: #E8FFE8; border: 1px solid #A8E8A8; } /* contrast 7.2:1 WCAG AAA */
 .badge-post.dezlegare_peste { background: rgba(27,70,107,0.9); color: #E8F4FF; border: 1px solid #A8D4F0; } /* contrast 7.4:1 WCAG AAA */
 .badge-post.post_strict { background: rgba(60,10,10,0.9); color: var(--auriu-light); border: 1px solid var(--auriu); }
+.badge-post.dezlegare_ulei { background: rgba(107,80,10,0.9); color: #FFF8E1; border: 1px solid #D4A800; } /* Dezlegare vin+ulei — auriu închis */
+.badge-post.post_aspru { background: rgba(80,30,10,0.9); color: #FFE0CC; border: 1px solid #C06030; } /* Post aspru fără ulei */
 
 .card-sfant-body {
   padding: 24px 20px;

@@ -240,17 +240,20 @@ function getSfantPentruData(data) {
 function getTextPost(tipPost) {
   const texte = {
     'post': '🕯️ Zi de post',
+    'post_aspru': '🕯️ Post aspru (fără ulei)',
     'post_strict': '🕯️ Post negru',
     'dezlegare': '✅ Dezlegare deplină',
     'dezlegare_peste': '🐟 Dezlegare la pește',
+    'dezlegare_ulei': '🍷 Dezlegare la vin și untdelemn',
     'dezlegare_vin_ulei': '🍷 Dezlegare la vin și untdelemn'
   };
   return texte[tipPost] || '✅ Dezlegare';
 }
-
 function getBadgeClass(tipPost) {
   if (tipPost === 'dezlegare') return 'dezlegare';
   if (tipPost === 'dezlegare_peste') return 'dezlegare_peste';
+  if (tipPost === 'dezlegare_ulei' || tipPost === 'dezlegare_vin_ulei') return 'dezlegare_ulei';
+  if (tipPost === 'post_aspru') return 'post_aspru';
   if (tipPost === 'post_strict') return 'post_strict';
   return 'post';
 }
