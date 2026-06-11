@@ -1,11 +1,11 @@
 // ═══════════════════════════════════════════════════════════════════
-// POVEȘTI DE CREDINȚĂ — Service Worker v3
+// POVEȘTI DE CREDINȚĂ — Service Worker v4
 // Strategii: Network-First (Supabase API) + Stale-While-Revalidate (statice)
-// ═══════════════════════════════════════════════════════════════════
-
-const CACHE_STATIC = 'pdc-static-v3';
-const CACHE_PAGES  = 'pdc-pages-v3';
-const CACHE_API    = 'pdc-api-v3';
+// v4: fix badge dezlegare_ulei/post_aspru + algoritm post BOR 2026
+// ═════════════════════════════════════════════════════════════════
+const CACHE_STATIC = 'pdc-static-v4';
+const CACHE_PAGES  = 'pdc-pages-v4';
+const CACHE_API    = 'pdc-api-v4';
 
 // Resurse statice pre-cache la instalare
 const STATIC_ASSETS = [
