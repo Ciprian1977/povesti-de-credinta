@@ -163,7 +163,7 @@ async function trimite(segment, dataISO) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
-      'Authorization': `Basic ${ONESIGNAL_API_KEY}`
+      'Authorization': `Key ${ONESIGNAL_API_KEY}`
     },
     body: JSON.stringify(payload)
   });
