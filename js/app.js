@@ -471,25 +471,30 @@ function populeazaSinaxar(container, date, azi, titluSfinti, dataFormatata) {
     <!-- Badge post -->
     <span class="badge-post ${getBadgeClass(date.tip_post)}" >${postText}</span>
 
-    <!-- SINAXAR INTEGRAL -->
-    <article class="sinaxar-articol" class="sinaxar-articol-body">
-      ${sinaxarText.split('\n').filter(p => p.trim()).map(p =>
+    <!-- SINAXAR INTEGRAL       ${sinaxarText.split('\n').filter(p => p.trim()).map(p =>
         `<p class="sinaxar-para">${p.trim()}</p>`
       ).join('')}
     </article>
 
     <!-- Butoane Copiază + WhatsApp -->
     <div class="btn-grup">
-      <button onclick="copieTextSinaxar()" class="btn-actiune" class="btn-actiune btn-copie">
+      <button onclick="copieTextSinaxar()" class="btn-actiune btn-copie">
         📋 Copiază Sinaxarul
       </button>
-      <button onclick="shareWhatsAppSinaxar()" class="btn-actiune btn-wa" class="btn-actiune btn-wa">
+      <button onclick="shareWhatsAppSinaxar()" class="btn-actiune btn-wa">
         💬 Trimite pe WhatsApp
       </button>
     </div>
 
-    ${troparText ? `
-    <!-- TROPARUL SFÂNTULUI -->
+    <!-- CTA Notificări Contextual -->
+    <div style="margin:24px 0;padding:20px;background:rgba(201,168,76,0.08);border:1px dashed var(--auriu);border-radius:16px;text-align:center">
+        <p style="font-size:0.9rem;color:var(--visineu-dark);margin-bottom:14px;font-weight:600">🔔 Vrei să primești memento zilnic cu Sfântul Zilei?</p>
+        <a href="/setari-notificari" data-ruta="/setari-notificari" style="display:inline-block;background:var(--visineu);color:white;text-decoration:none;padding:12px 24px;border-radius:25px;font-size:0.88rem;font-weight:700;box-shadow:var(--shadow)">
+            Setează Notificările
+        </a>
+    </div>
+
+    ${troparText ? `    <!-- TROPARUL SFÂNTULUI -->
     <section class="tropar-sectiune">
       <h2 class="tropar-titlu">🎵 Troparul Sfântului</h2>
       <p class="tropar-text">${troparText}</p>
@@ -1871,6 +1876,33 @@ async function onToggleSchimbat(checkbox) {
 }
 
 /**
+ * Dezabonează definitiv utilizatorul și șterge ID-ul din OneSignal (GDPR Opt-out).
+ */
+async function stergeDefinitivID() {
+  if (!confirm('Ești sigur că vrei să te dezabonezi definitiv și să ștergi identificatorul acestui dispozitiv? Nu vei mai primi nicio notificare până la o re-abonare manuală.')) {
+    return;
+  }
+
+  try {
+    // 1. Dezactivăm toate toggle-urile în UI
+    const pref = { dimineata: false, pranz: false, seara: false, alerte_post: false, seara_ora: '21:30' };
+    salveazaPreferinteNotif(pref);
+    initSetariNotificari(); // Reîmprospătează UI-ul
+
+    // 2. Dezactivăm push în OneSignal
+    if (typeof OneSignal !== 'undefined') {
+      await OneSignal.User.PushSubscription.optOut();
+      // Ștergem și tag-urile pentru a fi siguri
+      await OneSignal.User.deleteTags(['dimineata', 'pranz', 'seara', 'seara_ora', 'alerte_post']);
+    }
+
+    afiseazaMesajSetari('✅ Te-ai dezabonat cu succes. Datele de notificare au fost șterse.', 'succes');
+    aratToast('Identificator șters cu succes.');
+  } catch (e) {
+    console.error('Eroare la dezabonare:', e);
+    aratToast('A apărut o eroare. Încearcă din setările browserului.');
+  }
+}/**
  * Gestionează schimbarea orei pentru rugăciunea de seară.
  */
 async function onOraSearaSchimbata(input) {

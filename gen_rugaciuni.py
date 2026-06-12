@@ -192,10 +192,16 @@ def gen_page(r):
         <span style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:1px">Textul rug&#259;ciunii</span>
         <div style="display:inline-block;width:40px;height:2px;background:var(--auriu);vertical-align:middle;margin-left:10px"></div>
       </div>
-      <div style="font-family:var(--font-special);font-size:1rem;line-height:1.9;color:var(--text-dark)" itemprop="text">
-        {text_html}
-      </div>
+      <div style="font-family:var(--font-special);font-size:1.1rem;line-height:1.8;color:var(--text-dark);white-space:pre-wrap">{text_html}</div>
     </div>
+
+    <!-- CTA Notificări Contextual -->
+    <div style="margin:20px 0;padding:16px;background:rgba(201,168,76,0.08);border:1px dashed var(--auriu);border-radius:12px;text-align:center">
+        <p style="font-size:0.88rem;color:var(--visineu-dark);margin-bottom:12px;font-weight:600">🔔 Vrei să primești memento pentru această rugăciune?</p>
+        <a href="/setari-notificari" style="display:inline-block;background:var(--visineu);color:white;text-decoration:none;padding:10px 20px;border-radius:20px;font-size:0.82rem;font-weight:700;box-shadow:var(--shadow)">
+            Setează Notificările
+        </a>
+    </div>   </div>
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin:16px 0">
       <button onclick="copieTextRugaciune()" style="flex:1;min-width:140px;background:var(--visineu);color:white;border:none;padding:12px 16px;border-radius:25px;font-size:0.88rem;cursor:pointer;font-family:var(--font-titlu);font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px">
         &#128203; Copiaz&#259; rug&#259;ciunea
