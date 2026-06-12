@@ -4,10 +4,7 @@
    Culori: Vișiniu + Auriu + Crem
    ============================================ */
 
-/* Preconnect hints sunt în <head> al fiecărei pagini pentru performanță maximă */
-
-
-/* === VARIABILE === */
+/* Preconnect hints s/* === VARIABILE === */
 :root {
   --visineu: #6B1B2B;
   --visineu-dark: #4A0F1C;
@@ -19,8 +16,8 @@
   --crem-dark: #F5EDD0;
   --albastru-marial: #1B3A6B;
   --text-dark: #2C1810;
-  --text-medium: #3D2010; /* WCAG AAA: contrast 7.1:1 pe fundal crem */
-  --text-light: #4A2C18; /* WCAG AA: contrast 5.8:1 pe fundal crem */
+  --text-medium: #3D2010;
+  --text-light: #4A2C18;
   --alb: #FFFFFF;
   --shadow: 0 4px 20px rgba(107, 27, 43, 0.15);
   --shadow-gold: 0 2px 12px rgba(201, 168, 76, 0.3);
@@ -31,7 +28,70 @@
   --font-special: 'IM Fell English', Georgia, serif;
 }
 
-/* === RESET === */
+/* === CLASE UNIVERSALE PENTRU ORDINE === */
+.grid-ordonat {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .grid-ordonat {
+    grid-template-columns: 1fr 1fr;
+  }
+  .grid-full {
+    grid-column: 1 / -1;
+  }
+}
+
+.card-universal {
+  background: white;
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.2s ease;
+}
+
+.card-universal:hover {
+  transform: translateY(-2px);
+}
+
+.btn-egal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-family: var(--font-titlu);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1.5px solid var(--visineu);
+  cursor: pointer;
+  gap: 8px;
+}
+
+.btn-primar {
+  background: var(--visineu);
+  color: white;
+}
+
+.btn-secundar {
+  background: transparent;
+  color: var(--visineu);
+}
+
+.btn-egal:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}/* === RESET === */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 17px; scroll-behavior: smooth; }
 body {
@@ -214,8 +274,7 @@ main {
   z-index: 1;
 }
 
-/* === CARD SFÂNTUL ZILEI === */
-.card-sfant-zilei {
+/* === CARD SFÂNTUL ZILEI ==.card-sfant-zilei {
   background: linear-gradient(135deg, var(--alb) 0%, var(--crem) 100%);
   border: 1px solid rgba(201, 168, 76, 0.3);
   border-radius: var(--radius-lg);
@@ -223,13 +282,9 @@ main {
   overflow: hidden;
   box-shadow: var(--shadow);
   position: relative;
-  /* CLS fix: 380px acoperă textul teologic mediu din Supabase */
-  min-height: 380px !important;
+  min-height: auto !important;
   contain: layout style paint;
-}
-
-.card-sfant-zilei::before {
-  content: '';
+}: '';
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 4px;

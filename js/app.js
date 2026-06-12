@@ -471,7 +471,9 @@ function populeazaSinaxar(container, date, azi, titluSfinti, dataFormatata) {
     <!-- Badge post -->
     <span class="badge-post ${getBadgeClass(date.tip_post)}" >${postText}</span>
 
-    <!-- SINAXAR INTEGRAL       ${sinaxarText.split('\n').filter(p => p.trim()).map(p =>
+    <!-- SINAXAR INTEGRAL -->
+    <article class="sinaxar-articol">
+      ${sinaxarText.split('\n').filter(p => p.trim()).map(p =>
         `<p class="sinaxar-para">${p.trim()}</p>`
       ).join('')}
     </article>

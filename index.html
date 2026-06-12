@@ -231,100 +231,77 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
     <button class="btn-instaleaza" onclick="instaleazaPWA()">Instalează</button>
   </div>
 
-  <!-- 1. CARD SFÂNTUL ZILEI -->
-  <article class="card-sfant-zilei" itemscope itemtype="https://schema.org/Article">
-    <div class="card-sfant-header">
-      <span class="data-azi" id="zi-saptamana">Se încarcă...</span>
-      <span class="badge-post post" id="badge-post">🕯️ Post</span>
-    </div>
-    <div class="card-sfant-body">
-      <div class="sfant-icoana" aria-hidden="true">🕯️</div>
-      <div class="sfant-info">
-        <div class="sfant-titlu-mic">Sfântul zilei</div>
-        <h1 class="sfant-nume" id="sfant-nume" itemprop="headline">Se încarcă...</h1>
-        <meta itemprop="datePublished" id="meta-date-published" content="">
-        <meta itemprop="author" content="Povești de Credință">
-        <p class="sfant-scurt" id="sfant-scurt" itemprop="description"></p>
-        <a href="/sinaxar" data-ruta="/sinaxar" id="btn-citeste-mai-mult" class="btn-citeste" aria-label="Citește viața completă a sfântului zilei">
-          📖 Citește mai mult
-        </a>
+  <div class="grid-ordonat">
+    <!-- 1. CARD SFÂNTUL ZILEI -->
+    <article class="card-sfant-zilei grid-full" itemscope itemtype="https://schema.org/Article">
+      <div class="card-sfant-header">
+        <span class="data-azi" id="zi-saptamana">Se încarcă...</span>
+        <span class="badge-post post" id="badge-post">🕯️ Post</span>
       </div>
-    </div>
-  </article>
+      <div class="card-sfant-body">
+        <div class="sfant-icoana" aria-hidden="true">🕯️</div>
+        <div class="sfant-info">
+          <div class="sfant-titlu-mic">Sfântul zilei</div>
+          <h1 class="sfant-nume" id="sfant-nume" itemprop="headline">Se încarcă...</h1>
+          <meta itemprop="datePublished" id="meta-date-published" content="">
+          <meta itemprop="author" content="Povești de Credință">
+          <p class="sfant-scurt" id="sfant-scurt" itemprop="description"></p>
+          <a href="/sinaxar" data-ruta="/sinaxar" id="btn-citeste-mai-mult" class="btn-egal btn-primar" style="margin-top:15px; width:auto; display:inline-flex">
+            📖 Citește Sinaxarul Complet
+          </a>
+        </div>
+      </div>
+    </article>
 
-  <!-- 2. CUVÂNTUL DE FOLOS AL ZILEI -->
-  <section class="sectiune-cuvant-folos" aria-labelledby="titlu-cuvant-folos">
-    <h2 class="sectiune-titlu" id="titlu-cuvant-folos">✨ Cuvântul de Folos al Zilei</h2>
-    <div class="card-cuvant-folos" id="card-cuvant-folos">
+    <!-- 2. CUVÂNTUL DE FOLOS AL ZILEI -->
+    <section class="card-universal" aria-labelledby="titlu-cuvant-folos">
+      <h2 class="sectiune-titlu" id="titlu-cuvant-folos" style="margin-bottom:15px">✨ Cuvântul de Folos</h2>
       <div class="ghilimele-mari" aria-hidden="true">❝</div>
-      <blockquote class="cuvant-folos-citat" id="cuvant-folos-text">
+      <blockquote class="cuvant-folos-citat" id="cuvant-folos-text" style="flex:1">
         <p id="cuvant-folos-paragraf">Se încarcă...</p>
         <footer class="cuvant-folos-autor" id="cuvant-folos-autor">— Sfânt Părinte</footer>
       </blockquote>
-      <div class="cuvant-folos-actiuni">
-        <button class="btn-copiere" onclick="copieCuvantFolos()">📋 Copiază citatul</button>
-        <button class="btn-copiere btn-wa" onclick="shareWhatsApp(document.getElementById('cuvant-folos-paragraf').textContent + ' — ' + document.getElementById('cuvant-folos-autor').textContent)">
-          💬 Trimite pe WhatsApp
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:20px">
+        <button class="btn-egal btn-secundar" onclick="copieCuvantFolos()" style="padding:10px">📋 Copiază</button>
+        <button class="btn-egal btn-wa" onclick="shareWhatsApp(document.getElementById('cuvant-folos-paragraf').textContent + ' — ' + document.getElementById('cuvant-folos-autor').textContent)" style="padding:10px">
+          💬 WhatsApp
         </button>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="separator-ortodox" aria-hidden="true">✦ ✝ ✦</div>
-
-  <!-- 3. RUGĂCIUNEA ZILEI — Preview dinamic + buton Hub -->
-  <section aria-labelledby="titlu-rugaciune">
-    <h2 class="sectiune-titlu">🙏 Rugăciunea zilei</h2>
-    <div class="card-rugaciune">
-      <div class="rugaciune-titlu" id="rugaciune-titlu">Rugăciunea dimineții</div>
-      <p class="rugaciune-text" id="rugaciune-text" style="font-size:19px;line-height:1.7;color:#2c2c2c;text-align:justify;padding:0 4px">Se încarcă...</p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
-        <button class="btn-copiere" onclick="copieRugaciune()">📋 Copiază</button>
-        <button class="btn-copiere btn-wa" onclick="shareWhatsApp(document.getElementById('rugaciune-text').textContent)">
-          💬 Trimite pe WhatsApp
-        </button>
-      </div>
-      <a id="btn-rugaciune-completa" href="/rugaciunea-zilei/vineri" data-ruta="/rugaciunea-zilei/vineri"
-         class="btn-rugaciune-completa">
-        🙏 Citește Rugăciunea Completă
+    <!-- 3. RUGĂCIUNEA ZILEI -->
+    <section class="card-universal" aria-labelledby="titlu-rugaciune">
+      <h2 class="sectiune-titlu" style="margin-bottom:15px">🙏 Rugăciunea zilei</h2>
+      <div id="rugaciune-titlu" style="font-family:var(--font-titlu); color:var(--visineu); font-weight:700; margin-bottom:10px">Rugăciunea dimineții</div>
+      <p id="rugaciune-text" style="font-size:0.95rem; line-height:1.6; color:var(--text-dark); flex:1; display:-webkit-box; -webkit-line-clamp:6; -webkit-box-orient:vertical; overflow:hidden">Se încarcă...</p>
+      <a id="btn-rugaciune-completa" href="/rugaciunea-zilei/vineri" data-ruta="/rugaciunea-zilei/vineri" class="btn-egal btn-primar" style="margin-top:20px">
+        🙏 Citește Rugăciunea
       </a>
-    </div>
-  </section>
+    </section>
 
-  <div class="separator-ortodox" aria-hidden="true">✦ ✝ ✦</div>
-
-  <!-- 4. EVANGHELIA ZILEI -->
-  <section aria-labelledby="titlu-evanghelie-acasa">
-    <h2 class="sectiune-titlu">✝️ Evanghelia zilei</h2>
-    <div class="card-lectie" id="card-evanghelie-acasa">
+    <!-- 4. EVANGHELIA ZILEI -->
+    <section class="card-universal" aria-labelledby="titlu-evanghelie-acasa">
+      <h2 class="sectiune-titlu" style="margin-bottom:15px">✝️ Evanghelia zilei</h2>
       <div class="lectie-referinta" id="evanghelie-ref-acasa">Se încarcă...</div>
-      <div class="lectie-text" id="evanghelie-text-acasa">Se încarcă textul Evangheliei...</div>
-      <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei" class="btn-lectie-mai-mult">📖 Citește tâlcuirea completă →</a>
-    </div>
-  </section>
+      <div class="lectie-text" id="evanghelie-text-acasa" style="flex:1">Se încarcă textul Evangheliei...</div>
+      <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei" class="btn-egal btn-secundar">📖 Tâlcuire Completă</a>
+    </section>
 
-  <div class="separator-ortodox" aria-hidden="true">✦ ✝ ✦</div>
-
-  <!-- 5. APOSTOLUL ZILEI -->
-  <section aria-labelledby="titlu-apostol-acasa">
-    <h2 class="sectiune-titlu">📖 Apostolul zilei</h2>
-    <div class="card-lectie" id="card-apostol-acasa">
+    <!-- 5. APOSTOLUL ZILEI -->
+    <section class="card-universal" aria-labelledby="titlu-apostol-acasa">
+      <h2 class="sectiune-titlu" style="margin-bottom:15px">📖 Apostolul zilei</h2>
       <div class="lectie-referinta" id="apostol-ref-acasa">Se încarcă...</div>
-      <div class="lectie-text" id="apostol-text-acasa">Se încarcă textul Apostolului...</div>
-      <a href="/apostolul-zilei" data-ruta="/apostolul-zilei" class="btn-lectie-mai-mult">📖 Citește tâlcuirea completă →</a>
-    </div>
-  </section>
+      <div class="lectie-text" id="apostol-text-acasa" style="flex:1">Se încarcă textul Apostolului...</div>
+      <a href="/apostolul-zilei" data-ruta="/apostolul-zilei" class="btn-egal btn-secundar">📖 Tâlcuire Completă</a>
+    </section>
 
-  <div class="separator-ortodox" aria-hidden="true">✦ ✝ ✦</div>
-
-  <!-- 6. PREDICA ZILEI -->
-  <section aria-labelledby="titlu-predica-acasa">
-    <h2 class="sectiune-titlu">🎙️ Predica zilei</h2>
-    <div class="card-lectie" id="card-predica-acasa">
-      <div class="lectie-text" id="predica-text-acasa">Se încarcă predica...</div>
-      <a href="/predica-zilei" data-ruta="/predica-zilei" class="btn-lectie-mai-mult">📖 Citește predica completă →</a>
-    </div>
-  </section>
+    <!-- 6. PREDICA ZILEI -->
+    <section class="card-universal grid-full" aria-labelledby="titlu-predica-acasa">
+      <h2 class="sectiune-titlu" style="margin-bottom:15px">🎙️ Predica zilei</h2>
+      <div class="lectie-text" id="predica-text-acasa" style="flex:1; -webkit-line-clamp:3">Se încarcă predica...</div>
+      <a href="/predica-zilei" data-ruta="/predica-zilei" class="btn-egal btn-primar" style="width:auto; align-self:center; padding:12px 40px">📖 Citește Predica</a>
+    </section>
+  </div>
 
   <div class="separator-ortodox" aria-hidden="true">✦ ✝ ✦</div>
 
