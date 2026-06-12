@@ -1,0 +1,90 @@
+name: Notificari Push Segmentate
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# POVESTI DE CREDINTA — Trimitere notificari push pe segmente (OneSignal Tags)
+# ─────────────────────────────────────────────────────────────────────────────
+# Cron-urile sunt in UTC. Romania vara = UTC+3, iarna = UTC+2.
+# Orele tinta (vara, UTC+3):
+#   - dimineata    07:30 RO  -> 04:30 UTC
+#   - pranz        13:00 RO  -> 10:00 UTC
+#   - seara        21:30 RO  -> 18:30 UTC  (ora implicita; userii pot alege alta)
+#   - alerte_post  trimitere manuala / la nevoie (workflow_dispatch)
+#
+# NOTA: Pana la setarea secretelor ONESIGNAL_APP_ID si ONESIGNAL_API_KEY,
+# scriptul ruleaza in mod "skip" (nu trimite nimic, nu da eroare).
+# ═══════════════════════════════════════════════════════════════════════════════
+
+on:
+  schedule:
+    - cron: '30 4 * * *'   # dimineata 07:30 RO (vara)
+    - cron: '0 10 * * *'   # pranz     13:00 RO (vara)
+    - cron: '30 18 * * *'  # seara     21:30 RO (vara)
+  workflow_dispatch:
+    inputs:
+      segment:
+        description: 'Segment de trimis (dimineata, pranz, seara, alerte_post)'
+        required: true
+        default: 'alerte_post'
+      data_target:
+        description: 'Data tinta (YYYY-MM-DD, gol = azi RO)'
+        required: false
+        default: ''
+
+jobs:
+  trimite-notificari:
+    name: Trimite notificari segmentate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: scripts/package.json
+
+      - name: Instaleaza dependente
+        working-directory: scripts
+        run: npm install
+
+      - name: Determina segmentul (din cron sau manual)
+        id: seg
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "segment=${{ github.event.inputs.segment }}" >> "$GITHUB_OUTPUT"
+            echo "data=${{ github.event.inputs.data_target }}" >> "$GITHUB_OUTPUT"
+          else
+            case "${{ github.event.schedule }}" in
+              "30 4 * * *")  echo "segment=dimineata"   >> "$GITHUB_OUTPUT" ;;
+              "0 10 * * *")  echo "segment=pranz"       >> "$GITHUB_OUTPUT" ;;
+              "30 18 * * *") echo "segment=seara"       >> "$GITHUB_OUTPUT" ;;
+              *)             echo "segment=dimineata"   >> "$GITHUB_OUTPUT" ;;
+            esac
+            echo "data=" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Trimite notificarea
+        working-directory: scripts
+        env:
+          ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: |
+          SEG="${{ steps.seg.outputs.segment }}"
+          DATA="${{ steps.seg.outputs.data }}"
+          if [ -n "$DATA" ]; then
+            node trimite-notificari.js "$SEG" "$DATA"
+          else
+            node trimite-notificari.js "$SEG"
+          fi
+
+      - name: Raport final
+        if: always()
+        run: |
+          echo "Povesti de Credinta - Notificari push finalizate"
+          echo "Segment: ${{ steps.seg.outputs.segment }}"
+          echo "Data executie: $(date '+%Y-%m-%d %H:%M:%S UTC')"
