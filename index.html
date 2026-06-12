@@ -537,7 +537,9 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
       <div class="setare-continut">
         <div class="setare-titlu">Gândul de dimineață și Sfântul Zilei</div>
         <div class="setare-desc">Pornesc ziua cu numele sfântului praznuit și un cuvânt de folos.</div>
-        <span class="setare-ora">🕒 Ora: 07:30</span>
+        <span class="setare-ora">🕒 Ora aleasă:
+          <input type="time" id="ora-dimineata" value="07:30" aria-label="Alege ora pentru notificarea de dimineață">
+        </span>
       </div>
       <label class="toggle-switch">
         <input type="checkbox" id="toggle-dimineata" data-segment="dimineata" aria-label="Activează notificarea de dimineață">
@@ -551,7 +553,9 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
       <div class="setare-continut">
         <div class="setare-titlu">Rugăciunea de la prânz</div>
         <div class="setare-desc">Binecuvântarea mesei și o clipă de mulțumire la mijlocul zilei.</div>
-        <span class="setare-ora">🕒 Ora: 13:00</span>
+        <span class="setare-ora">🕒 Ora aleasă:
+          <input type="time" id="ora-pranz" value="13:00" aria-label="Alege ora pentru notificarea de prânz">
+        </span>
       </div>
       <label class="toggle-switch">
         <input type="checkbox" id="toggle-pranz" data-segment="pranz" aria-label="Activează notificarea de prânz">
@@ -581,6 +585,9 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
       <div class="setare-continut">
         <div class="setare-titlu">Alerte pentru Posturi și Sărbători Mari</div>
         <div class="setare-desc">Te anunțăm când începe un post sau o sărbătoare importantă și la zilele cu dezlegare.</div>
+        <span class="setare-ora">🕒 Ora aleasă:
+          <input type="time" id="ora-alerte" value="07:30" aria-label="Alege ora pentru alertele de posturi">
+        </span>
       </div>
       <label class="toggle-switch">
         <input type="checkbox" id="toggle-alerte" data-segment="alerte_post" aria-label="Activează alertele pentru posturi">
@@ -588,6 +595,21 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
       </label>
     </div>
     <p class="setari-nota">Notificările sunt trimise prin serviciul de push și funcționează chiar și când aplicația este închisă. Nu colectăm date personale — doar preferințele tale de rugăciune.</p>
+    
+    <div style="margin-top:24px;padding:16px;background:linear-gradient(135deg,#fdf6e3,#fef9f0);border-left:4px solid #C9A84C;border-radius:8px">
+      <p style="font-size:0.9rem;margin-bottom:12px;color:#2C1810"><strong>📖 Rugăciuni complete din Ceaslov BOR:</strong></p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <a href="/rugaciuni-diminetii/" style="display:block;padding:10px 12px;background:#8B3A3A;color:#FDF6E3;text-decoration:none;border-radius:6px;font-size:0.85rem;text-align:center;font-weight:600;transition:opacity 0.2s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+          ☀️ Rugăciunile Dimineții
+        </a>
+        <a href="/rugaciuni-serii/" style="display:block;padding:10px 12px;background:#8B3A3A;color:#FDF6E3;text-decoration:none;border-radius:6px;font-size:0.85rem;text-align:center;font-weight:600;transition:opacity 0.2s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+          🌙 Rugăciunile Serii
+        </a>
+        <a href="/rugaciuni-mese/" style="display:block;padding:10px 12px;background:#8B3A3A;color:#FDF6E3;text-decoration:none;border-radius:6px;font-size:0.85rem;text-align:center;font-weight:600;transition:opacity 0.2s;grid-column:1/-1" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+          🍽️ Rugăciunile Meselor
+        </a>
+      </div>
+    </div>
     
     <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(201,168,76,0.15);text-align:center">
       <button onclick="stergeDefinitivID()" style="background:none;border:1px solid rgba(107,27,43,0.2);color:var(--text-light);padding:10px 16px;border-radius:10px;font-size:0.78rem;cursor:pointer;transition:all 0.2s">

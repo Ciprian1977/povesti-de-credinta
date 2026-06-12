@@ -101,6 +101,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initNavMobil();
   initFAQ();
   initOneSignal();
+  startSchedulerNotificariLocale(); // Pornesc scheduler pentru notificări locale la ora exactă
   afiseazaPostUrmator();
   afiseazaRugaciuneaZilei();
   randeazaCalendar(lunaAfisata, anAfisat);
@@ -1826,12 +1827,18 @@ function actualizeazaCardActiv(idCard, activ) {
  * Gestionează schimbarea unui toggle.
  * - La PRIMUL toggle activat, cere permisiunea nativă.
  * - Dacă permisiunea e refuzată, revine toggle-ul pe OFF.
- * - Salvează în localStorage și sincronizează tag-ul.
+ * - Salvează în localStorage orele personalizate și sincronizează tag-urile.
  */
 async function onToggleSchimbat(checkbox) {
   const segment = checkbox.getAttribute('data-segment');
   const activ = checkbox.checked;
   const pref = getPreferinteNotif();
+
+  // Salvez ora personalizată pentru acest segment (dacă există input time)
+  const inputOra = document.getElementById(`ora-${segment === 'alerte_post' ? 'alerte' : segment}`);
+  if (inputOra && inputOra.value) {
+    pref[`${segment}_ora`] = inputOra.value;
+  }
 
   // Verificăm dacă acesta este PRIMUL toggle activat (toate erau OFF)
   const vreunActivInainte = pref.dimineata || pref.pranz || pref.seara || pref.alerte_post;
@@ -1852,7 +1859,7 @@ async function onToggleSchimbat(checkbox) {
         );
       } else {
         afiseazaMesajSetari(
-          'Ai nevoie să accepți notificările pentru a primi memento-uri. Apasă din nou pe comutator și alege „Permite".',
+          'Ai nevoie să accepți notificările pentru a primi memento-uri. Apasă din nou pe comutator și alege "Permite".',
           'info'
         );
       }
@@ -1868,13 +1875,31 @@ async function onToggleSchimbat(checkbox) {
   // Actualizăm vizualul cardului
   actualizeazaCardActiv(`card-${segment === 'alerte_post' ? 'alerte' : segment}`, activ);
 
-  // Sincronizăm tag-ul cu OneSignal
+  // Sincronizăm tag-urile cu OneSignal (inclusiv ora personalizată)
   await sincronizeazaTag(segment, activ);
+  if (pref[`${segment}_ora`]) {
+    await sincronizeazaTag(`${segment}_ora`, pref[`${segment}_ora`]);
+  }
 
   // Dacă toate toggle-urile sunt acum OFF, ascundem mesajul de succes
   const pref2 = getPreferinteNotif();
   const vreunActivAcum = pref2.dimineata || pref2.pranz || pref2.seara || pref2.alerte_post;
   if (!vreunActivAcum) ascundeMesajSetari();
+}
+
+/**
+ * Gestionează schimbarea orei personalizate pentru o notificare.
+ */
+function onOraSchimbata(inputOra) {
+  const segment = inputOra.id.replace('ora-', '');
+  const segmentKey = segment === 'alerte' ? 'alerte_post' : segment;
+  const pref = getPreferinteNotif();
+  pref[`${segmentKey}_ora`] = inputOra.value;
+  salveazaPreferinteNotif(pref);
+  // Sincronizez ora cu OneSignal dacă segmentul este activ
+  if (pref[segmentKey]) {
+    sincronizeazaTag(`${segmentKey}_ora`, inputOra.value);
+  }
 }
 
 /**
@@ -1886,8 +1911,8 @@ async function stergeDefinitivID() {
   }
 
   try {
-    // 1. Dezactivăm toate toggle-urile în UI
-    const pref = { dimineata: false, pranz: false, seara: false, alerte_post: false, seara_ora: '21:30' };
+    // 1. Dezactivăm toate toggle-urile în UI și resetez orele
+    const pref = { dimineata: false, pranz: false, seara: false, alerte_post: false, dimineata_ora: '07:30', pranz_ora: '13:00', seara_ora: '21:30', alerte_post_ora: '07:30' };
     salveazaPreferinteNotif(pref);
     initSetariNotificari(); // Reîmprospătează UI-ul
 
@@ -1895,7 +1920,7 @@ async function stergeDefinitivID() {
     if (typeof OneSignal !== 'undefined') {
       await OneSignal.User.PushSubscription.optOut();
       // Ștergem și tag-urile pentru a fi siguri
-      await OneSignal.User.deleteTags(['dimineata', 'pranz', 'seara', 'seara_ora', 'alerte_post']);
+      await OneSignal.User.deleteTags(['dimineata', 'pranz', 'seara', 'dimineata_ora', 'pranz_ora', 'seara_ora', 'alerte_post', 'alerte_post_ora']);
     }
 
     afiseazaMesajSetari('✅ Te-ai dezabonat cu succes. Datele de notificare au fost șterse.', 'succes');
@@ -1942,12 +1967,21 @@ function initSetariNotificari() {
     cb.onchange = () => onToggleSchimbat(cb);
   });
 
-  // Restaurăm ora de seară
-  const oraSeara = document.getElementById('ora-seara');
-  if (oraSeara) {
-    oraSeara.value = pref.seara_ora || '21:30';
-    oraSeara.onchange = () => onOraSearaSchimbata(oraSeara);
-  }
+  // Restaurăm orele personalizate pentru fiecare segment
+  const mapOre = [
+    { id: 'ora-dimineata', segment: 'dimineata_ora', default: '07:30' },
+    { id: 'ora-pranz', segment: 'pranz_ora', default: '13:00' },
+    { id: 'ora-seara', segment: 'seara_ora', default: '21:30' },
+    { id: 'ora-alerte', segment: 'alerte_post_ora', default: '07:30' }
+  ];
+
+  mapOre.forEach(({ id, segment, default: defaultOra }) => {
+    const inputOra = document.getElementById(id);
+    if (inputOra) {
+      inputOra.value = pref[segment] || defaultOra;
+      inputOra.onchange = () => onOraSchimbata(inputOra);
+    }
+  });
 
   // Actualizăm statusul permisiunii
   actualizeazaStatusPermisiune();
@@ -1966,7 +2000,48 @@ function initSetariNotificari() {
   }
 }
 
-// ─── Expune funcțiile modulului de notificări global ──────────────────────────
+/**
+ * Scheduler de notificări locale: Verifică la fiecare minut dacă ora curentă se potrivește
+ * cu orele salvate ale utilizatorului și afișează o notificare locală (browser).
+ */
+let ultimaNotificareMinut = -1; // Evităm duplicate în aceeași minut
+function startSchedulerNotificariLocale() {
+  setInterval(() => {
+    const acum = new Date();
+    const oraMinut = `${String(acum.getHours()).padStart(2, '0')}:${String(acum.getMinutes()).padStart(2, '0')}`;
+    const minutCurent = acum.getMinutes();
+
+    // Evităm trimiterea de mai mult de o notificare pe minut
+    if (minutCurent === ultimaNotificareMinut) return;
+
+    const pref = getPreferinteNotif();
+    const segmente = [
+      { activ: pref.dimineata, ora: pref.dimineata_ora, titlu: '☀️ Gândul de dimineață', mesaj: 'Bună dimineața! Apasă pentru viața sfântului zilei.' },
+      { activ: pref.pranz, ora: pref.pranz_ora, titlu: '🍽️ Rugăciunea de la prânz', mesaj: 'O clipă de mulțumire la mijlocul zilei.' },
+      { activ: pref.seara, ora: pref.seara_ora, titlu: '🌙 Rugăciunea de seară', mesaj: 'Liniștea nopții. Încredințează ziua lui Dumnezeu.' },
+      { activ: pref.alerte_post, ora: pref.alerte_post_ora, titlu: '🕯️ Alerte Posturi', mesaj: 'Verifică rânduiala postului și dezlegările zilei.' }
+    ];
+
+    segmente.forEach(({ activ, ora, titlu, mesaj }) => {
+      if (activ && ora === oraMinut && Notification.permission === 'granted') {
+        // Afișez notificare locală
+        new Notification(titlu, {
+          body: mesaj,
+          icon: '/images/icon-192.png',
+          badge: '/images/icon-192.png',
+          tag: 'notificare-locala-' + titlu,
+          requireInteraction: false
+        });
+        ultimaNotificareMinut = minutCurent;
+      }
+    });
+  }, 60000); // Verifică la fiecare 60 de secunde
+}
+
+// ─── Expune funcțiile modulului de notificări global ────────────────
 window.initSetariNotificari = initSetariNotificari;
 window.initOneSignal = initOneSignal;
 window.onToggleSchimbat = onToggleSchimbat;
+window.onOraSchimbata = onOraSchimbata;
+window.stergeDefinitivID = stergeDefinitivID;
+window.startSchedulerNotificariLocale = startSchedulerNotificariLocale;

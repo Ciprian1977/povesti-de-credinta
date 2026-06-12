@@ -77,7 +77,7 @@ function etichetaPost(tipPost) {
 // ─── Construiește payload-ul pentru fiecare segment ──────────────────────────
 // Folosește FILTRE pe Tags (field=tag) pentru a viza doar abonații care au
 // activat segmentul respectiv. Cheile sunt cele OFICIALE OneSignal REST API.
-function construistePayload(segment, dataISO, continut) {
+function construistePayload(segment, dataISO, continut, oraActuala) {
   const dataRo = formateazaDataRo(dataISO);
   const sfant = (continut && continut.sfant_nume) ? continut.sfant_nume : 'Sfinții zilei';
   const badge = continut ? etichetaPost(continut.tip_post) : '';
@@ -150,14 +150,14 @@ function construistePayload(segment, dataISO, continut) {
 }
 
 // ─── Trimite notificarea către OneSignal ─────────────────────────────────────
-async function trimite(segment, dataISO) {
+async function trimite(segment, dataISO, oraActuala) {
   if (!ONESIGNAL_APP_ID || !ONESIGNAL_API_KEY) {
     console.log('⚠️ OneSignal nu este configurat (ONESIGNAL_APP_ID / ONESIGNAL_API_KEY lipsesc) – skip.');
     return { skip: true };
   }
 
   const continut = await getContinutZi(dataISO);
-  const payload = construistePayload(segment, dataISO, continut);
+  const payload = construistePayload(segment, dataISO, continut, oraActuala);
 
   const r = await fetch('https://onesignal.com/api/v1/notifications', {
     method: 'POST',
@@ -181,15 +181,25 @@ async function trimite(segment, dataISO) {
 async function main() {
   const segment = process.argv[2];
   const dataISO = process.argv[3] || dataAziRo();
+  const oraActuala = process.argv[4]; // Ora în format HH:MM (opțional, pentru testare)
 
   const SEGMENTE_VALIDE = ['dimineata', 'pranz', 'seara', 'alerte_post'];
   if (!segment || !SEGMENTE_VALIDE.includes(segment)) {
-    console.error(`❌ Segment invalid. Folosire: node trimite-notificari.js <${SEGMENTE_VALIDE.join('|')}> [YYYY-MM-DD]`);
+    console.error(`❌ Segment invalid. Folosire: node trimite-notificari.js <${SEGMENTE_VALIDE.join('|')}> [YYYY-MM-DD] [HH:MM]`);
     process.exit(1);
   }
 
-  console.log(`📤 Trimit notificare segment="${segment}" pentru data=${dataISO} ...`);
-  await trimite(segment, dataISO);
+  // Dacă ora nu este furnizată, o calculez din ora curentă Bucharest
+  let ora = oraActuala;
+  if (!ora) {
+    const acum = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Bucharest' }));
+    const h = String(acum.getHours()).padStart(2, '0');
+    const m = String(acum.getMinutes()).padStart(2, '0');
+    ora = `${h}:${m}`;
+  }
+
+  console.log(`📤 Trimit notificare segment="${segment}" pentru data=${dataISO} la ora=${ora} ...`);
+  await trimite(segment, dataISO, ora);
 }
 
 main().catch(err => {
