@@ -181,7 +181,9 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
       <div class="logo-text">
         <span class="logo-titlu">Povești de Credință</span>
         <span class="logo-subtitlu">Calendar Ortodox Românesc</span>
-      <nav class="nav-desktop" aria-label="Navigație principală">
+      </div>
+    </a>
+    <nav class="nav-desktop" aria-label="Navigație principală">
       <a href="/" class="activ">Acasă</a>
       <a href="/calendar.html">Calendar</a>
       <a href="/rugaciunea-zilei" data-ruta="/rugaciunea-zilei">Rugăciunea Zilei</a>
@@ -190,7 +192,8 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
       <a href="/setari-notificari" data-ruta="/setari-notificari">🔔 Notificări</a>
       <a href="/faq.html">FAQ</a>
       <a href="/despre.html">Despre</a>
-    </nav> class="hamburger" id="hamburger" aria-label="Meniu" aria-expanded="false">
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Meniu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -606,18 +609,20 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
         <input type="checkbox" id="toggle-alerte" data-segment="alerte_post" aria-label="Activează alertele pentru posturi">
         <span class="toggle-slider"></span>
       </label>
-    </di    <p class="setari-nota">Notificările sunt trimise prin serviciul de push și funcționează chiar și când aplicația este închisă. Nu colectăm date personale — doar preferințele tale de rugăciune.</p>
+    </div>
+    <p class="setari-nota">Notificările sunt trimise prin serviciul de push și funcționează chiar și când aplicația este închisă. Nu colectăm date personale — doar preferințele tale de rugăciune.</p>
     
     <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(201,168,76,0.15);text-align:center">
       <button onclick="stergeDefinitivID()" style="background:none;border:1px solid rgba(107,27,43,0.2);color:var(--text-light);padding:10px 16px;border-radius:10px;font-size:0.78rem;cursor:pointer;transition:all 0.2s">
         🗑️ Dezabonează-te definitiv și șterge ID-ul dispozitivului
-      </button>
-      <p style="font-size:0.7rem;color:var(--text-light);margin-top:8px;opacity:0.7">
+      </button>      <p style="font-size:0.7rem;color:var(--text-light);margin-top:8px;opacity:0.7">
         Această acțiune va șterge token-ul tău din sistemul OneSignal (Dreptul de a fi uitat - GDPR).
       </p>
     </div>
   </div>
-</div>-- FOOTER -->
+</div>
+
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-logo">✝️ Povești de Credință</div>
   <p style="font-size:0.82rem;opacity:0.65;margin-bottom:4px">Calendar Ortodox Românesc</p>
@@ -712,8 +717,10 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
 
 <!-- COOKIE BANNER -->
 <div id="cookie-banner" style="display:none;position:fixed;bottom:70px;left:0;right:0;background:var(--visineu-dark);color:var(--crem);padding:14px 16px;z-index:150;border-top:1px solid rgba(201,168,76,0.3)">
-  <p style="font-size:0.82rem;margin-bottom:10px"    Folosim cookie-uri și stocare locală pentru a îmbunătăți experiența ta și pentru a gestiona notificările. 
-    <a href="/politica-cookies.html" style="color:var(--auriu-light)">Află mai mult</a> </p>
+  <p style="font-size:0.82rem;margin-bottom:10px">
+    Folosim cookie-uri și stocare locală pentru a îmbunătăți experiența ta și pentru a gestiona notificările. 
+    <a href="/politica-cookies.html" style="color:var(--auriu-light)">Află mai mult</a>
+  </p>
   <div style="display:flex;gap:10px">
     <button onclick="acceptaCookies()" style="background:var(--auriu);color:var(--visineu-dark);border:none;padding:8px 16px;border-radius:20px;font-size:0.82rem;cursor:pointer;font-weight:700">
       ✅ Accept
