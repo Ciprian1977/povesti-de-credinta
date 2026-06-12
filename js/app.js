@@ -8,11 +8,10 @@
 const SUPABASE_URL = 'https://smuqpipxeotkbttolivp.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_gWS1MsHXjvIMth8yuYAnog_fBiv9DHk';
 
-// ─── Configurare OneSignal (Notificări Push) ──────────────────────────────────
-// ⚠️ ÎNLOCUIEȘTE placeholder-ul de mai jos cu App ID-ul real din
-//    OneSignal Dashboard → Settings → Keys & IDs → "OneSignal App ID".
-//    Formatul corect: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" (UUID).
-const ONESIGNAL_APP_ID = 'ONESIGNAL_APP_ID_PLACEHOLDER';
+// ─── Configurare OneSignal (Notificări Push) ─────────────────────────────────
+// App ID-ul public OneSignal (din Settings → Keys & IDs).
+//    Cheia REST API (secretă) NU se pune aici — doar în GitHub Secrets.
+const ONESIGNAL_APP_ID = '865e5cce-41f3-4136-a2c7-d6da9044a3ca';
 const ONESIGNAL_CONFIGURAT = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(ONESIGNAL_APP_ID);
 
 const LUNI = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',

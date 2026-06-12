@@ -1,12 +1,13 @@
 // ═══════════════════════════════════════════════════════════════════
-// POVEȘTI DE CREDINȚĂ — Service Worker v5
+// POVEȘTI DE CREDINȚĂ — Service Worker v6
 // Strategii: Network-First (Supabase API) + Stale-While-Revalidate (statice)
 // v4: fix badge dezlegare_ulei/post_aspru + algoritm post BOR 2026
 // v5: modul Notificări Inteligente (/setari-notificari) + OneSignal SW
+// v6: activare OneSignal App ID real (865e5cce) — notificări push live
 // ═════════════════════════════════════════════════════════════════
-const CACHE_STATIC = 'pdc-static-v5';
-const CACHE_PAGES  = 'pdc-pages-v5';
-const CACHE_API    = 'pdc-api-v5';
+const CACHE_STATIC = 'pdc-static-v6';
+const CACHE_PAGES  = 'pdc-pages-v6';
+const CACHE_API    = 'pdc-api-v6';
 
 // Resurse statice pre-cache la instalare
 const STATIC_ASSETS = [
