@@ -232,25 +232,25 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
   </div>
 
   <div class="grid-ordonat">
-    <!-- 1. CARD SFÂNTUL ZILEI -->
-    <article class="card-sfant-zilei grid-full" itemscope itemtype="https://schema.org/Article">
-      <div class="card-sfant-header">
-        <span class="data-azi" id="zi-saptamana">Se încarcă...</span>
-        <span class="badge-post post" id="badge-post">🕯️ Post</span>
-      </div>
-      <div class="card-sfant-body">
-        <div class="sfant-icoana" aria-hidden="true">🕯️</div>
-        <div class="sfant-info">
-          <div class="sfant-titlu-mic">Sfântul zilei</div>
-          <h1 class="sfant-nume" id="sfant-nume" itemprop="headline">Se încarcă...</h1>
+    <!-- 1. CARD SFÂNTUL ZILEI (COMPACT) -->
+    <article class="card-universal" itemscope itemtype="https://schema.org/Article">
+      <div style="display:flex; gap:15px; align-items:flex-start">
+        <div class="sfant-icoana" aria-hidden="true" style="width:70px; height:70px; flex-shrink:0; font-size:32px">🕯️</div>
+        <div style="flex:1">
+          <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--auriu-dark); margin-bottom:4px">Sfântul zilei</div>
+          <h1 class="sfant-nume" id="sfant-nume" itemprop="headline" style="font-size:1.1rem; line-height:1.3; color:var(--visineu); margin-bottom:8px">Se încarcă...</h1>
           <meta itemprop="datePublished" id="meta-date-published" content="">
           <meta itemprop="author" content="Povești de Credință">
-          <p class="sfant-scurt" id="sfant-scurt" itemprop="description"></p>
-          <a href="/sinaxar" data-ruta="/sinaxar" id="btn-citeste-mai-mult" class="btn-egal btn-primar" style="margin-top:15px; width:auto; display:inline-flex">
-            📖 Citește Sinaxarul Complet
-          </a>
+          <p class="sfant-scurt" id="sfant-scurt" itemprop="description" style="font-size:0.9rem; line-height:1.5; color:var(--text-light); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden"></p>
         </div>
       </div>
+      <div style="display:flex; gap:10px; margin-top:15px; flex-wrap:wrap">
+        <span class="badge-post post" id="badge-post" style="margin:0">🕯️ Post</span>
+        <span class="data-azi" id="zi-saptamana" style="font-size:0.8rem; color:var(--text-light)">Se încarcă...</span>
+      </div>
+      <a href="/sinaxar" data-ruta="/sinaxar" id="btn-citeste-mai-mult" class="btn-egal btn-primar" style="margin-top:15px">
+        📖 Citește Sinaxarul
+      </a>
     </article>
 
     <!-- 2. CUVÂNTUL DE FOLOS AL ZILEI -->

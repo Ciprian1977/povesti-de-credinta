@@ -274,17 +274,13 @@ main {
   z-index: 1;
 }
 
-/* === CARD SFÂNTUL ZILEI ==.card-sfant-zilei {
-  background: linear-gradient(135deg, var(--alb) 0%, var(--crem) 100%);
-  border: 1px solid rgba(201, 168, 76, 0.3);
-  border-radius: var(--radius-lg);
-  margin-top: 24px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  position: relative;
-  min-height: auto !important;
-  contain: layout style paint;
-}: '';
+/* === CARD SFÂNTUL ZILEI (DEPRECATED - acum folosim card-universal) === */
+.card-sfant-zilei {
+  display: none;
+}
+
+.card-sfant-zilei::before {
+  content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 4px;
