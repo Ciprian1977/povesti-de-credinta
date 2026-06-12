@@ -8,6 +8,13 @@
 const SUPABASE_URL = 'https://smuqpipxeotkbttolivp.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_gWS1MsHXjvIMth8yuYAnog_fBiv9DHk';
 
+// ─── Configurare OneSignal (Notificări Push) ──────────────────────────────────
+// ⚠️ ÎNLOCUIEȘTE placeholder-ul de mai jos cu App ID-ul real din
+//    OneSignal Dashboard → Settings → Keys & IDs → "OneSignal App ID".
+//    Formatul corect: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" (UUID).
+const ONESIGNAL_APP_ID = 'ONESIGNAL_APP_ID_PLACEHOLDER';
+const ONESIGNAL_CONFIGURAT = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(ONESIGNAL_APP_ID);
+
 const LUNI = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
                'Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
 const ZILE_SAPTAMANA = ['Dum','Lun','Mar','Mie','Joi','Vin','Sâm'];
@@ -55,6 +62,11 @@ const RUTE_SPA = {
     container: 'ruta-rugaciunea-zilei',
     titluFn: () => { const z = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'][new Date().getDay()]; return `Rugăciunea Zilei — ${z} | Calendar Ortodox | Povești de Credință`; },
     descFn: () => { const z = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'][new Date().getDay()]; return `Rugăciunile oficiale ale fiecărei zile din săptămână în tradiția Bisericii Ortodoxe. Azi: ${z}.`.substring(0, 160); }
+  },
+  '/setari-notificari': {
+    container: 'ruta-setari-notificari',
+    titluFn: () => 'Setări Notificări Duhovnicești | Povești de Credință',
+    descFn: () => 'Alege ritmul tău de rugăciune: gândul de dimineață, rugăciunea de prânz și de seară, plus alerte pentru posturi și sărbători ortodoxe.'.substring(0, 160)
   }
 };
 
@@ -88,8 +100,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   afiseazaLectiiAcasa();
   actualizeazaDataOra();
   initNavMobil();
-  initPWA();
   initFAQ();
+  initOneSignal();
   afiseazaPostUrmator();
   afiseazaRugaciuneaZilei();
   randeazaCalendar(lunaAfisata, anAfisat);
@@ -391,6 +403,9 @@ function populeazaRuta(path, container, date, azi) {
     case '/rugaciunea-zilei':
       randeazaHubRugaciuni();
       actualizeazaMetaTaguriHubRugaciuni();
+      break;
+    case '/setari-notificari':
+      initSetariNotificari();
       break;
   }
 }
@@ -1591,3 +1606,334 @@ window.randeazaHubRugaciuni = randeazaHubRugaciuni;
 window.randeazaRugaciuneaZi = randeazaRugaciuneaZi;
 window.copieTextRugaciuneZi = copieTextRugaciuneZi;
 window.intercepteazaLinkuriRuta = intercepteazaLinkuriRuta;
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// MODUL NOTIFICĂRI INTELIGENTE — Panou Setări Duhovnicești (/setari-notificari)
+// OneSignal Web Push v16 + Tags de segmentare + persistență localStorage
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// Cheia unică pentru preferințele de notificări în localStorage
+const PDC_NOTIF_KEY = 'pdc_notificari_v1';
+
+// Valori implicite pentru fiecare segment
+const NOTIF_DEFAULTS = {
+  dimineata: false,
+  pranz: false,
+  seara: false,
+  seara_ora: '21:30',
+  alerte_post: false
+};
+
+// Flag intern: SDK OneSignal inițializat
+let _oneSignalGata = false;
+
+/**
+ * Citește preferințele salvate din localStorage (sau valorile implicite).
+ */
+function getPreferinteNotif() {
+  try {
+    const raw = localStorage.getItem(PDC_NOTIF_KEY);
+    if (raw) return { ...NOTIF_DEFAULTS, ...JSON.parse(raw) };
+  } catch (e) { /* localStorage indisponibil (mod privat etc.) */ }
+  return { ...NOTIF_DEFAULTS };
+}
+
+/**
+ * Salvează preferințele în localStorage.
+ */
+function salveazaPreferinteNotif(pref) {
+  try {
+    localStorage.setItem(PDC_NOTIF_KEY, JSON.stringify(pref));
+  } catch (e) { /* localStorage indisponibil */ }
+}
+
+/**
+ * Inițializează SDK-ul OneSignal (asincron, non-blocking).
+ * Se apelează o singură dată la încărcarea paginii.
+ * Dacă App ID-ul nu este configurat, funcția se oprește discret
+ * (UI-ul rămâne funcțional cu localStorage, fără sincronizare push).
+ */
+function initOneSignal() {
+  if (!ONESIGNAL_CONFIGURAT) {
+    console.log('ℹ️ OneSignal: App ID neconfigurat — modul UI activ, sincronizare push dezactivată până la înlocuirea placeholder-ului.');
+    return;
+  }
+  // SDK-ul se încarcă async via <script defer> din <head>.
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  window.OneSignalDeferred.push(async function (OneSignal) {
+    try {
+      await OneSignal.init({
+        appId: ONESIGNAL_APP_ID,
+        allowLocalhostAsSecureOrigin: true,
+        // Nu afișăm prompt automat — cerem permisiunea doar la primul toggle.
+        autoResubscribe: true,
+        notifyButton: { enable: false },
+        serviceWorkerParam: { scope: '/onesignal/' },
+        serviceWorkerPath: 'onesignal/OneSignalSDKWorker.js'
+      });
+      _oneSignalGata = true;
+      console.log('✅ OneSignal inițializat');
+      // La inițializare, re-sincronizăm tag-urile cu starea localStorage
+      // (utile dacă userul a modificat preferințele pe alt device sau offline).
+      sincronizeazaToateTagurile();
+    } catch (err) {
+      console.warn('⚠️ OneSignal init eșuat:', err);
+    }
+  });
+}
+
+/**
+ * Așteaptă ca SDK-ul OneSignal să fie disponibil și returnează instanța.
+ * Rezolvă cu `null` dacă OneSignal nu este configurat.
+ */
+function asteaptaOneSignal() {
+  return new Promise((resolve) => {
+    if (!ONESIGNAL_CONFIGURAT) return resolve(null);
+    if (window.OneSignal && _oneSignalGata) return resolve(window.OneSignal);
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    window.OneSignalDeferred.push((OneSignal) => resolve(OneSignal));
+  });
+}
+
+/**
+ * Cere permisiunea nativă de notificări (Notification.requestPermission via OneSignal).
+ * Returnează true dacă permisiunea a fost acordată.
+ */
+async function cerePermisiuneNotificari() {
+  // Dacă browserul nu suportă notificări deloc
+  if (typeof Notification === 'undefined') {
+    return false;
+  }
+  // Deja acordată
+  if (Notification.permission === 'granted') {
+    return true;
+  }
+  // Deja refuzată definitiv — nu putem re-cere din cod
+  if (Notification.permission === 'denied') {
+    return false;
+  }
+  // Stare 'default' → cerem permisiunea
+  const OneSignal = await asteaptaOneSignal();
+  if (OneSignal) {
+    try {
+      // OneSignal v16: declanșează prompt-ul nativ
+      await OneSignal.Notifications.requestPermission();
+      return Notification.permission === 'granted';
+    } catch (e) {
+      // Fallback la API nativ dacă OneSignal eșuează
+    }
+  }
+  // Fallback: API nativ Notification
+  try {
+    const rezultat = await Notification.requestPermission();
+    return rezultat === 'granted';
+  } catch (e) {
+    return false;
+  }
+}
+
+/**
+ * Sincronizează o etichetă (tag) cu OneSignal pentru segmentare.
+ * Ex: addTag("dimineata", "true").
+ */
+async function sincronizeazaTag(cheie, valoare) {
+  const OneSignal = await asteaptaOneSignal();
+  if (!OneSignal) return; // App ID neconfigurat — skip silențios
+  try {
+    OneSignal.User.addTag(cheie, String(valoare));
+    console.log(`🏷️ Tag sincronizat: ${cheie} = ${valoare}`);
+  } catch (e) {
+    console.warn(`⚠️ Eroare sincronizare tag ${cheie}:`, e);
+  }
+}
+
+/**
+ * Sincronizează toate tag-urile cu starea curentă din localStorage.
+ */
+async function sincronizeazaToateTagurile() {
+  const OneSignal = await asteaptaOneSignal();
+  if (!OneSignal) return;
+  const pref = getPreferinteNotif();
+  try {
+    OneSignal.User.addTags({
+      dimineata: String(pref.dimineata),
+      pranz: String(pref.pranz),
+      seara: String(pref.seara),
+      seara_ora: pref.seara_ora,
+      alerte_post: String(pref.alerte_post)
+    });
+    console.log('🏷️ Toate tag-urile sincronizate cu OneSignal');
+  } catch (e) {
+    console.warn('⚠️ Eroare sincronizare tag-uri:', e);
+  }
+}
+
+/**
+ * Afișează un mesaj de ghidare în panoul de setări.
+ */
+function afiseazaMesajSetari(text, tip = 'info') {
+  const mesajEl = document.getElementById('setari-mesaj');
+  if (!mesajEl) return;
+  mesajEl.textContent = text;
+  mesajEl.className = `setari-mesaj vizibil ${tip}`;
+}
+
+function ascundeMesajSetari() {
+  const mesajEl = document.getElementById('setari-mesaj');
+  if (!mesajEl) return;
+  mesajEl.className = 'setari-mesaj';
+}
+
+/**
+ * Actualizează badge-ul de status al permisiunii de notificări.
+ */
+function actualizeazaStatusPermisiune() {
+  const statusEl = document.getElementById('setari-status-permisiune');
+  if (!statusEl) return;
+  if (typeof Notification === 'undefined') {
+    statusEl.style.display = 'none';
+    return;
+  }
+  statusEl.style.display = 'inline-block';
+  const perm = Notification.permission;
+  if (perm === 'granted') {
+    statusEl.textContent = '🔔 Notificări activate';
+    statusEl.className = 'setari-status-permisiune acordata';
+  } else if (perm === 'denied') {
+    statusEl.textContent = '🔕 Notificări blocate în browser';
+    statusEl.className = 'setari-status-permisiune refuzata';
+  } else {
+    statusEl.textContent = '⚪ Notificări neactivate încă';
+    statusEl.className = 'setari-status-permisiune implicita';
+  }
+}
+
+/**
+ * Aplică starea vizuală activ/inactiv pentru un card.
+ */
+function actualizeazaCardActiv(idCard, activ) {
+  const card = document.getElementById(idCard);
+  if (card) card.classList.toggle('activ', activ);
+}
+
+/**
+ * Gestionează schimbarea unui toggle.
+ * - La PRIMUL toggle activat, cere permisiunea nativă.
+ * - Dacă permisiunea e refuzată, revine toggle-ul pe OFF.
+ * - Salvează în localStorage și sincronizează tag-ul.
+ */
+async function onToggleSchimbat(checkbox) {
+  const segment = checkbox.getAttribute('data-segment');
+  const activ = checkbox.checked;
+  const pref = getPreferinteNotif();
+
+  // Verificăm dacă acesta este PRIMUL toggle activat (toate erau OFF)
+  const vreunActivInainte = pref.dimineata || pref.pranz || pref.seara || pref.alerte_post;
+
+  if (activ && !vreunActivInainte) {
+    // Primul toggle activat → cerem permisiunea nativă ACUM
+    const permisiuneOK = await cerePermisiuneNotificari();
+    actualizeazaStatusPermisiune();
+
+    if (!permisiuneOK) {
+      // Permisiune refuzată → toggle revine pe OFF cu mesaj de ghidare
+      checkbox.checked = false;
+      actualizeazaCardActiv(`card-${segment === 'alerte_post' ? 'alerte' : segment}`, false);
+      if (Notification.permission === 'denied') {
+        afiseazaMesajSetari(
+          'Notificările sunt blocate în setările browserului. Pentru a le activa, deschide setările site-ului (🔒 lângă adresă) și permite notificările, apoi revino aici.',
+          'avertisment'
+        );
+      } else {
+        afiseazaMesajSetari(
+          'Ai nevoie să accepți notificările pentru a primi memento-uri. Apasă din nou pe comutator și alege „Permite".',
+          'info'
+        );
+      }
+      return;
+    }
+    afiseazaMesajSetari('🙏 Notificările au fost activate. Vei primi memento-urile alese la orele potrivite.', 'succes');
+  }
+
+  // Actualizăm starea în localStorage
+  pref[segment] = activ;
+  salveazaPreferinteNotif(pref);
+
+  // Actualizăm vizualul cardului
+  actualizeazaCardActiv(`card-${segment === 'alerte_post' ? 'alerte' : segment}`, activ);
+
+  // Sincronizăm tag-ul cu OneSignal
+  await sincronizeazaTag(segment, activ);
+
+  // Dacă toate toggle-urile sunt acum OFF, ascundem mesajul de succes
+  const pref2 = getPreferinteNotif();
+  const vreunActivAcum = pref2.dimineata || pref2.pranz || pref2.seara || pref2.alerte_post;
+  if (!vreunActivAcum) ascundeMesajSetari();
+}
+
+/**
+ * Gestionează schimbarea orei pentru rugăciunea de seară.
+ */
+async function onOraSearaSchimbata(input) {
+  const ora = input.value || '21:30';
+  const pref = getPreferinteNotif();
+  pref.seara_ora = ora;
+  salveazaPreferinteNotif(pref);
+  await sincronizeazaTag('seara_ora', ora);
+  if (pref.seara) {
+    afiseazaMesajSetari(`🌙 Ora rugăciunii de seară a fost setată la ${ora}.`, 'succes');
+  }
+}
+
+/**
+ * Inițializează panoul de setări la intrarea pe rută.
+ * Restaurează starea toggle-urilor din localStorage și atașează handlerii.
+ */
+function initSetariNotificari() {
+  const pref = getPreferinteNotif();
+
+  // Restaurăm starea fiecărui toggle
+  const mapToggle = [
+    { id: 'toggle-dimineata', segment: 'dimineata', card: 'card-dimineata' },
+    { id: 'toggle-pranz', segment: 'pranz', card: 'card-pranz' },
+    { id: 'toggle-seara', segment: 'seara', card: 'card-seara' },
+    { id: 'toggle-alerte', segment: 'alerte_post', card: 'card-alerte' }
+  ];
+
+  mapToggle.forEach(({ id, segment, card }) => {
+    const cb = document.getElementById(id);
+    if (!cb) return;
+    cb.checked = !!pref[segment];
+    actualizeazaCardActiv(card, !!pref[segment]);
+    // Evităm dublarea handlerilor la re-navigare
+    cb.onchange = () => onToggleSchimbat(cb);
+  });
+
+  // Restaurăm ora de seară
+  const oraSeara = document.getElementById('ora-seara');
+  if (oraSeara) {
+    oraSeara.value = pref.seara_ora || '21:30';
+    oraSeara.onchange = () => onOraSearaSchimbata(oraSeara);
+  }
+
+  // Actualizăm statusul permisiunii
+  actualizeazaStatusPermisiune();
+
+  // Dacă browserul nu suportă notificări, dezactivăm toggle-urile cu mesaj
+  if (typeof Notification === 'undefined') {
+    mapToggle.forEach(({ id }) => {
+      const cb = document.getElementById(id);
+      if (cb) cb.disabled = true;
+    });
+    afiseazaMesajSetari('Browserul tău nu suportă notificări push. Încearcă să instalezi aplicația pe ecranul de start pentru funcționalitate completă.', 'avertisment');
+  } else if (Notification.permission === 'denied') {
+    afiseazaMesajSetari('Notificările sunt blocate în setările browserului. Deblochează-le din setările site-ului pentru a primi memento-uri.', 'avertisment');
+  } else {
+    ascundeMesajSetari();
+  }
+}
+
+// ─── Expune funcțiile modulului de notificări global ──────────────────────────
+window.initSetariNotificari = initSetariNotificari;
+window.initOneSignal = initOneSignal;
+window.onToggleSchimbat = onToggleSchimbat;

@@ -1,11 +1,12 @@
 // ═══════════════════════════════════════════════════════════════════
-// POVEȘTI DE CREDINȚĂ — Service Worker v4
+// POVEȘTI DE CREDINȚĂ — Service Worker v5
 // Strategii: Network-First (Supabase API) + Stale-While-Revalidate (statice)
 // v4: fix badge dezlegare_ulei/post_aspru + algoritm post BOR 2026
+// v5: modul Notificări Inteligente (/setari-notificari) + OneSignal SW
 // ═════════════════════════════════════════════════════════════════
-const CACHE_STATIC = 'pdc-static-v4';
-const CACHE_PAGES  = 'pdc-pages-v4';
-const CACHE_API    = 'pdc-api-v4';
+const CACHE_STATIC = 'pdc-static-v5';
+const CACHE_PAGES  = 'pdc-pages-v5';
+const CACHE_API    = 'pdc-api-v5';
 
 // Resurse statice pre-cache la instalare
 const STATIC_ASSETS = [
@@ -64,6 +65,15 @@ self.addEventListener('fetch', event => {
   // Ignoră request-uri non-GET și extensii browser
   if (request.method !== 'GET') return;
   if (url.protocol === 'chrome-extension:') return;
+
+  // 0. ONESIGNAL → nu intercepta (SDK-ul și SW-ul OneSignal se gestionează singure)
+  if (
+    url.hostname.includes('onesignal.com') ||
+    url.pathname.startsWith('/onesignal/') ||
+    url.pathname.includes('OneSignalSDK')
+  ) {
+    return;
+  }
 
   // 1. SUPABASE API → Network-First cu Cache Fallback (TTL 23 ore)
   if (url.hostname.includes('supabase.co') && url.pathname.includes('/rest/v1/')) {

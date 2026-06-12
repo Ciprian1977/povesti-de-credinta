@@ -32,6 +32,9 @@
   <meta name="twitter:title" content="Povești de Credință — Calendar Ortodox">
   <meta name="twitter:description" content="Sfântul zilei, rugăciuni și calendar ortodox 2026">
 
+  <!-- OneSignal Web Push SDK (async, non-blocking) -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+
   <!-- PWA -->
   <link rel="manifest" href="/manifest.json">
   <link rel="apple-touch-icon" href="/images/icon-192.png">
@@ -209,6 +212,7 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
     <a href="/posturi.html">🕯️ Posturi</a>
     <a href="/faq.html">❓ Întrebări frecvente</a>
     <a href="/despre.html">✝️ Despre noi</a>
+    <a href="/setari-notificari" data-ruta="/setari-notificari">🔔 Setări notificări</a>
     <a href="/contact.html">📧 Contact</a>
   </nav>
 </header>
@@ -532,6 +536,84 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
   <!-- Continut generat dinamic de randeazaRugaciuneaZi(slug) din app.js -->
 </div>
 
+<!-- CONTAINER RUTA: /setari-notificari (Panou Setari Duhovnicesti) -->
+<div id="ruta-setari-notificari" class="ruta-container" style="display:none" aria-hidden="true">
+  <div class="setari-wrap">
+    <div class="ruta-header">
+      <button class="btn-inapoi" onclick="navigheazaLaRuta('/')" aria-label="Inapoi la pagina principala">← Înapoi</button>
+    </div>
+    <div class="setari-intro">
+      <h1>🔔 Setări Duhovnicești</h1>
+      <p>Alege ritmul tău de rugăciune. Vei primi memento-uri blânde pentru sfântul zilei, rugăciunea de prânz, liniștea serii și schimbările din calendarul ortodox. Poți opri sau porni fiecare opțiune oricând.</p>
+    </div>
+
+    <!-- Status permisiune notificari -->
+    <span id="setari-status-permisiune" class="setari-status-permisiune" style="display:none"></span>
+
+    <!-- Mesaj de ghidare / stare -->
+    <div id="setari-mesaj" class="setari-mesaj" role="status" aria-live="polite"></div>
+
+    <!-- Toggle 1: Gandul de dimineata -->
+    <div class="setare-card" id="card-dimineata">
+      <span class="setare-icon">☀️</span>
+      <div class="setare-continut">
+        <div class="setare-titlu">Gândul de dimineață și Sfântul Zilei</div>
+        <div class="setare-desc">Pornesc ziua cu numele sfântului praznuit și un cuvânt de folos.</div>
+        <span class="setare-ora">🕒 Ora: 07:30</span>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-dimineata" data-segment="dimineata" aria-label="Activează notificarea de dimineață">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <!-- Toggle 2: Rugaciunea de la pranz -->
+    <div class="setare-card" id="card-pranz">
+      <span class="setare-icon">🍽️</span>
+      <div class="setare-continut">
+        <div class="setare-titlu">Rugăciunea de la prânz</div>
+        <div class="setare-desc">Binecuvântarea mesei și o clipă de mulțumire la mijlocul zilei.</div>
+        <span class="setare-ora">🕒 Ora: 13:00</span>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-pranz" data-segment="pranz" aria-label="Activează notificarea de prânz">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <!-- Toggle 3: Rugaciunea de seara (cu selector ora) -->
+    <div class="setare-card" id="card-seara">
+      <span class="setare-icon">🌙</span>
+      <div class="setare-continut">
+        <div class="setare-titlu">Rugăciunea de seară</div>
+        <div class="setare-desc">Liniștea nopții — rugăciunile din Ceaslov înainte de culcare.</div>
+        <span class="setare-ora">🕒 Ora aleasă:
+          <input type="time" id="ora-seara" value="21:30" aria-label="Alege ora pentru rugăciunea de seară">
+        </span>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-seara" data-segment="seara" aria-label="Activează notificarea de seară">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <!-- Toggle 4: Alerte posturi si sarbatori -->
+    <div class="setare-card" id="card-alerte">
+      <span class="setare-icon">⚠️</span>
+      <div class="setare-continut">
+        <div class="setare-titlu">Alerte pentru Posturi și Sărbători Mari</div>
+        <div class="setare-desc">Te anunțăm când începe un post sau o sărbătoare importantă și la zilele cu dezlegare.</div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-alerte" data-segment="alerte_post" aria-label="Activează alertele pentru posturi">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <p class="setari-nota">Notificările sunt trimise prin serviciul de push și funcționează chiar și când aplicația este închisă. Nu colectăm date personale — doar preferințele tale de rugăciune.</p>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-logo">✝️ Povești de Credință</div>
@@ -543,6 +625,7 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
   <div class="footer-links">
     <a href="/despre.html">Despre noi</a>
     <a href="/contact.html">Contact</a>
+    <a href="/setari-notificari" data-ruta="/setari-notificari">Notificări</a>
     <a href="/faq.html">FAQ</a>
     <a href="/politica-confidentialitate.html">Confidențialitate</a>
     <a href="/politica-cookies.html">Cookies</a>

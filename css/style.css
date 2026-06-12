@@ -1367,3 +1367,196 @@ blockquote p {
   margin: 1.5rem 0 1rem;
   font-size: 1.3rem;
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PANOU SETĂRI DUHOVNICEȘTI — /setari-notificari
+   Modul Notificări Inteligente cu toggle-uri Bordo/Auriu
+   ═══════════════════════════════════════════════════════════════════ */
+.setari-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 16px;
+}
+.setari-intro {
+  background: linear-gradient(135deg, rgba(107,27,43,0.06), rgba(201,168,76,0.08));
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+.setari-intro h1 {
+  font-family: var(--font-titlu);
+  color: var(--visineu);
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.setari-intro p {
+  font-size: 0.95rem;
+  color: var(--text-medium);
+  line-height: 1.7;
+}
+/* --- Card pentru fiecare opțiune de notificare --- */
+.setare-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--alb);
+  border: 1px solid rgba(107,27,43,0.12);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.setare-card.activ {
+  border-color: var(--auriu);
+  box-shadow: var(--shadow-gold);
+}
+.setare-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.setare-continut { flex: 1; min-width: 0; }
+.setare-titlu {
+  font-family: var(--font-titlu);
+  color: var(--visineu-dark);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.setare-desc {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.setare-ora {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--visineu);
+  font-weight: 600;
+}
+.setare-ora input[type="time"] {
+  font-family: var(--font-text);
+  font-size: 0.85rem;
+  color: var(--visineu-dark);
+  background: var(--crem);
+  border: 1px solid rgba(201,168,76,0.4);
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.setare-ora input[type="time"]:focus {
+  outline: 2px solid var(--auriu);
+  outline-offset: 1px;
+}
+/* --- Toggle Switch (Bordo OFF / Auriu ON) --- */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 30px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: var(--visineu);
+  border-radius: 30px;
+  transition: background 0.3s ease;
+  border: 1px solid var(--visineu-dark);
+}
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 3px;
+  background: var(--crem);
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+.toggle-switch input:checked + .toggle-slider {
+  background: var(--auriu);
+  border-color: var(--auriu-dark);
+}
+.toggle-switch input:checked + .toggle-slider::before {
+  transform: translateX(22px);
+}
+.toggle-switch input:focus-visible + .toggle-slider {
+  outline: 2px solid var(--albastru-marial);
+  outline-offset: 2px;
+}
+.toggle-switch input:disabled + .toggle-slider {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+/* --- Mesaj de stare / ghidare permisiuni --- */
+.setari-mesaj {
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-bottom: 18px;
+  display: none;
+}
+.setari-mesaj.vizibil { display: block; }
+.setari-mesaj.info {
+  background: rgba(27,58,107,0.08);
+  border-left: 3px solid var(--albastru-marial);
+  color: var(--text-dark);
+}
+.setari-mesaj.avertisment {
+  background: rgba(107,27,43,0.08);
+  border-left: 3px solid var(--visineu);
+  color: var(--text-dark);
+}
+.setari-mesaj.succes {
+  background: rgba(27,107,43,0.08);
+  border-left: 3px solid #1B6B2B;
+  color: var(--text-dark);
+}
+.setari-nota {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  font-style: italic;
+  text-align: center;
+  margin-top: 20px;
+  line-height: 1.6;
+  padding: 0 10px;
+}
+.setari-status-permisiune {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+.setari-status-permisiune.acordata {
+  background: rgba(27,107,43,0.15);
+  color: #1B6B2B;
+}
+.setari-status-permisiune.refuzata {
+  background: rgba(107,27,43,0.15);
+  color: var(--visineu);
+}
+.setari-status-permisiune.implicita {
+  background: rgba(201,168,76,0.18);
+  color: var(--auriu-dark);
+}
