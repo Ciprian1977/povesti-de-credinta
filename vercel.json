@@ -9,6 +9,7 @@
     { "source": "/predica-zilei", "destination": "/index.html" },
     { "source": "/evanghelia-zilei", "destination": "/index.html" },
     { "source": "/apostolul-zilei", "destination": "/index.html" },
+    { "source": "/setari-notificari", "destination": "/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
