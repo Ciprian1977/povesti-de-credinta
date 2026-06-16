@@ -3,13 +3,6 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/rugaciunea-zilei/:zi", "destination": "/index.html" },
-    { "source": "/rugaciunea-zilei", "destination": "/index.html" },
-    { "source": "/sinaxar", "destination": "/index.html" },
-    { "source": "/predica-zilei", "destination": "/index.html" },
-    { "source": "/evanghelia-zilei", "destination": "/index.html" },
-    { "source": "/apostolul-zilei", "destination": "/index.html" },
-    { "source": "/setari-notificari", "destination": "/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#6B1B2B">
+  
+  <title id="page-title">Povești de Credință — Calendar Ortodox Românesc 2026 | Sfântul Zilei</title>
+  <meta name="description" id="page-description" content="Sfântul zilei, calendar ortodox 2026, rugăciuni, acatiste și pricesne ortodoxe românești. Cine este sfântul de azi — sinaxar, tropar și rugăciuni.">
+  <meta name="keywords" content="calendar ortodox, sfântul zilei, rugăciuni ortodoxe, acatiste, pricesne, post ortodox, calendar creștin 2026">
+  <meta name="robots" content="index, follow">
+   <link rel="canonical" href="https://povestidecredinta.ro/">
+
+  <!-- Preconnect Google Fonts — reduce latența DNS cu ~200ms -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Fonturi non-blocking: display=swap afișează font sistem instant, premium după descărcare -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=IM+Fell+English:ital@0;1&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=IM+Fell+English:ital@0;1&display=swap"></noscript>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Povești de Credință — Calendar Ortodox Românesc">
+  <meta property="og:description" content="Sfântul zilei, rugăciuni, acatiste și calendar ortodox complet 2026.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://povestidecredinta.ro/">
+  <meta property="og:image" content="https://povestidecredinta.ro/images/og-image.jpg">
+  <meta property="og:locale" content="ro_RO">
+  <meta property="og:site_name" content="Povești de Credință">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Povești de Credință — Calendar Ortodox">
+  <meta name="twitter:description" content="Sfântul zilei, rugăciuni și calendar ortodox 2026">
+
+  <!-- OneSignal Web Push SDK (async, non-blocking) -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/images/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Povești de Credință">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- CSS -->
+  <style id="critical-css">
+/* === VARIABILE & RESET === */
+:root{--visineu:#6B1B2B;--visineu-dark:#4A0F1C;--visineu-light:#8B2B3B;--auriu:#C9A84C;--auriu-light:#E8C878;--auriu-dark:#A8883C;--crem:#FDF6E3;--crem-dark:#F5EDD0;--albastru-marial:#1B3A6B;--text-dark:#2C1810;--text-medium:#5C3D2E;--text-light:#6B4D3E;--alb:#FFFFFF;--shadow:0 4px 20px rgba(107,27,43,0.15);--shadow-gold:0 2px 12px rgba(201,168,76,0.3);--radius:8px;--radius-lg:16px;--font-titlu:'Playfair Display',Georgia,serif;--font-text:'Lora',Georgia,serif;--font-special:'IM Fell English',Georgia,serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:17px;scroll-behavior:smooth}
+body{font-family:Georgia,serif;background-color:#FDF6E3;color:#2C1810;line-height:1.7;min-height:100vh}
+/* === HEADER — vizibil instant === */
+.header{background:linear-gradient(135deg,#4A0F1C 0%,#6B1B2B 60%,#8B2B3B 100%);color:#FDF6E3;padding:0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(74,15,28,.4)}
+.header::after{content:'';display:block;height:3px;background:linear-gradient(90deg,transparent,#C9A84C,#E8C878,#C9A84C,transparent)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1200px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:#FDF6E3}
+.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,#C9A84C,#E8C878);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.logo-text{display:flex;flex-direction:column}
+.logo-titlu{font-family:Georgia,serif;font-size:1.15rem;font-weight:700;line-height:1.2;color:#E8C878}
+.logo-subtitlu{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(253,246,227,.85)}
+.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:#E8C878;border-radius:2px}
+main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-index:1}
+/* === BOTTOM NAV — vizibil instant === */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(180deg,rgba(74,15,28,.97) 0%,#4A0F1C 100%);display:flex;justify-content:space-around;padding:8px 0 max(8px,env(safe-area-inset-bottom));z-index:200;box-shadow:0 -2px 20px rgba(74,15,28,.5)}
+/* === SKELETON LOADERS — GPU-composited, ZERO layout thrashing (CLS=0) === */
+/* Folosim pseudo-element ::after cu transform:translateX — nu atinge layout */
+@keyframes skeleton-shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.skeleton{background:#e8d5b0;border-radius:6px;position:relative;overflow:hidden}
+.skeleton::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,248,230,0.7) 50%,transparent 100%);animation:skeleton-shimmer 1.5s ease-in-out infinite;will-change:transform}
+/* Card Sfântul Zilei — rezervă 220px înainte de date */
+.card-sfant-zilei{background:#fff;border:1px solid rgba(201,168,76,.3);border-radius:16px;margin-top:24px;overflow:hidden;box-shadow:var(--shadow);position:relative;min-height:380px!important;contain:layout style paint}
+.card-sfant-zilei::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#6B1B2B,#C9A84C,#6B1B2B)}
+.card-sfant-header{background:linear-gradient(135deg,#6B1B2B 0%,#4A0F1C 100%);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;min-height:56px}
+.card-sfant-body{padding:24px 20px;display:flex;gap:20px;align-items:flex-start;min-height:164px}
+/* Skeleton pentru imaginea sfântului */
+.sfant-icoana{width:90px;height:110px;border-radius:8px;border:2px solid #C9A84C;flex-shrink:0;background:linear-gradient(135deg,#4A0F1C,#1B3A6B);display:flex;align-items:center;justify-content:center;font-size:40px}
+.sfant-info{flex:1;min-width:0}
+.sfant-titlu-mic{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:#7A5C1E;margin-bottom:6px}/* contrast 5.2:1 WCAG AA */
+.sfant-nume{font-family:Georgia,serif;font-size:1.3rem;font-weight:700;color:#6B1B2B;line-height:1.3;margin-bottom:10px;min-height:2rem}
+.sfant-scurt{font-size:.9rem;color:#3D2010;line-height:1.6;margin-bottom:14px}/* contrast 7.1:1 WCAG AAA */
+.data-azi{color:#F5E6A0;font-size:.85rem;letter-spacing:.05em;text-transform:uppercase}/* contrast 5.8:1 pe fundal visiniu */
+.badge-post{font-size:.75rem;padding:4px 12px;border-radius:20px;font-weight:500}
+.badge-post.post{background:rgba(107,27,43,.8);color:#E8C878;border:1px solid #C9A84C}
+/* Card Rugăciunea Zilei — rezervă 180px */
+.card-rugaciune{background:#fff;border:1px solid rgba(201,168,76,.25);border-left:4px solid #C9A84C;border-radius:8px;padding:20px;box-shadow:var(--shadow);min-height:240px!important;contain:layout style paint}
+/* Card Cuvântul de Folos — rezervă 160px */
+.card-cuvant-folos{background:linear-gradient(135deg,#fdf6e3,#fef9f0);border:2px solid #C9A84C;border-radius:16px;padding:24px 20px 20px;box-shadow:0 4px 20px rgba(201,168,76,.18);position:relative;overflow:hidden;min-height:280px!important;contain:layout style paint}
+/* Card Lectie (Evanghelie/Apostol/Predică) — rezervă 140px */
+.card-lectie{background:#fff;border:1px solid rgba(201,168,76,.25);border-radius:14px;padding:18px 16px;box-shadow:0 2px 10px rgba(107,27,43,.07);min-height:180px!important;contain:layout style paint}
+/* Secțiunea titlu */
+.separator-ortodox{text-align:center;margin:28px 0 20px;color:#C9A84C;font-size:1.2rem;letter-spacing:.3em}
+.sectiune-titlu{font-family:Georgia,serif;font-size:1.1rem;color:#6B1B2B;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.sectiune-titlu::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,#C9A84C,transparent)}
+/* Skeleton placeholders pentru conținut dinamic */
+.skel-line{height:16px;border-radius:4px;margin-bottom:10px}
+.skel-line.lg{height:24px;width:70%}
+.skel-line.md{height:14px;width:90%}
+.skel-line.sm{height:12px;width:60%}
+/* Linkuri interne SEO */
+.linkuri-interne-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
+.link-intern-card{background:#fff;border:1px solid rgba(201,168,76,.3);border-radius:12px;padding:14px 12px;text-align:center;text-decoration:none;box-shadow:0 2px 8px rgba(107,27,43,.06);display:block;transition:transform .2s,box-shadow .2s}
+.link-intern-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(107,27,43,.12)}
+.link-intern-icon{font-size:1.6rem;display:block;margin-bottom:4px}
+.link-intern-titlu{font-family:Georgia,serif;color:#6B1B2B;font-size:.84rem;font-weight:700}
+/* Butoane acțiune */
+.btn-actiune{display:inline-flex;align-items:center;gap:6px;padding:12px 18px;border-radius:10px;font-weight:600;font-size:.9rem;cursor:pointer;transition:opacity .2s}
+.btn-actiune:hover{opacity:.85}
+.btn-wa{border:none;background:#25D366;color:#fff}
+/* Sinaxar articol */
+.sinaxar-articol p{font-size:19px;line-height:1.7;color:#2c2c2c;text-align:justify;margin-bottom:1.2em}
+/* Tropar secțiune */
+.tropar-sectiune{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:14px;padding:18px;margin-bottom:28px}
+.tropar-sectiune h2{font-size:1.1rem;color:#4a0e17;margin:0 0 12px;font-weight:700}
+.tropar-sectiune p{font-size:18px;line-height:1.7;color:#2c2c2c;font-style:italic;margin:0}
+/* Conținut înrudit */
+.continut-inrudit{margin-top:24px;padding-top:20px;border-top:1px solid rgba(201,168,76,.3)}
+.continut-inrudit h3{font-size:1rem;color:#4a0e17;margin:0 0 14px;font-weight:700}
+/* Ruta header */
+.ruta-header-visineu{border-left:4px solid #8B1A1A}
+/* Card rugăciune azi */
+.card-rugaciune-azi{border-radius:14px;padding:1.25rem;margin:1rem 0 1.5rem;text-align:center}
+/* Paragraf text lectie */
+.lectie-para{margin-bottom:1.2em;line-height:1.75;font-size:1.05rem}
+</style>
+  <!-- CSS principal non-blocking: se încarcă după randarea inițială -->
+  <link rel="preload" href="/css/style.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/style.min.css"></noscript>
+
+  <!-- Schema.org Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Povești de Credință",
+    "url": "https://povestidecredinta.ro",
+    "logo": "https://povestidecredinta.ro/images/logo.png",
+    "description": "Calendar ortodox românesc, sfântul zilei, rugăciuni, acatiste și pricesne ortodoxe.",
+    "sameAs": [
+      "https://www.youtube.com/@povestidecredinta",
+      "https://www.youtube.com/@povestidecredinta.rugaciune",
+      "https://www.facebook.com/povestidecredinta"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "email": "contact@povestidecredinta.ro",
+      "availableLanguage": "Romanian"
+    }
+  }
+  </script>
+
+  <!-- Schema.org WebSite cu SearchBox -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Povești de Credință",
+    "url": "https://povestidecredinta.ro",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://povestidecredinta.ro/cautare?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">🕊️</div>
+      <div class="logo-text">
+        <span class="logo-titlu">Povești de Credință</span>
+        <span class="logo-subtitlu">Calendar Ortodox Românesc</span>
+      </div>
+    </a>
+    <nav class="nav-desktop" aria-label="Navigație principală">
+      <a href="/" class="activ">Acasă</a>
+      <a href="/calendar.html">Calendar</a>
+      <a href="/rugaciunea-zilei" data-ruta="/rugaciunea-zilei">Rugăciunea Zilei</a>
+      <a href="/rugaciuni.html">Rugăciuni</a>
+      <a href="/acatiste.html">Acatiste</a>
+      <a href="/setari-notificari" data-ruta="/setari-notificari">🔔 Notificări</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/despre.html">Despre</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Meniu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="nav-mobil" id="nav-mobil" aria-label="Meniu mobil">
+    <a href="/">🏠 Acasă</a>
+    <a href="/calendar.html">📅 Calendar Ortodox 2026</a>
+    <a href="/sfantul-zilei/">✝️ Sfântul Zilei</a>
+    <a href="/sinaxarul-zilei/">📜 Sinaxarul Zilei</a>
+    <a href="/apostolul-zilei/">📖 Apostolul Zilei</a>
+    <a href="/evanghelia-zilei/">✝️ Evanghelia Zilei</a>
+    <a href="/predica-zilei/">🎙️ Predica Zilei</a>
+    <a href="/calendar-ortodox-azi/">📅 Calendar Ortodox Azi</a>
+    <a href="/rugaciunea-zilei" data-ruta="/rugaciunea-zilei">🙏 Rugăciunea Zilei</a>
+    <a href="/rugaciuni.html">📿 Rugăciuni</a>
+    <a href="/acatiste.html">📖 Acatiste</a>
+    <a href="/pricesne.html">🎵 Pricesne</a>
+    <a href="/posturi.html">🕯️ Posturi</a>
+    <a href="/faq.html">❓ Întrebări frecvente</a>
+    <a href="/despre.html">✝️ Despre noi</a>
+    <a href="/setari-notificari" data-ruta="/setari-notificari">🔔 Setări notificări</a>
+    <a href="/contact.html">📧 Contact</a>
+  </nav>
+</header>
+
+<!-- MAIN -->
+<main id="pagina-acasa">
+
+  <!-- PWA INSTALL BANNER -->
+  <div class="pwa-banner" id="pwa-banner" style="display:none;">
+    <span style="font-size:1.8rem">📱</span>
+    <div class="pwa-banner-text">
+      <strong>Instalează aplicația</strong>
+      Sfântul zilei direct pe telefon, fără internet
+    </div>
+    <button class="btn-instaleaza" onclick="instaleazaPWA()">Instalează</button>
+  </div>
+
+  <div class="grid-ordonat">
+    <!-- 1. CARD SFÂNTUL ZILEI (COMPACT) -->
+    <article class="card-universal" itemscope itemtype="https://schema.org/Article">
+      <div style="display:flex; gap:15px; align-items:flex-start">
+        <div class="sfant-icoana" aria-hidden="true" style="width:70px; height:70px; flex-shrink:0; font-size:32px">🕯️</div>
+        <div style="flex:1">
+          <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--auriu-dark); margin-bottom:4px">Sfântul zilei</div>
+          <h1 class="sfant-nume" id="sfant-nume" itemprop="headline" style="font-size:1.1rem; line-height:1.3; color:var(--visineu); margin-bottom:8px">Se încarcă...</h1>
+          <meta itemprop="datePublished" id="meta-date-published" content="">
+          <meta itemprop="author" content="Povești de Credință">
+          <p class="sfant-scurt" id="sfant-scurt" itemprop="description" style="font-size:0.9rem; line-height:1.5; color:var(--text-light); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden"></p>
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; margin-top:15px; flex-wrap:wrap">
+        <span class="badge-post post" id="badge-post" style="margin:0">🕯️ Post</span>
+        <span class="data-azi" id="zi-saptamana" style="font-size:0.8rem; color:var(--text-light)">Se încarcă...</span>
+      </div>
+      <a href="/sinaxar" data-ruta="/sinaxar" id="btn-citeste-mai-mult" class="btn-egal btn-primar" style="margin-top:15px">
+        📖 Citește Sinaxarul
+      </a>
+    </article>
+
+    <!-- 2. CUVÂNTUL DE FOLOS AL ZILEI -->
+    <section class="card-universal" aria-labelledby="titlu-cuvant-folos">
+      <h2 class="sectiune-titlu" id="titlu-cuvant-folos" style="margin-bottom:15px">✨ Cuvântul de Folos</h2>
+      <div class="ghilimele-mari" aria-hidden="true">❝</div>
+      <blockquote class="cuvant-folos-citat" id="cuvant-folos-text" style="flex:1">
+        <p id="cuvant-folos-paragraf">Se încarcă...</p>
+        <footer class="cuvant-folos-autor" id="cuvant-folos-autor">— Sfânt Părinte</footer>
+      </blockquote>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:20px">
+        <button class="btn-egal btn-secundar" onclick="copieCuvantFolos()" style="padding:10px">📋 Copiază</button>
+        <button class="btn-egal btn-wa" onclick="shareWhatsApp(document.getElementById('cuvant-folos-paragraf').textContent + ' — ' + document.getElementById('cuvant-folos-autor').textContent)" style="padding:10px">
+          💬 WhatsApp
+        </button>
+      </div>
+    </section>
+
+    <!-- 3. RUGĂCIUNEA ZILEI -->
+    <section class="card-universal" aria-labelledby="titlu-rugaciune">
+      <h2 class="sectiune-titlu" style="margin-bottom:15px">🙏 Rugăciunea zilei</h2>
+      <div id="rugaciune-titlu" style="font-family:var(--font-titlu); color:var(--visineu); font-weight:700; margin-bottom:10px">Rugăciunea dimineții</div>
+      <p id="rugaciune-text" style="font-size:0.95rem; line-height:1.6; color:var(--text-dark); flex:1; display:-webkit-box; -webkit-line-clamp:6; -webkit-box-orient:vertical; overflow:hidden">Se încarcă...</p>
+      <a id="btn-rugaciune-completa" href="/rugaciunea-zilei/vineri" data-ruta="/rugaciunea-zilei/vineri" class="btn-egal btn-primar" style="margin-top:20px">
+        🙏 Citește Rugăciunea
+      </a>
+    </section>
+
+    <!-- 4. EVANGHELIA ZILEI -->
+    <section class="card-universal" aria-labelledby="titlu-evanghelie-acasa">
+      <h2 class="sectiune-titlu" style="margin-bottom:15px">✝️ Evanghelia zilei</h2>
+      <div class="lectie-referinta" id="evanghelie-ref-acasa">Se încarcă...</div>
+      <div class="lectie-text" id="evanghelie-text-acasa" style="flex:1">Se încarcă textul Evangheliei...</div>
+      <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei" class="btn-egal btn-secundar">📖 Tâlcuire Completă</a>
+    </section>
+
+    <!-- 5. APOSTOLUL ZILEI -->
+    <section class="card-universal" aria-labelledby="titlu-apostol-acasa">
+      <h2 class="sectiune-titlu" style="margin-bottom:15px">📖 Apostolul zilei</h2>
+      <div class="lectie-referinta" id="apostol-ref-acasa">Se încarcă...</div>
+      <div class="lectie-text" id="apostol-text-acasa" style="flex:1">Se încarcă textul Apostolului...</div>
+      <a href="/apostolul-zilei" data-ruta="/apostolul-zilei" class="btn-egal btn-secundar">📖 Tâlcuire Completă</a>
+    </section>
+
+    <!-- 6. PREDICA ZILEI -->
+    <section class="card-universal grid-full" aria-labelledby="titlu-predica-acasa">
+      <h2 class="sectiune-titlu" style="margin-bottom:15px">🎙️ Predica zilei</h2>
+      <div class="lectie-text" id="predica-text-acasa" style="flex:1; -webkit-line-clamp:3">Se încarcă predica...</div>
+      <a href="/predica-zilei" data-ruta="/predica-zilei" class="btn-egal btn-primar" style="width:auto; align-self:center; padding:12px 40px">📖 Citește Predica</a>
+    </section>
+  </div>
+
+  <div class="separator-ortodox" aria-hidden="true">✦ ✝ ✦</div>
+
+  <!-- SECȚIUNI RAPIDE -->
+  <section aria-labelledby="titlu-sectiuni">
+    <h2 class="sectiune-titlu">📚 Conținut ortodox</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <a href="/rugaciuni.html" style="text-decoration:none">
+        <div style="background:white;border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
+          <div style="font-size:2rem;margin-bottom:8px">🙏</div>
+          <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.95rem;font-weight:600">Rugăciuni</div>
+          <div style="font-size:0.75rem;color:var(--text-light);margin-top:4px">De dimineață, de seară, pentru bolnavi</div>
+        </div>
+      </a>
+      <a href="/acatiste.html" style="text-decoration:none">
+        <div style="background:white;border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
+          <div style="font-size:2rem;margin-bottom:8px">📖</div>
+          <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.95rem;font-weight:600">Acatiste</div>
+          <div style="font-size:0.75rem;color:var(--text-light);margin-top:4px">Maica Domnului, Sf. Nicolae și alții</div>
+        </div>
+      </a>
+      <a href="/pricesne.html" style="text-decoration:none">
+        <div style="background:white;border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
+          <div style="font-size:2rem;margin-bottom:8px">🎵</div>
+          <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.95rem;font-weight:600">Pricesne</div>
+          <div style="font-size:0.75rem;color:var(--text-light);margin-top:4px">Pricesne ortodoxe românești</div>
+        </div>
+      </a>
+      <a href="/posturi.html" style="text-decoration:none">
+        <div style="background:white;border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
+          <div style="font-size:2rem;margin-bottom:8px">🕯️</div>
+          <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.95rem;font-weight:600">Posturi</div>
+          <div style="font-size:0.75rem;color:var(--text-light);margin-top:4px">Calendar posturi ortodoxe 2026</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- YOUTUBE EMBED -->
+  <section style="margin-top:28px" aria-labelledby="titlu-youtube">
+    <h2 class="sectiune-titlu">📺 Canalele noastre YouTube</h2>
+    <div style="background:white;border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(107,27,43,0.08)">
+      <p style="font-size:0.88rem;color:var(--text-medium);margin-bottom:14px;font-style:italic">
+        Rugăciuni, acatiste și pricesne ortodoxe românești — peste 30.000 de suflete în comunitatea noastră
+      </p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="https://youtube.com/@povestidecredinta" target="_blank" rel="noopener noreferrer"
+           style="display:flex;align-items:center;gap:10px;text-decoration:none;background:var(--crem);padding:12px;border-radius:8px;border:1px solid rgba(201,168,76,0.2)">
+          <span style="font-size:1.5rem">📺</span>
+          <div>
+            <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.9rem;font-weight:600">Povești de Credință</div>
+            <div style="font-size:0.75rem;color:var(--text-light)">@povestidecredinta</div>
+          </div>
+        </a>
+        <a href="https://youtube.com/@povestidecredinta.rugaciune" target="_blank" rel="noopener noreferrer"
+           style="display:flex;align-items:center;gap:10px;text-decoration:none;background:var(--crem);padding:12px;border-radius:8px;border:1px solid rgba(201,168,76,0.2)">
+          <span style="font-size:1.5rem">🙏</span>
+          <div>
+            <div style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.9rem;font-weight:600">Rugăciuni Ortodoxe</div>
+            <div style="font-size:0.75rem;color:var(--text-light)">@povestidecredinta.rugaciune</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- CONTAINERE RUTE SPA — ascunse implicit, afișate de router (app.js) -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+
+<!-- RUTA: /sfintii-zilei -->
+<div id="ruta-sfintii-zilei" class="ruta-container" style="display:none" aria-hidden="true">
+  <div class="ruta-header">
+    <button class="btn-inapoi" onclick="navigheazaLaRuta('/')" aria-label="Inapoi la pagina principala">← Înapoi</button>
+    <span class="ruta-data-live"></span>
+  </div>
+  <article class="ruta-articol" itemscope itemtype="https://schema.org/Article">
+    <h1 id="sfintii-titlu" class="ruta-titlu-sfinti" itemprop="headline">Sfinții zilei</h1>
+    <div id="sfintii-post" class="badge-post dezlegare" style="margin-bottom:16px">Dezlegare</div>
+    <section style="margin-bottom:24px">
+      <h2 style="font-family:var(--font-titlu);color:var(--visineu-dark);font-size:1rem;margin-bottom:12px">Troparul sfântului</h2>
+      <div style="background:rgba(201,168,76,0.08);border-left:3px solid var(--auriu);border-radius:0 8px 8px 0;padding:16px;margin-bottom:12px">
+        <p id="sfintii-tropar" style="font-style:italic;line-height:1.8;font-size:0.95rem;color:var(--text-dark)"></p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button id="btn-copie-tropar" class="btn-copiere">Copiaza troparul</button>
+        <button id="btn-wa-tropar" class="btn-copiere" style="background:#25D366;color:white;border-color:transparent">Trimite pe WhatsApp</button>
+      </div>
+    </section>
+    <nav class="ruta-linkuri-interne" aria-label="Continut inrudit">
+      <h3 style="font-family:var(--font-titlu);color:var(--visineu);font-size:0.9rem;margin-bottom:10px">Continut inrudit pentru azi</h3>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <a href="/sinaxar" data-ruta="/sinaxar" class="link-intern-ruta">Sinaxarul zilei — Viata completa a sfantului</a>
+        <a href="/apostolul-zilei" data-ruta="/apostolul-zilei" class="link-intern-ruta">Apostolul zilei — Pericopa apostolica</a>
+        <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei" class="link-intern-ruta">Evanghelia zilei — Textul integral</a>
+        <a href="/predica-zilei" data-ruta="/predica-zilei" class="link-intern-ruta">Predica zilei — Cuvant de folos</a>
+      </div>
+    </nav>
+  </article>
+</div>
+
+<!-- RUTA: /sinaxar -->
+<div id="ruta-sinaxar" class="ruta-container" style="display:none" aria-hidden="true">
+  <div class="ruta-header">
+    <button class="btn-inapoi" onclick="navigheazaLaRuta('/')" aria-label="Inapoi">← Înapoi</button>
+    <span class="ruta-data-live"></span>
+  </div>
+  <article class="ruta-articol" itemscope itemtype="https://schema.org/Article">
+    <h1 id="sinaxar-titlu-principal" itemprop="headline">Sinaxarul zilei</h1>
+    <div id="sinaxar-culoare" style="font-size:0.82rem;color:var(--text-light);margin-bottom:16px"></div>
+    <div id="sinaxar-text-complet" itemprop="articleBody" style="color:var(--text-dark)"></div>
+    <section class="faq-sectiune" style="margin-top:32px">
+      <h2 style="font-family:var(--font-titlu);color:var(--visineu);font-size:1rem;margin-bottom:16px">Intrebari frecvente despre Sinaxar</h2>
+      <div class="faq-lista">
+        <div class="faq-item"><div class="faq-intrebare">Ce este Sinaxarul in Biserica Ortodoxa? <span class="faq-icon">+</span></div><div class="faq-raspuns">Sinaxarul este cartea liturgica ortodoxa care cuprinde vietile sfintilor prazanuiti in fiecare zi a anului, citite la Utrenie. Cuvantul vine din grecescul synaxis (adunare).</div></div>
+        <div class="faq-item"><div class="faq-intrebare">Cum se deosebeste Sinaxarul de Mineiu? <span class="faq-icon">+</span></div><div class="faq-raspuns">Mineiurile sunt carti liturgice lunare care contin slujbele complete ale sfintilor, in timp ce Sinaxarul cuprinde doar vietile sfintilor, citite ca lectura la Utrenie.</div></div>
+        <div class="faq-item"><div class="faq-intrebare">De ce este importanta cunoasterea vietii sfintilor? <span class="faq-icon">+</span></div><div class="faq-raspuns">Vietile sfintilor sunt exemple concrete de implinire a Evangheliei in viata cotidiana. Ele ne inspira, ne intaresc credinta si ne arata ca sfintenia este posibila pentru orice crestin.</div></div>
+      </div>
+    </section>
+    <nav class="ruta-linkuri-interne" aria-label="Continut inrudit">
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:16px">
+        <a href="/sfintii-zilei" data-ruta="/sfintii-zilei" class="link-intern-ruta">Sfintii zilei — Troparul si prazanuirea</a>
+        <a href="/apostolul-zilei" data-ruta="/apostolul-zilei" class="link-intern-ruta">Apostolul zilei</a>
+        <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei" class="link-intern-ruta">Evanghelia zilei</a>
+      </div>
+    </nav>
+  </article>
+</div>
+
+<!-- RUTA: /apostolul-zilei -->
+<div id="ruta-apostolul-zilei" class="ruta-container" style="display:none" aria-hidden="true">
+  <div class="ruta-header">
+    <button class="btn-inapoi" onclick="navigheazaLaRuta('/')" aria-label="Inapoi">← Înapoi</button>
+    <span class="ruta-data-live"></span>
+  </div>
+  <article class="ruta-articol" itemscope itemtype="https://schema.org/Article">
+    <div style="font-size:0.82rem;color:var(--text-light);margin-bottom:6px">Pericopa Apostolica</div>
+    <h1 id="apostol-referinta" itemprop="headline" style="font-size:1.2rem">Apostolul zilei</h1>
+    <div id="apostol-text-complet" itemprop="articleBody" style="margin-top:16px;color:var(--text-dark)"></div>
+    <div style="margin-top:16px">
+      <button id="btn-copie-apostol" class="btn-copiere">Copiaza textul</button>
+    </div>
+    <section class="faq-sectiune" style="margin-top:32px">
+      <h2 style="font-family:var(--font-titlu);color:var(--visineu);font-size:1rem;margin-bottom:16px">Intrebari frecvente despre Apostol</h2>
+      <div class="faq-lista">
+        <div class="faq-item"><div class="faq-intrebare">Ce este Apostolul in cadrul Sfintei Liturghii? <span class="faq-icon">+</span></div><div class="faq-raspuns">Apostolul este pericopa din Epistolele Apostolice citita la Sfanta Liturghie inainte de Evanghelie, conform randuielii liturgice ortodoxe.</div></div>
+        <div class="faq-item"><div class="faq-intrebare">De ce se citeste Apostolul la Liturghie? <span class="faq-icon">+</span></div><div class="faq-raspuns">Apostolul face parte din Liturghia Cuvantului. Prin el, credinciosii asculta invatatura apostolica si sunt pregatiti pentru primirea Cuvantului lui Dumnezeu din Evanghelie.</div></div>
+        <div class="faq-item"><div class="faq-intrebare">Ce este o pericopa apostolica? <span class="faq-icon">+</span></div><div class="faq-raspuns">Pericopa apostolica este un fragment din Epistolele Apostolice, selectat de Tipicul Bisericii pentru a fi citit intr-o anumita zi liturgica.</div></div>
+      </div>
+    </section>
+    <div id="apostol-linkuri-interne"></div>
+  </article>
+</div>
+
+<!-- RUTA: /evanghelia-zilei -->
+<div id="ruta-evanghelia-zilei" class="ruta-container" style="display:none" aria-hidden="true">
+  <div class="ruta-header">
+    <button class="btn-inapoi" onclick="navigheazaLaRuta('/')" aria-label="Inapoi">← Înapoi</button>
+    <span class="ruta-data-live"></span>
+  </div>
+  <article class="ruta-articol" itemscope itemtype="https://schema.org/Article">
+    <div style="font-size:0.82rem;color:var(--text-light);margin-bottom:6px">Sfanta Evanghelie a zilei</div>
+    <h1 id="evanghelie-referinta" itemprop="headline" style="font-size:1.2rem">Evanghelia zilei</h1>
+    <div id="evanghelie-text-complet" itemprop="articleBody" style="margin-top:16px;color:var(--text-dark)"></div>
+    <div style="margin-top:16px">
+      <button id="btn-copie-evanghelie" class="btn-copiere">Copiaza textul</button>
+    </div>
+    <section class="faq-sectiune" style="margin-top:32px">
+      <h2 style="font-family:var(--font-titlu);color:var(--visineu);font-size:1rem;margin-bottom:16px">Intrebari frecvente despre Evanghelie</h2>
+      <div class="faq-lista">
+        <div class="faq-item"><div class="faq-intrebare">Ce este Evanghelia zilei in calendarul ortodox? <span class="faq-icon">+</span></div><div class="faq-raspuns">Evanghelia zilei este pericopa din una dintre cele patru Evanghelii randuita de Tipicul Bisericii pentru a fi citita la Sfanta Liturghie in ziua respectiva.</div></div>
+        <div class="faq-item"><div class="faq-intrebare">De ce se citeste Evanghelia in picioare? <span class="faq-icon">+</span></div><div class="faq-raspuns">Credinciosii stau in picioare la citirea Evangheliei ca semn de respect fata de Cuvantul lui Dumnezeu si ca pregatire pentru primirea lui Hristos in Sfanta Euharistie.</div></div>
+        <div class="faq-item"><div class="faq-intrebare">Ce reprezinta cele patru Evanghelii? <span class="faq-icon">+</span></div><div class="faq-raspuns">Cele patru Evanghelii (Matei, Marcu, Luca, Ioan) sunt marturiile inspirate ale vietii, invataturii, mortii si invierii Mantuitorului Iisus Hristos, scrise de Sfintii Evanghelisti.</div></div>
+      </div>
+    </section>
+    <div id="evanghelie-linkuri-interne"></div>
+  </article>
+</div>
+
+<!-- RUTA: /predica-zilei -->
+<div id="ruta-predica-zilei" class="ruta-container" style="display:none" aria-hidden="true">
+  <div class="ruta-header">
+    <button class="btn-inapoi" onclick="navigheazaLaRuta('/')" aria-label="Inapoi">← Înapoi</button>
+    <span class="ruta-data-live"></span>
+  </div>
+  <article class="ruta-articol" itemscope itemtype="https://schema.org/Article">
+    <h1 id="predica-titlu-principal" itemprop="headline" style="font-size:1.1rem">Predica zilei</h1>
+    <div id="predica-text-complet" itemprop="articleBody" style="margin-top:16px;color:var(--text-dark)"></div>
+    <section class="faq-sectiune" style="margin-top:32px">
+      <h2 style="font-family:var(--font-titlu);color:var(--visineu);font-size:1rem;margin-bottom:16px">Intrebari frecvente despre Predica</h2>
+      <div class="faq-lista">
+        <div class="faq-item"><div class="faq-intrebare">Ce este predica in cadrul Sfintei Liturghii? <span class="faq-icon">+</span></div><div class="faq-raspuns">Predica este cuvantul de invatatura rostit de preot sau episcop dupa citirea Evangheliei, prin care se talcuiesc textele scripturistice si se aplica la viata crestinilor.</div></div>
+        <div class="faq-item"><div class="faq-intrebare">Ce este talcuirea patristica a Evangheliei? <span class="faq-icon">+</span></div><div class="faq-raspuns">Talcuirea patristica este interpretarea Evangheliei de catre Sfintii Parinti ai Bisericii (Sf. Ioan Gura de Aur, Sf. Chiril al Alexandriei etc.), care constituie traditia vie a Bisericii.</div></div>
+        <div class="faq-item"><div class="faq-intrebare">Ce este omilia crestina? <span class="faq-icon">+</span></div><div class="faq-raspuns">Omilia (din gr. homilia = convorbire) este un tip de predica care urmareste pas cu pas textul scripturistic, comentand si explicand fiecare verset in parte.</div></div>
+      </div>
+    </section>
+    <div id="predica-linkuri-interne"></div>
+  </article>
+</div>
+
+<!-- CONTAINER RUTA: /rugaciunea-zilei (Hub toate zilele) -->
+<div id="ruta-rugaciunea-zilei" class="ruta-container" style="display:none;padding:16px;max-width:680px;margin:0 auto" aria-hidden="true">
+  <!-- Continut generat dinamic de randeazaHubRugaciuni() din app.js -->
+</div>
+
+<!-- CONTAINER RUTA: /rugaciunea-zilei/:slug (Subpagina zi specifica) -->
+<div id="ruta-rugaciunea-zi" class="ruta-container" style="display:none;padding:16px;max-width:680px;margin:0 auto" aria-hidden="true">
+  <!-- Continut generat dinamic de randeazaRugaciuneaZi(slug) din app.js -->
+</div>
+
+<!-- CONTAINER RUTA: /setari-notificari (Panou Setari Duhovnicesti) -->
+<div id="ruta-setari-notificari" class="ruta-container" style="display:none" aria-hidden="true">
+  <div class="setari-wrap">
+    <div class="ruta-header">
+      <button class="btn-inapoi" onclick="navigheazaLaRuta('/')" aria-label="Inapoi la pagina principala">← Înapoi</button>
+    </div>
+    <div class="setari-intro">
+      <h1>🔔 Setări Duhovnicești</h1>
+      <p>Alege ritmul tău de rugăciune. Vei primi memento-uri blânde pentru sfântul zilei, rugăciunea de prânz, liniștea serii și schimbările din calendarul ortodox. Poți opri sau porni fiecare opțiune oricând.</p>
+    </div>
+
+    <!-- Status permisiune notificari -->
+    <span id="setari-status-permisiune" class="setari-status-permisiune" style="display:none"></span>
+
+    <!-- Mesaj de ghidare / stare -->
+    <div id="setari-mesaj" class="setari-mesaj" role="status" aria-live="polite"></div>
+
+    <!-- Toggle 1: Gandul de dimineata -->
+    <div class="setare-card" id="card-dimineata">
+      <span class="setare-icon">☀️</span>
+      <div class="setare-continut">
+        <div class="setare-titlu">Gândul de dimineață și Sfântul Zilei</div>
+        <div class="setare-desc">Pornesc ziua cu numele sfântului praznuit și un cuvânt de folos.</div>
+        <span class="setare-ora">🕒 Ora aleasă:
+          <input type="time" id="ora-dimineata" value="07:30" aria-label="Alege ora pentru notificarea de dimineață">
+        </span>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-dimineata" data-segment="dimineata" aria-label="Activează notificarea de dimineață">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <!-- Toggle 2: Rugaciunea de la pranz -->
+    <div class="setare-card" id="card-pranz">
+      <span class="setare-icon">🍽️</span>
+      <div class="setare-continut">
+        <div class="setare-titlu">Rugăciunea de la prânz</div>
+        <div class="setare-desc">Binecuvântarea mesei și o clipă de mulțumire la mijlocul zilei.</div>
+        <span class="setare-ora">🕒 Ora aleasă:
+          <input type="time" id="ora-pranz" value="13:00" aria-label="Alege ora pentru notificarea de prânz">
+        </span>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-pranz" data-segment="pranz" aria-label="Activează notificarea de prânz">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <!-- Toggle 3: Rugaciunea de seara (cu selector ora) -->
+    <div class="setare-card" id="card-seara">
+      <span class="setare-icon">🌙</span>
+      <div class="setare-continut">
+        <div class="setare-titlu">Rugăciunea de seară</div>
+        <div class="setare-desc">Liniștea nopții — rugăciunile din Ceaslov înainte de culcare.</div>
+        <span class="setare-ora">🕒 Ora aleasă:
+          <input type="time" id="ora-seara" value="21:30" aria-label="Alege ora pentru rugăciunea de seară">
+        </span>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-seara" data-segment="seara" aria-label="Activează notificarea de seară">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <!-- Toggle 4: Alerte posturi si sarbatori -->
+    <div class="setare-card" id="card-alerte">
+      <span class="setare-icon">⚠️</span>
+      <div class="setare-continut">
+        <div class="setare-titlu">Alerte pentru Posturi și Sărbători Mari</div>
+        <div class="setare-desc">Te anunțăm când începe un post sau o sărbătoare importantă și la zilele cu dezlegare.</div>
+        <span class="setare-ora">🕒 Ora aleasă:
+          <input type="time" id="ora-alerte" value="07:30" aria-label="Alege ora pentru alertele de posturi">
+        </span>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggle-alerte" data-segment="alerte_post" aria-label="Activează alertele pentru posturi">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <p class="setari-nota">Notificările sunt trimise prin serviciul de push și funcționează chiar și când aplicația este închisă. Nu colectăm date personale — doar preferințele tale de rugăciune.</p>
+    
+    <div style="margin-top:24px;padding:16px;background:linear-gradient(135deg,#fdf6e3,#fef9f0);border-left:4px solid #C9A84C;border-radius:8px">
+      <p style="font-size:0.9rem;margin-bottom:12px;color:#2C1810"><strong>📖 Rugăciuni complete din Ceaslov BOR:</strong></p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <a href="/rugaciuni-diminetii/" style="display:block;padding:10px 12px;background:#8B3A3A;color:#FDF6E3;text-decoration:none;border-radius:6px;font-size:0.85rem;text-align:center;font-weight:600;transition:opacity 0.2s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+          ☀️ Rugăciunile Dimineții
+        </a>
+        <a href="/rugaciuni-serii/" style="display:block;padding:10px 12px;background:#8B3A3A;color:#FDF6E3;text-decoration:none;border-radius:6px;font-size:0.85rem;text-align:center;font-weight:600;transition:opacity 0.2s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+          🌙 Rugăciunile Serii
+        </a>
+        <a href="/rugaciuni-mese/" style="display:block;padding:10px 12px;background:#8B3A3A;color:#FDF6E3;text-decoration:none;border-radius:6px;font-size:0.85rem;text-align:center;font-weight:600;transition:opacity 0.2s;grid-column:1/-1" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+          🍽️ Rugăciunile Meselor
+        </a>
+      </div>
+    </div>
+    
+    <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(201,168,76,0.15);text-align:center">
+      <button onclick="stergeDefinitivID()" style="background:none;border:1px solid rgba(107,27,43,0.2);color:var(--text-light);padding:10px 16px;border-radius:10px;font-size:0.78rem;cursor:pointer;transition:all 0.2s">
+        🗑️ Dezabonează-te definitiv și șterge ID-ul dispozitivului
+      </button>      <p style="font-size:0.7rem;color:var(--text-light);margin-top:8px;opacity:0.7">
+        Această acțiune va șterge token-ul tău din sistemul OneSignal (Dreptul de a fi uitat - GDPR).
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">✝️ Povești de Credință</div>
+  <p style="font-size:0.82rem;opacity:0.65;margin-bottom:4px">Calendar Ortodox Românesc</p>
+  <div class="footer-social">
+    <a href="https://youtube.com/@povestidecredinta" target="_blank" rel="noopener">📺 YouTube</a>
+    <a href="https://www.facebook.com/povestidecredinta" target="_blank" rel="noopener">📘 Facebook</a>
+  </div>
+  <div class="footer-links">
+    <a href="/despre.html">Despre noi</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/setari-notificari" data-ruta="/setari-notificari">Notificări</a>
+    <a href="/faq.html">FAQ</a>
+    <a href="/politica-confidentialitate.html">Confidențialitate</a>
+    <a href="/politica-cookies.html">Cookies</a>
+  </div>
+  <div class="footer-copy">
+    © 2026 Povești de Credință — povestidecredinta.ro<br>
+    Conținut conform Sinaxarului Bisericii Ortodoxe Române
+  </div>
+</footer>
+
+<!-- BOTTOM NAVIGATION (mobil) -->
+<nav class="bottom-nav" role="navigation" aria-label="Navigație principală mobil">
+  <a href="/" class="nav-item activ" aria-label="Acasă">
+    <span class="nav-icon">🏠</span>
+    <span class="nav-label">Acasă</span>
+  </a>
+  <a href="/calendar.html" class="nav-item" aria-label="Calendar">
+    <span class="nav-icon">📅</span>
+    <span class="nav-label">Calendar</span>
+  </a>
+  <a href="/rugaciunea-zilei" data-ruta="/rugaciunea-zilei" class="nav-item" aria-label="Rugăciunea Zilei">
+    <span class="nav-icon">🙏</span>
+    <span class="nav-label">Rugăciuni</span>
+  </a>
+  <a href="/acatiste.html" class="nav-item" aria-label="Acatiste">
+    <span class="nav-icon">📖</span>
+    <span class="nav-label">Acatiste</span>
+  </a>
+  <a href="/faq.html" class="nav-item" aria-label="FAQ">
+    <span class="nav-icon">❓</span>
+    <span class="nav-label">FAQ</span>
+  </a>
+</nav>
+
+<!-- MODAL ZI -->
+<div class="modal-overlay" id="modal-zi" onclick="if(event.target===this)inchideModal()" role="dialog" aria-modal="true">
+  <div class="modal-continut">
+    <div class="modal-header">
+      <span class="modal-data" id="modal-data"></span>
+      <button class="modal-inchide" onclick="inchideModal()" aria-label="Închide">×</button>
+    </div>
+    <div class="modal-sfant" id="modal-sfant-text"></div>
+  </div>
+</div>
+
+<!-- MODAL DETALII SFÂNTUL ZILEI (SPA — fără reîncărcare pagină) -->
+<div class="modal-overlay" id="modal-detalii-sfant" onclick="if(event.target===this)inchideModalDetalii()" role="dialog" aria-modal="true" aria-labelledby="modal-detalii-titlu">
+  <div class="modal-continut modal-detalii-continut">
+    <div class="modal-header">
+      <span class="modal-data" id="modal-detalii-data"></span>
+      <button class="modal-inchide" onclick="inchideModalDetalii()" aria-label="Închide">×</button>
+    </div>
+    <div class="modal-sfant">
+      <h2 id="modal-detalii-titlu" style="color:var(--visineu);font-family:var(--font-titlu);font-size:1.15rem;margin-bottom:10px;line-height:1.3"></h2>
+      <div id="modal-detalii-post" style="font-size:0.85rem;color:var(--text-light);margin-bottom:14px;font-style:italic"></div>
+      <h3 style="font-family:var(--font-titlu);color:var(--visineu-dark);font-size:0.95rem;margin-bottom:8px">📜 Sinaxarul zilei</h3>
+      <p id="modal-detalii-sinaxar" style="font-size:0.9rem;line-height:1.7;color:var(--text-dark);margin-bottom:16px"></p>
+      <div id="modal-sectiune-tropar" style="margin-bottom:16px">
+        <h3 style="font-family:var(--font-titlu);color:var(--visineu-dark);font-size:0.95rem;margin-bottom:8px">🎵 Troparul sfântului</h3>
+        <p id="modal-detalii-tropar" style="font-size:0.88rem;line-height:1.7;color:var(--text-dark);font-style:italic;background:rgba(201,168,76,0.08);padding:12px;border-radius:8px;border-left:3px solid var(--auriu)"></p>
+      </div>
+      <div id="modal-sectiune-cuvant" style="margin-bottom:16px;display:none">
+        <h3 style="font-family:var(--font-titlu);color:var(--visineu-dark);font-size:0.95rem;margin-bottom:8px">✏️ Cuvânt de folos</h3>
+        <p id="modal-detalii-cuvant" style="font-size:0.88rem;line-height:1.7;color:var(--text-dark);font-style:italic"></p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+        <a id="modal-detalii-link" href="/sfantul-zilei/" style="background:var(--visineu);color:white;border:none;padding:10px 18px;border-radius:22px;font-size:0.88rem;cursor:pointer;text-decoration:none;font-family:var(--font-titlu);font-weight:700">
+          ↗️ Pagină completă
+        </a>
+        <button onclick="inchideModalDetalii()" style="background:none;border:1px solid var(--visineu);color:var(--visineu);padding:10px 18px;border-radius:22px;font-size:0.88rem;cursor:pointer;font-family:var(--font-titlu)">
+          × Închide
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:70px;left:0;right:0;background:var(--visineu-dark);color:var(--crem);padding:14px 16px;z-index:150;border-top:1px solid rgba(201,168,76,0.3)">
+  <p style="font-size:0.82rem;margin-bottom:10px">
+    Folosim cookie-uri și stocare locală pentru a îmbunătăți experiența ta și pentru a gestiona notificările. 
+    <a href="/politica-cookies.html" style="color:var(--auriu-light)">Află mai mult</a>
+  </p>
+  <div style="display:flex;gap:10px">
+    <button onclick="acceptaCookies()" style="background:var(--auriu);color:var(--visineu-dark);border:none;padding:8px 16px;border-radius:20px;font-size:0.82rem;cursor:pointer;font-weight:700">
+      ✅ Accept
+    </button>
+    <button onclick="refuzaCookies()" style="background:none;border:1px solid rgba(255,255,255,0.3);color:var(--crem);padding:8px 16px;border-radius:20px;font-size:0.82rem;cursor:pointer">
+      Refuz
+    </button>
+  </div>
+</div>
+
+<script src="/js/min/rugaciuni-saptamana.min.js" defer></script>
+<script src="/js/min/app.min.js" defer></script>
+<script>
+// Cookie banner
+if (!localStorage.getItem('cookies-acceptate')) {
+  document.getElementById('cookie-banner').style.display = 'block';
+}
+function acceptaCookies() {
+  localStorage.setItem('cookies-acceptate', 'da');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+function refuzaCookies() {
+  localStorage.setItem('cookies-acceptate', 'nu');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+</script>
+<!-- Vercel Analytics -->
+<script defer src="/_vercel/insights/script.js"></script>
+
+</body>
+</html>
