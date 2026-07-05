@@ -228,13 +228,13 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
 <main id="pagina-acasa" style="display:block">
 
   <!-- PWA INSTALL BANNER -->
-  <div class="pwa-banner" id="pwa-banner" aria-hidden="true">
-    <span style="font-size:1.8rem">📱</span>
+  <div class="pwa-banner" id="pwa-banner" inert>
+    <span style="font-size:1.8rem" aria-hidden="true">📱</span>
     <div class="pwa-banner-text">
       <strong>Instalează aplicația</strong>
       Sfântul zilei direct pe telefon, fără internet
     </div>
-    <button class="btn-instaleaza" onclick="instaleazaPWA()">Instalează</button>
+    <button class="btn-instaleaza" onclick="instaleazaPWA()" tabindex="-1">Instalează</button>
   </div>
 
   <div class="grid-ordonat">

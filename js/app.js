@@ -1228,11 +1228,11 @@ function initPWA() {
     e.preventDefault();
     deferredPrompt = e;
     const banner = document.getElementById('pwa-banner');
-    if (banner) { banner.classList.add('is-visible'); banner.removeAttribute('aria-hidden'); }
+    if (banner) { banner.classList.add('is-visible'); banner.removeAttribute('inert'); const btn=banner.querySelector('button'); if(btn) btn.removeAttribute('tabindex'); }
   });
   window.addEventListener('appinstalled', () => {
     const banner = document.getElementById('pwa-banner');
-    if (banner) { banner.classList.remove('is-visible'); banner.setAttribute('aria-hidden', 'true'); }
+    if (banner) { banner.classList.remove('is-visible'); banner.setAttribute('inert',''); const btn=banner.querySelector('button'); if(btn) btn.setAttribute('tabindex','-1'); }
     deferredPrompt = null;
     aratToast('🙏 Aplicația a fost instalată cu succes!');
   });
