@@ -101,30 +101,29 @@ setInterval(verificaSchimbareZi, 60000);
 document.addEventListener('DOMContentLoaded', async () => {
   // Inițializăm data Bucharest pentru detectarea schimbării zilei
   _ultimaDataBucharest = getDataStrBucharest();
-  await Promise.all([
+    await Promise.all([
     incarcaDateSupabase(),
     incarcaDate()
   ]);
-
-  // Inițializăm funcțiile de bază
-  afiseazaSfantulZilei();
-  afiseazaCuvantulFolos();
-  afiseazaLectiiAcasa();
-  actualizeazaDataOra();
+  // Inițializăm funcțiile non-DOM imediat (fără acces la layout)
   initNavMobil();
   initFAQ();
   initOneSignal();
   initPWA();
-  startSchedulerNotificariLocale(); // Pornesc scheduler pentru notificări locale la ora exactă
-  afiseazaPostUrmator();
-  afiseazaRugaciuneaZilei();
-  randeazaCalendar(lunaAfisata, anAfisat);
-
-  // Inițializăm routerul SPA
+  startSchedulerNotificariLocale();
   initRouter();
-
-  // Navigăm la ruta curentă (inclusiv la refresh direct pe /sinaxar etc.)
-  handleRoute(window.location.pathname);
+  // Toate scrierile DOM sunt grupate într-un singur rAF pentru a evita
+  // Forced Synchronous Layout (citire geometrie după scriere în același frame)
+  requestAnimationFrame(() => {
+    afiseazaSfantulZilei();
+    afiseazaCuvantulFolos();
+    afiseazaLectiiAcasa();
+    actualizeazaDataOra();
+    afiseazaPostUrmator();
+    afiseazaRugaciuneaZilei();
+    randeazaCalendar(lunaAfisata, anAfisat);
+    handleRoute(window.location.pathname);
+  });
 });
 
 // ─── Supabase: Încarcă date pentru ziua de azi (fus orar Bucharest + cache) ────
