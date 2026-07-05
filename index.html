@@ -14,6 +14,9 @@
   <!-- Preconnect Google Fonts — reduce latența DNS cu ~200ms -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Preload fonturi principale pentru a reduce reflow-ul la swap -->
+  <link rel="preload" href="https://fonts.gstatic.com/s/playfairdisplay/v40/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKeiunDZbtPK_l2qI0s.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/lora/v37/0QI6MX1D_JOuGQbT0gvTJPa787weuxJOkq18m9eY7Z0.woff2" as="font" type="font/woff2" crossorigin>
   <!-- Fonturi non-blocking: display=swap afișează font sistem instant, premium după descărcare -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=IM+Fell+English:ital@0;1&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=IM+Fell+English:ital@0;1&display=swap"></noscript>
@@ -51,7 +54,7 @@
 :root{--visineu:#6B1B2B;--visineu-dark:#4A0F1C;--visineu-light:#8B2B3B;--auriu:#C9A84C;--auriu-light:#E8C878;--auriu-dark:#A8883C;--crem:#FDF6E3;--crem-dark:#F5EDD0;--albastru-marial:#1B3A6B;--text-dark:#2C1810;--text-medium:#5C3D2E;--text-light:#6B4D3E;--alb:#FFFFFF;--shadow:0 4px 20px rgba(107,27,43,0.15);--shadow-gold:0 2px 12px rgba(201,168,76,0.3);--radius:8px;--radius-lg:16px;--font-titlu:'Playfair Display',Georgia,serif;--font-text:'Lora',Georgia,serif;--font-special:'IM Fell English',Georgia,serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:17px;scroll-behavior:smooth}
-body{font-family:Georgia,serif;background-color:#FDF6E3;color:#2C1810;line-height:1.7;min-height:100vh}
+body{font-family:'Lora',Georgia,serif;background-color:#FDF6E3;color:#2C1810;line-height:1.7;min-height:100vh}
 /* === HEADER — vizibil instant === */
 .header{background:linear-gradient(135deg,#4A0F1C 0%,#6B1B2B 60%,#8B2B3B 100%);color:#FDF6E3;padding:0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(74,15,28,.4)}
 .header::after{content:'';display:block;height:3px;background:linear-gradient(90deg,transparent,#C9A84C,#E8C878,#C9A84C,transparent)}
@@ -125,6 +128,10 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
 .card-rugaciune-azi{border-radius:14px;padding:1.25rem;margin:1rem 0 1.5rem;text-align:center}
 /* Paragraf text lectie */
 .lectie-para{margin-bottom:1.2em;line-height:1.75;font-size:1.05rem}
+/* Stabilizare homepage pentru CLS */
+.pwa-banner{display:flex;align-items:center;gap:12px;min-height:92px;visibility:hidden;opacity:0;pointer-events:none}.pwa-banner.is-visible{visibility:visible;opacity:1;pointer-events:auto}
+.home-card-sfant{min-height:300px;contain:layout style paint}.home-card-cuvant{min-height:315px;contain:layout style paint}.home-card-rugaciune{min-height:285px;contain:layout style paint}.home-card-lectie{min-height:255px;contain:layout style paint}.home-card-predica{min-height:230px;contain:layout style paint}
+#sfant-scurt{min-height:4.5em}#zi-saptamana{display:inline-block;min-width:170px;min-height:1.3em}#badge-post{display:inline-flex;align-items:center;justify-content:center;min-width:120px;min-height:28px}#cuvant-folos-paragraf{min-height:7.2em}#rugaciune-text{min-height:9.6em}.lectie-text{min-height:6.9em}#predica-text-acasa{min-height:5.2em}
 </style>
   <!-- CSS principal non-blocking: se încarcă după randarea inițială -->
   <link rel="preload" href="/css/style.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -222,7 +229,7 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
 <main id="pagina-acasa">
 
   <!-- PWA INSTALL BANNER -->
-  <div class="pwa-banner" id="pwa-banner" style="display:none;">
+  <div class="pwa-banner" id="pwa-banner" aria-hidden="true">
     <span style="font-size:1.8rem">📱</span>
     <div class="pwa-banner-text">
       <strong>Instalează aplicația</strong>
@@ -233,7 +240,7 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
 
   <div class="grid-ordonat">
     <!-- 1. CARD SFÂNTUL ZILEI (COMPACT) -->
-    <article class="card-universal" itemscope itemtype="https://schema.org/Article">
+    <article class="card-universal home-card-sfant" itemscope itemtype="https://schema.org/Article">
       <div style="display:flex; gap:15px; align-items:flex-start">
         <div class="sfant-icoana" aria-hidden="true" style="width:70px; height:70px; flex-shrink:0; font-size:32px">🕯️</div>
         <div style="flex:1">
@@ -254,7 +261,7 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
     </article>
 
     <!-- 2. CUVÂNTUL DE FOLOS AL ZILEI -->
-    <section class="card-universal" aria-labelledby="titlu-cuvant-folos">
+    <section class="card-universal home-card-cuvant" aria-labelledby="titlu-cuvant-folos">
       <h2 class="sectiune-titlu" id="titlu-cuvant-folos" style="margin-bottom:15px">✨ Cuvântul de Folos</h2>
       <div class="ghilimele-mari" aria-hidden="true">❝</div>
       <blockquote class="cuvant-folos-citat" id="cuvant-folos-text" style="flex:1">
@@ -270,7 +277,7 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
     </section>
 
     <!-- 3. RUGĂCIUNEA ZILEI -->
-    <section class="card-universal" aria-labelledby="titlu-rugaciune">
+    <section class="card-universal home-card-rugaciune" aria-labelledby="titlu-rugaciune">
       <h2 class="sectiune-titlu" style="margin-bottom:15px">🙏 Rugăciunea zilei</h2>
       <div id="rugaciune-titlu" style="font-family:var(--font-titlu); color:var(--visineu); font-weight:700; margin-bottom:10px">Rugăciunea dimineții</div>
       <p id="rugaciune-text" style="font-size:0.95rem; line-height:1.6; color:var(--text-dark); flex:1; display:-webkit-box; -webkit-line-clamp:6; -webkit-box-orient:vertical; overflow:hidden">Se încarcă...</p>
@@ -280,7 +287,7 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
     </section>
 
     <!-- 4. EVANGHELIA ZILEI -->
-    <section class="card-universal" aria-labelledby="titlu-evanghelie-acasa">
+    <section class="card-universal home-card-lectie" aria-labelledby="titlu-evanghelie-acasa">
       <h2 class="sectiune-titlu" style="margin-bottom:15px">✝️ Evanghelia zilei</h2>
       <div class="lectie-referinta" id="evanghelie-ref-acasa">Se încarcă...</div>
       <div class="lectie-text" id="evanghelie-text-acasa" style="flex:1">Se încarcă textul Evangheliei...</div>
@@ -288,7 +295,7 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
     </section>
 
     <!-- 5. APOSTOLUL ZILEI -->
-    <section class="card-universal" aria-labelledby="titlu-apostol-acasa">
+    <section class="card-universal home-card-lectie" aria-labelledby="titlu-apostol-acasa">
       <h2 class="sectiune-titlu" style="margin-bottom:15px">📖 Apostolul zilei</h2>
       <div class="lectie-referinta" id="apostol-ref-acasa">Se încarcă...</div>
       <div class="lectie-text" id="apostol-text-acasa" style="flex:1">Se încarcă textul Apostolului...</div>
@@ -296,7 +303,7 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
     </section>
 
     <!-- 6. PREDICA ZILEI -->
-    <section class="card-universal grid-full" aria-labelledby="titlu-predica-acasa">
+    <section class="card-universal grid-full home-card-predica" aria-labelledby="titlu-predica-acasa">
       <h2 class="sectiune-titlu" style="margin-bottom:15px">🎙️ Predica zilei</h2>
       <div class="lectie-text" id="predica-text-acasa" style="flex:1; -webkit-line-clamp:3">Se încarcă predica...</div>
       <a href="/predica-zilei" data-ruta="/predica-zilei" class="btn-egal btn-primar" style="width:auto; align-self:center; padding:12px 40px">📖 Citește Predica</a>

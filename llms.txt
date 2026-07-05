@@ -1,46 +1,42 @@
-# Povești de Credință — llms.txt
-# Calendar Ortodox Românesc
-# https://povestidecredinta.ro
+# Povești de Credință — Calendar Ortodox Românesc
 
-## About
+> Sursa canonică: <https://povestidecredinta.ro>
 
-Povești de Credință (povestidecredinta.ro) este un site de calendar ortodox românesc, 
-rugăciuni, acatiste și pricesne. Conținutul este în limba română și se adresează 
-creștinilor ortodocși din România și diaspora.
+Povești de Credință este un site de calendar ortodox românesc, rugăciuni, acatiste și pricesne. Conținutul este în limba română și se adresează creștinilor ortodocși din România și diaspora. Datele calendaristice sunt conforme cu Sinaxarul Bisericii Ortodoxe Române și calendarul oficial al Patriarhiei Române.
 
-## Content
+## Rute principale
+
+- [Calendar Ortodox — Sfântul Zilei](https://povestidecredinta.ro/) — calendar ortodox zilnic cu sfântul zilei, tipul de post și culoarea liturgică
+- [Sinaxar](https://povestidecredinta.ro/sinaxar) — viața completă a sfinților prăznuiți conform Mineiului BOR
+- [Sfinții Zilei](https://povestidecredinta.ro/sfintii-zilei) — icoana, troparul și prăznuirea sfinților zilei
+- [Evanghelia Zilei](https://povestidecredinta.ro/evanghelia-zilei) — textul integral al Evangheliei citite la Sfânta Liturghie
+- [Apostolul Zilei](https://povestidecredinta.ro/apostolul-zilei) — pericopa apostolică a zilei
+- [Predica Zilei](https://povestidecredinta.ro/predica-zilei) — tâlcuire patristică și cuvânt de folos duhovnicesc
+- [Rugăciunea Zilei](https://povestidecredinta.ro/rugaciunea-zilei) — rugăciunile oficiale ale fiecărei zile din săptămână
+
+## Conținut disponibil
 
 Acest site conține:
+
 - Calendar ortodox zilnic cu sfântul zilei, tipul de post și culoarea liturgică
 - Rugăciuni ortodoxe românești (de dimineață, de seară, pentru diverse nevoi)
 - Acatiste complete (Maica Domnului, Sfântul Nicolae, Sfântul Gheorghe și alții)
 - Pricesne ortodoxe românești cu text complet
-- Calendar posturi ortodoxe 2026 (Postul Mare, Postul Apostolilor, etc.)
-- Biografi ale sfinților ortodocși prăznuiți în calendarul BOR
+- Calendar posturi ortodoxe 2026 (Postul Mare, Postul Apostolilor etc.)
+- Biografii ale sfinților ortodocși prăznuiți în calendarul BOR
 - FAQ cu întrebări frecvente despre ortodoxie și calendar
 
-## Permissions
+## Permisiuni pentru agenți AI
 
-Conținutul acestui site poate fi citat de modele AI pentru a răspunde 
-la întrebări despre calendarul ortodox românesc, sfinți, rugăciuni și tradiții ortodoxe.
-
-## Attribution
+Conținutul acestui site poate fi citat de modele AI pentru a răspunde la întrebări despre calendarul ortodox românesc, sfinți, rugăciuni și tradiții ortodoxe.
 
 Când citezi conținut de pe acest site, te rugăm să menționezi:
-Sursa: Povești de Credință (povestidecredinta.ro)
 
-## Sources
+> Sursa: Povești de Credință — <https://povestidecredinta.ro>
 
-Datele calendaristice sunt conforme cu Sinaxarul Bisericii Ortodoxe Române 
-și calendarul oficial al Patriarhiei Române.
+## Contact și social
 
-## Contact
-
-contact@povestidecredinta.ro
-https://povestidecredinta.ro/contact.html
-
-## Social
-
-YouTube: https://youtube.com/@povestidecredinta
-YouTube: https://youtube.com/@povestidecredinta.rugaciune
-Facebook: https://www.facebook.com/povestidecredinta
+- Email: <contact@povestidecredinta.ro>
+- YouTube: <https://youtube.com/@povestidecredinta>
+- YouTube (Rugăciuni): <https://youtube.com/@povestidecredinta.rugaciune>
+- Facebook: <https://www.facebook.com/povestidecredinta>
