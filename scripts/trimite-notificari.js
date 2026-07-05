@@ -95,7 +95,7 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
     case 'dimineata':
       return {
         ...baza,
-        filters: [{ field: 'tag', key: 'dimineata', relation: '=', value: 'true' }],
+        filters: [{ field: 'tag', key: 'dimineata', relation: '=', value: 'true' }, { operator: 'OR' }, { field: 'tag', key: 'dimineata', relation: '=', value: '1' }],
         headings: { ro: `☀️ ${sfant}`, en: `☀️ ${sfant}` },
         contents: {
           ro: badge
@@ -109,7 +109,7 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
     case 'pranz':
       return {
         ...baza,
-        filters: [{ field: 'tag', key: 'pranz', relation: '=', value: 'true' }],
+        filters: [{ field: 'tag', key: 'pranz', relation: '=', value: 'true' }, { operator: 'OR' }, { field: 'tag', key: 'pranz', relation: '=', value: '1' }],
         headings: { ro: '🍽️ Rugăciunea de la prânz' },
         contents: {
           ro: 'O clipă de mulțumire la mijlocul zilei. „Toate către Tine așteaptă, ca să le dai lor hrană la bună vreme." Apasă pentru rugăciunea mesei.'
@@ -121,7 +121,7 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
     case 'seara':
       return {
         ...baza,
-        filters: [{ field: 'tag', key: 'seara', relation: '=', value: 'true' }],
+        filters: [{ field: 'tag', key: 'seara', relation: '=', value: 'true' }, { operator: 'OR' }, { field: 'tag', key: 'seara', relation: '=', value: '1' }],
         headings: { ro: '🌙 Rugăciunea de seară' },
         contents: {
           ro: 'Liniștea nopții. Înainte de culcare, încredințează ziua lui Dumnezeu prin rugăciunile din Ceaslov. Apasă pentru rânduiala serii.'
@@ -133,7 +133,7 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
     case 'alerte_post':
       return {
         ...baza,
-        filters: [{ field: 'tag', key: 'alerte_post', relation: '=', value: 'true' }],
+        filters: [{ field: 'tag', key: 'alerte_post', relation: '=', value: 'true' }, { operator: 'OR' }, { field: 'tag', key: 'alerte_post', relation: '=', value: '1' }],
         headings: { ro: badge ? `🕯️ ${badge}` : '🕯️ Calendar ortodox' },
         contents: {
           ro: badge
