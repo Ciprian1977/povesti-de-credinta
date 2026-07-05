@@ -651,16 +651,35 @@ JSON exact (toate câmpurile obligatorii):
   const continutAI = JSON.parse(jsonCurat);
 
   // —— PASUL 3: Combinare texte sacre exacte + conținut AI ——
-  // Textele sacre din lecționar suprascriu orice ar genera AI
+  // Textele sacre din lecționar suprascriu orice ar genera AI, DAR DOAR DACA SUNT COMPLETE
   if (texteStatice) {
-    continutAI.apostol_carte = texteStatice.apostol_carte;
-    continutAI.apostol_versete = texteStatice.apostol_versete;
-    continutAI.apostol_text = texteStatice.apostol_text;
-    continutAI.evanghelie_carte = texteStatice.evanghelie_carte;
-    continutAI.evanghelie_versete = texteStatice.evanghelie_versete;
-    continutAI.evanghelie_text = texteStatice.evanghelie_text;
-    continutAI.tropar = texteStatice.tropar;
-    console.log(`✅ Texte sacre exacte BOR aplicate pentru ${cheiaLectionar}`);
+    continutAI.apostol_carte = texteStatice.apostol_carte || continutAI.apostol_carte;
+    continutAI.apostol_versete = texteStatice.apostol_versete || continutAI.apostol_versete;
+    
+    // Validare: textul static trebuie să fie mai lung de 50 de caractere pentru a fi considerat text complet, nu doar o referință
+    if (texteStatice.apostol_text && texteStatice.apostol_text.length > 50) {
+      continutAI.apostol_text = texteStatice.apostol_text;
+    } else if (!continutAI.apostol_text || continutAI.apostol_text.length <= 50) {
+      console.warn(`⚠️ Textul static pentru Apostol este prea scurt sau lipsește, iar AI-ul nu a generat unul valid. Se va folosi un fallback.`);
+      continutAI.apostol_text = 'Textul Apostolului pentru această zi se găsește în Apostolul BOR, la pericopa rânduită de Sinaxarul Bisericii Ortodoxe Române.';
+    }
+
+    continutAI.evanghelie_carte = texteStatice.evanghelie_carte || continutAI.evanghelie_carte;
+    continutAI.evanghelie_versete = texteStatice.evanghelie_versete || continutAI.evanghelie_versete;
+    
+    // Validare: textul static trebuie să fie mai lung de 50 de caractere
+    if (texteStatice.evanghelie_text && texteStatice.evanghelie_text.length > 50) {
+      continutAI.evanghelie_text = texteStatice.evanghelie_text;
+    } else if (!continutAI.evanghelie_text || continutAI.evanghelie_text.length <= 50) {
+      console.warn(`⚠️ Textul static pentru Evanghelie este prea scurt sau lipsește, iar AI-ul nu a generat unul valid. Se va folosi un fallback.`);
+      continutAI.evanghelie_text = 'Textul Evangheliei pentru această zi se găsește în Evangheliarul BOR, la pericopa rânduită de Sinaxarul Bisericii Ortodoxe Române.';
+    }
+
+    if (texteStatice.tropar && texteStatice.tropar.length > 10) {
+      continutAI.tropar = texteStatice.tropar;
+    }
+
+    console.log(`✅ Texte sacre exacte BOR aplicate (cu validare) pentru ${cheiaLectionar}`);
   } else {
     // Fallback: text informativ fără placeholder vizibil
     continutAI.apostol_carte = continutAI.apostol_carte || 'Apostolul zilei';
@@ -670,6 +689,14 @@ JSON exact (toate câmpurile obligatorii):
     continutAI.evanghelie_versete = continutAI.evanghelie_versete || '';
     continutAI.evanghelie_text = continutAI.evanghelie_text && continutAI.evanghelie_text.length > 50 ? continutAI.evanghelie_text : 'Textul Evangheliei pentru această zi se găsește în Evangheliarul BOR, la pericopa rânduită de Sinaxarul Bisericii Ortodoxe Române.';
     continutAI.tropar = continutAI.tropar || 'Troparul sfântului se găsește în Mineiul lunii, la ziua respectivă, conform rânduielii Bisericii Ortodoxe Române.';
+  }
+  
+  // Validare finală de siguranță: dacă textele sunt goale sau foarte scurte, aruncăm eroare pentru a declanșa retry-ul
+  if (!continutAI.apostol_text || continutAI.apostol_text.length < 20 || continutAI.apostol_text.startsWith('Ap. ')) {
+    throw new Error('Textul Apostolului este invalid sau prea scurt.');
+  }
+  if (!continutAI.evanghelie_text || continutAI.evanghelie_text.length < 20 || continutAI.evanghelie_text.startsWith('Ev. ')) {
+    throw new Error('Textul Evangheliei este invalid sau prea scurt.');
   }
 
   // —— PASUL 4: Adaugă câmpurile obligatorii calculate server-side ——
@@ -777,7 +804,8 @@ async function trimiteNotificare(data, sfantNume) {
 }
 
 // —— Funcție principală ————————————————————————————————————————————
-async function main() {
+async function main(retryCount = 0) {
+  const MAX_RETRIES = 2;
   console.log('✝️  Povești de Credință – Generare conținut zilnic');
   console.log('=========================================');
 
@@ -817,6 +845,14 @@ async function main() {
 
   } catch (eroare) {
     console.error('\n❌ Eroare în generarea conținutului:', eroare.message);
+
+    if (retryCount < MAX_RETRIES) {
+      console.log(`🔄 Reîncercare (${retryCount + 1}/${MAX_RETRIES}) în 10 secunde...`);
+      await new Promise(resolve => setTimeout(resolve, 10000));
+      return main(retryCount + 1);
+    }
+
+    console.error(`❌ S-a atins numărul maxim de reîncercări (${MAX_RETRIES}). Se aplică fallback.`);
 
     // Fallback: salvează date minime din calendar static — fără placeholder-uri vizibile
     console.log('⚠️ Salvez data fallback din calendar static...');

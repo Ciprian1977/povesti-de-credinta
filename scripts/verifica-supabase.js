@@ -1,6 +1,7 @@
 /**
  * verifica-supabase.js
  * Verifică că datele au fost salvate corect în Supabase
+ * Include validare pentru textele complete ale Apostolului și Evangheliei
  */
 
 const { createClient } = require('@supabase/supabase-js');
@@ -23,7 +24,7 @@ async function main() {
 
   const { data, error } = await supabase
     .from('zile_ortodoxe')
-    .select('data_calendaristica, sfant_nume, tip_post, apostol_carte, apostol_versete, evanghelie_carte, evanghelie_versete')
+    .select('data_calendaristica, sfant_nume, tip_post, apostol_carte, apostol_versete, apostol_text, evanghelie_carte, evanghelie_versete, evanghelie_text')
     .eq('data_calendaristica', dataStr)
     .single();
 
@@ -38,6 +39,30 @@ async function main() {
   console.log(`   Post: ${data.tip_post}`);
   console.log(`   Apostol: ${data.apostol_carte} ${data.apostol_versete}`);
   console.log(`   Evanghelie: ${data.evanghelie_carte} ${data.evanghelie_versete}`);
+
+  // ── Validare texte complete ──────────────────────────────────────────────────
+  let hasErrors = false;
+
+  if (!data.apostol_text || data.apostol_text.length < 50 || data.apostol_text.startsWith('Ap. ')) {
+    console.error(`❌ EROARE CRITICĂ: apostol_text este gol, prea scurt sau conține doar referința (nu textul complet)!`);
+    console.error(`   Valoare actuală: "${data.apostol_text ? data.apostol_text.substring(0, 80) : 'null'}"`);
+    hasErrors = true;
+  } else {
+    console.log(`   ✅ Apostol text: ${data.apostol_text.length} caractere (OK)`);
+  }
+
+  if (!data.evanghelie_text || data.evanghelie_text.length < 50 || data.evanghelie_text.startsWith('Ev. ')) {
+    console.error(`❌ EROARE CRITICĂ: evanghelie_text este gol, prea scurt sau conține doar referința (nu textul complet)!`);
+    console.error(`   Valoare actuală: "${data.evanghelie_text ? data.evanghelie_text.substring(0, 80) : 'null'}"`);
+    hasErrors = true;
+  } else {
+    console.log(`   ✅ Evanghelie text: ${data.evanghelie_text.length} caractere (OK)`);
+  }
+
+  if (hasErrors) {
+    console.error('\n❌ Verificare Supabase EȘUATĂ — textele sacre nu sunt complete!');
+    process.exit(1);
+  }
 
   // Verifică și câteva zile recente
   const { data: recent } = await supabase
