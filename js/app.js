@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initNavMobil();
   initFAQ();
   initOneSignal();
+  initPWA();
   startSchedulerNotificariLocale(); // Pornesc scheduler pentru notificări locale la ora exactă
   afiseazaPostUrmator();
   afiseazaRugaciuneaZilei();
