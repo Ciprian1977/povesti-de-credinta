@@ -21,6 +21,15 @@ const ZILE_LUNGI = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmb
 const LUNI_GENITIV = ['ianuarie','februarie','martie','aprilie','mai','iunie',
                        'iulie','august','septembrie','octombrie','noiembrie','decembrie'];
 
+/**
+ * Formatează un obiect Date într-un string de tipul "Ziua, DD LLLL YYYY".
+ * Exemplu: "Marți, 16 Iunie 2026"
+ */
+function formatDateForTitle(dateObj) {
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  return dateObj.toLocaleDateString('ro-RO', options);
+}
+
 // ─── Stare globală ────────────────────────────────────────────────────────────
 let calendarData = null;
 let supabaseData = null;
@@ -31,35 +40,39 @@ let deferredPrompt = null;
 // ─── Rutele SPA permanente ────────────────────────────────────────────────────
 // Fiecare rută are: path, titlu, descriere, containerID, metaGenerator
 const RUTE_SPA = {
-  '/': { container: 'pagina-acasa', titluFn: null, descFn: null },
+  '/': {
+    container: 'pagina-acasa',
+    titluFn: (d, azi) => `Calendar Ortodox - ${formatDateForTitle(azi)} — ${d.sfant_nume || 'Sfântul zilei'} | Povești de Credință`,
+    descFn: (d, azi) => `Sfântul zilei ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}: ${d.sfant_nume || 'Sfântul zilei'}. Calendar ortodox românesc, sinaxar, tropar și rugăciuni.`.substring(0, 160)
+  },
   '/sfintii-zilei': {
     container: 'ruta-sfintii-zilei',
-    titluFn: (d, azi) => `Sfinții Zilei ${azi.getDate()} ${LUNI[azi.getMonth()]} ${azi.getFullYear()} — ${d.sfant_nume || 'Sfântul zilei'} | Povești de Credință`,
+    titluFn: (d, azi) => `Sfinții Zilei - ${formatDateForTitle(azi)} — ${d.sfant_nume || 'Sfântul zilei'} | Povești de Credință`,
     descFn: (d, azi) => `Icoana, troparul și prăznuirea ${d.sfant_nume || 'sfinților'} în ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}. Calendar ortodox românesc oficial.`.substring(0, 160)
   },
   '/sinaxar': {
     container: 'ruta-sinaxar',
-    titluFn: (d, azi) => `Sinaxar ${azi.getDate()} ${LUNI[azi.getMonth()]} ${azi.getFullYear()} — Viața ${d.sfant_nume || 'Sfinților'} | Povești de Credință`,
+    titluFn: (d, azi) => `Sinaxar - ${formatDateForTitle(azi)} — Viața ${d.sfant_nume || 'Sfinților'} | Povești de Credință`,
     descFn: (d, azi) => `Viața completă și pătimirea ${d.sfant_nume || 'sfinților'} din ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]}. Sinaxar ortodox conform Mineiului BOR.`.substring(0, 160)
   },
   '/apostolul-zilei': {
     container: 'ruta-apostolul-zilei',
-    titluFn: (d, azi) => `Apostolul Zilei ${azi.getDate()} ${LUNI[azi.getMonth()]} ${azi.getFullYear()} — ${d.apostol_carte || 'Pericopa Apostolică'} | Povești de Credință`,
+    titluFn: (d, azi) => `Apostolul Zilei - ${formatDateForTitle(azi)} — ${d.apostol_carte || 'Pericopa Apostolică'} | Povești de Credință`,
     descFn: (d, azi) => `Pericopa apostolică din ${d.apostol_carte || 'Epistolele Apostolice'} ${d.apostol_versete || ''} citită în ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()} la Sfânta Liturghie.`.substring(0, 160)
   },
   '/evanghelia-zilei': {
     container: 'ruta-evanghelia-zilei',
-    titluFn: (d, azi) => `Evanghelia Zilei ${azi.getDate()} ${LUNI[azi.getMonth()]} ${azi.getFullYear()} — ${d.evanghelie_carte || 'Sfânta Evanghelie'} | Povești de Credință`,
+    titluFn: (d, azi) => `Evanghelia Zilei - ${formatDateForTitle(azi)} — ${d.evanghelie_carte || 'Sfânta Evanghelie'} | Povești de Credință`,
     descFn: (d, azi) => `Textul integral al Evangheliei din ${d.evanghelie_carte || 'Sfânta Evanghelie'} ${d.evanghelie_versete || ''} citit în ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`.substring(0, 160)
   },
   '/predica-zilei': {
     container: 'ruta-predica-zilei',
-    titluFn: (d, azi) => `Predica și Tâlcuirea Evangheliei de azi, ${azi.getDate()} ${LUNI[azi.getMonth()]} ${azi.getFullYear()} | Povești de Credință`,
+    titluFn: (d, azi) => `Predica și Tâlcuirea Evangheliei de azi, ${formatDateForTitle(azi)} | Povești de Credință`,
     descFn: (d, azi) => `Tâlcuire patristică și cuvânt de folos duhovnicesc pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}. Omilie și predică ortodoxă.`.substring(0, 160)
   },
   '/rugaciunea-zilei': {
     container: 'ruta-rugaciunea-zilei',
-    titluFn: () => { const z = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'][new Date().getDay()]; return `Rugăciunea Zilei — ${z} | Calendar Ortodox | Povești de Credință`; },
+    titluFn: (d, azi) => `Rugăciunea Zilei - ${formatDateForTitle(azi)} | Povești de Credință`,
     descFn: () => { const z = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'][new Date().getDay()]; return `Rugăciunile oficiale ale fiecărei zile din săptămână în tradiția Bisericii Ortodoxe. Azi: ${z}.`.substring(0, 160); }
   },
   '/setari-notificari': {
@@ -315,7 +328,7 @@ function handleRoute(pathname) {
   if (path === '/' || path === '') {
     // Pagina principală
     if (paginaAcasa) { paginaAcasa.style.display = 'block'; paginaAcasa.removeAttribute('aria-hidden'); }
-    actualizeazaMetaTaguri();
+    actualizeazaMetaTaguri('/', date, azi, false);
     actualizeazaJsonLd('/', date, azi);
     return;
   }
@@ -358,16 +371,7 @@ function handleRoute(pathname) {
   }
 
   // Actualizăm meta tags și JSON-LD pentru ruta curentă
-  if (rutaConfig.titluFn) document.title = rutaConfig.titluFn(date, azi);
-  const metaDesc = document.querySelector('meta[name="description"]');
-  if (metaDesc && rutaConfig.descFn) metaDesc.setAttribute('content', rutaConfig.descFn(date, azi));
-
-  // Open Graph dinamic
-  const ogTitle = document.querySelector('meta[property="og:title"]');
-  if (ogTitle && rutaConfig.titluFn) ogTitle.setAttribute('content', rutaConfig.titluFn(date, azi));
-  const ogDesc = document.querySelector('meta[property="og:description"]');
-  if (ogDesc && rutaConfig.descFn) ogDesc.setAttribute('content', rutaConfig.descFn(date, azi));
-
+  actualizeazaMetaTaguri(path, date, azi, false);
   actualizeazaJsonLd(path, date, azi);
 }
 
@@ -668,42 +672,42 @@ function actualizeazaJsonLd(path, date, azi) {
   const configs = {
     '/': {
       type: 'Article',
-      headline: `Calendar Ortodox ${azi.getDate()} ${LUNI[azi.getMonth()]} ${azi.getFullYear()} — ${titluSfinti}`,
+      headline: `Calendar Ortodox - ${formatDateForTitle(azi)} — ${titluSfinti}`,
       description: `Sfântul zilei ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}: ${titluSfinti}. Calendar ortodox românesc, sinaxar, tropar și rugăciuni.`,
       articleBody: date.sinaxar || date.sfant_viata || titluSfinti,
       url: `${siteUrl}/`
     },
     '/sfintii-zilei': {
       type: 'Article',
-      headline: `Sfinții Zilei ${azi.getDate()} ${LUNI[azi.getMonth()]} ${azi.getFullYear()} — ${titluSfinti}`,
+      headline: `Sfinții Zilei - ${formatDateForTitle(azi)} — ${titluSfinti}`,
       description: `Icoana, troparul și prăznuirea ${titluSfinti} în ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`,
       articleBody: date.tropar || titluSfinti,
       url: `${siteUrl}/sfintii-zilei`
     },
     '/sinaxar': {
       type: 'Article',
-      headline: `Sinaxar ${azi.getDate()} ${LUNI[azi.getMonth()]} ${azi.getFullYear()} — Viața ${titluSfinti}`,
+      headline: `Sinaxar - ${formatDateForTitle(azi)} — Viața ${titluSfinti}`,
       description: `Viața completă și pătimirea ${titluSfinti} din ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]}. Sinaxar ortodox conform Mineiului BOR.`,
       articleBody: date.sinaxar || date.sfant_viata || titluSfinti,
       url: `${siteUrl}/sinaxar`
     },
     '/apostolul-zilei': {
       type: 'Article',
-      headline: `Apostolul Zilei ${azi.getDate()} ${LUNI[azi.getMonth()]} ${azi.getFullYear()} — ${date.apostol_carte || 'Pericopa Apostolică'}`,
+      headline: `Apostolul Zilei - ${formatDateForTitle(azi)} — ${date.apostol_carte || 'Pericopa Apostolică'}`,
       description: `Pericopa apostolică ${date.apostol_carte || ''} ${date.apostol_versete || ''} citită în ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`,
       articleBody: date.apostol_text || `Apostolul zilei de ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`,
       url: `${siteUrl}/apostolul-zilei`
     },
     '/evanghelia-zilei': {
       type: 'Article',
-      headline: `Evanghelia Zilei ${azi.getDate()} ${LUNI[azi.getMonth()]} ${azi.getFullYear()} — ${date.evanghelie_carte || 'Sfânta Evanghelie'}`,
+      headline: `Evanghelia Zilei - ${formatDateForTitle(azi)} — ${date.evanghelie_carte || 'Sfânta Evanghelie'}`,
       description: `Textul integral al Evangheliei ${date.evanghelie_carte || ''} ${date.evanghelie_versete || ''} din ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`,
       articleBody: date.evanghelie_text || `Evanghelia zilei de ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`,
       url: `${siteUrl}/evanghelia-zilei`
     },
     '/predica-zilei': {
       type: 'Article',
-      headline: `Predica și Tâlcuirea Evangheliei de azi, ${azi.getDate()} ${LUNI[azi.getMonth()]} ${azi.getFullYear()}`,
+      headline: `Predica și Tâlcuirea Evangheliei de azi, ${formatDateForTitle(azi)}`,
       description: `Tâlcuire patristică și cuvânt de folos duhovnicesc pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`,
       articleBody: date.predica || date.cuvant_folos || `Predica zilei de ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`,
       url: `${siteUrl}/predica-zilei`
@@ -805,28 +809,44 @@ function getFaqDataPentruRuta(path) {
 }
 
 // ─── Meta Tags Dinamice SEO (pagina principală) ───────────────────────────────
-function actualizeazaMetaTaguri() {
-  const azi = getAzi();
-  const date = getDateAzi();
-  const titluComplet = date.sfant_nume || 'Sfântul zilei';
-  const ziua = azi.getDate();
-  const luna = LUNI[azi.getMonth()];
-  const an = azi.getFullYear();
+function actualizeazaMetaTaguri(path, d, azi, isDateSpecificRoute) {
+  const ruta = RUTE_SPA[path];
+  const titlu = ruta && ruta.titluFn ? ruta.titluFn(d, azi) : `Povești de Credință - ${formatDateForTitle(azi)}`;
+  const descriere = ruta && ruta.descFn ? ruta.descFn(d, azi) : `Povești de Credință - Resurse ortodoxe zilnice: Sinaxar, Viețile Sfinților, Apostolul și Evanghelia zilei, Predici și Rugăciuni.`.substring(0, 160);
 
-  document.title = `Calendar Ortodox ${ziua} ${luna} ${an} — ${titluComplet} | Povești de Credință`;
+  document.title = titlu;
 
-  const descNou = date.meta_description ||
-    `Sfântul zilei ${ziua} ${LUNI_GENITIV[azi.getMonth()]} ${an}: ${titluComplet}. Calendar ortodox românesc, sinaxar, tropar și rugăciuni. Povești de Credință.`;
+  // Actualizează H1
+  const h1Element = document.querySelector("h1");
+  if (h1Element) {
+    h1Element.textContent = titlu.split(" — ")[0].split(" | ")[0]; // Folosim doar prima parte a titlului pentru H1
+  }
+
+  // Actualizează tag-urile canonice
+  let canonicalLink = document.querySelector("link[rel=\"canonical\"]");
+  if (!canonicalLink) {
+    canonicalLink = document.createElement("link");
+    canonicalLink.setAttribute("rel", "canonical");
+    document.head.appendChild(canonicalLink);
+  }
+
+  if (isDateSpecificRoute) {
+    const dataStr = `${azi.getFullYear()}-${(azi.getMonth() + 1).toString().padStart(2, '0')}-${azi.getDate().toString().padStart(2, '0')}`;
+    canonicalLink.setAttribute("href", `${window.location.origin}/ziua/${dataStr}`);
+  } else {
+    canonicalLink.setAttribute("href", window.location.origin + path);
+  }
+
   const metaDesc = document.querySelector('meta[name="description"]');
-  if (metaDesc) metaDesc.setAttribute('content', descNou.substring(0, 160));
+  if (metaDesc) metaDesc.setAttribute('content', descriere);
 
   const ogTitle = document.querySelector('meta[property="og:title"]');
-  if (ogTitle) ogTitle.setAttribute('content', `${titluComplet} — Calendar Ortodox ${ziua} ${luna} ${an}`);
+  if (ogTitle) ogTitle.setAttribute('content', titlu);
   const ogDesc = document.querySelector('meta[property="og:description"]');
-  if (ogDesc) ogDesc.setAttribute('content', descNou.substring(0, 160));
+  if (ogDesc) ogDesc.setAttribute('content', descriere);
 
   const metaDatePublished = document.getElementById('meta-date-published');
-  if (metaDatePublished) metaDatePublished.setAttribute('content', getDataStrBucharest());
+  if (metaDatePublished) metaDatePublished.setAttribute('content', `${azi.getFullYear()}-${(azi.getMonth() + 1).toString().padStart(2, '0')}-${azi.getDate().toString().padStart(2, '0')}`);
 }
 
 // ─── Sfântul Zilei (homepage) ─────────────────────────────────────────────────
