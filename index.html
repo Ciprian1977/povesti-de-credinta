@@ -719,8 +719,8 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
 <!-- TOAST -->
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<!-- COOKIE BANNER -->
-<div id="cookie-banner" style="display:none;position:fixed;bottom:70px;left:0;right:0;background:var(--visineu-dark);color:var(--crem);padding:14px 16px;z-index:150;border-top:1px solid rgba(201,168,76,0.3)">
+<!-- COOKIE BANNER: transform-based show/hide — zero CLS (nu afectează layout-ul) -->
+<div id="cookie-banner" style="position:fixed;bottom:70px;left:0;right:0;background:var(--visineu-dark);color:var(--crem);padding:14px 16px;z-index:150;border-top:1px solid rgba(201,168,76,0.3);transform:translateY(calc(100% + 70px));transition:transform 0.3s ease;will-change:transform">
   <p style="font-size:0.82rem;margin-bottom:10px">
     Folosim cookie-uri și stocare locală pentru a îmbunătăți experiența ta și pentru a gestiona notificările. 
     <a href="/politica-cookies.html" style="color:var(--auriu-light)">Află mai mult</a>
@@ -738,18 +738,26 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
 <script src="/js/min/rugaciuni-saptamana.min.js" defer></script>
 <script src="/js/min/app.min.js" defer></script>
 <script>
-// Cookie banner
-if (!localStorage.getItem('cookies-acceptate')) {
-  document.getElementById('cookie-banner').style.display = 'block';
-}
-function acceptaCookies() {
-  localStorage.setItem('cookies-acceptate', 'da');
-  document.getElementById('cookie-banner').style.display = 'none';
-}
-function refuzaCookies() {
-  localStorage.setItem('cookies-acceptate', 'nu');
-  document.getElementById('cookie-banner').style.display = 'none';
-}
+// Cookie banner — transform-based (zero CLS: nu schimbă display, nu recalculează layout)
+(function(){
+  var b = document.getElementById('cookie-banner');
+  if (!localStorage.getItem('cookies-acceptate')) {
+    // Arată banner-ul cu un mic delay pentru a nu bloca prima randare
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        b.style.transform = 'translateY(0)';
+      });
+    });
+  }
+  window.acceptaCookies = function(){
+    localStorage.setItem('cookies-acceptate','da');
+    b.style.transform = 'translateY(calc(100% + 70px))';
+  };
+  window.refuzaCookies = function(){
+    localStorage.setItem('cookies-acceptate','nu');
+    b.style.transform = 'translateY(calc(100% + 70px))';
+  };
+})();
 </script>
 <!-- Vercel Analytics -->
 <script defer src="/_vercel/insights/script.js"></script>
