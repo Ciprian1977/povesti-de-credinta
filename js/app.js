@@ -326,15 +326,16 @@ function handleRoute(pathname) {
   const paginaAcasa = document.getElementById('pagina-acasa');
 
   if (path === '/' || path === '') {
-    // Pagina principală
-    if (paginaAcasa) { paginaAcasa.style.display = 'block'; paginaAcasa.removeAttribute('aria-hidden'); }
+    // Pagina principală — evităm mutații DOM inutile (CLS)
+    if (paginaAcasa && paginaAcasa.style.display !== 'block') { paginaAcasa.style.display = 'block'; }
+    if (paginaAcasa && paginaAcasa.hasAttribute('aria-hidden')) { paginaAcasa.removeAttribute('aria-hidden'); }
     actualizeazaMetaTaguri('/', date, azi, false);
     actualizeazaJsonLd('/', date, azi);
     return;
   }
 
-  // Ascundem pagina principală
-  if (paginaAcasa) { paginaAcasa.style.display = 'none'; paginaAcasa.setAttribute('aria-hidden', 'true'); }
+  // Ascundem pagina principală — evităm mutații DOM inutile (CLS)
+  if (paginaAcasa && paginaAcasa.style.display !== 'none') { paginaAcasa.style.display = 'none'; paginaAcasa.setAttribute('aria-hidden', 'true'); }
 
   // Gestionăm subruta /rugaciunea-zilei/:slug
   const rugaciuneMatch = path.match(/^\/rugaciunea-zilei\/([a-z]+)$/);
