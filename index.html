@@ -223,20 +223,17 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
     <a href="/contact.html">📧 Contact</a>
   </nav>
 </header>
-
+<!-- PWA INSTALL BANNER: position:fixed, outside main to avoid CLS attribution -->
+<div class="pwa-banner" id="pwa-banner" inert>
+  <span style="font-size:1.8rem" aria-hidden="true">📱</span>
+  <div class="pwa-banner-text">
+    <strong>Instalează aplicația</strong>
+    Sfântul zilei direct pe telefon, fără internet
+  </div>
+  <button class="btn-instaleaza" onclick="instaleazaPWA()" tabindex="-1">Instalează</button>
+</div>
 <!-- MAIN -->
 <main id="pagina-acasa" style="display:block">
-
-  <!-- PWA INSTALL BANNER -->
-  <div class="pwa-banner" id="pwa-banner" inert>
-    <span style="font-size:1.8rem" aria-hidden="true">📱</span>
-    <div class="pwa-banner-text">
-      <strong>Instalează aplicația</strong>
-      Sfântul zilei direct pe telefon, fără internet
-    </div>
-    <button class="btn-instaleaza" onclick="instaleazaPWA()" tabindex="-1">Instalează</button>
-  </div>
-
   <div class="grid-ordonat">
     <!-- 1. CARD SFÂNTUL ZILEI (COMPACT) -->
     <article class="card-universal home-card-sfant" itemscope itemtype="https://schema.org/Article">
