@@ -14,8 +14,8 @@
   <!-- Preconnect Google Fonts — reduce latența DNS cu ~200ms -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Fonturi non-blocking: display=swap afișează font sistem instant, premium după descărcare -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=IM+Fell+English:ital@0;1&display=swap" media="print" onload="this.media='all'">
+  <!-- Fonturi non-blocking: rel=preload as=style + onload swap — standard recomandat -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=IM+Fell+English:ital@0;1&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=IM+Fell+English:ital@0;1&display=swap"></noscript>
 
   <!-- Open Graph -->
@@ -23,7 +23,7 @@
   <meta property="og:description" content="Sfântul zilei, rugăciuni, acatiste și calendar ortodox complet 2026.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://povestidecredinta.ro/">
-  <meta property="og:image" content="https://povestidecredinta.ro/images/og-image.jpg">
+  <meta property="og:image" content="https://povestidecredinta.ro/images/og-image.webp">
   <meta property="og:locale" content="ro_RO">
   <meta property="og:site_name" content="Povești de Credință">
 
