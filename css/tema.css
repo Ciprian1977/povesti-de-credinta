@@ -305,3 +305,17 @@ main{max-width:720px;margin-left:auto!important;margin-right:auto!important}
 .setare-desc{font-size:1rem!important;color:var(--text-sec)!important}
 .alege-ora{display:flex!important;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px;font:600 .95rem var(--sans)!important;color:var(--albastru)!important}
 .alege-ora select{font:600 1.15rem var(--sans);color:var(--text);background:#fff;border:2px solid var(--albastru);border-radius:12px;padding:8px 12px;min-height:48px;min-width:110px}
+
+/* ═══ Ascultă rugăciunea zilei (video YouTube) ═══ */
+.lista-sageti li.asculta-acasa{border-top:0!important;padding:0 0 18px}
+.asculta-pagina{margin:6px 0 18px}
+.buton-asculta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:58px;border-radius:14px;font:600 1.1rem var(--sans);cursor:pointer;color:#fff;background:linear-gradient(var(--rosu),var(--rosu)) padding-box,var(--rama-tricolor) border-box;border:4px solid transparent}
+.buton-asculta svg{width:26px;height:26px}
+.card-rugaciune-azi .buton-asculta{margin:0 0 12px}
+.video-rug{margin-top:12px;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:16/9;position:relative}
+.video-rug iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-rug-start{position:absolute;inset:0;border:0;padding:0;background:#000;cursor:pointer;width:100%}
+.video-rug-start img{width:100%;height:100%;object-fit:cover;opacity:.85}
+.video-rug-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:var(--rosu);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.video-rug-play svg{width:40px;height:40px;margin-left:4px}
+.video-rug-eticheta{position:absolute;left:0;right:0;bottom:0;padding:10px 14px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;font:600 1rem var(--sans);text-align:left}
