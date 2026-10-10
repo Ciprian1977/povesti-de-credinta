@@ -1699,8 +1699,9 @@ function initOneSignal() {
         // Nu afișăm prompt automat — cerem permisiunea doar la primul toggle.
         autoResubscribe: true,
         notifyButton: { enable: false },
-        serviceWorkerParam: { scope: '/' },
-        serviceWorkerPath: 'OneSignalSDKWorker.js'
+        // OneSignal în scope separat (/onesignal/) — nu înlocuiește service worker-ul aplicației (/sw.js)
+        serviceWorkerParam: { scope: '/onesignal/' },
+        serviceWorkerPath: 'onesignal/OneSignalSDKWorker.js'
       });
       _oneSignalGata = true;
       console.log('✅ OneSignal inițializat');

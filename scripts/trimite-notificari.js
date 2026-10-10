@@ -95,15 +95,16 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
     case 'dimineata':
       return {
         ...baza,
-        filters: [{ field: 'tag', key: 'dimineata', relation: '=', value: 'true' }, { operator: 'OR' }, { field: 'tag', key: 'dimineata', relation: '=', value: '1' }],
+        // toți abonații, cu excepția celor care au oprit explicit notificarea de dimineață
+        filters: [{ field: 'tag', key: 'dimineata', relation: 'not_exists' }, { operator: 'OR' }, { field: 'tag', key: 'dimineata', relation: '=', value: 'true' }, { operator: 'OR' }, { field: 'tag', key: 'dimineata', relation: '=', value: '1' }],
         headings: { ro: `☀️ ${sfant}`, en: `☀️ ${sfant}` },
         contents: {
           ro: badge
             ? `Bună dimineața! Astăzi, ${dataRo}. ${badge}. Apasă pentru viața sfântului și cuvântul de folos.`
             : `Bună dimineața! Astăzi, ${dataRo}. Apasă pentru viața sfântului și cuvântul de folos al zilei.`
         },
-        url: `${BASE}/sfantul-zilei/`,
-        web_url: `${BASE}/sfantul-zilei/`
+        url: `${BASE}`,
+        web_url: `${BASE}`
       };
 
     case 'pranz':
@@ -114,8 +115,8 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
         contents: {
           ro: 'O clipă de mulțumire la mijlocul zilei. „Toate către Tine așteaptă, ca să le dai lor hrană la bună vreme." Apasă pentru rugăciunea mesei.'
         },
-        url: `${BASE}/rugaciuni.html`,
-        web_url: `${BASE}/rugaciuni.html`
+        url: `${BASE}rugaciuni`,
+        web_url: `${BASE}rugaciuni`
       };
 
     case 'seara':
@@ -126,8 +127,8 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
         contents: {
           ro: 'Liniștea nopții. Înainte de culcare, încredințează ziua lui Dumnezeu prin rugăciunile din Ceaslov. Apasă pentru rânduiala serii.'
         },
-        url: `${BASE}/rugaciuni.html`,
-        web_url: `${BASE}/rugaciuni.html`
+        url: `${BASE}rugaciuni`,
+        web_url: `${BASE}rugaciuni`
       };
 
     case 'alerte_post':
@@ -140,8 +141,8 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
             ? `Astăzi, ${dataRo}: ${badge}. Apasă pentru rânduiala postului și sfatul duhovnicesc al zilei.`
             : `Astăzi, ${dataRo}. Apasă pentru rânduiala zilei din calendarul ortodox.`
         },
-        url: `${BASE}/posturi.html`,
-        web_url: `${BASE}/posturi.html`
+        url: `${BASE}posturi`,
+        web_url: `${BASE}posturi`
       };
 
     default:
@@ -152,8 +153,8 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
 // ─── Trimite notificarea către OneSignal ─────────────────────────────────────
 async function trimite(segment, dataISO, oraActuala) {
   if (!ONESIGNAL_APP_ID || !ONESIGNAL_API_KEY) {
-    console.log('⚠️ OneSignal nu este configurat (ONESIGNAL_APP_ID / ONESIGNAL_API_KEY lipsesc) – skip.');
-    return { skip: true };
+    console.error('❌ Lipsesc secretele ONESIGNAL_APP_ID / ONESIGNAL_API_KEY în GitHub → Settings → Secrets → Actions. Nu se trimite nimic.');
+    process.exit(1);
   }
 
   const continut = await getContinutZi(dataISO);
@@ -169,6 +170,10 @@ async function trimite(segment, dataISO, oraActuala) {
   });
 
   const rezultat = await r.json();
+  if (!r.ok || rezultat.errors) {
+    console.error(`❌ [${segment}] OneSignal a refuzat (HTTP ${r.status}):`, JSON.stringify(rezultat));
+    process.exit(1); // rularea apare ROȘIE în GitHub, ca să vedem problema
+  }
   if (rezultat.id) {
     console.log(`✅ [${segment}] Notificare trimisă (id=${rezultat.id}, destinatari≈${rezultat.recipients ?? '?'})`);
   } else {

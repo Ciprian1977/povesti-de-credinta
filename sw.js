@@ -6,9 +6,11 @@
 // v6: activare OneSignal App ID real (865e5cce) — notificări push live
 // v7: design nou (tricolor, text mare) — tema.css + ui.js
 // ═════════════════════════════════════════════════════════════════
-const CACHE_STATIC = 'pdc-static-v8';
-const CACHE_PAGES  = 'pdc-pages-v8';
-const CACHE_API    = 'pdc-api-v8';
+// OneSignal are propriul service worker în /onesignal/ (scope separat), ca să nu se bată cu acesta.
+
+const CACHE_STATIC = 'pdc-static-v9';
+const CACHE_PAGES  = 'pdc-pages-v9';
+const CACHE_API    = 'pdc-api-v9';
 
 // Resurse statice pre-cache la instalare
 const STATIC_ASSETS = [
