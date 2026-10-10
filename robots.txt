@@ -18,7 +18,7 @@ Disallow: /sw.js
 Disallow: /manifest.json
 
 # Sitemap
-Sitemap: https://povestidecredinta.ro/sitemap.xml
+Sitemap: https://www.povestidecredinta.ro/sitemap.xml
 
 # Google
 User-agent: Googlebot

@@ -1,18 +1,18 @@
 # Povești de Credință — Calendar Ortodox Românesc
 
-> Sursa canonică: <https://povestidecredinta.ro>
+> Sursa canonică: <https://www.povestidecredinta.ro/>
 
 Povești de Credință este un site de calendar ortodox românesc, rugăciuni, acatiste și pricesne. Conținutul este în limba română și se adresează creștinilor ortodocși din România și diaspora. Datele calendaristice sunt conforme cu Sinaxarul Bisericii Ortodoxe Române și calendarul oficial al Patriarhiei Române.
 
 ## Rute principale
 
-- [Calendar Ortodox — Sfântul Zilei](https://povestidecredinta.ro/) — calendar ortodox zilnic cu sfântul zilei, tipul de post și culoarea liturgică
-- [Sinaxar](https://povestidecredinta.ro/sinaxar) — viața completă a sfinților prăznuiți conform Mineiului BOR
-- [Sfinții Zilei](https://povestidecredinta.ro/sfintii-zilei) — icoana, troparul și prăznuirea sfinților zilei
-- [Evanghelia Zilei](https://povestidecredinta.ro/evanghelia-zilei) — textul integral al Evangheliei citite la Sfânta Liturghie
-- [Apostolul Zilei](https://povestidecredinta.ro/apostolul-zilei) — pericopa apostolică a zilei
-- [Predica Zilei](https://povestidecredinta.ro/predica-zilei) — tâlcuire patristică și cuvânt de folos duhovnicesc
-- [Rugăciunea Zilei](https://povestidecredinta.ro/rugaciunea-zilei) — rugăciunile oficiale ale fiecărei zile din săptămână
+- [Calendar Ortodox — Sfântul Zilei](https://www.povestidecredinta.ro/) — calendar ortodox zilnic cu sfântul zilei, tipul de post și culoarea liturgică
+- [Sinaxar](https://www.povestidecredinta.ro/sinaxar) — viața completă a sfinților prăznuiți conform Mineiului BOR
+- [Sfinții Zilei](https://www.povestidecredinta.ro/sfintii-zilei) — icoana, troparul și prăznuirea sfinților zilei
+- [Evanghelia Zilei](https://www.povestidecredinta.ro/evanghelia-zilei) — textul integral al Evangheliei citite la Sfânta Liturghie
+- [Apostolul Zilei](https://www.povestidecredinta.ro/apostolul-zilei) — pericopa apostolică a zilei
+- [Predica Zilei](https://www.povestidecredinta.ro/predica-zilei) — tâlcuire patristică și cuvânt de folos duhovnicesc
+- [Rugăciunea Zilei](https://www.povestidecredinta.ro/rugaciunea-zilei) — rugăciunile oficiale ale fiecărei zile din săptămână
 
 ## Conținut disponibil
 
@@ -32,7 +32,7 @@ Conținutul acestui site poate fi citat de modele AI pentru a răspunde la într
 
 Când citezi conținut de pe acest site, te rugăm să menționezi:
 
-> Sursa: Povești de Credință — <https://povestidecredinta.ro>
+> Sursa: Povești de Credință — <https://www.povestidecredinta.ro/>
 
 ## Contact și social
 

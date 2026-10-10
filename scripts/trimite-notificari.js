@@ -23,8 +23,8 @@ const ONESIGNAL_API_KEY = process.env.ONESIGNAL_API_KEY;
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
 
-const ICON = 'https://povestidecredinta.ro/images/icon-192.png';
-const BASE = 'https://povestidecredinta.ro';
+const ICON = 'https://www.povestidecredinta.ro/images/icon-192.png';
+const BASE = 'https://www.povestidecredinta.ro/';
 
 const LUNI = ['ianuarie','februarie','martie','aprilie','mai','iunie','iulie',
               'august','septembrie','octombrie','noiembrie','decembrie'];

@@ -781,8 +781,8 @@ async function trimiteNotificare(data, sfantNume) {
     segmente_incluse: ['Toate'],
     titluri: { ro: `🕊️ ${sfantNume}` },
     contents: { ro: `Calendar ortodox ${dataFormatata} – Sfântul zilei, Apostolul și Evanghelia zilei` },
-    url: 'https://povestidecredinta.ro/sfantul-zilei/',
-    chrome_web_icon: 'https://povestidecredinta.ro/imagini/icon-192.png',
+    url: 'https://www.povestidecredinta.ro/sfantul-zilei',
+    chrome_web_icon: 'https://www.povestidecredinta.ro/imagini/icon-192.png',
     trimite_după: `${data} 05:00:00 GMT+0200`
   };
 

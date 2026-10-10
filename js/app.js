@@ -558,7 +558,7 @@ window.shareWhatsAppSinaxar = function() {
   const date = getDateAzi();
   const titlu = date.sfant_nume || 'Sfântul zilei';
   const sinaxar = (date.sinaxar || date.sfant_viata || '').substring(0, 500);
-  const text = `${titlu}\n\n${sinaxar}...\n\nCitește complet: https://povestidecredinta.ro/sinaxar`;
+  const text = `${titlu}\n\n${sinaxar}...\n\nCitește complet: https://www.povestidecredinta.ro/sinaxar`;
   const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
   window.open(url, '_blank');
 };
@@ -667,7 +667,7 @@ function populeazaPredica(container, date, azi, titluSfinti, dataFormatata) {
 function actualizeazaJsonLd(path, date, azi) {
   const titluSfinti = date.sfant_nume || 'Sfântul zilei';
   const dataISO = getDataStrBucharest();
-  const siteUrl = 'https://povestidecredinta.ro';
+  const siteUrl = 'https://www.povestidecredinta.ro/';
 
   // Elimină JSON-LD dinamic existent
   document.querySelectorAll('[id^="jsonld-dinamic"]').forEach(el => el.remove());
@@ -1525,7 +1525,7 @@ function injecteazaJsonLdRugaciune(rugaciune, path) {
   document.querySelectorAll('[id^="jsonld-rug"]').forEach(el => el.remove());
   if (!rugaciune) return;
 
-  const siteUrl = 'https://povestidecredinta.ro';
+  const siteUrl = 'https://www.povestidecredinta.ro/';
   const dataISO = getDataStrBucharest();
 
   const scriptArticle = document.createElement('script');
