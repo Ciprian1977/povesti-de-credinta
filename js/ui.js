@@ -42,6 +42,15 @@
     if (a) setTimeout(filaActiva, 50);
   });
 
+  // Listele de ore din setări: dacă o oră salvată nu mai e în listă, revenim la ora implicită
+  function normalizeazaOre() {
+    document.querySelectorAll('select[data-ora-implicita]').forEach(function (sel) {
+      if (!sel.value) { sel.value = sel.getAttribute('data-ora-implicita'); sel.dispatchEvent(new Event('change')); }
+    });
+  }
+  [300, 1200, 3000].forEach(function (t) { setTimeout(normalizeazaOre, t); });
+  window.addEventListener('popstate', function () { setTimeout(normalizeazaOre, 300); });
+
   // Data de azi (ora României) în antet
   var d = document.getElementById('antet-data');
   if (d) {

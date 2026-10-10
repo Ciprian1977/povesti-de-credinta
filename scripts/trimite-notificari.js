@@ -10,8 +10,9 @@
 //   - alerte_post  (true)  → Alerte posturi/sărbători + dezlegări         (ad-hoc)
 //
 // Utilizare:
-//   node trimite-notificari.js <segment> [data YYYY-MM-DD]
-//   segment ∈ { dimineata, pranz, seara, alerte_post }
+//   node trimite-notificari.js programeaza [YYYY-MM-DD]   ← rularea zilnică: programează fiecare abonat la ora aleasă
+//   node trimite-notificari.js test                        ← trimite ACUM o notificare de test tuturor abonaților
+//   node trimite-notificari.js <dimineata|pranz|seara|alerte_post>  ← trimite ACUM un segment
 //
 // Variabile de mediu necesare (GitHub Secrets):
 //   ONESIGNAL_APP_ID, ONESIGNAL_API_KEY (REST API Key)
@@ -150,61 +151,124 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
   }
 }
 
-// ─── Trimite notificarea către OneSignal ─────────────────────────────────────
-async function trimite(segment, dataISO, oraActuala) {
+// ─── Orele din care poate alege utilizatorul (trebuie să fie identice cu listele din pagina de setări) ─
+const ORE = {
+  dimineata:   { lista: jumatati(5, 0, 9, 0),   implicit: '07:30' },
+  pranz:       { lista: jumatati(11, 30, 14, 30), implicit: '13:00' },
+  seara:       { lista: jumatati(19, 0, 23, 0), implicit: '21:30' },
+  alerte_post: { lista: jumatati(5, 0, 9, 0),   implicit: '07:30' }
+};
+function jumatati(h1, m1, h2, m2) {
+  const r = []; for (let t = h1 * 60 + m1; t <= h2 * 60 + m2; t += 30) r.push(`${String(Math.floor(t / 60)).padStart(2, '0')}:${String(t % 60).padStart(2, '0')}`); return r;
+}
+function cheieUnica(text) { // UUID determinist (v5-like) din text
+  const h = require('crypto').createHash('sha1').update('povestidecredinta|' + text).digest('hex');
+  return `${h.slice(0, 8)}-${h.slice(8, 12)}-5${h.slice(13, 16)}-${((parseInt(h[16], 16) & 3) | 8).toString(16)}${h.slice(17, 20)}-${h.slice(20, 32)}`;
+}
+const ACTIV = (seg) => [{ field: 'tag', key: seg, relation: '=', value: 'true' }];
+
+// Filtru OneSignal: abonații cu segmentul pornit ȘI ora aleasă = `ora`.
+// Pentru ora implicită intră și cei care nu au ales nicio oră. La dimineață intră și cei fără niciun tag.
+function filtrePentruOra(seg, ora) {
+  const grupe = [[...ACTIV(seg), { field: 'tag', key: `${seg}_ora`, relation: '=', value: ora }]];
+  if (ora === ORE[seg].implicit) {
+    grupe.push([...ACTIV(seg), { field: 'tag', key: `${seg}_ora`, relation: 'not_exists' }]);
+    if (seg === 'dimineata') grupe.push([{ field: 'tag', key: 'dimineata', relation: 'not_exists' }]);
+  }
+  const f = [];
+  grupe.forEach((g, i) => { if (i) f.push({ operator: 'OR' }); f.push(...g); });
+  return f;
+}
+
+function offsetRo() { // "+0300" vara, "+0200" iarna
+  const p = new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Bucharest', timeZoneName: 'longOffset' }).formatToParts(new Date());
+  const o = (p.find(x => x.type === 'timeZoneName') || {}).value || 'GMT+02:00';
+  return o.replace('GMT', '').replace(':', '') || '+0200';
+}
+function oraAcumRo() {
+  const a = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Bucharest' }));
+  return a.getHours() * 60 + a.getMinutes();
+}
+
+async function postOneSignal(payload) {
+  const r = await fetch('https://onesignal.com/api/v1/notifications', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json; charset=utf-8', 'Authorization': `Key ${ONESIGNAL_API_KEY}` },
+    body: JSON.stringify(payload)
+  });
+  let j = {}; try { j = await r.json(); } catch (e) {}
+  const err = JSON.stringify(j.errors || '');
+  const faraAbonati = /not subscribed|no subscribers|no recipients|All included players/i.test(err);
+  return { ok: r.ok && !j.errors, faraAbonati, status: r.status, j };
+}
+
+function verificaChei() {
   if (!ONESIGNAL_APP_ID || !ONESIGNAL_API_KEY) {
     console.error('❌ Lipsesc secretele ONESIGNAL_APP_ID / ONESIGNAL_API_KEY în GitHub → Settings → Secrets → Actions. Nu se trimite nimic.');
     process.exit(1);
   }
+}
 
+// ─── Programează toate notificările zilei, fiecare la ora aleasă de abonat ───
+async function programeazaZiua(dataISO) {
+  verificaChei();
   const continut = await getContinutZi(dataISO);
-  const payload = construistePayload(segment, dataISO, continut, oraActuala);
-
-  const r = await fetch('https://onesignal.com/api/v1/notifications', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'Authorization': `Key ${ONESIGNAL_API_KEY}`
-    },
-    body: JSON.stringify(payload)
-  });
-
-  const rezultat = await r.json();
-  if (!r.ok || rezultat.errors) {
-    console.error(`❌ [${segment}] OneSignal a refuzat (HTTP ${r.status}):`, JSON.stringify(rezultat));
-    process.exit(1); // rularea apare ROȘIE în GitHub, ca să vedem problema
+  const off = offsetRo(), acum = oraAcumRo();
+  let ok = 0, goale = 0, erori = 0;
+  for (const seg of Object.keys(ORE)) {
+    if (seg === 'alerte_post' && !(continut && /post/.test(continut.tip_post || ''))) {
+      console.log('ℹ️ [alerte_post] azi nu e zi de post — nu programez alerte.');
+      continue;
+    }
+    for (const ora of ORE[seg].lista) {
+      const [h, m] = ora.split(':').map(Number);
+      if (h * 60 + m <= acum + 2) continue; // ora a trecut deja azi
+      const p = construistePayload(seg, dataISO, continut, ora);
+      p.filters = filtrePentruOra(seg, ora);
+      p.send_after = `${dataISO} ${ora}:00 GMT${off}`;
+      p.idempotency_key = cheieUnica(`${dataISO}|${seg}|${ora}`); // aceeași zi+segment+oră = o singură notificare, chiar dacă rulăm de 2 ori
+      const r = await postOneSignal(p);
+      if (r.ok) { ok++; console.log(`✅ [${seg} ${ora}] programată (id=${r.j.id})`); }
+      else if (r.faraAbonati) { goale++; }
+      else { erori++; console.error(`❌ [${seg} ${ora}] HTTP ${r.status}:`, JSON.stringify(r.j)); }
+    }
   }
-  if (rezultat.id) {
-    console.log(`✅ [${segment}] Notificare trimisă (id=${rezultat.id}, destinatari≈${rezultat.recipients ?? '?'})`);
+  console.log(`\n📅 ${dataISO}: ${ok} programate, ${goale} fără abonați, ${erori} erori (ora RO offset ${off}).`);
+  if (erori) process.exit(1);
+}
+
+// ─── Trimite ACUM (test sau un segment anume) ───────────────────────────────
+async function trimite(segment, dataISO, oraActuala) {
+  verificaChei();
+  const continut = await getContinutZi(dataISO);
+  let payload;
+  if (segment === 'test') {
+    payload = construistePayload('dimineata', dataISO, continut, oraActuala);
+    payload.filters = undefined;
+    payload.included_segments = ['Subscribed Users'];
+    payload.headings = { ro: '🔔 Test — Povești de Credință', en: '🔔 Test — Povești de Credință' };
+    payload.contents = { ro: `Notificările funcționează! Azi: ${(continut && continut.sfant_nume) || 'Sfinții zilei'}.`, en: 'Notifications work!' };
   } else {
-    console.warn(`⚠️ [${segment}] Răspuns OneSignal:`, JSON.stringify(rezultat));
+    payload = construistePayload(segment, dataISO, continut, oraActuala);
   }
-  return rezultat;
+  const r = await postOneSignal(payload);
+  if (r.ok) console.log(`✅ [${segment}] Trimisă acum (id=${r.j.id}, destinatari≈${r.j.recipients ?? '?'})`);
+  else if (r.faraAbonati) { console.error(`⚠️ [${segment}] Niciun abonat nu se potrivește. Abonează-te întâi din sit (clopoțelul).`); process.exit(1); }
+  else { console.error(`❌ [${segment}] OneSignal a refuzat (HTTP ${r.status}):`, JSON.stringify(r.j)); process.exit(1); }
 }
 
 // ─── Main ────────────────────────────────────────────────────────────────────
 async function main() {
   const segment = process.argv[2];
   const dataISO = process.argv[3] || dataAziRo();
-  const oraActuala = process.argv[4]; // Ora în format HH:MM (opțional, pentru testare)
-
-  const SEGMENTE_VALIDE = ['dimineata', 'pranz', 'seara', 'alerte_post'];
-  if (!segment || !SEGMENTE_VALIDE.includes(segment)) {
-    console.error(`❌ Segment invalid. Folosire: node trimite-notificari.js <${SEGMENTE_VALIDE.join('|')}> [YYYY-MM-DD] [HH:MM]`);
+  const VALIDE = ['programeaza', 'test', 'dimineata', 'pranz', 'seara', 'alerte_post'];
+  if (!VALIDE.includes(segment)) {
+    console.error(`❌ Folosire: node trimite-notificari.js <${VALIDE.join('|')}> [YYYY-MM-DD]`);
     process.exit(1);
   }
-
-  // Dacă ora nu este furnizată, o calculez din ora curentă Bucharest
-  let ora = oraActuala;
-  if (!ora) {
-    const acum = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Bucharest' }));
-    const h = String(acum.getHours()).padStart(2, '0');
-    const m = String(acum.getMinutes()).padStart(2, '0');
-    ora = `${h}:${m}`;
-  }
-
-  console.log(`📤 Trimit notificare segment="${segment}" pentru data=${dataISO} la ora=${ora} ...`);
-  await trimite(segment, dataISO, ora);
+  if (segment === 'programeaza') return programeazaZiua(dataISO);
+  console.log(`📤 Trimit ACUM segment="${segment}" pentru data=${dataISO} ...`);
+  await trimite(segment, dataISO);
 }
 
 main().catch(err => {

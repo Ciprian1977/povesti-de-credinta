@@ -2031,6 +2031,7 @@ function initSetariNotificari() {
  */
 let ultimaNotificareMinut = -1; // Evităm duplicate în aceeași minut
 function startSchedulerNotificariLocale() {
+  return; // dezactivat: notificările vin acum din server (OneSignal, programate la ora aleasă) — evităm dublurile
   setInterval(() => {
     const acum = new Date();
     const oraMinut = `${String(acum.getHours()).padStart(2, '0')}:${String(acum.getMinutes()).padStart(2, '0')}`;
