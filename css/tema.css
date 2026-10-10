@@ -4,31 +4,34 @@
    Culoarea de accent se schimbă dintr-un singur loc: --accent.
    ═══════════════════════════════════════════════════════════════════ */
 :root{
-  --fundal:#FAF8F5;
+  --fundal:#FFFFFF;
   --suprafata:#FFFFFF;
-  --banda:#F0ECE6;
-  --text:#1C1916;
-  --text-sec:#5F5850;
-  --linie:#E6E0D8;
-  --accent:#7A2335;          /* vișiniu stins */
-  --accent-fin:#F5ECEE;
-  --auriu-fin:#A8864A;
-  --negru:#121110;
+  --banda:#F1F4F9;           /* gri-albăstrui foarte deschis */
+  --text:#111418;
+  --text-sec:#3D4452;        /* contrast 9:1 pe alb */
+  --linie:#DDE3EC;
+  --albastru:#002B7F;        /* albastrul tricolorului */
+  --albastru-inchis:#001A4D;
+  --albastru-fin:#E7EDF8;
+  --galben:#FCD116;          /* galbenul tricolorului — doar ca accent, nu ca text */
+  --rosu:#CE1126;            /* roșul tricolorului — post, sărbători */
+  --rosu-fin:#FCE9EB;
+  --accent:var(--albastru);
+  --accent-fin:var(--albastru-fin);
+  --auriu-fin:#8A6D00;
+  --negru:var(--albastru-inchis);
   --serif:'Newsreader',Georgia,'Times New Roman',serif;
   --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 
   /* mapăm variabilele vechi pe noile culori → paginile vechi se recolorează */
   --visineu:var(--accent);--visineu-dark:var(--text);--visineu-light:var(--accent);
-  --auriu:var(--linie);--auriu-light:var(--auriu-fin);--auriu-dark:var(--text-sec);
+  --auriu:var(--linie);--auriu-light:var(--galben);--auriu-dark:var(--text-sec);
   --crem:var(--fundal);--crem-dark:var(--banda);--albastru-marial:var(--accent);
   --text-dark:var(--text);--text-medium:var(--text-sec);--text-light:var(--text-sec);
   --shadow:none;--shadow-gold:none;
   --font-titlu:var(--serif);--font-text:var(--sans);--font-special:var(--serif);
 }
-html[data-tema="albastru"]{--accent:#1F3A5C;--accent-fin:#EBF0F5}
-html[data-tema="verde"]{--accent:#2F4A3A;--accent-fin:#EAF0EC}
-
-html{font-size:17px}
+html{font-size:18px}
 body{background:var(--fundal)!important;color:var(--text)!important;font-family:var(--sans)!important;line-height:1.65;-webkit-font-smoothing:antialiased}
 h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;color:var(--text)}
 a{color:var(--accent)}
@@ -146,3 +149,67 @@ html{scroll-behavior:auto}
 .footer-social{justify-content:flex-start!important}
 .footer-social a{border-color:var(--linie)!important;background:var(--suprafata)!important}
 main#pagina-acasa{padding-bottom:0!important}
+
+/* ═══ Tricolor + lizibilitate mare (pentru toate vârstele) ═══ */
+.antet{background:#fff!important;padding-top:26px!important;border-bottom:1px solid var(--linie)}
+.antet::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--albastru) 0 33.33%,var(--galben) 33.33% 66.66%,var(--rosu) 66.66%)}
+.antet-supra{color:var(--text-sec)!important;font-size:.72rem!important}
+.antet-nume{color:var(--albastru)!important;font-size:2.15rem!important}
+.antet-rand{border-bottom:0!important;margin-top:16px!important;padding-bottom:20px!important}
+.antet-data{color:var(--text)!important;font-size:1.5rem!important}
+.buton-rotund{width:52px!important;height:52px!important;background:var(--albastru)!important}
+.buton-rotund svg{width:24px!important;height:24px!important}
+.bloc-sfant{border-radius:0!important}
+.bloc{padding:32px 22px 36px!important}
+.eticheta{color:var(--rosu)!important;font-weight:600!important;font-size:.8rem!important}
+.titlu-sfant{font-size:2.05rem!important;line-height:1.2!important;font-weight:600!important;color:var(--text)!important}
+.titlu-sectiune{font-size:1.8rem!important;color:var(--albastru)!important}
+.text-intro{font-size:1.15rem!important;line-height:1.7!important;color:var(--text)!important}
+
+.badge-post{background:var(--albastru-fin)!important;color:var(--albastru-inchis)!important;padding:8px 16px!important;border-radius:999px!important;font-size:1rem!important;font-weight:600!important}
+.badge-post::before{width:10px!important;height:10px!important;flex-basis:10px!important;background:var(--albastru)!important}
+.badge-post.post,.badge-post.post_aspru,.badge-post.post_strict{background:var(--rosu-fin)!important;color:#8A0B19!important}
+.badge-post.post::before,.badge-post.post_aspru::before,.badge-post.post_strict::before{background:var(--rosu)!important}
+
+.buton-contur{background:var(--albastru)!important;color:#fff!important;border:0!important;min-height:62px!important;font-size:1.1rem!important;font-weight:600!important;border-radius:14px!important}
+
+.lista-sageti a{padding:22px 0!important;min-height:76px}
+.lista-sageti .rand-titlu{font-size:1.2rem!important;font-weight:500;color:var(--text)!important}
+.lista-sageti .rand-sub{font-size:1rem!important;color:var(--text-sec)!important}
+.sageata{background:var(--albastru-fin)!important;color:var(--albastru)!important;width:54px!important;height:54px!important;flex-basis:54px!important}
+
+.citat{border-left:5px solid var(--galben)!important;padding-left:18px!important}
+.citat p{font-size:1.45rem!important;color:var(--text)!important}
+.citat footer{font-size:1rem!important;color:var(--text-sec)!important}
+.actiuni-text{flex-wrap:wrap;gap:12px!important}
+.actiuni-text button{background:var(--albastru-fin)!important;color:var(--albastru)!important;padding:12px 18px!important;border-radius:999px!important;font-size:1rem!important;font-weight:600!important;min-height:48px}
+
+.bottom-nav{background:var(--albastru-inchis)!important;border-top:0!important;padding:8px 0 max(10px,env(safe-area-inset-bottom))!important}
+.bottom-nav .nav-item{color:#B9C4DA!important;position:relative;padding-top:8px!important}
+.bottom-nav .nav-item svg{width:28px!important;height:28px!important}
+.bottom-nav .nav-label{font-size:.72rem!important;letter-spacing:.04em!important;text-transform:none!important;font-weight:600!important}
+.bottom-nav .nav-item.activ{color:#fff!important}
+.bottom-nav .nav-item.activ::before{display:block!important;content:''!important;position:absolute;top:-8px;left:22%;right:22%;height:4px;border-radius:0 0 4px 4px;background:var(--galben)!important}
+
+.nav-mobil a{font-size:1.15rem!important;padding:17px 26px!important}
+.nav-mobil .meniu-titlu{color:var(--albastru)!important}
+.ruta-articol p,#sinaxar-text-complet p,.sinaxar-articol p{font-size:1.18rem!important}
+.ruta-articol h1{color:var(--albastru)!important}
+.btn-inapoi,.btn-copiere{background:var(--albastru-fin)!important;color:var(--albastru)!important;font-size:1rem!important;min-height:46px}
+.footer{background:var(--banda)!important}
+.footer-logo{color:var(--albastru)!important}
+#cookie-banner{background:var(--albastru-inchis)!important}
+#cookie-banner p{font-size:.95rem!important}
+#cookie-banner a{color:var(--galben)!important}
+/* ═══ Butoane în culorile tricolorului (fundal alb, text negru) ═══ */
+.titlu-sectiune{color:var(--text)!important}
+.ruta-articol h1{color:var(--text)!important}
+.buton-rotund{background:var(--rosu)!important}
+.lista-sageti li:nth-child(3n+1) .sageata{background:var(--albastru)!important;color:#fff!important}
+.lista-sageti li:nth-child(3n+2) .sageata{background:var(--galben)!important;color:#111!important}
+.lista-sageti li:nth-child(3n+3) .sageata{background:var(--rosu)!important;color:#fff!important}
+.actiuni-text button:first-child{background:var(--galben)!important;color:#111!important}
+.actiuni-text button:last-child{background:var(--rosu)!important;color:#fff!important}
+.btn-inapoi{background:var(--albastru)!important;color:#fff!important}
+.btn-copiere{background:var(--galben)!important;color:#111!important}
+#cookie-banner button:first-of-type{background:var(--galben)!important;color:#111!important}
