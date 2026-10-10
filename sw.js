@@ -1,19 +1,24 @@
 // ═══════════════════════════════════════════════════════════════════
-// POVEȘTI DE CREDINȚĂ — Service Worker v6
+// POVEȘTI DE CREDINȚĂ — Service Worker v7
 // Strategii: Network-First (Supabase API) + Stale-While-Revalidate (statice)
 // v4: fix badge dezlegare_ulei/post_aspru + algoritm post BOR 2026
 // v5: modul Notificări Inteligente (/setari-notificari) + OneSignal SW
 // v6: activare OneSignal App ID real (865e5cce) — notificări push live
+// v7: design nou (tricolor, text mare) — tema.css + ui.js
 // ═════════════════════════════════════════════════════════════════
-const CACHE_STATIC = 'pdc-static-v6';
-const CACHE_PAGES  = 'pdc-pages-v6';
-const CACHE_API    = 'pdc-api-v6';
+const CACHE_STATIC = 'pdc-static-v7';
+const CACHE_PAGES  = 'pdc-pages-v7';
+const CACHE_API    = 'pdc-api-v7';
 
 // Resurse statice pre-cache la instalare
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/css/style.css',
+  '/css/style.min.css',
+  '/css/tema.css?v=8',
+  '/js/ui.js?v=8',
+  '/js/min/app.min.js',
   '/js/app.js',
   '/manifest.json',
   '/offline.html',

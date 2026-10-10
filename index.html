@@ -12,11 +12,7 @@
    <link rel="canonical" href="https://povestidecredinta.ro/">
 
   <!-- Preconnect Google Fonts — reduce latența DNS cu ~200ms -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Fonturi non-blocking: media=print/onload — zero render-blocking, FCP 0.8s verificat -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap"></noscript>
 
   <!-- Open Graph -->
   <meta property="og:title" content="Povești de Credință — Calendar Ortodox Românesc">
@@ -135,7 +131,6 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
   <!-- CSS principal non-blocking: se încarcă după randarea inițială -->
   <link rel="preload" href="/css/style.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/css/style.min.css"></noscript>
-  <link rel="stylesheet" href="/css/tema.css?v=3">
 
   <!-- Schema.org Organization -->
   <script type="application/ld+json">
@@ -177,10 +172,13 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
     }
   }
   </script>
+  <!-- Tema 2026 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap"></noscript>
+  <link rel="stylesheet" href="/css/tema.css?v=8">
 </head>
 <body>
 
-<!-- ANTET -->
 <header class="antet">
   <a href="/" class="antet-marca" aria-label="Povești de Credință — pagina principală">
     <span class="antet-supra">Calendar ortodox românesc</span>
@@ -188,35 +186,28 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
   </a>
   <div class="antet-rand">
     <span class="antet-data" id="antet-data">&nbsp;</span>
-    <div class="antet-actiuni">
-      <a href="/setari-notificari" data-ruta="/setari-notificari" class="buton-rotund" aria-label="Notificări"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 22a2.5 2.5 0 0 0 2.4-1.8H9.6A2.5 2.5 0 0 0 12 22Zm7-5.5-1.6-1.9V10a5.4 5.4 0 0 0-4.2-5.3V4a1.2 1.2 0 1 0-2.4 0v.7A5.4 5.4 0 0 0 6.6 10v4.6L5 16.5v1.2h14Z"/></svg></a>
-    </div>
+    <div class="antet-actiuni"><a href="/setari-notificari" class="buton-rotund" aria-label="Setări notificări"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 22a2.5 2.5 0 0 0 2.4-1.8H9.6A2.5 2.5 0 0 0 12 22Zm7-5.5-1.6-1.9V10a5.4 5.4 0 0 0-4.2-5.3V4a1.2 1.2 0 1 0-2.4 0v.7A5.4 5.4 0 0 0 6.6 10v4.6L5 16.5v1.2h14Z"/></svg></a></div>
   </div>
   <nav class="nav-mobil" id="nav-mobil" aria-label="Meniu complet">
-    <div class="meniu-titlu">Meniu</div>
-    <a href="/">Acasă</a>
-    <a href="/calendar.html">Calendar Ortodox 2026</a>
-    <a href="/sfantul-zilei/">Sfântul Zilei</a>
-    <a href="/sinaxarul-zilei/">Sinaxarul Zilei</a>
-    <a href="/apostolul-zilei/">Apostolul Zilei</a>
-    <a href="/evanghelia-zilei/">Evanghelia Zilei</a>
-    <a href="/predica-zilei/">Predica Zilei</a>
-    <a href="/calendar-ortodox-azi/">Calendar Ortodox Azi</a>
-    <a href="/rugaciunea-zilei" data-ruta="/rugaciunea-zilei">Rugăciunea Zilei</a>
+    <div class="meniu-cap"><span class="meniu-titlu">Meniu</span><button type="button" class="meniu-inchide" data-inchide-meniu aria-label="Închide meniul">Închide ✕</button></div>
+    <a href="/">Acasă — azi</a>
+    <a href="/calendar.html">Calendar ortodox 2026</a>
+    <a href="/sfantul-zilei">Sfântul zilei</a>
+    <a href="/sinaxarul-zilei">Sinaxarul zilei</a>
+    <a href="/evanghelia-zilei">Evanghelia zilei</a>
+    <a href="/apostolul-zilei">Apostolul zilei</a>
+    <a href="/predica-zilei">Predica zilei</a>
+    <a href="/rugaciunea-zilei">Rugăciunea zilei</a>
     <a href="/rugaciuni.html">Rugăciuni</a>
     <a href="/acatiste.html">Acatiste</a>
     <a href="/pricesne.html">Pricesne</a>
-    <a href="/posturi.html">Posturi</a>
+    <a href="/posturi.html">Posturi 2026</a>
+    <a href="/setari-notificari">Notificări</a>
     <a href="/faq.html">Întrebări frecvente</a>
     <a href="/despre.html">Despre noi</a>
-    <a href="/setari-notificari" data-ruta="/setari-notificari">Setări notificări</a>
     <a href="/contact.html">Contact</a>
   </nav>
 </header>
-<script>
-(function(){try{var f=new Intl.DateTimeFormat('ro-RO',{timeZone:'Europe/Bucharest',weekday:'long',day:'numeric',month:'long'}).format(new Date());
-document.getElementById('antet-data').textContent=f.charAt(0).toUpperCase()+f.slice(1);}catch(e){}})();
-</script>
 <!-- PWA INSTALL BANNER: position:fixed, outside main to avoid CLS attribution -->
 <div class="pwa-banner" id="pwa-banner" inert>
   <span style="font-size:1.8rem" aria-hidden="true">📱</span>
@@ -562,12 +553,12 @@ document.getElementById('antet-data').textContent=f.charAt(0).toUpperCase()+f.sl
 </footer>
 
 <!-- BOTTOM NAVIGATION (mobil) -->
-<nav class="bottom-nav" role="navigation" aria-label="Navigație principală mobil">
-  <a href="/" class="nav-item activ" aria-label="Azi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/></svg><span class="nav-label">Azi</span></a>
-  <a href="/calendar.html" class="nav-item" aria-label="Calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><circle cx="8" cy="13.5" r=".6" fill="currentColor"/><circle cx="12" cy="13.5" r=".6" fill="currentColor"/><circle cx="16" cy="13.5" r=".6" fill="currentColor"/><circle cx="8" cy="16.5" r=".6" fill="currentColor"/><circle cx="12" cy="16.5" r=".6" fill="currentColor"/></svg><span class="nav-label">Calendar</span></a>
-  <a href="/rugaciunea-zilei" data-ruta="/rugaciunea-zilei" class="nav-item" aria-label="Rugăciuni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3v18M7 8h10M9 17h6"/></svg><span class="nav-label">Rugăciuni</span></a>
-  <a href="/acatiste.html" class="nav-item" aria-label="Acatiste"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 6.5C10 5 7 4.5 4 5v13c3-.5 6 0 8 1.5M12 6.5c2-1.5 5-2 8-1.5v13c-3-.5-6 0-8 1.5M12 6.5v13"/></svg><span class="nav-label">Acatiste</span></a>
-  <button type="button" class="nav-item" id="hamburger" aria-label="Meniu" aria-expanded="false" aria-controls="nav-mobil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></svg><span class="nav-label">Meniu</span></button>
+<nav class="bottom-nav" aria-label="Navigație principală">
+  <a href="/" class="nav-item" data-fila="azi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/></svg><span class="nav-label">Azi</span></a>
+  <a href="/calendar.html" class="nav-item" data-fila="calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><circle cx="8" cy="13.5" r=".7" fill="currentColor"/><circle cx="12" cy="13.5" r=".7" fill="currentColor"/><circle cx="16" cy="13.5" r=".7" fill="currentColor"/><circle cx="8" cy="16.5" r=".7" fill="currentColor"/><circle cx="12" cy="16.5" r=".7" fill="currentColor"/></svg><span class="nav-label">Calendar</span></a>
+  <a href="/rugaciuni.html" class="nav-item" data-fila="rugaciuni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3v18M7 8h10M9 17h6"/></svg><span class="nav-label">Rugăciuni</span></a>
+  <a href="/acatiste.html" class="nav-item" data-fila="acatiste"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 6.5C10 5 7 4.5 4 5v13c3-.5 6 0 8 1.5M12 6.5c2-1.5 5-2 8-1.5v13c-3-.5-6 0-8 1.5M12 6.5v13"/></svg><span class="nav-label">Acatiste</span></a>
+  <button type="button" class="nav-item" id="buton-meniu" aria-label="Meniu complet" aria-expanded="false" aria-controls="nav-mobil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></svg><span class="nav-label">Meniu</span></button>
 </nav>
 
 <!-- MODAL ZI -->
@@ -656,15 +647,10 @@ document.getElementById('antet-data').textContent=f.charAt(0).toUpperCase()+f.sl
   };
 })();
 </script>
-<div class="voal-meniu" id="voal-meniu" aria-hidden="true"></div>
-<script>
-(function(){var n=document.getElementById('nav-mobil'),v=document.getElementById('voal-meniu'),h=document.getElementById('hamburger');
-if(!n||!v)return;new MutationObserver(function(){v.classList.toggle('activ',n.classList.contains('deschis'))}).observe(n,{attributes:true,attributeFilter:['class']});
-function inchide(){n.classList.remove('deschis');h&&h.setAttribute('aria-expanded','false')}
-v.addEventListener('click',inchide);n.addEventListener('click',function(e){if(e.target.closest('a'))inchide()});})();
-</script>
 <!-- Vercel Analytics -->
 <script defer src="/_vercel/insights/script.js"></script>
 
+<div class="voal-meniu" id="voal-meniu" aria-hidden="true"></div>
+<script src="/js/ui.js?v=8" defer></script>
 </body>
 </html>
