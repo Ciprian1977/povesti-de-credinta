@@ -319,3 +319,39 @@ main{max-width:720px;margin-left:auto!important;margin-right:auto!important}
 .video-rug-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:var(--rosu);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.4)}
 .video-rug-play svg{width:40px;height:40px;margin-left:4px}
 .video-rug-eticheta{position:absolute;left:0;right:0;bottom:0;padding:10px 14px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;font:600 1rem var(--sans);text-align:left}
+
+/* ═══ Articole (v12) ═══ */
+main.articol{max-width:720px;margin:0 auto!important;padding:22px 20px 40px!important;background:#fff}
+.articol .breadcrumb{margin-bottom:14px}
+.articol h1{font-family:var(--serif)!important;font-size:2.05rem;line-height:1.18;color:var(--albastru);font-weight:600;margin:6px 0 16px}
+.articol h2{font-family:var(--serif)!important;font-size:1.55rem;line-height:1.25;color:var(--text);font-weight:600;margin:34px 0 12px;scroll-margin-top:16px}
+.articol p,.articol li{font-size:1.12rem;line-height:1.75;color:var(--text);margin:0 0 14px}
+.articol .lead{font-size:1.22rem;line-height:1.65}
+.articol a{color:var(--albastru);text-underline-offset:3px}
+.caseta-info,.cuprins,.mesaje{background:var(--albastru-fin);border-radius:16px;padding:16px 18px;margin:20px 0}
+.caseta-info ul,.cuprins ol{margin:0;padding-left:20px}
+.caseta-info li,.cuprins li{margin:0 0 8px;font-size:1.05rem}
+.caseta-titlu{font:700 .8rem var(--sans)!important;letter-spacing:.12em;text-transform:uppercase;color:var(--rosu)!important;margin:0 0 10px!important}
+.sfat{border-left:5px solid var(--galben);background:#FFFBEA;padding:14px 16px;border-radius:0 12px 12px 0;font-size:1.05rem;line-height:1.6;margin:18px 0}
+.lista-text{padding-left:22px}
+.mai-mult a{font-weight:600}
+.mesaje blockquote{margin:0 0 12px;padding:12px 14px;background:#fff;border-radius:12px;font-family:var(--serif);font-style:italic;font-size:1.15rem;line-height:1.5}
+.buton-mic{background:linear-gradient(var(--albastru),var(--albastru)) padding-box,var(--rama-tricolor) border-box;border:3px solid transparent;color:#fff;font:600 1rem var(--sans);border-radius:999px;padding:12px 20px;min-height:48px;cursor:pointer}
+.cronologie{list-style:none;padding:0;margin:10px 0 20px;border-left:3px solid var(--albastru-fin)}
+.cronologie li{position:relative;padding:0 0 16px 22px!important}
+.cronologie li::before{content:'';position:absolute;left:-8px;top:7px;width:13px;height:13px;border-radius:50%;background:var(--albastru)}
+.cronologie .an{display:block;font:700 1.05rem var(--sans);color:var(--rosu)}
+.video-card{margin:18px 0 22px}
+.video-card figcaption{font-size:.95rem;color:var(--text-sec);margin-top:8px}
+.text-rugaciune{background:#FBFAF7;border-left:5px solid var(--galben);border-radius:0 14px 14px 0;padding:16px 18px}
+.text-rugaciune p{font-family:var(--serif);font-size:1.2rem;line-height:1.7}
+.faq-articol details{border-bottom:1px solid var(--linie);padding:4px 0}
+.faq-articol summary{cursor:pointer;font:600 1.08rem var(--sans);padding:14px 0;list-style-position:outside;color:var(--text)}
+.faq-articol details p{padding-bottom:8px}
+.leg{margin-top:36px}
+/* Banner sezonier pe prima pagină */
+.banner-sarbatoare{display:block;margin:0;padding:18px 22px;background:linear-gradient(90deg,var(--albastru-inchis),var(--albastru));color:#fff;text-decoration:none;position:relative}
+.banner-sarbatoare::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--rama-tricolor)}
+.banner-sarbatoare .bs-eticheta{display:block;font:700 .75rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--galben)}
+.banner-sarbatoare .bs-titlu{display:block;font:600 1.4rem var(--serif);margin:4px 0 2px}
+.banner-sarbatoare .bs-sub{display:block;font-size:1rem;opacity:.9}
