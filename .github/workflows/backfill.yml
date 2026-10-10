@@ -29,3 +29,11 @@ jobs:
             node genereaza-continut.js "$d" || echo "EROARE la $d"
             d=$(date -d "$d + 1 day" +%F)
           done
+      - name: Verifica ca toate zilele sunt complete
+        working-directory: scripts
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: |
+          read START END < ../.github/backfill.txt
+          node verifica-interval.js "$START" "$END"
