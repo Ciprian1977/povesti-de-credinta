@@ -5,7 +5,7 @@
  *   (sau după „youtu.be/" / „/shorts/"). Dacă o zi rămâne goală, butonul nu apare în ziua aceea.
  */
 var VIDEO_RUGACIUNI = {
-  luni: '',
+  luni: 'oq-WPnzBGLs',
   marti: '',
   miercuri: '',
   joi: '',
