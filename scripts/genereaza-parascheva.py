@@ -229,5 +229,5 @@ faq3=[('Când se citește rugăciunea către Sfânta Parascheva?','Oricând, cu 
 ('Ce se cere de la Sfânta Parascheva?','Sfânta Parascheva este rugată pentru sănătate, vindecare, ocrotirea copiilor și a familiei, pentru liniște sufletească și în toate necazurile vieții.'),
 ('Unde pot asculta Acatistul Sfintei Parascheva?','Pe această pagină poți asculta Acatistul Sfintei Cuvioase Parascheva, citit integral, de pe canalul nostru de YouTube.')]
 pagina('/sfanta-parascheva/rugaciuni','Rugăciune către Sfânta Parascheva – text, Acatist și pricesne',
- 'Rugăciuni către Sfânta Cuvioasă Parascheva pentru sănătate, copii și necazuri. Text de citit, Acatistul Sfintei Parascheva și pricesne de ascultat.',
+ 'Rugăciune către Sfânta Parascheva pentru copii, părinți, familie, bolnavi și românii plecați departe. Text de citit, Acatistul Sfintei Parascheva și pricesne.',
  'Rugăciuni către Sfânta Cuvioasă Parascheva','Rugăciuni · Sfânta Parascheva',corp3,faq3,[('Acasă','/'),('Rugăciuni','/rugaciuni'),('Sfânta Parascheva','/sfanta-parascheva'),('Rugăciuni','/sfanta-parascheva/rugaciuni')])
