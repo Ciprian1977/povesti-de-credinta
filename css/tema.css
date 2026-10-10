@@ -201,15 +201,12 @@ main#pagina-acasa{padding-bottom:0!important}
 #cookie-banner{background:var(--albastru-inchis)!important}
 #cookie-banner p{font-size:.95rem!important}
 #cookie-banner a{color:var(--galben)!important}
-/* ═══ Butoane în culorile tricolorului (fundal alb, text negru) ═══ */
+/* Titluri în negru pentru contrast maxim */
 .titlu-sectiune{color:var(--text)!important}
 .ruta-articol h1{color:var(--text)!important}
-.buton-rotund{background:var(--rosu)!important}
-.lista-sageti li:nth-child(3n+1) .sageata{background:var(--albastru)!important;color:#fff!important}
-.lista-sageti li:nth-child(3n+2) .sageata{background:var(--galben)!important;color:#111!important}
-.lista-sageti li:nth-child(3n+3) .sageata{background:var(--rosu)!important;color:#fff!important}
-.actiuni-text button:first-child{background:var(--galben)!important;color:#111!important}
-.actiuni-text button:last-child{background:var(--rosu)!important;color:#fff!important}
-.btn-inapoi{background:var(--albastru)!important;color:#fff!important}
-.btn-copiere{background:var(--galben)!important;color:#111!important}
-#cookie-banner button:first-of-type{background:var(--galben)!important;color:#111!important}
+
+/* ═══ Butoane — varianta B: albastru plin cu ramă tricoloră ═══ */
+:root{--rama-tricolor:linear-gradient(90deg,var(--albastru),var(--galben),var(--rosu))}
+.buton-contur,.buton-plin,.btn-primar,.btn-egal.btn-primar{background:linear-gradient(var(--albastru),var(--albastru)) padding-box,var(--rama-tricolor) border-box!important;border:4px solid transparent!important;color:#fff!important}
+.actiuni-text button,.btn-inapoi,.btn-copiere,.btn-secundar,.btn-egal.btn-secundar{background:linear-gradient(#fff,#fff) padding-box,var(--rama-tricolor) border-box!important;border:3px solid transparent!important;color:var(--albastru)!important}
+.buton-rotund{background:linear-gradient(var(--albastru),var(--albastru)) padding-box,var(--rama-tricolor) border-box!important;border:3px solid transparent!important}
