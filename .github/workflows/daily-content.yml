@@ -12,6 +12,8 @@ on:
         description: 'Forteaza regenerarea chiar daca exista deja'
         required: false
         default: 'false'
+permissions:
+  contents: write
 jobs:
   genereaza-continut:
     name: Genereaza Continut Ortodox
@@ -53,6 +55,16 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: node verifica-supabase.js
+      - name: Keepalive (impiedica GitHub sa dezactiveze cron-ul dupa 60 zile)
+        if: success() && github.event_name == 'schedule'
+        run: |
+          if [ "$(date +%d)" = "01" ] || [ "$(date +%d)" = "15" ]; then
+            date -u '+%Y-%m-%d %H:%M UTC' > .github/keepalive.txt
+            git config user.name "github-actions[bot]"
+            git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+            git add .github/keepalive.txt
+            git commit -m "chore: keepalive [skip ci]" && git push || true
+          fi
       - name: Raport final
         if: always()
         run: |
