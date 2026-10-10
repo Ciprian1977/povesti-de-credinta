@@ -1,0 +1,31 @@
+name: Recuperare zile lipsa
+on:
+  push:
+    branches: [main]
+    paths: ['.github/backfill.txt']
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instaleaza dependente
+        working-directory: scripts
+        run: npm install
+      - name: Genereaza zilele din backfill.txt
+        working-directory: scripts
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: |
+          read START END < ../.github/backfill.txt
+          d="$START"
+          while [ "$(date -d "$d" +%s)" -le "$(date -d "$END" +%s)" ]; do
+            echo "=== $d ==="
+            node genereaza-continut.js "$d" || echo "EROARE la $d"
+            d=$(date -d "$d + 1 day" +%F)
+          done
