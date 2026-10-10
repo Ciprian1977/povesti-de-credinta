@@ -22,7 +22,7 @@ const ZILE_LUNGI = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmb
 async function incarcaDateSupabase(dataStr = null) {
   if (!dataStr) {
     const azi = new Date();
-    dataStr = azi.toISOString().split('T')[0];
+    dataStr = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Bucharest' }).format(azi); // ziua din România, nu UTC
   }
 
   try {
@@ -60,13 +60,13 @@ function formateazaData(dataStr) {
  */
 function getTextPost(tipPost) {
   const texte = {
-    'post': '🕯️ Zi de post',
-    'post_strict': '🕯️ Post negru',
-    'dezlegare': '✅ Dezlegare deplină',
-    'dezlegare_peste': '🐟 Dezlegare la pește',
-    'dezlegare_vin_ulei': '🍷 Dezlegare la vin și untdelemn'
+    'post': 'Zi de post',
+    'post_strict': 'Post negru',
+    'dezlegare': 'Dezlegare deplină',
+    'dezlegare_peste': 'Dezlegare la pește',
+    'dezlegare_vin_ulei': 'Dezlegare la vin și untdelemn'
   };
-  return texte[tipPost] || '✅ Dezlegare';
+  return texte[tipPost] || 'Dezlegare';
 }
 
 /**

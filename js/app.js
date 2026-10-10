@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     afiseazaPostUrmator();
     afiseazaRugaciuneaZilei();
     randeazaCalendar(lunaAfisata, anAfisat);
-    handleRoute(window.location.pathname);
+    if (document.getElementById('pagina-acasa')) handleRoute(window.location.pathname);
   });
 });
 
@@ -264,15 +264,15 @@ function getSfantPentruData(data) {
 
 function getTextPost(tipPost) {
   const texte = {
-    'post': '🕯️ Zi de post',
-    'post_aspru': '🕯️ Post aspru (fără ulei)',
-    'post_strict': '🕯️ Post negru',
-    'dezlegare': '✅ Dezlegare deplină',
-    'dezlegare_peste': '🐟 Dezlegare la pește',
-    'dezlegare_ulei': '🍷 Dezlegare la vin și untdelemn',
-    'dezlegare_vin_ulei': '🍷 Dezlegare la vin și untdelemn'
+    'post': 'Zi de post',
+    'post_aspru': 'Post aspru (fără ulei)',
+    'post_strict': 'Post negru',
+    'dezlegare': 'Dezlegare deplină',
+    'dezlegare_peste': 'Dezlegare la pește',
+    'dezlegare_ulei': 'Dezlegare la vin și untdelemn',
+    'dezlegare_vin_ulei': 'Dezlegare la vin și untdelemn'
   };
-  return texte[tipPost] || '✅ Dezlegare';
+  return texte[tipPost] || 'Dezlegare';
 }
 function getBadgeClass(tipPost) {
   if (tipPost === 'dezlegare') return 'dezlegare';
@@ -288,6 +288,9 @@ function getBadgeClass(tipPost) {
 // ═══════════════════════════════════════════════════════════════════════════════
 
 function initRouter() {
+  // Router-ul SPA rulează DOAR pe pagina principală (și copiile ei). Pe paginile normale
+  // (contact, rugăciuni etc.) NU rescriem adresa/titlul/canonical — altfel Google le vede ca duplicat al home.
+  if (!document.getElementById('pagina-acasa')) return;
   // Interceptăm toate link-urile interne cu data-ruta
   document.addEventListener('click', (e) => {
     const link = e.target.closest('[data-ruta]');
