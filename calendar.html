@@ -38,7 +38,7 @@
   <!-- Tema 2026 -->
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap"></noscript>
-  <link rel="stylesheet" href="/css/tema.css?v=8">
+  <link rel="stylesheet" href="/css/tema.css?v=9">
 </head>
 <body>
 
@@ -176,43 +176,65 @@
 
 <script src="/js/app.js"></script>
 <script>
-// Generare listă sfinți ai lunii
-document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(function() {
-    const an = (typeof anAfisat !== 'undefined') ? anAfisat : new Date().getFullYear();
-    const luna = (typeof lunaAfisata !== 'undefined') ? lunaAfisata : new Date().getMonth();
-    const numeleLuni = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie','Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
-    document.getElementById('luna-sfinti-titlu').textContent = numeleLuni[luna] + ' ' + an;
+// ── Calendar: sfinții lunii din baza de date (Supabase), nu din calendar.json ──
+(function () {
+  var SB = 'https://smuqpipxeotkbttolivp.supabase.co', KEY = 'sb_publishable_gWS1MsHXjvIMth8yuYAnog_fBiv9DHk';
+  var LUNI = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie','Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
+  var ZILE = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'];
+  var POST = { post:'Zi de post', post_aspru:'Post aspru', post_strict:'Post negru', dezlegare:'Dezlegare', dezlegare_peste:'Dezlegare la pește', dezlegare_ulei:'Dezlegare la vin și untdelemn', dezlegare_vin_ulei:'Dezlegare la vin și untdelemn' };
+  var cacheLuni = {};
+  function p2(n){ return String(n).padStart(2,'0'); }
+  function aziRO(){ return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Bucharest'}).format(new Date()); }
+  function esc(t){ return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
 
-    const container = document.getElementById('lista-sfinti-luna');
-    const zileLunii = new Date(an, luna + 1, 0).getDate();
-    let html = '';
-    for (let zi = 1; zi <= zileLunii; zi++) {
-      const mm = String(luna + 1).padStart(2, '0');
-      const dd = String(zi).padStart(2, '0');
-      const cheie = mm + '-' + dd;
-      const data = calendarData && calendarData[an] && calendarData[an][cheie];
-      const sfant = data ? data.sfant : 'Sfânt necunoscut';
-      const post = data ? data.post : '';
-      const culoare = data ? data.culoare : 'alb';
-      const ziData = new Date(an, luna, zi);
-      const esteAzi = ziData.toDateString() === new Date().toDateString();
-      const culoareDot = culoare === 'rosu' ? '#8B2B3B' : culoare === 'verde' ? '#2E7D32' : culoare === 'albastru' ? '#1B3A6B' : '#C9A84C';
-      const postIcon = post === 'post' ? ' 🕯️' : post === 'dezlegare_peste' ? ' 🐟' : post === 'dezlegare_vin_ulei' ? ' 🍷' : '';
-      html += `<div style="display:flex;align-items:flex-start;gap:12px;padding:10px 12px;background:${esteAzi ? 'rgba(201,168,76,0.12)' : 'white'};border:1px solid ${esteAzi ? 'rgba(201,168,76,0.5)' : 'rgba(201,168,76,0.15)'};border-radius:8px;${esteAzi ? 'box-shadow:0 2px 8px rgba(201,168,76,0.2)' : ''}">
-        <div style="min-width:32px;text-align:center">
-          <div style="font-family:var(--font-titlu);font-size:1.1rem;font-weight:700;color:var(--visineu)">${zi}</div>
-          <div style="width:10px;height:10px;background:${culoareDot};border-radius:50%;margin:3px auto 0"></div>
-        </div>
-        <div style="flex:1">
-          <div style="font-size:0.85rem;color:var(--text-dark);line-height:1.4">${sfant}${postIcon}</div>
-          ${esteAzi ? '<div style="font-size:0.72rem;color:var(--auriu-dark);font-weight:600;margin-top:3px">← Astăzi</div>' : ''}
-        </div>
-      </div>`;
+  async function incarcaLuna(an, luna) {
+    var k = an + '-' + p2(luna+1);
+    if (cacheLuni[k]) return cacheLuni[k];
+    var ultima = new Date(an, luna+1, 0).getDate();
+    var url = SB + '/rest/v1/zile_ortodoxe?select=data_calendaristica,sfant_nume,tip_post&data_calendaristica=gte.' + k + '-01&data_calendaristica=lte.' + k + '-' + p2(ultima) + '&order=data_calendaristica';
+    try {
+      var r = await fetch(url, { headers: { apikey: KEY, Authorization: 'Bearer ' + KEY } });
+      cacheLuni[k] = r.ok ? await r.json() : [];
+    } catch (e) { cacheLuni[k] = []; }
+    // completăm datele folosite de grila calendarului și de fereastra zilei
+    if (typeof calendarData !== 'undefined' && calendarData) {
+      calendarData[an] = calendarData[an] || {};
+      cacheLuni[k].forEach(function (z) {
+        if (z.sfant_nume && !/conform Calendarului Ortodox BOR/.test(z.sfant_nume))
+          calendarData[an][z.data_calendaristica.slice(5)] = { sfant: z.sfant_nume, post: z.tip_post, culoare: 'alb' };
+      });
     }
-    container.innerHTML = html;
-  }, 500);
-});
+    return cacheLuni[k];
+  }
+
+  async function afiseazaLuna() {
+    var an = (typeof anAfisat !== 'undefined') ? anAfisat : new Date().getFullYear();
+    var luna = (typeof lunaAfisata !== 'undefined') ? lunaAfisata : new Date().getMonth();
+    var titlu = document.getElementById('luna-sfinti-titlu');
+    var cont = document.getElementById('lista-sfinti-luna');
+    if (titlu) titlu.textContent = LUNI[luna] + ' ' + an;
+    if (cont) cont.innerHTML = '<p class="cal-gol">Se încarcă sfinții lunii…</p>';
+    var rows = await incarcaLuna(an, luna);
+    if (typeof randeazaCalendar === 'function') randeazaCalendar(luna, an);
+    var map = {}; rows.forEach(function (z) { map[z.data_calendaristica] = z; });
+    var azi = aziRO(), ultima = new Date(an, luna+1, 0).getDate(), html = '';
+    for (var zi = 1; zi <= ultima; zi++) {
+      var d = an + '-' + p2(luna+1) + '-' + p2(zi), z = map[d], esteAzi = d === azi;
+      var nume = z && z.sfant_nume && !/conform Calendarului Ortodox BOR/.test(z.sfant_nume) ? esc(z.sfant_nume)
+               : (d > azi ? '<span class="cal-viitor">Se publică în ziua respectivă</span>' : '<span class="cal-viitor">—</span>');
+      var post = z && z.tip_post ? '<span class="cal-post ' + (/^post/.test(z.tip_post) ? 'e-post' : 'e-dezlegare') + '">' + (POST[z.tip_post] || 'Dezlegare') + '</span>' : '';
+      var ziSapt = ZILE[new Date(an, luna, zi).getDay()];
+      var interior = '<div class="cal-data"><span class="cal-nr">' + zi + '</span><span class="cal-zi">' + ziSapt.slice(0,3) + '</span></div>'
+        + '<div class="cal-text"><div class="cal-sfant">' + nume + '</div>' + post + (esteAzi ? '<div class="cal-azi">Astăzi</div>' : '') + '</div>';
+      html += esteAzi ? '<a class="cal-rand cal-rand-azi" href="/">' + interior + '</a>' : '<div class="cal-rand' + (ziSapt === 'Duminică' ? ' cal-duminica' : '') + '">' + interior + '</div>';
+    }
+    if (cont) cont.innerHTML = html;
+  }
+
+  var navOrig = window.navigheazaCalendar;
+  window.navigheazaCalendar = function (dir) { if (navOrig) navOrig(dir); afiseazaLuna(); };
+  document.addEventListener('DOMContentLoaded', function () { setTimeout(afiseazaLuna, 300); });
+})();
 </script>
 <div class="voal-meniu" id="voal-meniu" aria-hidden="true"></div>
 <script src="/js/ui.js?v=8" defer></script>

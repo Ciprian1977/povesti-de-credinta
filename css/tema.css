@@ -254,3 +254,40 @@ main{max-width:720px;margin-left:auto!important;margin-right:auto!important}
 .meniu-cap{display:flex;align-items:center;justify-content:space-between;padding:0 18px 14px 26px;border-bottom:1px solid var(--linie)}
 .meniu-cap .meniu-titlu{padding:0!important}
 .meniu-inchide{background:linear-gradient(#fff,#fff) padding-box,var(--rama-tricolor) border-box;border:3px solid transparent;color:var(--albastru);font:600 1rem var(--sans);border-radius:999px;padding:10px 16px;min-height:48px;cursor:pointer}
+
+/* ═══ Calendar (v9) ═══ */
+.calendar-header{background:#fff!important;color:var(--text)!important;border-bottom:1px solid var(--linie)}
+.calendar-luna,#calendar-titlu{color:var(--albastru)!important;font-family:var(--serif)!important;font-size:1.5rem!important;font-weight:600!important}
+.calendar-nav{background:linear-gradient(#fff,#fff) padding-box,var(--rama-tricolor) border-box!important;border:3px solid transparent!important;color:var(--albastru)!important;width:48px!important;height:48px!important;font-size:1.4rem!important}
+.calendar-zi.azi{background:var(--albastru)!important;color:#fff!important;border-radius:10px}
+.calendar-zi.duminica .zi-nr{color:var(--rosu)!important}
+#lista-sfinti-luna{gap:0!important}
+.cal-rand{display:flex;gap:16px;align-items:flex-start;padding:16px 4px;border-bottom:1px solid var(--linie);text-decoration:none;color:var(--text)}
+.cal-rand-azi{background:var(--albastru-fin);border-radius:14px;padding:16px 12px;border-bottom:0;margin:4px 0}
+.cal-data{min-width:48px;text-align:center}
+.cal-nr{display:block;font-family:var(--serif);font-size:1.6rem;font-weight:600;line-height:1;color:var(--albastru)}
+.cal-zi{display:block;font-size:.8rem;color:var(--text-sec);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
+.cal-duminica .cal-nr,.cal-duminica .cal-zi{color:var(--rosu)}
+.cal-text{flex:1;min-width:0}
+.cal-sfant{font-size:1.08rem;line-height:1.45;color:var(--text)}
+.cal-viitor{color:var(--text-sec);font-style:italic;font-size:1rem}
+.cal-post{display:inline-block;margin-top:8px;font-size:.88rem;font-weight:600;padding:4px 12px;border-radius:999px}
+.cal-post.e-post{background:var(--rosu-fin);color:#8A0B19}
+.cal-post.e-dezlegare{background:var(--albastru-fin);color:var(--albastru-inchis)}
+.cal-azi{margin-top:6px;font-weight:700;color:var(--albastru);font-size:.9rem}
+.cal-gol{color:var(--text-sec);padding:16px 0}
+
+/* ═══ Lizibilitate: fără text aliniat la ambele margini (găuri între cuvinte pe telefon) ═══ */
+#apostol-text-acasa,#evanghelie-text-acasa,#predica-text-acasa,#rugaciune-text,.cuvant-folos-citat p,.lectie-text,.rugaciune-text,.ruta-container .text-complet,.ruta-container p,.sinaxar-para,.sinaxar-articol p,[style*="text-align:justify"]{text-align:left!important}
+.card-rugaciune-azi,.card-rugaciune-azi p{text-align:center!important}
+
+/* Rugăciunea zilei — antetul nu mai e pe două coloane */
+.ruta-container .ruta-header{display:block!important;border-left:0!important;padding:0 0 12px!important}
+.ruta-container .ruta-header .ruta-titlu{font-size:1.9rem!important;line-height:1.2!important;color:var(--albastru)!important;margin:12px 0 10px!important}
+.ruta-container .ruta-subtitlu{font-size:1.1rem!important;color:var(--text-sec)!important;line-height:1.6!important}
+.card-rugaciune-azi{background:var(--albastru-fin)!important;border:0!important;border-radius:20px!important}
+
+/* Antetul paginii principale: data pe un singur rând */
+.antet-data{font-size:clamp(1.15rem,5.2vw,1.5rem)!important;white-space:nowrap}
+.calendar-luna,#calendar-titlu{font-size:1.3rem!important;white-space:nowrap}
+.calendar-zi.azi .zi-nr{color:#fff!important}
