@@ -216,6 +216,8 @@ def bloc_rug(i,r):
 rug_html=''.join(bloc_rug(i+1,r) for i,r in enumerate(RUG))
 corp3=f'''
   <p class="lead">Sfânta Cuvioasă Parascheva este cunoscută ca grabnic ajutătoare celor care o cheamă cu credință: în boală, în necazuri, pentru copii și pentru familie. Mai jos găsești rugăciunile către Sfânta Parascheva, Acatistul și pricesne, pe care le poți asculta sau citi acasă.</p>
+  <nav class="cuprins cuprins-rug" aria-label="Cuprins"><p class="caseta-titlu">Pe această pagină</p><ol>{''.join(f'<li><a href="#rugaciunea-{i+1}">{r["titlu"]}</a></li>' for i,r in enumerate(RUG))}<li><a href="#acatist">Acatistul Sfintei Parascheva (video)</a></li></ol></nav>
+  <div id="acatist"></div>
   {video(V_ACATIST,'Acatistul Sfintei Cuvioase Parascheva – citit integral')}
 {rug_html}
   <h2>Pricesnă pentru Sfânta Parascheva</h2>
