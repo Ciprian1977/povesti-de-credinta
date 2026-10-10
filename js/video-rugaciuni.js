@@ -10,7 +10,7 @@ var VIDEO_RUGACIUNI = {
   miercuri: 'yQ2nW2u0V3s',
   joi: 'BbR56xJhLcc',
   vineri: 's1X10-XKs78',
-  sambata: '',
+  sambata: 'j5jbUNl2bNk',
   duminica: ''
 };
 
