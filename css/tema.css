@@ -355,3 +355,15 @@ main.articol{max-width:720px;margin:0 auto!important;padding:22px 20px 40px!impo
 .banner-sarbatoare .bs-eticheta{display:block;font:700 .75rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--galben)}
 .banner-sarbatoare .bs-titlu{display:block;font:600 1.4rem var(--serif);margin:4px 0 2px}
 .banner-sarbatoare .bs-sub{display:block;font-size:1rem;opacity:.9}
+
+/* ═══ Instalare aplicație (v13) ═══ */
+.instalare-meniu{display:flex;align-items:center;gap:12px;width:calc(100% - 36px);margin:14px 18px 6px;padding:14px 16px;min-height:56px;border-radius:14px;font:600 1.05rem var(--sans);color:#fff;cursor:pointer;background:linear-gradient(var(--albastru),var(--albastru)) padding-box,var(--rama-tricolor) border-box;border:3px solid transparent;text-align:left}
+.instalare-meniu svg,.instalare-buton svg{width:26px;height:26px;flex:0 0 26px}
+.instalare-buton{gap:10px;cursor:pointer}
+.instalare-fereastra{position:fixed;inset:0;z-index:500;background:rgba(0,26,77,.45);display:flex;align-items:flex-end;justify-content:center}
+.instalare-cutie{background:#fff;width:100%;max-width:520px;border-radius:22px 22px 0 0;padding:24px 22px calc(26px + env(safe-area-inset-bottom));box-shadow:0 -10px 40px rgba(0,0,0,.2)}
+.instalare-cutie h2{font:600 1.6rem var(--serif);color:var(--albastru);margin:0 0 10px}
+.instalare-cutie p{font-size:1.05rem;color:var(--text-sec);margin:0 0 14px}
+.instalare-cutie ol{padding-left:22px;margin:0 0 18px}
+.instalare-cutie li{font-size:1.12rem;line-height:1.55;margin-bottom:10px;color:var(--text)}
+.instalare-inchide{width:100%;min-height:56px;border-radius:14px;font:600 1.1rem var(--sans);color:#fff;cursor:pointer;background:linear-gradient(var(--albastru),var(--albastru)) padding-box,var(--rama-tricolor) border-box;border:4px solid transparent}

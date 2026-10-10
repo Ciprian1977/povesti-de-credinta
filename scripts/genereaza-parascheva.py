@@ -61,7 +61,7 @@ def pagina(cale, titlu, desc, h1, supra, corp, faq, crumbs, publicat='2026-10-10
 {NAV}
 <div class="voal-meniu" id="voal-meniu" aria-hidden="true"></div>
 <script src="/js/video-rugaciuni.js?v=8" defer></script>
-<script src="/js/ui.js?v=10" defer></script>
+<script src="/js/ui.js?v=11" defer></script>
 </body>
 </html>
 '''
