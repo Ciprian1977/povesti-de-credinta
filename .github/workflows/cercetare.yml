@@ -17,6 +17,13 @@ jobs:
           ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
           ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
         run: mkdir -p out && node verifica-onesignal.js | tee out/rezumat.txt
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Verificare productie (doar citire, OneSignal blocat)
+        run: |
+          pip install -q playwright==1.48.0
+          python -m playwright install --with-deps chromium > /dev/null
+          python verifica-productie.py | tee out/productie-consola.txt
       - run: |
           cd out
           git init -q -b rezultate-onesignal && git add -A && git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -qm r
