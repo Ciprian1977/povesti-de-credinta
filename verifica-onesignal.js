@@ -51,6 +51,16 @@ async function get(url, hdr = H) {
     ((u.j && u.j.subscriptions) || []).forEach((s) => log(`      abonament ${cod(s.id)} tip=${s.type} activ=${s.enabled} notification_types=${s.notification_types} sdk=${s.sdk} device=${s.device_model || ''}`));
     if (u.status !== 200) log('      răspuns: ' + String(u.t).slice(0, 300));
   }
+  // ── D. Notificări: create / programate / trimise + verificarea textului ──
+  const n = await get(`https://api.onesignal.com/notifications?app_id=${APP}&limit=50`);
+  const L = (n.j && n.j.notifications) || [];
+  const acum = Date.now() / 1000;
+  const RX = /(?<!\p{L})(?:[Pp]ost(?:ul|ului|uri|urile|urilor)|Post|[Dd]ezleg\p{L}*|[Hh]ar[țţt]i)(?!\p{L})|cuv[âa]ntul de folos|\/posturi/u;
+  log(`\n[D] Notificări OneSignal: HTTP ${n.status}, total=${n.j && n.j.total_count} | programate=${L.filter((x) => !x.completed_at && !x.canceled && (x.send_after || 0) > acum).length} | trimise=${L.filter((x) => x.completed_at).length} | anulate=${L.filter((x) => x.canceled).length}`);
+  L.forEach((x) => {
+    const t = ((x.headings || {}).ro || '') + ' | ' + ((x.contents || {}).ro || '') + ' | ' + (x.web_url || '');
+    log(`    ${x.id.slice(0, 8)} programat=${x.send_after ? new Date(x.send_after * 1000).toISOString().slice(0, 16) + 'Z' : '-'} trimis=${!!x.completed_at} anulat=${!!x.canceled} destinatari=${x.successful ?? '-'}/${x.remaining ?? '-'} | ${RX.test(t) ? '⚠️ CONȚINE post/dezlegare/cuvânt de folos' : 'text curat'} | ${t.slice(0, 160)}`);
+  });
   fin();
 })();
 function fin() { fs.mkdirSync('out', { recursive: true }); fs.writeFileSync('out/diagnostic.txt', out.join('\n') + '\n'); }
