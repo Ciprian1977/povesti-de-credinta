@@ -2,11 +2,11 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
-  <script src="/js/corectura-provizorie.js?v=1"></script>
+  <script src="/js/corectura-provizorie.js?v=2"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#FFFFFF">
   <title id="meta-title">Calendar Ortodox Azi — Sfântul, Apostolul și Evanghelia Zilei | Povești de Credință</title>
-  <meta name="description" id="meta-desc" content="Calendar ortodox azi: sfântul zilei, apostolul zilei, evanghelia zilei, tipul de post și culoarea liturgică. Totul pe o singură pagină, actualizat zilnic.">
+  <meta name="description" id="meta-desc" content="Calendar ortodox azi: sfinții zilei și referințele biblice ale Apostolului și Evangheliei, cu link către lectura publicată pe Doxologia, plus sinaxarul, predica și rugăciunea zilei. Actualizat zilnic.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.povestidecredinta.ro/calendar-ortodox-azi">
   <link rel="manifest" href="/manifest.json">
@@ -14,7 +14,7 @@
   <link rel="icon" type="image/png" href="/images/favicon.png">
   <link rel="stylesheet" href="/css/style.css">
   <meta property="og:title" id="og-title" content="Calendar Ortodox Azi | Povești de Credință">
-  <meta property="og:description" id="og-desc" content="Calendar ortodox azi: sfântul, apostolul și evanghelia zilei pe o singură pagină.">
+  <meta property="og:description" id="og-desc" content="Calendar ortodox azi: sfinții zilei și referințele Apostolului și Evangheliei, pe o singură pagină.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.povestidecredinta.ro/calendar-ortodox-azi">
   <meta property="og:image" content="https://www.povestidecredinta.ro/images/og-image.jpg">
@@ -81,7 +81,6 @@
     <div id="sfant-azi" style="font-size:1rem;opacity:0.9;margin-bottom:12px;line-height:1.4"></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
       <span id="post-badge" style="background:rgba(255,255,255,0.15);border-radius:20px;padding:4px 14px;font-size:0.82rem"></span>
-      <span id="culoare-badge" style="background:rgba(255,255,255,0.15);border-radius:20px;padding:4px 14px;font-size:0.82rem"></span>
     </div>
   </div>
 
@@ -152,31 +151,21 @@
 
     <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.15);padding-bottom:14px;margin-bottom:14px">
       <div class="faq-intrebare" onclick="toggleFaq(this)" style="font-weight:600;color:var(--visineu);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem">
-        <span>Calendar ortodox azi — ce înseamnă culoarea liturgică?</span>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
-        Culoarea liturgică indică tipul slujbei: <strong>alb</strong> — sărbători ale Mântuitorului și ale Maicii Domnului; <strong>roșu</strong> — sfinții mucenici; <strong>verde</strong> — cuvioși și mărturisitori; <strong>vișiniu</strong> — post și pocăință; <strong>auriu</strong> — sfinții ierarhi și apostoli.
-      </div>
-    </div>
-
-    <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.15);padding-bottom:14px;margin-bottom:14px">
-      <div class="faq-intrebare" onclick="toggleFaq(this)" style="font-weight:600;color:var(--visineu);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem">
         <span>Apostolul și evanghelia zilei — unde le găsesc?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
-        Apostolul și Evanghelia zilei le găsești pe această pagină în cardurile de mai sus, sau pe paginile dedicate: <a href="/apostolul-zilei" style="color:var(--visineu)">Apostolul Zilei</a> și <a href="/evanghelia-zilei" style="color:var(--visineu)">Evanghelia Zilei</a>, cu textul complet și tâlcuire.
+        Apostolul și Evanghelia zilei le găsești pe această pagină în cardurile de mai sus, sau pe paginile dedicate: <a href="/apostolul-zilei" style="color:var(--visineu)">Apostolul Zilei</a> și <a href="/evanghelia-zilei" style="color:var(--visineu)">Evanghelia Zilei</a>, cu referința biblică și link către lectura publicată pe Doxologia.
       </div>
     </div>
 
     <div class="faq-item">
       <div class="faq-intrebare" onclick="toggleFaq(this)" style="font-weight:600;color:var(--visineu);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem">
-        <span>Calendar ortodox azi doxologia — alternativă?</span>
+        <span>Ce găsesc pe această pagină?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
-        povestidecredinta.ro este alternativa completă pentru calendarul ortodox zilnic: sfântul zilei, sinaxarul, apostolul, evanghelia, predica zilei, rugăciunile și acatistele — toate pe un singur site, optimizat pentru mobil, cu design curat și fonturi mari pentru o lectură confortabilă.
+        Pe această pagină găsiți sfinții zilei, referințele Apostolului și Evangheliei (cu link către lectura publicată pe Doxologia), sinaxarul, predica și rugăciunea zilei, pe un site optimizat pentru mobil, cu fonturi mari pentru o lectură confortabilă.
       </div>
     </div>
   </div>
@@ -257,12 +246,11 @@ document.addEventListener('DOMContentLoaded',function(){
   const azi=new Date();
   const zi=azi.getDay();
   const key=getDataKey(azi);
-  const data=CALENDAR[key]||{sfant:'Sfânt din Sinaxarul BOR',post:(zi===3||zi===5)?'post':'dezlegare',culoare:'alb'};
+  const data=CALENDAR[key]||{sfant:'Sfinții zilei',post:'',culoare:''};
   const df=ZILE_RO[zi]+', '+azi.getDate()+' '+LUNI_RO[azi.getMonth()]+' '+azi.getFullYear();
 
   document.getElementById('data-mare').textContent=df;
   document.getElementById('sfant-azi').textContent='✝️ '+data.sfant;
-  document.getElementById('culoare-badge').textContent=CULORI[data.culoare]||'⬜ Alb liturgic';
   document.getElementById('hero-h1').textContent='📅 Calendar Ortodox Azi — '+df;
   document.getElementById('hero-data').textContent='Conform Calendarului Ortodox Român 2026 — Patriarhia Română';
 
@@ -278,7 +266,7 @@ document.addEventListener('DOMContentLoaded',function(){
   document.getElementById('og-desc').setAttribute('content',`${data.sfant}.`);
 
   document.getElementById('faq1-q').textContent=`Ce sfânt este azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}, în calendarul ortodox?`;
-  document.getElementById('faq1-a').textContent=`Azi, ${df}, este prăznuit ${data.sfant}.`;
+  document.getElementById('faq1-a').textContent=`Azi, ${df}: ${data.sfant}.`;
 
   document.getElementById('schema-event').textContent=JSON.stringify({
     "@context":"https://schema.org","@type":"Event",
@@ -292,10 +280,9 @@ document.addEventListener('DOMContentLoaded',function(){
   document.getElementById('schema-faq').textContent=JSON.stringify({
     "@context":"https://schema.org","@type":"FAQPage",
     "mainEntity":[
-      {"@type":"Question","name":`Ce sfânt este azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}?`,"acceptedAnswer":{"@type":"Answer","text":`Azi este prăznuit ${data.sfant}.`}},
-      {"@type":"Question","name":"Calendar ortodox azi — ce înseamnă culoarea liturgică?","acceptedAnswer":{"@type":"Answer","text":"Culoarea liturgică indică tipul slujbei: alb pentru sărbători ale Mântuitorului, roșu pentru mucenici, verde pentru cuvioși, vișiniu pentru post."}},
-      {"@type":"Question","name":"Apostolul și evanghelia zilei — unde le găsesc?","acceptedAnswer":{"@type":"Answer","text":"Apostolul și Evanghelia zilei le găsești pe povestidecredinta.ro/apostolul-zilei/ și povestidecredinta.ro/evanghelia-zilei/ cu textul complet."}},
-      {"@type":"Question","name":"Calendar ortodox azi doxologia — alternativă?","acceptedAnswer":{"@type":"Answer","text":"povestidecredinta.ro este alternativa completă: sfântul zilei, sinaxarul, apostolul, evanghelia, predica zilei, rugăciunile și acatistele — toate pe un singur site optimizat pentru mobil."}}
+      {"@type":"Question","name":`Ce sfânt este azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}?`,"acceptedAnswer":{"@type":"Answer","text":`Azi: ${data.sfant}.`}},
+      {"@type":"Question","name":"Apostolul și evanghelia zilei — unde le găsesc?","acceptedAnswer":{"@type":"Answer","text":"Apostolul și Evanghelia zilei le găsești pe povestidecredinta.ro/apostolul-zilei/ și povestidecredinta.ro/evanghelia-zilei/, cu referința biblică și link către lectura publicată pe Doxologia."}},
+      {"@type":"Question","name":"Ce găsesc pe această pagină?","acceptedAnswer":{"@type":"Answer","text":"Sfinții zilei, referințele Apostolului și Evangheliei (cu link către lectura publicată pe Doxologia), sinaxarul, predica și rugăciunea zilei."}}
     ]
   });
 });
@@ -317,6 +304,14 @@ document.addEventListener('DOMContentLoaded',function(){
   if (date.sfant_nume) {
     const sfEl = document.getElementById('sfant-principal');
     if (sfEl) sfEl.textContent = date.sfant_nume;
+    const sfAzi = document.getElementById('sfant-azi');
+    if (sfAzi) sfAzi.textContent = '✝️ ' + date.sfant_nume;
+    const sfCard = document.getElementById('sfant-card');
+    if (sfCard) sfCard.textContent = date.sfant_nume.split(';')[0].substring(0, 50) + (date.sfant_nume.length > 50 ? '...' : '');
+    const faqA = document.getElementById('faq1-a');
+    if (faqA) faqA.textContent = `Azi, ${dataFormatata}, sunt prăznuiți: ${date.sfant_nume}.`;
+    const ogD = document.getElementById('og-desc');
+    if (ogD) ogD.setAttribute('content', `${date.sfant_nume}.`);
     const postEl = document.getElementById('post-info');
     document.getElementById('meta-title').textContent = `Calendar Ortodox Azi — ${dataFormatata} | Povești de Credință`;
     if (date.meta_description) document.getElementById('meta-desc').setAttribute('content', date.meta_description);
@@ -326,7 +321,7 @@ document.addEventListener('DOMContentLoaded',function(){
     if (apEl) apEl.innerHTML = '<strong>' + date.apostol_carte + ' ' + (date.apostol_versete||'') + '</strong>';
   }
   if (date.evanghelie_carte) {
-    const evEl = document.getElementById('evanghelie-card');
+    const evEl = document.getElementById('ev-card') || document.getElementById('evanghelie-card');
     if (evEl) evEl.innerHTML = '<strong>' + date.evanghelie_carte + ' ' + (date.evanghelie_versete||'') + '</strong>';
   }
   if (date.sinaxar) {

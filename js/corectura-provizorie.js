@@ -6,7 +6,7 @@
  *     înainte să ajungă la paginile sitului: fără eticheta de post, fără „cuvântul de folos”,
  *     fără textul integral al Apostolului și al Evangheliei. Baza de date NU se modifică.
  *  2. Elementele care afișau aceste informații sunt ascunse.
- *  3. În locul textului integral apare referința exactă + linkul către sursa oficială.
+ *  3. În locul textului integral apare referința biblică + link către lectura publicată pe Doxologia.
  *
  * Pentru a anula măsura: se scoate acest fișier din pagini (sau PDC_CORECTURA.activ = false).
  */
@@ -73,9 +73,8 @@
   function cutie(tip) {
     var numeLectura = tip === 'apostol' ? 'Apostolului' : 'Evangheliei';
     return '<div class="lectura-sursa" data-corectura="1">' +
-      '<p>Textul integral al ' + numeLectura + ' zilei îl puteți citi la sursa oficială, după referința de mai sus.</p>' +
-      '<a class="lectura-link" href="' + linkSursa() + '" target="_blank" rel="noopener">Citește pe doxologia.ro ↗</a>' +
-      '<p class="lectura-nota">doxologia.ro — portalul Mitropoliei Moldovei și Bucovinei (Biserica Ortodoxă Română)</p>' +
+      '<p>Referința biblică a ' + numeLectura + ' zilei este afișată mai sus. Lectura completă o puteți citi pe Doxologia.</p>' +
+      '<a class="lectura-link" href="' + linkSursa() + '" target="_blank" rel="noopener">Citește lectura pe Doxologia ↗</a>' +
       '</div>';
   }
   window.pdcCutieLectura = cutie;

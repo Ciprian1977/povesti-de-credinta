@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
-  <script src="/js/corectura-provizorie.js?v=1"></script>
+  <script src="/js/corectura-provizorie.js?v=2"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#FFFFFF">
   
@@ -305,8 +305,8 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
       <div style="display:flex;flex-direction:column;gap:8px">
         <a href="/sinaxar" data-ruta="/sinaxar" class="link-intern-ruta">Sinaxarul zilei — Viata completa a sfantului</a>
         <a href="/apostolul-zilei" data-ruta="/apostolul-zilei" class="link-intern-ruta">Apostolul zilei — Pericopa apostolica</a>
-        <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei" class="link-intern-ruta">Evanghelia zilei — Textul integral</a>
-        <a href="/predica-zilei" data-ruta="/predica-zilei" class="link-intern-ruta">Predica zilei — Cuvant de folos</a>
+        <a href="/evanghelia-zilei" data-ruta="/evanghelia-zilei" class="link-intern-ruta">Evanghelia zilei — referința biblică</a>
+        <a href="/predica-zilei" data-ruta="/predica-zilei" class="link-intern-ruta">Predica zilei</a>
       </div>
     </nav>
   </article>
@@ -481,15 +481,15 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
     </div>
 
     <!-- Toggle 4: Alerte posturi si sarbatori -->
-    <div class="setare-card" id="card-alerte">
+    <div class="setare-card setare-suspendata" id="card-alerte" style="opacity:0.72" aria-disabled="true">
       <span class="setare-icon">⚠️</span>
       <div class="setare-continut">
-        <div class="setare-titlu">Alerte pentru Posturi și Sărbători Mari</div>
-        <div class="setare-desc">Te anunțăm când începe un post sau o sărbătoare importantă și la zilele cu dezlegare.</div>
-        <label class="setare-ora alege-ora" for="ora-alerte"><span>Ora (ora României):</span> <select id="ora-alerte" data-ora-implicita="07:30" aria-label="Alege ora pentru alertele de post"><option value="05:00">05:00</option><option value="05:30">05:30</option><option value="06:00">06:00</option><option value="06:30">06:30</option><option value="07:00">07:00</option><option value="07:30" selected>07:30</option><option value="08:00">08:00</option><option value="08:30">08:30</option><option value="09:00">09:00</option></select></label>
+        <div class="setare-titlu">Alerte pentru Posturi și Sărbători Mari <span class="eticheta-suspendata" style="display:inline-block;font-size:0.72rem;font-weight:600;padding:2px 8px;border-radius:10px;background:rgba(107,27,43,0.1);color:var(--visineu,#6B1B2B);vertical-align:middle">suspendat temporar</span></div>
+        <div class="setare-desc">Această funcție este oprită temporar. Va reveni după verificarea completă a calendarului bisericesc 2026.</div>
+        <label class="setare-ora alege-ora" for="ora-alerte"><span>Ora (ora României):</span> <select id="ora-alerte" disabled aria-disabled="true" data-ora-implicita="07:30" aria-label="Alege ora pentru alertele de post"><option value="05:00">05:00</option><option value="05:30">05:30</option><option value="06:00">06:00</option><option value="06:30">06:30</option><option value="07:00">07:00</option><option value="07:30" selected>07:30</option><option value="08:00">08:00</option><option value="08:30">08:30</option><option value="09:00">09:00</option></select></label>
       </div>
       <label class="toggle-switch">
-        <input type="checkbox" id="toggle-alerte" data-segment="alerte_post" aria-label="Activează alertele pentru posturi">
+        <input type="checkbox" id="toggle-alerte" data-segment="alerte_post" disabled aria-disabled="true" aria-label="Alertele pentru posturi sunt suspendate temporar">
         <span class="toggle-slider"></span>
       </label>
     </div>
@@ -613,8 +613,8 @@ main{max-width:900px;margin:0 auto;padding:0 16px 100px;position:relative;z-inde
   </div>
 </div>
 
-<script src="/js/min/rugaciuni-saptamana.min.js" defer></script>
-<script src="/js/min/app.min.js?v=18" defer></script>
+<script src="/js/min/rugaciuni-saptamana.min.js?v=2" defer></script>
+<script src="/js/min/app.min.js?v=19" defer></script>
 <script>
 // Cookie banner — afișat la 1s după load (în afara ferestrei CLS principale)
 (function(){

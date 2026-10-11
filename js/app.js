@@ -63,12 +63,12 @@ const RUTE_SPA = {
   '/evanghelia-zilei': {
     container: 'ruta-evanghelia-zilei',
     titluFn: (d, azi) => `Evanghelia Zilei - ${formatDateForTitle(azi)} — ${d.evanghelie_carte || 'Sfânta Evanghelie'} | Povești de Credință`,
-    descFn: (d, azi) => `Textul integral al Evangheliei din ${d.evanghelie_carte || 'Sfânta Evanghelie'} ${d.evanghelie_versete || ''} citit în ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`.substring(0, 160)
+    descFn: (d, azi) => `Evanghelia zilei: ${d.evanghelie_carte || 'Sfânta Evanghelie'} ${d.evanghelie_versete || ''} — referința biblică și link către lectura publicată pe Doxologia, pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`.substring(0, 160)
   },
   '/predica-zilei': {
     container: 'ruta-predica-zilei',
-    titluFn: (d, azi) => `Predica și Tâlcuirea Evangheliei de azi, ${formatDateForTitle(azi)} | Povești de Credință`,
-    descFn: (d, azi) => `Tâlcuire patristică și cuvânt de folos duhovnicesc pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}. Omilie și predică ortodoxă.`.substring(0, 160)
+    titluFn: (d, azi) => `Predica zilei de azi, ${formatDateForTitle(azi)} | Povești de Credință`,
+    descFn: (d, azi) => `Predica zilei pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}. Omilie și predică ortodoxă.`.substring(0, 160)
   },
   '/rugaciunea-zilei': {
     container: 'ruta-rugaciunea-zilei',
@@ -643,13 +643,13 @@ function populeazaPredica(container, date, azi, titluSfinti, dataFormatata) {
 
   const titluEl = el('predica-titlu-principal');
   if (titluEl) {
-    titluEl.textContent = `Tâlcuirea Evangheliei și Cuvântul de Folos — ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}`;
+    titluEl.textContent = `Predica zilei — ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}`;
   }
 
   const textEl = el('predica-text-complet');
   if (textEl) {
     const text = date.predica || date.cuvant_folos ||
-      `Cuvântul de folos duhovnicesc pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()} va fi disponibil în curând. Predica și tâlcuirea patristică a Evangheliei zilei sunt pregătite zilnic de echipa Povești de Credință, în conformitate cu învățătura Sfinților Părinți ai Bisericii Ortodoxe. Vă invităm să reveniți pentru a citi cuvântul de folos al zilei.`;
+      `Predica pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()} nu este disponibilă acum. Vă invităm să reveniți mai târziu.`;
     textEl.innerHTML = text.split('\n').filter(p => p.trim()).map(p =>
       `<p class="lectie-para">${p.trim()}</p>`
     ).join('');
@@ -705,14 +705,14 @@ function actualizeazaJsonLd(path, date, azi) {
     '/evanghelia-zilei': {
       type: 'Article',
       headline: `Evanghelia Zilei - ${formatDateForTitle(azi)} — ${date.evanghelie_carte || 'Sfânta Evanghelie'}`,
-      description: `Textul integral al Evangheliei ${date.evanghelie_carte || ''} ${date.evanghelie_versete || ''} din ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`,
+      description: `Referința Evangheliei ${date.evanghelie_carte || ''} ${date.evanghelie_versete || ''} și link către lectura publicată pe Doxologia, pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`,
       articleBody: date.evanghelie_text || `Evanghelia zilei de ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`,
       url: `${siteUrl}/evanghelia-zilei`
     },
     '/predica-zilei': {
       type: 'Article',
-      headline: `Predica și Tâlcuirea Evangheliei de azi, ${formatDateForTitle(azi)}`,
-      description: `Tâlcuire patristică și cuvânt de folos duhovnicesc pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`,
+      headline: `Predica zilei de azi, ${formatDateForTitle(azi)}`,
+      description: `Predica zilei pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`,
       articleBody: date.predica || date.cuvant_folos || `Predica zilei de ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`,
       url: `${siteUrl}/predica-zilei`
     }
@@ -1577,19 +1577,19 @@ function genereazaLinkuriInterne(tipPagina, date, azi) {
 
   const linkuriConfig = {
     apostol: [
-      { href: '/evanghelia-zilei', icon: '✝️', titlu: 'Evanghelia Zilei', desc: `Textul integral al Evangheliei pentru ${dataStr}` },
-      { href: '/predica-zilei', icon: '🎙️', titlu: 'Predica Zilei', desc: 'Tâlcuirea patristică a Evangheliei de azi' },
+      { href: '/evanghelia-zilei', icon: '✝️', titlu: 'Evanghelia Zilei', desc: `Referința Evangheliei pentru ${dataStr}` },
+      { href: '/predica-zilei', icon: '🎙️', titlu: 'Predica Zilei', desc: 'Predica pentru ziua de azi' },
       { href: '/sinaxar', icon: '📜', titlu: 'Sinaxarul Zilei', desc: `Viața ${titluSfinti}` },
       { href: '/rugaciunea-zilei', icon: '🙏', titlu: 'Rugăciunea Zilei', desc: 'Rugăciunea din Ceaslov pentru azi' },
     ],
     evanghelie: [
       { href: '/apostolul-zilei', icon: '📖', titlu: 'Apostolul Zilei', desc: `Pericopa apostolică pentru ${dataStr}` },
-      { href: '/predica-zilei', icon: '🎙️', titlu: 'Predica Zilei', desc: 'Tâlcuirea patristică a Evangheliei de azi' },
+      { href: '/predica-zilei', icon: '🎙️', titlu: 'Predica Zilei', desc: 'Predica pentru ziua de azi' },
       { href: '/sinaxar', icon: '📜', titlu: 'Sinaxarul Zilei', desc: `Viața ${titluSfinti}` },
       { href: '/rugaciunea-zilei', icon: '🙏', titlu: 'Rugăciunea Zilei', desc: 'Rugăciunea din Ceaslov pentru azi' },
     ],
     predica: [
-      { href: '/evanghelia-zilei', icon: '✝️', titlu: 'Evanghelia Zilei', desc: `Textul integral al Evangheliei pentru ${dataStr}` },
+      { href: '/evanghelia-zilei', icon: '✝️', titlu: 'Evanghelia Zilei', desc: `Referința Evangheliei pentru ${dataStr}` },
       { href: '/apostolul-zilei', icon: '📖', titlu: 'Apostolul Zilei', desc: `Pericopa apostolică pentru ${dataStr}` },
       { href: '/sinaxar', icon: '📜', titlu: 'Sinaxarul Zilei', desc: `Viața ${titluSfinti}` },
       { href: '/rugaciunea-zilei', icon: '🙏', titlu: 'Rugăciunea Zilei', desc: 'Rugăciunea din Ceaslov pentru azi' },
@@ -1799,6 +1799,8 @@ async function sincronizeazaToateTagurile() {
 
 /** Comutatorul unei notificări: salvăm IMEDIAT, apoi cerem permisiunea dacă e nevoie. */
 async function onToggleSchimbat(checkbox) {
+  // Opțiune suspendată (ex. „Alerte posturi”): nu schimbăm nimic, nici preferința salvată
+  if (checkbox.disabled) { checkbox.checked = !checkbox.checked; return; }
   const segment = checkbox.getAttribute('data-segment');
   const activ = checkbox.checked;
   const idCard = `card-${segment === 'alerte_post' ? 'alerte' : segment}`;

@@ -2,11 +2,11 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
-  <script src="/js/corectura-provizorie.js?v=1"></script>
+  <script src="/js/corectura-provizorie.js?v=2"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#FFFFFF">
   <title id="meta-title">Sinaxarul Zilei de Azi — Calendar Ortodox | Povești de Credință</title>
-  <meta name="description" id="meta-desc" content="Sinaxarul zilei de azi: sfântul principal, sfinții secundari, viața detaliată, troparul și condacul. Actualizat zilnic conform Sinaxarului BOR.">
+  <meta name="description" id="meta-desc" content="Sinaxarul zilei de azi: sfinții prăznuiți în calendarul ortodox român. Actualizat zilnic.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.povestidecredinta.ro/sinaxarul-zilei">
   <link rel="manifest" href="/manifest.json">
@@ -225,7 +225,7 @@ function trimiteWhatsApp() {
 document.addEventListener('DOMContentLoaded', function() {
   const azi = new Date();
   const key = getDataKey(azi);
-  const data = CALENDAR[key] || { sfant: 'Sfânt din Sinaxarul BOR', post: (azi.getDay()===3||azi.getDay()===5)?'post':'dezlegare' };
+  const data = CALENDAR[key] || { sfant: 'Sfinții zilei', post: '' };
   const df = ZILE_RO[azi.getDay()] + ', ' + azi.getDate() + ' ' + LUNI_RO[azi.getMonth()] + ' ' + azi.getFullYear();
 
   document.getElementById('sfant-principal').textContent = data.sfant;
@@ -239,13 +239,13 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('tropar-text').textContent = data.tropar;
     document.getElementById('condac-text').textContent = data.condac;
   } else {
-    document.getElementById('viata-text').innerHTML = `<strong>${data.sfant}</strong> este prăznuit în calendarul ortodox pe ${azi.getDate()} ${LUNI_RO[azi.getMonth()]}. Viața completă din Sinaxarul BOR va fi disponibilă în curând. Consultați Mineiul lunii pentru viața completă a acestui sfânt.`;
-    document.getElementById('tropar-text').textContent = 'Troparul va fi disponibil în curând. Consultați Mineiul lunii.';
-    document.getElementById('condac-text').textContent = 'Condacul va fi disponibil în curând. Consultați Mineiul lunii.';
+    document.getElementById('viata-text').innerHTML = `<strong>${data.sfant}</strong> — ${azi.getDate()} ${LUNI_RO[azi.getMonth()]}. Viața din Sinaxar nu este disponibilă momentan pe această pagină.`;
+    document.getElementById('tropar-text').textContent = 'Troparul nu este disponibil momentan.';
+    document.getElementById('condac-text').textContent = 'Condacul nu este disponibil momentan.';
   }
 
   document.getElementById('meta-title').textContent = `Sinaxarul Zilei de Azi, ${df} | Povești de Credință`;
-  document.getElementById('meta-desc').setAttribute('content', `Sinaxarul zilei de azi, ${df}: ${data.sfant}. Viața sfântului, troparul și condacul conform Sinaxarului BOR.`);
+  document.getElementById('meta-desc').setAttribute('content', `Sinaxarul zilei de azi, ${df}: ${data.sfant}.`);
   document.getElementById('faq1-q').textContent = `Sinaxarul zilei de azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()} — ce sfânt este?`;
   document.getElementById('faq1-a').textContent = `Sinaxarul zilei de azi, ${df}: ${data.sfant}.`;
 
@@ -284,6 +284,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (sinaxarEl) sinaxarEl.textContent = date.sinaxar;
   }
   if (date.sfant_nume) {
+    const spEl = document.getElementById('sfant-principal');
+    if (spEl) spEl.textContent = date.sfant_nume;
+    const vtEl = document.getElementById('viata-titlu');
+    if (vtEl) vtEl.textContent = 'Viața din Sinaxar: ' + date.sfant_nume.split(';')[0];
+    const vEl = document.getElementById('viata-text');
+    if (vEl && /nu este disponibilă momentan/.test(vEl.textContent)) vEl.innerHTML = '<strong>' + date.sfant_nume.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])) + '</strong> — ' + azi.getDate() + ' ' + LUNI_RO[azi.getMonth()] + '. Viața din Sinaxar nu este disponibilă momentan pe această pagină.';
     const titluEl = document.getElementById('sinaxar-titlu');
     if (titluEl) titluEl.textContent = 'Sinaxarul zilei — ' + date.sfant_nume.split(';')[0];
     document.getElementById('meta-title').textContent = `Sinaxarul Zilei — ${date.sfant_nume.split(';')[0]} | Povești de Credință`;

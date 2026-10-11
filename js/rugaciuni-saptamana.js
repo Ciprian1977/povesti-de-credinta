@@ -89,7 +89,7 @@ const RUGACIUNI_SAPTAMANA = {
     titlu: 'Rugăciunea Zilei de Miercuri — Rânduiala pentru Sfânta Cruce',
     titluSeo: 'Rugăciunea Zilei de Miercuri — Sfânta Cruce | Text Integral din Ceaslov',
     descSeo: 'Rugăciunea autentică a zilei de miercuri din Ceaslov, dedicată Sfintei Cruci și amintirii vânzării Domnului. Text integral din tradiția liturgică ortodoxă.',
-    dedicatie: 'Miercurea este zi de post și de cinstire a Sfintei Cruci, amintind de vânzarea Mântuitorului de către Iuda.',
+    dedicatie: 'Miercurea este închinată Sfintei Cruci și amintește de vânzarea Mântuitorului de către Iuda. Ca regulă generală, miercurea se postește, dar calendarul bisericesc rânduiește și excepții, precum săptămânile cu harți (fără post).',
     culoare: '#7B1FA2',
     icon: '✠',
     paragrafe: [
@@ -101,8 +101,8 @@ const RUGACIUNI_SAPTAMANA = {
     condac: 'Condac al Sfintei Cruci, glasul al 4-lea: Cel ce Te-ai înălțat pe Cruce de bunăvoie, poporului Tău celui nou, numit cu numele Tău, îndurările Tale dăruiește-i, Hristoase Dumnezeule; veselește cu puterea Ta pe binecredincioșii creștini, dăruindu-le lor biruință asupra potrivnicului, având ajutorul Tău armă de pace, nebiruită biruință.',
     faq: [
       {
-        q: 'De ce miercurea este zi de post și de cinstire a Sfintei Cruci?',
-        a: 'Miercurea este zi de post în amintirea vânzării Mântuitorului de către Iuda Iscarioteanul, care a avut loc într-o miercuri. Este și zi de cinstire a Sfintei Cruci, pe care Hristos a pătimit pentru mântuirea lumii.'
+        q: 'De ce se postește, de regulă, miercurea?',
+        a: 'Ca regulă generală, miercurea este zi de post, în amintirea vânzării Mântuitorului de către Iuda Iscarioteanul, și zi de cinstire a Sfintei Cruci. Regula are excepții: în săptămânile cu harți și la unele sărbători, calendarul bisericesc rânduiește altfel. Pentru o zi anume, urmați calendarul Bisericii Ortodoxe Române și sfatul duhovnicului.'
       },
       {
         q: 'Ce cere rugăciunea de Miercuri din Ceaslov?',
@@ -157,7 +157,7 @@ const RUGACIUNI_SAPTAMANA = {
     titlu: 'Rugăciunea Zilei de Vineri — Rânduiala de umilință către Sfânta Cruce',
     titluSeo: 'Rugăciunea Zilei de Vineri — Sfânta Cruce și Patimile | Text Integral din Ceaslov',
     descSeo: 'Rugăciunea autentică a zilei de vineri din Ceaslov, dedicată Sfintei Cruci și Patimilor Mântuitoare. Text integral din tradiția liturgică ortodoxă.',
-    dedicatie: 'Vinerea este zi de post și de cinstire a Sfintei Cruci, amintind de Răstignirea și Moartea Mântuitorului.',
+    dedicatie: 'Vinerea este închinată Sfintei Cruci și amintește de Răstignirea și Moartea Mântuitorului. Ca regulă generală, vinerea se postește, dar calendarul bisericesc rânduiește și excepții, precum săptămânile cu harți (fără post).',
     culoare: '#B71C1C',
     icon: '✠',
     paragrafe: [
@@ -176,8 +176,8 @@ const RUGACIUNI_SAPTAMANA = {
     condac: 'Condac al Sfintei Cruci, glasul al 4-lea: Cel ce Te-ai înălțat pe Cruce de bunăvoie, poporului Tău celui nou, numit cu numele Tău, îndurările Tale dăruiește-i, Hristoase Dumnezeule; veselește cu puterea Ta pe binecredincioșii creștini, dăruindu-le lor biruință asupra potrivnicului, având ajutorul Tău armă de pace, nebiruită biruință.',
     faq: [
       {
-        q: 'De ce vinerea este zi de post în tradiția ortodoxă?',
-        a: 'Vinerea este zi de post pentru că în această zi Hristos a fost răstignit pe Cruce pentru mântuirea lumii. Postul de vineri este o rânduială apostolică, una dintre cele mai vechi din tradiția creștină.'
+        q: 'De ce se postește, de regulă, vinerea?',
+        a: 'Ca regulă generală, vinerea este zi de post, pentru că în această zi Hristos a fost răstignit pe Cruce pentru mântuirea lumii; postul de miercuri și vineri este una dintre cele mai vechi rânduieli creștine. Regula are excepții: în săptămânile cu harți și la unele sărbători, calendarul bisericesc rânduiește altfel. Pentru o zi anume, urmați calendarul Bisericii Ortodoxe Române și sfatul duhovnicului.'
       },
       {
         q: 'Ce cere rugăciunea de Vineri din Ceaslov?',
