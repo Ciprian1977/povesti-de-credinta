@@ -1,0 +1,22 @@
+name: Cercetare surse (doar citire)
+on:
+  push:
+    branches: [cercetare-surse]
+permissions:
+  contents: write
+jobs:
+  c:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          mkdir out; cd out
+          ia(){ curl -sL --max-time 40 -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36" "$2" -o "$1.html"; echo "$1 $(wc -c < $1.html) $2" >> index.txt; }
+          ia basilica https://basilica.ro/
+          ia basilica_cal https://basilica.ro/calendar-ortodox/
+          ia patriarhia https://patriarhia.ro/
+          ia patriarhia_cal https://patriarhia.ro/calendar-ortodox/
+          ia noutati https://www.noutati-ortodoxe.ro/calendar-ortodox/?year=2026
+          ia crestinortodox https://www.crestinortodox.ro/calendar-ortodox/
+          cat index.txt
+          git init -q -b rezultate-surse && git add -A && git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -qm r
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" rezultate-surse
