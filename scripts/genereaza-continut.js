@@ -616,10 +616,11 @@ async function genereazaContiut(date) {
   const sfantiZilei = CALENDAR_STATIC[cheiaLectionar]?.sfant || sfantDefault;
   const contextOficial = oficial ? `
 DATE OFICIALE din calendarul ortodox al BOR (doxologia.ro) — sunt corecte, folosește-le întocmai:
-${oficial.sarbatoare ? `- Sărbătoarea zilei: ${oficial.sarbatoare}\n` : ''}- Sfinții zilei (cei marcați cu ✝) sunt cei principali în calendarul BOR): ${oficial.sfinti.join('; ')}
+${oficial.sarbatoare ? `- Sărbătoarea zilei: ${oficial.sarbatoare}\n` : ''}- Sfinții zilei (cei marcați cu ✝) sunt cei principali în calendarul BOR): ${[...oficial.sfinti.filter((x) => /✝|†/.test(x)), ...oficial.sfinti.filter((x) => !/✝|†/.test(x))].join('; ')}
 - Apostolul zilei: ${oficial.apostol_carte || ''} ${oficial.apostol_versete || ''}
 - Evanghelia zilei: ${oficial.evanghelie_carte || ''} ${oficial.evanghelie_versete || ''}
 Predica și cuvântul de folos trebuie să se bazeze pe ACEASTĂ Evanghelie. „sfant_nume” = sărbătoarea zilei sau primul sfânt marcat cu ✝ (fără semnul ✝). Nu adăuga sfinți care nu sunt în listă.
+ORDINEA în „titlu_sfinti” și în sinaxar: întâi sărbătoarea zilei (dacă există), apoi sfinții marcați cu ✝, apoi sfinții prăznuiți tradițional în Sinaxarul grecesc/românesc. Sfinții cinstiți mai ales în alte Biserici (de ex. de la Optina, din Rusia, din Georgia) și cinstirile icoanelor se pun la final sau se omit din „titlu_sfinti”. Nu scrie semnul ✝ în texte.
 ` : '';
 
   const prompt = `Ești un preot ortodox român erudit și un expert în Sinaxarul Bisericii Ortodoxe Române (BOR).
