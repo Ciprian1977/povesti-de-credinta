@@ -1,0 +1,54 @@
+[inainte] pagini testate: 30 | probleme: 40
+  - mobil /: VIZIBIL ['eticheta post', 'citat cuvant de folos']
+  - mobil /: meta/JSON-LD ['eticheta post']
+  - mobil /sfintii-zilei: VIZIBIL ['eticheta post']
+  - mobil /rugaciunea-zilei/luni: HTTP 404
+  - mobil /rugaciunea-zilei/duminica: HTTP 404
+  - mobil /apostolul-zilei: VIZIBIL ['text integral Apostol']
+  - mobil /apostolul-zilei: meta/JSON-LD ['eticheta post']
+  - mobil /evanghelia-zilei: VIZIBIL ['lectura „implicita” pe zi']
+  - mobil /evanghelia-zilei: meta/JSON-LD ['eticheta post']
+  - mobil /calendar-ortodox-azi: VIZIBIL ['eticheta post', 'text integral Apostol']
+  - mobil /calendar-ortodox-azi: meta/JSON-LD ['eticheta post']
+  - mobil /sfantul-zilei: VIZIBIL ['eticheta post']
+  - mobil /sfantul-zilei: meta/JSON-LD ['eticheta post']
+  - mobil /sinaxarul-zilei: VIZIBIL ['eticheta post']
+  - mobil /sinaxarul-zilei: meta/JSON-LD ['eticheta post']
+  - mobil /sinaxar: VIZIBIL ['eticheta post']
+  - mobil /sinaxar: meta/JSON-LD ['eticheta post']
+  - mobil /predica-zilei: meta/JSON-LD ['eticheta post']
+  - mobil /calendar: VIZIBIL ['eticheta post']
+  - desktop /: VIZIBIL ['eticheta post', 'citat cuvant de folos']
+  - desktop /: meta/JSON-LD ['eticheta post']
+  - desktop /sfintii-zilei: VIZIBIL ['eticheta post']
+  - desktop /rugaciunea-zilei/luni: HTTP 404
+  - desktop /rugaciunea-zilei/duminica: HTTP 404
+  - desktop /apostolul-zilei: VIZIBIL ['text integral Apostol']
+  - desktop /apostolul-zilei: meta/JSON-LD ['eticheta post']
+  - desktop /evanghelia-zilei: VIZIBIL ['lectura „implicita” pe zi']
+  - desktop /evanghelia-zilei: meta/JSON-LD ['eticheta post']
+  - desktop /calendar-ortodox-azi: VIZIBIL ['eticheta post', 'text integral Apostol']
+  - desktop /calendar-ortodox-azi: meta/JSON-LD ['eticheta post']
+  - desktop /sfantul-zilei: VIZIBIL ['eticheta post']
+  - desktop /sfantul-zilei: meta/JSON-LD ['eticheta post']
+  - desktop /sinaxarul-zilei: VIZIBIL ['eticheta post']
+  - desktop /sinaxarul-zilei: meta/JSON-LD ['eticheta post']
+  - desktop /sinaxar: VIZIBIL ['eticheta post']
+  - desktop /sinaxar: meta/JSON-LD ['eticheta post']
+  - desktop /predica-zilei: meta/JSON-LD ['eticheta post']
+  - desktop /calendar: VIZIBIL ['eticheta post']
+  - mobil /evanghelia-zilei: referința lecturii nu apare
+  - desktop /evanghelia-zilei: referința lecturii nu apare
+  fara_date = {'/': {'interzis': {'eticheta post': ['Dezlegare']}, 'erori_js': [], 'referinta': 'Apostolul zilei'}, '/apostolul-zilei': {'interzis': {'lectura „implicita” pe zi': ['Căci câți sunt mânați de Duhul']}, 'erori_js': [], 'referinta': 'Apostolul zilei de azi, duminică 11 octombrie 2026, este din Epistola '}, '/evanghelia-zilei': {'interzis': {'lectura „implicita” pe zi': ['ziua cea dintâi a săptămânii, Maria Magdalena']}, 'erori_js': [], 'referinta': 'Evanghelia zilei de azi, duminică 11 octombrie 2026, este din Evanghel'}, '/calendar-ortodox-azi': {'interzis': {'eticheta post': ['Dezlegare']}, 'erori_js': [], 'referinta': ''}}
+  404_inexistenta_mobil = 404
+  pwa_sw_activ = ['http://127.0.0.1:58837/sw.js']
+  pwa_instalabilitate_erori = []
+  pwa_cache_corectura = None
+  pwa_offline_acasa = {'status': 200, 'titlu': 'Calendar Ortodox 11 Octombrie 2026 — Sf. Ap. Filip, unul din', 'interzis': {'eticheta post': ['Zi de post'], 'citat cuvant de folos': ['ogorul']}}
+  notificari = {'salvat': '{"dimineata":true,"pranz":false,"seara":false,"seara_ora":"21:30","alerte_post":false,"dimineata_ora":"07:30"}', 'comutator_dupa_revenire': True, 'stare_abonare': '✅ Acest telefon este abonat la notificări (cod XYZ789)', 'tag_dimineata': '{"dimineata":"true","dimineata_ora":"07:30","pranz":"false","seara":"false","seara_ora":"21:30","alerte_post":"false"}', 'erori_js': []}
+  mobil /apostolul-zilei | cutie sursa: 0 | referinte: ['Galateni 2, 16-20'] | titlu: Apostolul Zilei — Galateni 2, 16-20 | Povești de Credință | 
+  mobil /evanghelia-zilei | cutie sursa: 0 | referinte: [] | titlu: Evanghelia Zilei — Luca 8, 5-15 | Povești de Credință | 
+  mobil / | cutie sursa: 0 | referinte: ['Galateni 2, 16-20', 'Luca 8, 5-15'] | titlu: Calendar Ortodox 11 Octombrie 2026 — Sf. Ap. Filip, unul din | 
+  mobil /calendar-ortodox-azi | cutie sursa: 0 | referinte: ['Galateni 2, 16-20'] | titlu: Calendar Ortodox Azi — Duminică, 11 octombrie 2026 | Povești | 
+  mobil /rugaciunea-zilei/luni | cutie sursa: 0 | referinte: [] | titlu:  | 
+  mobil /rugaciunea-zilei/duminica | cutie sursa: 0 | referinte: [] | titlu:  | 

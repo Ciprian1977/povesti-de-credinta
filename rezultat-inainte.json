@@ -1,0 +1,579 @@
+{
+ "pagini": {
+  "mobil /": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "eticheta post": [
+     "Zi de post"
+    ],
+    "citat cuvant de folos": [
+     "ogorul"
+    ]
+   },
+   "jsonld_meta_interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ]
+   },
+   "cutie_sursa": 0,
+   "referinte": [
+    "Galateni 2, 16-20",
+    "Luca 8, 5-15"
+   ],
+   "overflow": 0,
+   "titlu": "Calendar Ortodox 11 Octombrie 2026 — Sf. Ap. Filip, unul dintre cei 7 diaconi; Sf. Ier. Teofan Mărturisitorul | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/"
+  },
+  "mobil /sfintii-zilei": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "eticheta post": [
+     "Zi de post"
+    ]
+   },
+   "jsonld_meta_interzis": {},
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Sfinții Zilei 11 Octombrie 2026 — Sf. Ap. Filip, unul dintre cei 7 diaconi; Sf. Ier. Teofan Mărturisitorul | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/sfintii-zilei"
+  },
+  "mobil /rugaciunea-zilei": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {},
+   "jsonld_meta_interzis": {},
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Rugăciunea Zilei — Duminică | Calendar Ortodox | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/rugaciunea-zilei"
+  },
+  "mobil /rugaciunea-zilei/luni": {
+   "status": 404,
+   "erori_js": [],
+   "vizibil_interzis": {},
+   "jsonld_meta_interzis": {},
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "",
+   "canonical": ""
+  },
+  "mobil /rugaciunea-zilei/duminica": {
+   "status": 404,
+   "erori_js": [],
+   "vizibil_interzis": {},
+   "jsonld_meta_interzis": {},
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "",
+   "canonical": ""
+  },
+  "mobil /apostolul-zilei": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "text integral Apostol": [
+     "știind că omul nu se îndreptează"
+    ]
+   },
+   "jsonld_meta_interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ]
+   },
+   "cutie_sursa": 0,
+   "referinte": [
+    "Galateni 2, 16-20"
+   ],
+   "overflow": 0,
+   "titlu": "Apostolul Zilei — Galateni 2, 16-20 | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/apostolul-zilei"
+  },
+  "mobil /evanghelia-zilei": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "lectura „implicita” pe zi": [
+     "ziua cea dintâi a săptămânii, Maria Magdalena"
+    ]
+   },
+   "jsonld_meta_interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ]
+   },
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Evanghelia Zilei — Luca 8, 5-15 | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/evanghelia-zilei"
+  },
+  "mobil /calendar-ortodox-azi": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ],
+    "text integral Apostol": [
+     "știind că omul nu se îndreptează"
+    ]
+   },
+   "jsonld_meta_interzis": {
+    "eticheta post": [
+     "Dezlegare",
+     "Dezlegare",
+     "Dezlegare",
+     "Dezlegare"
+    ]
+   },
+   "cutie_sursa": 0,
+   "referinte": [
+    "Galateni 2, 16-20"
+   ],
+   "overflow": 0,
+   "titlu": "Calendar Ortodox Azi — Duminică, 11 octombrie 2026 | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/calendar-ortodox-azi"
+  },
+  "mobil /sfantul-zilei": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ]
+   },
+   "jsonld_meta_interzis": {
+    "eticheta post": [
+     "Zi de post",
+     "Zi de post",
+     "Dezlegare"
+    ]
+   },
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Sf. Ap. Filip, unul dintre cei 7 diaconi; Sf. Ier. Teofan Mărturisitorul — Duminică, 11 octombrie 2026 | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/sfantul-zilei"
+  },
+  "mobil /sinaxarul-zilei": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ]
+   },
+   "jsonld_meta_interzis": {
+    "eticheta post": [
+     "Dezlegare",
+     "Dezlegare"
+    ]
+   },
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Sinaxarul Zilei — Sf. Ap. Filip, unul dintre cei 7 diaconi | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/sinaxarul-zilei"
+  },
+  "mobil /sinaxar": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ]
+   },
+   "jsonld_meta_interzis": {
+    "eticheta post": [
+     "Dezlegare",
+     "Dezlegare"
+    ]
+   },
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Sinaxarul Zilei — Sf. Ap. Filip, unul dintre cei 7 diaconi | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/sinaxarul-zilei"
+  },
+  "mobil /predica-zilei": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {},
+   "jsonld_meta_interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ]
+   },
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Predica Zilei — Duminică, 11 octombrie 2026 | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/predica-zilei"
+  },
+  "mobil /calendar": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "eticheta post": [
+     "Dezlegare",
+     "Dezlegare",
+     "Zi de post"
+    ]
+   },
+   "jsonld_meta_interzis": {},
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Calendar Ortodox 2026 — Sfinții lunii | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/calendar"
+  },
+  "mobil /setari-notificari": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {},
+   "jsonld_meta_interzis": {},
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Setări Notificări Duhovnicești | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/setari-notificari"
+  },
+  "mobil /rugaciuni/tatal-nostru": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {},
+   "jsonld_meta_interzis": {},
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Tatăl Nostru — Text complet ortodox | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/rugaciuni/tatal-nostru"
+  },
+  "desktop /": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "eticheta post": [
+     "Zi de post"
+    ],
+    "citat cuvant de folos": [
+     "ogorul"
+    ]
+   },
+   "jsonld_meta_interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ]
+   },
+   "cutie_sursa": 0,
+   "referinte": [
+    "Galateni 2, 16-20",
+    "Luca 8, 5-15"
+   ],
+   "overflow": 0,
+   "titlu": "Calendar Ortodox 11 Octombrie 2026 — Sf. Ap. Filip, unul dintre cei 7 diaconi; Sf. Ier. Teofan Mărturisitorul | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/"
+  },
+  "desktop /sfintii-zilei": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "eticheta post": [
+     "Zi de post"
+    ]
+   },
+   "jsonld_meta_interzis": {},
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Sfinții Zilei 11 Octombrie 2026 — Sf. Ap. Filip, unul dintre cei 7 diaconi; Sf. Ier. Teofan Mărturisitorul | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/sfintii-zilei"
+  },
+  "desktop /rugaciunea-zilei": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {},
+   "jsonld_meta_interzis": {},
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Rugăciunea Zilei — Duminică | Calendar Ortodox | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/rugaciunea-zilei"
+  },
+  "desktop /rugaciunea-zilei/luni": {
+   "status": 404,
+   "erori_js": [],
+   "vizibil_interzis": {},
+   "jsonld_meta_interzis": {},
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "",
+   "canonical": ""
+  },
+  "desktop /rugaciunea-zilei/duminica": {
+   "status": 404,
+   "erori_js": [],
+   "vizibil_interzis": {},
+   "jsonld_meta_interzis": {},
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "",
+   "canonical": ""
+  },
+  "desktop /apostolul-zilei": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "text integral Apostol": [
+     "știind că omul nu se îndreptează"
+    ]
+   },
+   "jsonld_meta_interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ]
+   },
+   "cutie_sursa": 0,
+   "referinte": [
+    "Galateni 2, 16-20"
+   ],
+   "overflow": 0,
+   "titlu": "Apostolul Zilei — Galateni 2, 16-20 | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/apostolul-zilei"
+  },
+  "desktop /evanghelia-zilei": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "lectura „implicita” pe zi": [
+     "ziua cea dintâi a săptămânii, Maria Magdalena"
+    ]
+   },
+   "jsonld_meta_interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ]
+   },
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Evanghelia Zilei — Luca 8, 5-15 | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/evanghelia-zilei"
+  },
+  "desktop /calendar-ortodox-azi": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ],
+    "text integral Apostol": [
+     "știind că omul nu se îndreptează"
+    ]
+   },
+   "jsonld_meta_interzis": {
+    "eticheta post": [
+     "Dezlegare",
+     "Dezlegare",
+     "Dezlegare",
+     "Dezlegare"
+    ]
+   },
+   "cutie_sursa": 0,
+   "referinte": [
+    "Galateni 2, 16-20"
+   ],
+   "overflow": 0,
+   "titlu": "Calendar Ortodox Azi — Duminică, 11 octombrie 2026 | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/calendar-ortodox-azi"
+  },
+  "desktop /sfantul-zilei": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ]
+   },
+   "jsonld_meta_interzis": {
+    "eticheta post": [
+     "Zi de post",
+     "Zi de post",
+     "Dezlegare"
+    ]
+   },
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Sf. Ap. Filip, unul dintre cei 7 diaconi; Sf. Ier. Teofan Mărturisitorul — Duminică, 11 octombrie 2026 | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/sfantul-zilei"
+  },
+  "desktop /sinaxarul-zilei": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ]
+   },
+   "jsonld_meta_interzis": {
+    "eticheta post": [
+     "Dezlegare",
+     "Dezlegare"
+    ]
+   },
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Sinaxarul Zilei — Sf. Ap. Filip, unul dintre cei 7 diaconi | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/sinaxarul-zilei"
+  },
+  "desktop /sinaxar": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ]
+   },
+   "jsonld_meta_interzis": {
+    "eticheta post": [
+     "Dezlegare",
+     "Dezlegare"
+    ]
+   },
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Sinaxarul Zilei — Sf. Ap. Filip, unul dintre cei 7 diaconi | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/sinaxarul-zilei"
+  },
+  "desktop /predica-zilei": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {},
+   "jsonld_meta_interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ]
+   },
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Predica Zilei — Duminică, 11 octombrie 2026 | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/predica-zilei"
+  },
+  "desktop /calendar": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {
+    "eticheta post": [
+     "Dezlegare",
+     "Dezlegare",
+     "Zi de post"
+    ]
+   },
+   "jsonld_meta_interzis": {},
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Calendar Ortodox 2026 — Sfinții lunii | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/calendar"
+  },
+  "desktop /setari-notificari": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {},
+   "jsonld_meta_interzis": {},
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Setări Notificări Duhovnicești | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/setari-notificari"
+  },
+  "desktop /rugaciuni/tatal-nostru": {
+   "status": 200,
+   "erori_js": [],
+   "vizibil_interzis": {},
+   "jsonld_meta_interzis": {},
+   "cutie_sursa": 0,
+   "referinte": [],
+   "overflow": 0,
+   "titlu": "Tatăl Nostru — Text complet ortodox | Povești de Credință",
+   "canonical": "https://www.povestidecredinta.ro/rugaciuni/tatal-nostru"
+  }
+ },
+ "erori_totale": 0,
+ "404_inexistenta_mobil": 404,
+ "404_inexistenta_desktop": 404,
+ "pwa_sw_activ": [
+  "http://127.0.0.1:58837/sw.js"
+ ],
+ "pwa_instalabilitate_erori": [],
+ "pwa_cache_corectura": null,
+ "pwa_offline_acasa": {
+  "status": 200,
+  "titlu": "Calendar Ortodox 11 Octombrie 2026 — Sf. Ap. Filip, unul din",
+  "interzis": {
+   "eticheta post": [
+    "Zi de post"
+   ],
+   "citat cuvant de folos": [
+    "ogorul"
+   ]
+  }
+ },
+ "notificari": {
+  "salvat": "{\"dimineata\":true,\"pranz\":false,\"seara\":false,\"seara_ora\":\"21:30\",\"alerte_post\":false,\"dimineata_ora\":\"07:30\"}",
+  "comutator_dupa_revenire": true,
+  "stare_abonare": "✅ Acest telefon este abonat la notificări (cod XYZ789)",
+  "tag_dimineata": "{\"dimineata\":\"true\",\"dimineata_ora\":\"07:30\",\"pranz\":\"false\",\"seara\":\"false\",\"seara_ora\":\"21:30\",\"alerte_post\":\"false\"}",
+  "erori_js": []
+ },
+ "fara_date": {
+  "/": {
+   "interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ]
+   },
+   "erori_js": [],
+   "referinta": "Apostolul zilei"
+  },
+  "/apostolul-zilei": {
+   "interzis": {
+    "lectura „implicita” pe zi": [
+     "Căci câți sunt mânați de Duhul"
+    ]
+   },
+   "erori_js": [],
+   "referinta": "Apostolul zilei de azi, duminică 11 octombrie 2026, este din Epistola "
+  },
+  "/evanghelia-zilei": {
+   "interzis": {
+    "lectura „implicita” pe zi": [
+     "ziua cea dintâi a săptămânii, Maria Magdalena"
+    ]
+   },
+   "erori_js": [],
+   "referinta": "Evanghelia zilei de azi, duminică 11 octombrie 2026, este din Evanghel"
+  },
+  "/calendar-ortodox-azi": {
+   "interzis": {
+    "eticheta post": [
+     "Dezlegare"
+    ]
+   },
+   "erori_js": [],
+   "referinta": ""
+  }
+ }
+}

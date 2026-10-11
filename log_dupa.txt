@@ -1,0 +1,20 @@
+[dupa] pagini testate: 30 | probleme: 0
+  fara_date = {'/': {'interzis': {}, 'erori_js': [], 'referinta': 'Apostolul zilei'}, '/apostolul-zilei': {'interzis': {}, 'erori_js': [], 'referinta': 'Referința nu este disponibilă acum. Reveniți mai târziu.'}, '/evanghelia-zilei': {'interzis': {}, 'erori_js': [], 'referinta': 'Referința nu este disponibilă acum. Reveniți mai târziu.'}, '/calendar-ortodox-azi': {'interzis': {}, 'erori_js': [], 'referinta': ''}}
+  404_inexistenta_mobil = 404
+  pwa_sw_activ = ['http://127.0.0.1:41015/sw.js']
+  pwa_instalabilitate_erori = []
+  pwa_cache_corectura = pdc-static-v18
+  pwa_offline_acasa = {'status': 200, 'titlu': 'Calendar Ortodox 11 Octombrie 2026 — Sf. Ap. Filip, unul din', 'interzis': {}}
+  notificari = {'salvat': '{"dimineata":true,"pranz":false,"seara":false,"seara_ora":"21:30","alerte_post":false,"dimineata_ora":"07:30"}', 'comutator_dupa_revenire': True, 'stare_abonare': '✅ Acest telefon este abonat la notificări (cod XYZ789)', 'tag_dimineata': '{"dimineata":"true","dimineata_ora":"07:30","pranz":"false","seara":"false","seara_ora":"21:30","alerte_post":"false"}', 'erori_js': []}
+  mobil /apostolul-zilei | cutie sursa: 1 | referinte: ['Galateni 2, 16-20'] | titlu: Apostolul Zilei — Galateni 2, 16-20 | Povești de Credință | 
+  mobil /evanghelia-zilei | cutie sursa: 1 | referinte: ['Luca 8, 5-15'] | titlu: Evanghelia Zilei — Luca 8, 5-15 | Povești de Credință | 
+  mobil / | cutie sursa: 2 | referinte: ['Galateni 2, 16-20', 'Luca 8, 5-15'] | titlu: Calendar Ortodox 11 Octombrie 2026 — Sf. Ap. Filip, unul din | 
+  mobil /calendar-ortodox-azi | cutie sursa: 0 | referinte: ['Galateni 2, 16-20'] | titlu: Calendar Ortodox Azi — Duminică, 11 octombrie 2026 | Povești | 
+  mobil /rugaciunea-zilei/luni | cutie sursa: 4 | referinte: [] | titlu: Rugăciunea Zilei de Luni — Sfinții Îngeri Păzitori | Text In | 👼
+Rugăciunea Zilei de Luni — Către Sfinții Îngeri Păzitori
+
+Lunea este ziua înch
+  mobil /rugaciunea-zilei/duminica | cutie sursa: 4 | referinte: [] | titlu: Rugăciunea Zilei de Duminică — Învierea Domnului | Text Inte | ☀️
+Rugăciunea Zilei de Duminică — Ziua Învierii Domnului
+
+Duminica este ziua Înv
