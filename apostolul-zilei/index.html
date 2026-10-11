@@ -2,11 +2,11 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
-  <script src="/js/corectura-provizorie.js?v=5"></script>
+  <script src="/js/corectura-provizorie.js?v=6"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#FFFFFF">
   <title id="meta-title">Apostolul Zilei de Azi — Calendar Ortodox | Povești de Credință</title>
-  <meta name="description" id="meta-desc" content="Apostolul zilei de azi din calendarul ortodox: referința biblică și link către lectura publicată pe Doxologia. Actualizat zilnic. Alternativă la apostolul zilei doxologia.">
+  <meta name="description" id="meta-desc" content="Apostolul zilei de azi din calendarul ortodox: referința biblică și textul integral după Biblia 1914 (Ediția Sfântului Sinod). Actualizat zilnic.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.povestidecredinta.ro/apostolul-zilei">
   <link rel="manifest" href="/manifest.json">
@@ -14,7 +14,7 @@
   <link rel="icon" type="image/png" href="/images/favicon.png">
   <link rel="stylesheet" href="/css/style.css">
   <meta property="og:title" id="og-title" content="Apostolul Zilei de Azi | Povești de Credință">
-  <meta property="og:description" id="og-desc" content="Apostolul zilei de azi — referința biblică și link către lectura publicată pe Doxologia.">
+  <meta property="og:description" id="og-desc" content="Apostolul zilei de azi — referința biblică și textul integral după Biblia 1914 (Ediția Sfântului Sinod).">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://www.povestidecredinta.ro/apostolul-zilei">
   <meta property="og:image" content="https://www.povestidecredinta.ro/images/og-image.jpg">
@@ -124,17 +124,17 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
-        <span id="faq1-a">Apostolul zilei de azi este afișat mai sus: cartea, versetele și link către lectura publicată pe Doxologia.</span>
+        <span id="faq1-a">Apostolul zilei de azi este afișat mai sus: cartea, versetele și textul integral după Biblia 1914 (Ediția Sfântului Sinod).</span>
       </div>
     </div>
 
     <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.15);padding-bottom:14px;margin-bottom:14px">
       <div class="faq-intrebare" onclick="toggleFaq(this)" style="font-weight:600;color:var(--visineu);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem">
-        <span>Apostolul zilei doxologia — unde îl găsesc?</span>
+        <span>Apostolul zilei — unde îl găsesc?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
-        Apostolul zilei îl găsești chiar aici, pe povestidecredinta.ro, cu cartea, versetele și link către lectura publicată pe Doxologia. Pagina se actualizează zilnic conform Tipicului Bisericii Ortodoxe Române.
+        Apostolul zilei îl găsești chiar aici, pe povestidecredinta.ro, cu cartea, versetele și textul integral după Biblia 1914 (Ediția Sfântului Sinod). Pagina se actualizează zilnic conform Tipicului Bisericii Ortodoxe Române.
       </div>
     </div>
 
@@ -144,7 +144,7 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
-        Pe povestidecredinta.ro găsești atât <a href="/apostolul-zilei" style="color:var(--visineu)">Apostolul zilei</a> cât și <a href="/evanghelia-zilei" style="color:var(--visineu)">Evanghelia zilei</a> pe pagini dedicate, cu referința biblică și link către lectura publicată pe Doxologia. Pe <a href="/calendar-ortodox-azi" style="color:var(--visineu)">Calendar Ortodox Azi</a> le găsești pe amândouă într-o singură pagină.
+        Pe povestidecredinta.ro găsești atât <a href="/apostolul-zilei" style="color:var(--visineu)">Apostolul zilei</a> cât și <a href="/evanghelia-zilei" style="color:var(--visineu)">Evanghelia zilei</a> pe pagini dedicate, cu referința biblică și textul integral după Biblia 1914 (Ediția Sfântului Sinod). Pe <a href="/calendar-ortodox-azi" style="color:var(--visineu)">Calendar Ortodox Azi</a> le găsești pe amândouă într-o singură pagină.
       </div>
     </div>
 
@@ -230,11 +230,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Meta
   document.getElementById('meta-title').textContent = `Apostolul Zilei de Azi, ${dataFormatata} | Povești de Credință`;
-  document.getElementById('meta-desc').setAttribute('content', `Apostolul zilei de azi, ${dataFormatata}: referința biblică din calendarul ortodox și link către lectura publicată pe Doxologia. Alternativă la apostolul zilei doxologia.`);
+  document.getElementById('meta-desc').setAttribute('content', `Apostolul zilei de azi, ${dataFormatata}: referința din calendarul ortodox și textul integral după Biblia 1914 (Ediția Sfântului Sinod).`);
 
   // FAQ dinamic
   document.getElementById('faq1-q').textContent = `Care este apostolul zilei de azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}?`;
-  document.getElementById('faq1-a').textContent = `Referința Apostolului zilei de azi, ${dataFormatata}, este afișată mai sus, cu link către lectura publicată pe Doxologia.`;
+  document.getElementById('faq1-a').textContent = `Apostolul zilei de azi, ${dataFormatata}, este afișat mai sus, cu textul integral după Biblia 1914 (Ediția Sfântului Sinod).`;
 
   // Schema Article
   document.getElementById('schema-article').textContent = JSON.stringify({
@@ -259,8 +259,8 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       {
         "@type": "Question",
-        "name": "Apostolul zilei doxologia — unde îl găsesc?",
-        "acceptedAnswer": { "@type": "Answer", "text": `Apostolul zilei îl găsești pe povestidecredinta.ro cu referința biblică și link către lectura publicată pe Doxologia.` }
+        "name": "Apostolul zilei — unde îl găsesc?",
+        "acceptedAnswer": { "@type": "Answer", "text": `Apostolul zilei îl găsești pe povestidecredinta.ro cu referința biblică și textul integral după Biblia 1914 (Ediția Sfântului Sinod).` }
       },
       {
         "@type": "Question",

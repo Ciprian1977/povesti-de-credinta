@@ -85,22 +85,25 @@ with sync_playwright() as p:
         info = {'scripturi': src, 'versiuni_app': v,
                 'nou_alerte_suspendate': ('suspendat temporar' in pg.content()) if path in ('/', '/setari-notificari') else None,
                 'fara_culoare_liturgica': ('liturgic' not in t) if path == '/calendar-ortodox-azi' else None,
-                'doxologia_formulare_noua': ('Citește lectura pe Doxologia' in t) if path == '/evanghelia-zilei' else None,
+                'text_biblia_1914': ('una a căzut lângă cale' in t and 'Biblia 1914' in t) if path == '/evanghelia-zilei' else None,
                 'regula_generala': ('regulă generală' in t) if path.endswith('miercuri') else None}
         rez['pagini'][path] = info
-        if len(v) > 1 or (v and v != [os.environ.get('PDC_VERSIUNE_APP', '20')]): problema(f'{path}: versiuni de app amestecate sau vechi {v}')
+        if len(v) > 1 or (v and v != [os.environ.get('PDC_VERSIUNE_APP', '21')]): problema(f'{path}: versiuni de app amestecate sau vechi {v}')
         if any(x is False for x in info.values()): problema(f'{path}: conținut vechi după actualizare {info}')
-    if any(k.endswith('-v' + os.environ.get('PDC_CACHE_VECHI', '21')) for k in rez['nou_cache']): problema(f'cache-uri vechi rămase: {rez["nou_cache"]}')
-    if not any(k.endswith('-v' + os.environ.get('PDC_CACHE_NOU', '22')) for k in rez['nou_cache']): problema(f'cache nou lipsă: {rez["nou_cache"]}')
+    if any(k.endswith('-v' + os.environ.get('PDC_CACHE_VECHI', '22')) for k in rez['nou_cache']): problema(f'cache-uri vechi rămase: {rez["nou_cache"]}')
+    if not any(k.endswith('-v' + os.environ.get('PDC_CACHE_NOU', '23')) for k in rez['nou_cache']): problema(f'cache nou lipsă: {rez["nou_cache"]}')
     if err: problema(f'erori JS după actualizare: {err}')
 
     # 4. Offline după actualizare
     ctx.set_offline(True); rez['offline'] = {}
-    for path in ['/', '/calendar-ortodox-azi', '/setari-notificari']:
+    for path in ['/', '/calendar-ortodox-azi', '/setari-notificari', '/evanghelia-zilei']:
         try:
             r = pg.goto(B + path, wait_until='domcontentloaded', timeout=15000); pg.wait_for_timeout(600)
             rez['offline'][path] = {'status': r.status if r else None, 'titlu': pg.title()[:50], 'alerte_suspendate': 'suspendat temporar' in pg.content() if path != '/calendar-ortodox-azi' else None}
             if not r or r.status != 200: problema(f'offline {path}: {rez["offline"][path]}')
+            if path == '/evanghelia-zilei':
+                pg.wait_for_timeout(1500); rez['offline'][path]['text_1914'] = 'una a căzut lângă cale' in pg.evaluate('document.body.innerText')
+                if not rez['offline'][path]['text_1914']: problema('offline /evanghelia-zilei: lipsește textul din Biblia 1914')
         except Exception as e:
             rez['offline'][path] = 'eroare ' + str(e)[:80]; problema(f'offline {path}: {e}')
     ctx.set_offline(False)

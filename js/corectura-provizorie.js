@@ -6,7 +6,7 @@
  *     înainte să ajungă la paginile sitului: fără eticheta de post, fără „cuvântul de folos”,
  *     fără textul integral al Apostolului și al Evangheliei. Baza de date NU se modifică.
  *  2. Elementele care afișau aceste informații sunt ascunse.
- *  3. În locul textului integral apare referința biblică + link către lectura publicată pe Doxologia.
+ *  3. În locul textului generat apare textul integral al Apostolului și Evangheliei din Biblia 1914 (Ediția Sfântului Sinod, domeniu public).
  *  4. Pentru 1 octombrie – 31 decembrie 2026, sfinții afișați vin din calendarul validat (data/calendar-validat-2026-t4.json).
  *
  * Pentru a anula măsura: se scoate acest fișier din pagini (sau PDC_CORECTURA.activ = false).
@@ -107,7 +107,7 @@
         return Promise.all([r.clone().json(), calendarValidat()]).then(function (x) {
           var d = x[0], V = x[1];
           if (esteZile) {
-            (Array.isArray(d) ? d : [d]).forEach(function (rand) { curata(rand); aplicaValidat(rand, V); });
+            (Array.isArray(d) ? d : [d]).forEach(function (rand) { curata(rand); aplicaValidat(rand, V); retineLecturi(rand); });
           } else if (d && typeof d === 'object') {
             // calendarul static vechi (fallback): zilele validate îl înlocuiesc, fără etichete de post
             Object.keys(V).forEach(function (iso) {
@@ -135,30 +135,113 @@
     '.lectura-sursa a.lectura-link{display:inline-block;padding:10px 16px;border-radius:999px;background:#002B7F;color:#fff;' +
     'text-decoration:none;font-weight:600}' +
     '.lectura-sursa a.lectura-link:focus-visible{outline:3px solid #FCD116;outline-offset:2px}' +
-    '.lectura-sursa .lectura-nota{margin:10px 0 0;font-size:.92rem;color:#555}';
+    '.lectura-sursa .lectura-nota{margin:10px 0 0;font-size:.92rem;color:#555}' +
+    '.lectura-1914{background:#fff;border:1px solid #E5E9F2;font-family:Newsreader,Georgia,serif;font-size:1.18rem;line-height:1.75;color:#1a1a1a}' +
+    '.lectura-1914 .lectura-text p{margin:0 0 .6em}' +
+    '.lectura-1914 sup{font-family:Inter,system-ui,sans-serif;font-size:.68em;font-weight:600;color:#002B7F;margin-right:2px;vertical-align:.45em}' +
+    '.lectura-1914 .lectura-asteptare{color:#555;font-style:italic}' +
+    '.lectura-1914 .lectura-nota{font-family:Inter,system-ui,sans-serif;font-size:.85rem;border-top:1px solid #E5E9F2;padding-top:8px}';
   var st = document.createElement('style');
   st.id = 'corectura-provizorie-css';
   st.textContent = css;
   (document.head || document.documentElement).appendChild(st);
 
   // ── 3. Referință + link în locul textului integral ─────────────────────────
-  function dataAzi() {
-    try {
-      var p = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Bucharest', day: 'numeric', month: 'numeric' }).formatToParts(new Date());
-      var z = +p.find(function (x) { return x.type === 'day'; }).value, l = +p.find(function (x) { return x.type === 'month'; }).value;
-      return { zi: z, luna: l };
-    } catch (e) { var d = new Date(); return { zi: d.getDate(), luna: d.getMonth() + 1 }; }
+  // Textul integral al Apostolului și Evangheliei: Biblia 1914, Ediția Sfântului Sinod (domeniu public),
+  // din fișiere statice /data/biblia-1914/<carte>.json (vezi data/biblia-1914/SURSA.md). Fără AI, fără linkuri externe.
+  var BIBLIA_V = '1';
+  var lecturi = {};
+  function retineLecturi(r) {
+    if (r && r.data_calendaristica) lecturi[r.data_calendaristica] = {
+      apostol: [r.apostol_carte, r.apostol_versete], evanghelie: [r.evanghelie_carte, r.evanghelie_versete] };
   }
-  function linkSursa() {
-    var d = dataAzi();
-    return 'https://doxologia.ro/' + d.zi + '-' + LUNI[d.luna - 1];
+  function referintaAzi(tip) {
+    var iso = isoRo(0), l = lecturi[iso];
+    if (!l) {
+      try { var c = JSON.parse(localStorage.getItem('pdc_cache_v5') || 'null');
+        (c && c.rows || []).forEach(function (r) { if (r.data_calendaristica === iso) retineLecturi(r); }); l = lecturi[iso]; } catch (e) {}
+    }
+    return l ? l[tip] : null;
+  }
+  // „I Corinteni” / „1 Corinteni” / „Faptele Apostolilor” / „Filipeni” -> numele fișierului
+  function fisierCarte(carte) {
+    var c = fd(carte).replace(/\s+/g, ' ').trim()
+      .replace(/^(sfanta evanghelie de la|evanghelia dupa|epistola (sfantului apostol pavel )?catre|epistola) /, '')
+      .replace(/^(iii|3)\.? /, '3 ').replace(/^(ii|2)\.? /, '2 ').replace(/^(i|1)\.? /, '1 ');
+    var ALIAS = { 'faptele apostolilor': 'fapte', 'fapte': 'fapte', 'filipeni': 'filipeni', 'filipenii': 'filipeni', 'filippiseni': 'filipeni',
+      'coloseni': 'coloseni', 'colaseni': 'coloseni', '1 tesaloniceni': '1-tesaloniceni', '2 tesaloniceni': '2-tesaloniceni',
+      '1 tesalonicheni': '1-tesaloniceni', '2 tesalonicheni': '2-tesaloniceni', 'iacob': 'iacov' };
+    if (ALIAS[c]) return ALIAS[c];
+    var ok = ['matei', 'marcu', 'luca', 'ioan', 'romani', '1 corinteni', '2 corinteni', 'galateni', 'efeseni', '1 timotei', '2 timotei', 'tit',
+      'filimon', 'evrei', 'iacov', '1 petru', '2 petru', '1 ioan', '2 ioan', '3 ioan', 'iuda'];
+    return ok.indexOf(c) !== -1 ? c.replace(' ', '-') : null;
+  }
+  // „8, 5-15” | „8:5-15” | „15:17-27; 16:1-2” | „10, 32-33; 37-38; 19, 27-30” | „8:28-9:1” -> [[cap, v], ...]
+  function versete(ref) {
+    var lista = [], cap = null, ok = true;
+    function interval(a, b) { for (var k = a; k <= b; k++) lista.push([cap, k]); }
+    String(ref || '').replace(/\([^)]*\)/g, '').split(/;|\s+și\s+/).forEach(function (seg) {
+      seg = seg.trim(); if (!seg || !ok) return;
+      var m = /^(\d+)\s*([,:])\s*(.+)$/.exec(seg), sep = ':';
+      if (m) { cap = +m[1]; sep = m[2]; seg = m[3]; }
+      if (cap === null) { ok = false; return; }
+      var peste = new RegExp('^(\\d+)\\s*[-–]\\s*(\\d+)\\s*' + sep + '\\s*(\\d+)$').exec(seg); // 8:28-9:1 sau 8, 28-9, 1
+      if (peste && +peste[2] === cap + 1) { interval(+peste[1], 200); cap = +peste[2]; interval(1, +peste[3]); return; }
+      seg.split(',').forEach(function (p) {
+        p = p.trim(); var x;
+        if ((x = /^(\d+)\s*[-–]\s*(\d+)$/.exec(p))) interval(+x[1], +x[2]);
+        else if ((x = /^(\d+)$/.exec(p))) interval(+x[1], +x[1]);
+        else ok = false;
+      });
+    });
+    return ok && lista.length ? lista : null;
+  }
+  var carti = {};
+  function incarcaCarte(f) {
+    if (!carti[f]) carti[f] = fetch('/data/biblia-1914/' + f + '.json?v=' + BIBLIA_V).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
+    return carti[f];
+  }
+  function escapa(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function roman(r) {
+    var V = { I: 1, V: 5, X: 10, L: 50 }, n = 0;
+    for (var i = 0; i < r.length; i++) n += V[r[i]] < (V[r[i + 1]] || 0) ? -V[r[i]] : V[r[i]];
+    return String(n);
+  }
+  function textPericopa(carte, ref) {
+    // Formate întâlnite în baza de date: „Matei 10:32-33” într-un singur câmp, „Ioan 6:35-39” în câmpul versetelor, capitole „IX, 1-8”
+    var t = /^((?:[123]|I{1,3})\s+)?([^\d]+?)\s+(\d.*)$/.exec(String(carte || '').trim());
+    if (t) { carte = (t[1] || '') + t[2]; if (!String(ref || '').trim()) ref = t[3]; }
+    ref = String(ref || '').trim().replace(/^((?:[123]|I{1,3})\s+)?[A-Za-zĂÂÎȘŞȚŢăâîșşțţ]{3,}(\s+[A-Za-zăâîșşțţ]+)?\s+(?=\d)/, '');
+    ref = ref.replace(/(^|;)\s*([IVXL]+)\s*(?=[,:])/g, function (_, a, r) { return a + roman(r); });
+    var f = fisierCarte(carte), vs = versete(ref);
+    if (!f || !vs) return Promise.reject(new Error('referință necunoscută'));
+    return incarcaCarte(f).then(function (B) {
+      var html = [], prim = true;
+      vs.forEach(function (cv) {
+        var cap = B[cv[0]]; if (!cap) return;
+        var v = cv[1], t = cap[v];
+        if (t === undefined) return;                                   // peste sfârșitul capitolului (interval deschis)
+        if (t === '' && prim) { while (v > 1 && cap[v] === '') v--; t = cap[v]; }  // textul e în versetul precedent (numerotarea 1914)
+        if (t === '') return;
+        prim = false;
+        html.push('<p><sup>' + v + '</sup> ' + escapa(t) + '</p>');
+      });
+      if (!html.length) throw new Error('fără versete');
+      return html.join('');
+    });
   }
   function cutie(tip) {
     var numeLectura = tip === 'apostol' ? 'Apostolului' : 'Evangheliei';
-    return '<div class="lectura-sursa" data-corectura="1">' +
-      '<p>Referința biblică a ' + numeLectura + ' zilei este afișată mai sus. Lectura completă o puteți citi pe Doxologia.</p>' +
-      '<a class="lectura-link" href="' + linkSursa() + '" target="_blank" rel="noopener">Citește lectura pe Doxologia ↗</a>' +
-      '</div>';
+    return '<div class="lectura-sursa lectura-1914" data-corectura="1" data-lectura="' + tip + '">' +
+      '<div class="lectura-text"><p class="lectura-asteptare">Pregătim textul ' + numeLectura + '…</p></div>' +
+      '<p class="lectura-nota">Textul: Biblia 1914, Ediția Sfântului Sinod.</p></div>';
+  }
+  function umple(el, tip) {
+    var r = referintaAzi(tip), box = el.querySelector('.lectura-text');
+    var nu = '<p>Textul ' + (tip === 'apostol' ? 'Apostolului' : 'Evangheliei') + ' zilei nu este disponibil momentan.</p>';
+    if (!box) return;
+    if (!r || !r[0] || !r[1]) { box.innerHTML = nu; return; }
+    textPericopa(r[0], r[1]).then(function (h) { box.innerHTML = h; }, function () { box.innerHTML = nu; });
   }
   window.pdcCutieLectura = cutie;
 
@@ -174,6 +257,7 @@
         if (el.getAttribute('data-corectura') === '1' && el.querySelector('.lectura-sursa')) return;
         el.setAttribute('data-corectura', '1');
         el.innerHTML = cutie(t[1]);
+        umple(el, t[1]);
       });
     });
     // Întrebările „Este post azi?” din secțiunile FAQ

@@ -61,8 +61,9 @@ SDK = """(function(){var tags={};var OS={Notifications:{requestPermission:functi
 INTERZIS = {
     'eticheta post': re.compile(r'Zi de post|Dezlegare|Post negru|post aspru|Har[țt]i\b', re.I),
     'citat cuvant de folos': re.compile(r'ogorul|Rugăciunea este hrana sufletului|Serafim de Sarov|comori pe care nu le-ai cunoscut|Smerenia este temelia'),
-    'text integral Apostol': re.compile(r'știind că omul nu se îndreptează|să umblăm cu vrednicie'),
-    'text integral Evanghelie': re.compile(r'Ieșit-a semănătorul|Eu sunt lumina lumii'),
+    # textul generat din baza de date (nu cel din Biblia 1914, care e permis și cerut)
+    'text generat Apostol': re.compile(r'Fraților, știind că omul|să umblăm cu vrednicie'),
+    'text generat Evanghelie': re.compile(r'Zis-a Domnul pilda aceasta|una a căzut lângă drum|Eu sunt lumina lumii'),
     'lectura „implicita” pe zi': re.compile(r'ziua cea dintâi a săptămânii, Maria Magdalena|La început era Cuvântul|Credința este încredințarea|De aș grăi în limbile|Căci câți sunt mânați de Duhul'),
     'afirmatie liturgica de rezerva': re.compile(r'după Heruvic', re.I),
 }
@@ -98,7 +99,9 @@ with sync_playwright() as p:
             info = {
                 'status': st, 'erori_js': err,
                 'vizibil_interzis': gasit, 'jsonld_meta_interzis': gasit_ascuns,
-                'cutie_sursa': pg.locator('.lectura-sursa a[href*="doxologia.ro"]').count() if st == 200 else 0,
+                'link_doxologia_lectura': pg.locator('.lectura-sursa a[href*="doxologia"]').count() if st == 200 else 0,
+                'text_1914': {k: (x in vizibil) for k, x in [('evanghelie', 'Ieșit-a semănătorul să semene sămânța sa. Și semănând el, una a căzut lângă cale'),
+                              ('apostol', 'Știind că nu se îndreptează omul din faptele legei')]},
                 'referinte': [x for x in ['Galateni 2, 16-20', 'Luca 8, 5-15'] if x in vizibil],
                 'overflow': pg.evaluate('document.documentElement.scrollWidth - document.documentElement.clientWidth') if st == 200 else 0,
                 'titlu': pg.title() if st == 200 else '',
@@ -129,7 +132,7 @@ with sync_playwright() as p:
     cdp = ctx.new_cdp_session(pg)
     try: rez['pwa_instalabilitate_erori'] = [e.get('errorId') for e in cdp.send('Page.getInstallabilityErrors').get('installabilityErrors', [])]
     except Exception as e: rez['pwa_instalabilitate_erori'] = 'n/a ' + str(e)
-    rez['pwa_cache_corectura'] = pg.evaluate("caches.keys().then(async ks=>{for(const k of ks){const c=await caches.open(k);const m=await c.match('/js/corectura-provizorie.js?v=5');if(m)return k}return null})")
+    rez['pwa_cache_corectura'] = pg.evaluate("caches.keys().then(async ks=>{for(const k of ks){const c=await caches.open(k);const m=await c.match('/js/corectura-provizorie.js?v=6');if(m)return k}return null})")
     ctx.set_offline(True)
     try:
         r = pg.reload(wait_until='domcontentloaded'); pg.wait_for_timeout(800)
@@ -185,10 +188,13 @@ for k, v in rez['pagini'].items():
 for k in ['mobil /apostolul-zilei', 'mobil /evanghelia-zilei', 'desktop /apostolul-zilei', 'desktop /evanghelia-zilei']:
     v = rez['pagini'].get(k, {})
     if v.get('status') == 200 and len(v.get('referinte', [])) < 1: probleme.append(f'{k}: referința lecturii nu apare')
+    if v.get('link_doxologia_lectura'): probleme.append(f'{k}: link spre Doxologia în locul textului')
+    if k.endswith(' /evanghelia-zilei') and not v['text_1914']['evanghelie']: probleme.append(f'{k}: lipsește textul Evangheliei din Biblia 1914')
+    if k.endswith(' /apostolul-zilei') and not v['text_1914']['apostol']: probleme.append(f'{k}: lipsește textul Apostolului din Biblia 1914')
 print(f'[{ET}] pagini testate: {len(rez["pagini"])} | probleme: {len(probleme)}')
 for x in probleme: print('  -', x)
 for k in ['fara_date', '404_inexistenta_mobil', 'pwa_sw_activ', 'pwa_instalabilitate_erori', 'pwa_cache_corectura', 'pwa_offline_acasa', 'notificari']:
     print(' ', k, '=', rez.get(k))
 for k in ['mobil /apostolul-zilei', 'mobil /evanghelia-zilei', 'mobil /', 'mobil /calendar-ortodox-azi', 'mobil /rugaciunea-zilei/luni', 'mobil /rugaciunea-zilei/duminica']:
     v = rez['pagini'].get(k, {})
-    print(' ', k, '| cutie sursa:', v.get('cutie_sursa'), '| referinte:', v.get('referinte'), '| titlu:', (v.get('titlu') or '')[:60], '|', v.get('rugaciune', ''))
+    print(' ', k, '| text 1914:', v.get('text_1914'), '| referinte:', v.get('referinte'), '| titlu:', (v.get('titlu') or '')[:60], '|', v.get('rugaciune', ''))

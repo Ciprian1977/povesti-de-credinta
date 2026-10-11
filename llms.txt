@@ -9,8 +9,8 @@ Povești de Credință este un site de calendar ortodox românesc, rugăciuni, a
 - [Calendar Ortodox — Sfântul Zilei](https://www.povestidecredinta.ro/) — calendar ortodox zilnic cu sfinții zilei și referințele lecturilor
 - [Sinaxar](https://www.povestidecredinta.ro/sinaxar) — viețile sfinților prăznuiți în ziua respectivă
 - [Sfinții Zilei](https://www.povestidecredinta.ro/sfintii-zilei) — icoana, troparul și prăznuirea sfinților zilei
-- [Evanghelia Zilei](https://www.povestidecredinta.ro/evanghelia-zilei) — referința Evangheliei citite la Sfânta Liturghie, cu link către lectura publicată pe Doxologia
-- [Apostolul Zilei](https://www.povestidecredinta.ro/apostolul-zilei) — referința pericopei apostolice a zilei, cu link către lectura publicată pe Doxologia
+- [Evanghelia Zilei](https://www.povestidecredinta.ro/evanghelia-zilei) — referința Evangheliei citite la Sfânta Liturghie, cu textul integral după Biblia 1914 (Ediția Sfântului Sinod)
+- [Apostolul Zilei](https://www.povestidecredinta.ro/apostolul-zilei) — referința pericopei apostolice a zilei, cu textul integral după Biblia 1914 (Ediția Sfântului Sinod)
 - [Predica Zilei](https://www.povestidecredinta.ro/predica-zilei) — o reflecție duhovnicească pentru ziua de azi
 - [Rugăciunea Zilei](https://www.povestidecredinta.ro/rugaciunea-zilei) — rugăciunile oficiale ale fiecărei zile din săptămână
 
