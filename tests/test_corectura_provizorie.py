@@ -129,7 +129,7 @@ with sync_playwright() as p:
     cdp = ctx.new_cdp_session(pg)
     try: rez['pwa_instalabilitate_erori'] = [e.get('errorId') for e in cdp.send('Page.getInstallabilityErrors').get('installabilityErrors', [])]
     except Exception as e: rez['pwa_instalabilitate_erori'] = 'n/a ' + str(e)
-    rez['pwa_cache_corectura'] = pg.evaluate("caches.keys().then(async ks=>{for(const k of ks){const c=await caches.open(k);const m=await c.match('/js/corectura-provizorie.js?v=3');if(m)return k}return null})")
+    rez['pwa_cache_corectura'] = pg.evaluate("caches.keys().then(async ks=>{for(const k of ks){const c=await caches.open(k);const m=await c.match('/js/corectura-provizorie.js?v=4');if(m)return k}return null})")
     ctx.set_offline(True)
     try:
         r = pg.reload(wait_until='domcontentloaded'); pg.wait_for_timeout(800)
