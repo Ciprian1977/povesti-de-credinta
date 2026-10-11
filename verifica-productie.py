@@ -1,26 +1,20 @@
-# DOAR CITIRE: explorarea sursei Biblia 1914 pe Wikisource (API public MediaWiki). Nicio scriere.
-import json, urllib.request, urllib.parse, re
+# DOAR CITIRE: formatul textului Biblia 1914 pe Wikisource + licența. Nicio scriere.
+import json, urllib.request, urllib.parse, re, os
 out = []
 def log(s): out.append(str(s)); print(s)
-UA = {'User-Agent': 'povestidecredinta-cercetare/1.0 (contact: site povestidecredinta.ro)'}
+UA = {'User-Agent': 'povestidecredinta-cercetare/1.0 (site povestidecredinta.ro)'}
 def api(**p):
     p.update(format='json', formatversion=2)
-    u = 'https://ro.wikisource.org/w/api.php?' + urllib.parse.urlencode(p)
-    return json.load(urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=30))
-try:
-    r = urllib.request.urlopen(urllib.request.Request('https://ro.wikisource.org/robots.txt', headers=UA), timeout=30).read().decode()
-    log('[robots] api.php interzis? ' + str(bool(re.search(r'Disallow:\s*/w/api\.php', r))))
-except Exception as e: log('[robots] ' + str(e))
-pagini = []; cont = {}
-while True:
-    d = api(action='query', list='allpages', apprefix='Biblia 1914/', apnamespace=0, aplimit=500, **cont)
-    pagini += [x['title'] for x in d['query']['allpages']]
-    if 'continue' not in d: break
-    cont = {'apcontinue': d['continue']['apcontinue']}
-log(f'[pagini] {len(pagini)}'); log('\n'.join(pagini[:400]))
-for t in ['Biblia 1914', 'Biblia 1914/Evanghelia după Luca', 'Biblia 1914/Evanghelia după Luca/8', 'Biblia 1914/Epistola către Galateni']:
-    try:
-        d = api(action='parse', page=t, prop='wikitext')
-        w = d['parse']['wikitext']; log(f'\n===== {t} ({len(w)} caractere) =====\n' + w[:2500])
-    except Exception as e: log(f'\n===== {t}: {e}')
+    return json.load(urllib.request.urlopen(urllib.request.Request('https://ro.wikisource.org/w/api.php?' + urllib.parse.urlencode(p), headers=UA), timeout=30))
+os.makedirs('out/biblia1914', exist_ok=True)
+for carte in ['Luca', 'Galateni', 'Matei', 'Ioan', 'Faptele Apostolilor', 'Evrei']:
+    d = api(action='parse', page='Biblia 1914/' + carte, prop='wikitext|templates|categories')
+    w = d['parse']['wikitext']
+    open(f'out/biblia1914/{carte}.wiki', 'w').write(w)
+    log(f'\n===== {carte}: {len(w)} caractere; șabloane={[t["title"] for t in d["parse"].get("templates", [])][:15]}; categorii={[c["category"] for c in d["parse"].get("categories", [])][:10]}')
+    log(w[:1500])
+    i = w.find('Capitolul 8') if carte == 'Luca' else w.find('Capitolul 2') if carte == 'Galateni' else -1
+    if i > 0: log('----- fragment -----\n' + w[i:i+4000])
+d = api(action='query', titles='Biblia 1914/Luca', prop='info|revisions', rvprop='user|timestamp|comment', rvlimit=5)
+log('\n[istoric] ' + json.dumps(d['query']['pages'][0].get('revisions', []), ensure_ascii=False)[:800])
 open('out/productie.txt', 'w').write('\n'.join(out) + '\n')
