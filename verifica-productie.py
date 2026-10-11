@@ -1,8 +1,7 @@
 # DOAR CITIRE: descarcă wikitextul cărților Noului Testament din Biblia 1914 (Wikisource, domeniu public). Nicio scriere pe site.
 import json, urllib.request, urllib.parse, os, time
 UA = {'User-Agent': 'povestidecredinta-cercetare/1.0 (site povestidecredinta.ro)'}
-CARTI = ['Filippiseni', 'Colaseni', '1 Tesalonicheni', '2 Tesalonicheni', '1 Timotei', '2 Timotei', 'Tit', 'Filimon', 'Evrei', 'Iacov', '1 Petru', '2 Petru',
-         '1 Ioan', '2 Ioan', '3 Ioan', 'Iuda']
+CARTI = ['1 Petru', '2 Petru', '1 Ioan', '2 Ioan', '3 Ioan', 'Iuda']
 os.makedirs('out/biblia1914', exist_ok=True); out = []
 for c in CARTI:
   try:
@@ -11,7 +10,7 @@ for c in CARTI:
     pg = d['query']['pages'][0]; rv = pg['revisions'][0]
     open(f'out/biblia1914/{c}.wiki', 'w').write(rv['slots']['main']['content'])
     out.append(f"{c}\trevid={rv['revid']}\t{rv['timestamp']}\t{len(rv['slots']['main']['content'])}")
-    time.sleep(1)
+    time.sleep(8)
   except Exception as e:
     out.append(f'{c}\tEROARE {type(e).__name__}: {str(e)[:200]} | {json.dumps(d, ensure_ascii=False)[:300] if "d" in dir() else ""}')
 open('out/productie.txt', 'w').write('\n'.join(out) + '\n'); print('\n'.join(out))
