@@ -1,0 +1,47 @@
+== 404 reale ==
+/pagina-care-nu-exista-12345 404 text/plain; charset=utf-8 79 
+/sfinti/inexistent 404 text/plain; charset=utf-8 79 
+/calendar-ortodox/2026/10/11 404 text/plain; charset=utf-8 79 
+/abc.html 308 text/plain 15 https://www.povestidecredinta.ro/abc
+/rugaciuni/inexistenta 404 text/plain; charset=utf-8 79 
+== Fisiere care NU trebuie publice ==
+/povesti-de-credinta-v1.zip 404 text/plain; charset=utf-8 79 
+/add_supabase_to_pages.py 404 text/plain; charset=utf-8 79 
+/gen_rugaciuni.py 404 text/plain; charset=utf-8 79 
+/scripts/genereaza-continut.js 404 text/plain; charset=utf-8 79 
+/scripts/package.json 404 text/plain; charset=utf-8 79 
+/.github/workflows/daily-content.yml 200 text/yaml; charset=utf-8 2634 
+/.env 404 text/plain; charset=utf-8 79 
+/.git/config 404 text/plain; charset=utf-8 79 
+/README.md 404 text/plain; charset=utf-8 79 
+/NOTIFICARI-SETUP.md 200 text/markdown; charset=utf-8 4279 
+/.vercelignore 404 text/plain; charset=utf-8 79 
+/vercel.json 404 text/plain; charset=utf-8 79 
+/data/lectionar.json 200 application/json; charset=utf-8 72359 
+/data/calendar.json 200 application/json; charset=utf-8 9283 
+/rugaciuni.json 200 application/json; charset=utf-8 45969 
+== Redirecturi domeniu ==
+http://povestidecredinta.ro/ 308 text/plain 14 https://povestidecredinta.ro/
+https://povestidecredinta.ro/ 308 text/plain 15 https://www.povestidecredinta.ro/
+http://www.povestidecredinta.ro/ 308 text/plain 14 https://www.povestidecredinta.ro/
+https://www.povestidecredinta.ro/index.html 308 text/plain 15 https://www.povestidecredinta.ro/
+https://www.povestidecredinta.ro/calendar.html 308 text/plain 15 https://www.povestidecredinta.ro/calendar
+https://www.povestidecredinta.ro/calendar/ 308 text/plain 15 https://www.povestidecredinta.ro/calendar
+== PWA ==
+/manifest.json 200 application/json; charset=utf-8 2454 
+/sw.js 200 application/javascript; charset=utf-8 7976 
+/offline.html 308 text/plain 15 https://www.povestidecredinta.ro/offline
+/onesignal/OneSignalSDKWorker.js 200 application/javascript; charset=utf-8 76 
+/images/icon-192.png 200 image/png 61103 
+/images/icon-512.png 200 image/png 2526271 
+/robots.txt 200 text/plain; charset=utf-8 489 
+/sitemap.xml 200 application/xml 8015 
+/llms.txt 200 text/plain; charset=utf-8 2842 
+icon /images/icon-72.png 200 image/png 10098 
+icon /images/icon-96.png 200 image/png 17064 
+icon /images/icon-128.png 200 image/png 28928 
+icon /images/icon-144.png 200 image/png 35971 
+icon /images/icon-152.png 200 image/png 39792 
+icon /images/icon-192.png 200 image/png 61103 
+icon /images/icon-384.png 200 image/png 227947 
+icon /images/icon-512.png 200 image/png 2526271 

@@ -1,0 +1,15 @@
+== Supabase (cheia publica anon din sit) ==
+openapi 401
+-- citire 1 rand
+[{"data_calendaristica":"2026-05-03"}] HTTP 200
+-- test scriere NEDISTRUCTIV: INSERT cu o data care EXISTA deja (RLS sau cheia unica refuza; nimic nu se scrie), plus tx=rollback
+{"code":"42501","details":null,"hint":null,"message":"new row violates row-level security policy for table \"zile_ortodoxe\""} HTTP 401
+-- test UPDATE pe o data inexistenta (0 randuri), tx=rollback
+[] HTTP 200
+-- verificare dupa: randul 2026-10-11 neschimbat
+[{"data_calendaristica":"2026-10-11","sfant_nume":"Duminica a 21-a după Rusalii (Pilda semănătorului – a Sfinților Părinți de la Sinodul al VII-lea Ecumenic); Sfântul Apostol Filip, unul din 
+
+-- coloane (lungimi)
+{'data_calendaristica': 10, 'sfant_nume': 387, 'sfant_viata': 1064, 'tropar': 263, 'tip_post': 9, 'culoare_liturgica': 5, 'rugaciunea_zilei': 273, 'sinaxar': 2951, 'apostol_carte': 8, 'apostol_versete': 8, 'apostol_text': 771, 'evanghelie_carte': 4, 'evanghelie_versete': 7, 'evanghelie_text': 1343, 'predica': 1280, 'cuvant_folos': 177, 'sfinti_secundari': 229, 'icoana_url': 0, 'meta_description': 163, 'created_at': 26, 'titlu_sfinti': 0, 'sinaxar_complet': 0, 'post_info': 0}
+-- numar zile in tabel
+content-range: 0-160/161

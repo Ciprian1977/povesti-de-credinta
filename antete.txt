@@ -1,0 +1,20 @@
+== Antete securitate ==
+HTTP/2 200 
+accept-ranges: bytes
+access-control-allow-origin: *
+age: 0
+cache-control: public, max-age=0, must-revalidate
+content-disposition: inline
+content-type: text/html; charset=utf-8
+date: Sun, 11 Oct 2026 06:43:57 GMT
+etag: "9b3df0eabc4a99842a735dc0474d1531"
+last-modified: Sun, 11 Oct 2026 06:43:57 GMT
+server: Vercel
+strict-transport-security: max-age=63072000
+x-vercel-cache: MISS
+x-vercel-id: sfo1::85jrp-1791701037104-717d05606e50
+content-length: 50401
+
+issuer=C = US, O = Let's Encrypt, CN = YR2
+notBefore=Sep  5 08:33:56 2026 GMT
+notAfter=Dec  4 08:33:55 2026 GMT
