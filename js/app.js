@@ -2089,6 +2089,7 @@ async function actualizeazaStareAbonare() {
     ancora.insertAdjacentElement('afterend', el);
   }
   if (typeof Notification === 'undefined') { el.innerHTML = ''; return; }
+  try { actualizeazaStatusPermisiune(); } catch (e) {}
   const perm = Notification.permission;
   const OS = window.OneSignal;
   let html = '';
