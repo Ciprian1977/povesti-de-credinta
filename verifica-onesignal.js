@@ -1,97 +1,56 @@
-// DOAR CITIRE: diagnostic OneSignal. Nu trimite notificări, nu anulează, nu modifică abonați sau tag-uri.
-// 1) istoricul notificărilor (create / programate / trimise / anulate)
-// 2) abonații și tag-urile lor (doar agregat; din ID-uri se păstrează doar primele 6 caractere)
-// 3) câți abonați s-ar potrivi cu fiecare notificare programată de rularea zilnică (aceleași filtre ca în scripts/trimite-notificari.js)
+// DOAR CITIRE: diagnostic tag-uri OneSignal + versiunea din producție.
+// Nu trimite notificări, nu modifică abonați, tag-uri sau setări. Doar cereri GET.
+// ID-urile se afișează doar parțial (ultimele 6 caractere = „codul” afișat în pagina de setări).
 const APP = process.env.ONESIGNAL_APP_ID, KEY = process.env.ONESIGNAL_API_KEY;
 const fs = require('fs');
-const zlib = require('zlib');
+const crypto = require('crypto');
 const H = { Authorization: `Key ${KEY}`, Accept: 'application/json' };
 const out = [];
 const log = (s) => { out.push(s); console.log(s); };
-
-async function getJson(url, opt = {}) {
-  const r = await fetch(url, { headers: H, ...opt });
-  let j = null; try { j = await r.json(); } catch (e) {}
-  return { status: r.status, j };
+const cod = (id) => id ? '…' + String(id).slice(-6).toUpperCase() : '-';
+async function get(url, hdr = H) {
+  const r = await fetch(url, { headers: hdr });
+  const t = await r.text(); let j = null; try { j = JSON.parse(t); } catch (e) {}
+  return { status: r.status, j, t };
 }
 
 (async () => {
-  if (!APP || !KEY) { log('lipsesc cheile'); return; }
-  log(`App ID secret = App ID sit: ${APP.trim() === '865e5cce-41f3-4136-a2c7-d6da9044a3ca' ? 'DA' : 'NU'}`);
-
-  // ── 1. Notificări ─────────────────────────────────────────────
-  const n = await getJson(`https://api.onesignal.com/notifications?app_id=${APP}&limit=50`);
-  const lista = (n.j && n.j.notifications) || [];
-  const acum = Date.now() / 1000;
-  log(`\n[1] Notificări în istoric: HTTP ${n.status}, total_count=${n.j && n.j.total_count}`);
-  log(`    create=${lista.length} | programate (în așteptare)=${lista.filter((x) => !x.completed_at && !x.canceled && (x.send_after || 0) > acum).length} | trimise=${lista.filter((x) => x.completed_at).length} | anulate=${lista.filter((x) => x.canceled).length}`);
-  lista.slice(0, 20).forEach((x) => log(`    ${x.id.slice(0, 8)} programat=${x.send_after ? new Date(x.send_after * 1000).toISOString() : '-'} trimis=${!!x.completed_at} anulat=${!!x.canceled} reușite=${x.successful} | ${((x.headings || {}).ro || '').slice(0, 60)}`));
-
-  // ── 2. Abonați ───────────────────────────────────────────────
-  let abonati = null;
-  const p = await getJson(`https://onesignal.com/api/v1/players?app_id=${APP}&limit=300`);
-  log(`\n[2a] Listare abonați (GET /players): HTTP ${p.status}${p.j && p.j.errors ? ' ' + JSON.stringify(p.j.errors).slice(0, 200) : ''}, total_count=${p.j && p.j.total_count}`);
-  if (p.status === 200 && p.j && Array.isArray(p.j.players)) {
-    abonati = p.j.players.map((x) => ({ id: x.id, tags: x.tags || {}, tip: x.device_type, abonat: (x.notification_types == null || x.notification_types > 0) && !x.invalid_identifier, creat: x.created_at, activ: x.last_active }));
-  } else {
-    // Export CSV (citire): OneSignal pregătește un fișier cu abonații; nu modifică nimic
-    const e = await getJson(`https://onesignal.com/api/v1/players/csv_export?app_id=${APP}`, { method: 'POST', headers: { ...H, 'Content-Type': 'application/json' }, body: JSON.stringify({ extra_fields: ['country'] }) });
-    log(`[2b] Export CSV abonați: HTTP ${e.status}${e.j && e.j.errors ? ' ' + JSON.stringify(e.j.errors).slice(0, 200) : ''}`);
-    const csvUrl = e.j && e.j.csv_file_url;
-    if (csvUrl) {
-      for (let i = 0; i < 18 && !abonati; i++) {
-        await new Promise((r) => setTimeout(r, 10000));
-        const r = await fetch(csvUrl);
-        if (r.status !== 200) continue;
-        const buf = Buffer.from(await r.arrayBuffer());
-        let txt; try { txt = zlib.gunzipSync(buf).toString('utf8'); } catch (er) { txt = buf.toString('utf8'); }
-        abonati = parseCsv(txt);
-      }
-      if (!abonati) log('    exportul nu a fost gata în 3 minute');
-    }
+  // ── A. Producție: ce versiune servește domeniul ───────────────
+  log('[A] Producție www.povestidecredinta.ro');
+  for (const f of ['sw.js', 'js/app.js', 'js/min/app.min.js', 'scripts/trimite-notificari.js']) {
+    const r = await fetch('https://www.povestidecredinta.ro/' + f, { redirect: 'manual' });
+    const b = Buffer.from(await r.arrayBuffer());
+    const m = await fetch('https://raw.githubusercontent.com/Ciprian1977/povesti-de-credinta/main/' + f);
+    const local = m.status === 200 ? crypto.createHash('sha1').update(Buffer.from(await m.arrayBuffer())).digest('hex').slice(0, 10) : '-';
+    const live = crypto.createHash('sha1').update(b).digest('hex').slice(0, 10);
+    log(`    /${f}: HTTP ${r.status} | live=${r.status === 200 ? live : '-'} | main=${local} | ${r.status === 200 && live === local ? 'IDENTIC cu main' : r.status === 200 ? 'DIFERIT' : ''}`);
   }
+  const c = await fetch('https://www.povestidecredinta.ro/js/corectura-provizorie.js', { redirect: 'manual' });
+  log(`    /js/corectura-provizorie.js (PR #5): HTTP ${c.status} (404 = PR #5 încă nepublicat)`);
+  const h = await fetch('https://www.povestidecredinta.ro/', { redirect: 'manual' });
+  log(`    antete: server=${h.headers.get('server')} x-vercel-cache=${h.headers.get('x-vercel-cache')} age=${h.headers.get('age')}`);
 
-  if (abonati) {
-    const valizi = abonati.filter((a) => a.abonat);
-    log(`\n[2] Abonamente: total=${abonati.length} | abonate activ=${valizi.length} | dezabonate/invalide=${abonati.length - valizi.length}`);
-    abonati.forEach((a) => log(`    ${String(a.id).slice(0, 6)}… tip=${a.tip} abonat=${a.abonat} creat=${fmt(a.creat)} ultima_activitate=${fmt(a.activ)} tags=${JSON.stringify(a.tags)}`));
+  if (!APP || !KEY) { log('lipsesc cheile OneSignal'); return fin(); }
 
-    // ── 3. Eligibilitate pentru programarea zilnică ─────────────
-    const ORE = { dimineata: [jum(5, 0, 9, 0), '07:30'], pranz: [jum(11, 30, 14, 30), '13:00'], seara: [jum(19, 0, 23, 0), '21:30'], alerte_post: [jum(5, 0, 9, 0), '07:30'] };
-    log('\n[3] Abonați care s-ar potrivi la programarea zilnică (filtre identice cu scriptul):');
-    for (const [seg, [lista, impl]] of Object.entries(ORE)) {
-      const potriviri = [];
-      for (const ora of lista) {
-        const c = valizi.filter((a) => potriveste(a.tags, seg, ora, impl)).length;
-        if (c) potriviri.push(`${ora}→${c}`);
-      }
-      log(`    ${seg}: ${potriviri.length ? potriviri.join(', ') : 'niciun abonat eligibil la nicio oră'}`);
-    }
+  // ── B. Abonamente (vechiul API) ───────────────────────────────
+  const p = await get(`https://onesignal.com/api/v1/players?app_id=${APP}&limit=300`);
+  const players = (p.j && p.j.players) || [];
+  log(`\n[B] Abonamente (GET /players): HTTP ${p.status}, total=${players.length}`);
+  players.forEach((x) => log(`    cod ${cod(x.id)} tip=${x.device_type} notification_types=${x.notification_types} invalid=${x.invalid_identifier} sesiuni=${x.session_count} creat=${new Date(x.created_at * 1000).toISOString().slice(0, 16)} activ=${new Date(x.last_active * 1000).toISOString().slice(0, 16)} sdk=${x.sdk} tags(vechiul API)=${JSON.stringify(x.tags || {})}`));
+
+  // ── C. Pentru fiecare abonament: utilizatorul OneSignal și tag-urile lui (noul API, v16) ──
+  log('\n[C] Utilizatorul legat de fiecare abonament (noul API /users):');
+  for (const x of players) {
+    const idn = await get(`https://api.onesignal.com/apps/${APP}/subscriptions/${x.id}/user/identity`);
+    const oid = idn.j && idn.j.identity && idn.j.identity.onesignal_id;
+    log(`    cod ${cod(x.id)} → identitate HTTP ${idn.status}; chei identitate: ${idn.j && idn.j.identity ? Object.keys(idn.j.identity).join(',') : JSON.stringify(idn.j || idn.t).slice(0, 200)}`);
+    if (!oid) continue;
+    const u = await get(`https://api.onesignal.com/apps/${APP}/users/by/onesignal_id/${oid}`);
+    const pr = (u.j && u.j.properties) || {};
+    log(`      utilizator ${cod(oid)}: HTTP ${u.status}; tags=${JSON.stringify(pr.tags || {})}; nr_tag-uri=${Object.keys(pr.tags || {}).length}; limbă=${pr.language}; fus=${pr.timezone_id}; prima_activitate=${pr.first_active ? new Date(pr.first_active * 1000).toISOString().slice(0, 16) : '-'}; ultima=${pr.last_active ? new Date(pr.last_active * 1000).toISOString().slice(0, 16) : '-'}`);
+    ((u.j && u.j.subscriptions) || []).forEach((s) => log(`      abonament ${cod(s.id)} tip=${s.type} activ=${s.enabled} notification_types=${s.notification_types} sdk=${s.sdk} device=${s.device_model || ''}`));
+    if (u.status !== 200) log('      răspuns: ' + String(u.t).slice(0, 300));
   }
-  fs.writeFileSync('out/diagnostic.txt', out.join('\n') + '\n');
+  fin();
 })();
-
-function potriveste(t, seg, ora, impl) {
-  const activ = t[seg] === 'true';
-  if (activ && t[`${seg}_ora`] === ora) return true;
-  if (ora === impl && activ && t[`${seg}_ora`] == null) return true;
-  if (ora === impl && seg === 'dimineata' && t.dimineata == null) return true;
-  return false;
-}
-function jum(h1, m1, h2, m2) { const r = []; for (let t = h1 * 60 + m1; t <= h2 * 60 + m2; t += 30) r.push(`${String(Math.floor(t / 60)).padStart(2, '0')}:${String(t % 60).padStart(2, '0')}`); return r; }
-function fmt(t) { if (!t) return '-'; const d = typeof t === 'number' ? new Date(t * 1000) : new Date(t); return isNaN(d) ? String(t) : d.toISOString().slice(0, 16); }
-function parseCsv(txt) {
-  const rows = []; let row = [], cell = '', q = false;
-  for (let i = 0; i < txt.length; i++) {
-    const c = txt[i];
-    if (q) { if (c === '"' && txt[i + 1] === '"') { cell += '"'; i++; } else if (c === '"') q = false; else cell += c; }
-    else if (c === '"') q = true; else if (c === ',') { row.push(cell); cell = ''; } else if (c === '\n') { row.push(cell); rows.push(row); row = []; cell = ''; } else if (c !== '\r') cell += c;
-  }
-  if (cell || row.length) { row.push(cell); rows.push(row); }
-  const [cap, ...rest] = rows; const ix = (k) => cap.indexOf(k);
-  return rest.filter((r) => r.length > 1).map((r) => {
-    let tags = {}; try { tags = JSON.parse(r[ix('tags')] || '{}') || {}; } catch (e) {}
-    const nt = r[ix('notification_types')];
-    return { id: r[ix('id')], tags, tip: r[ix('device_type')], abonat: !(nt !== undefined && nt !== '' && Number(nt) <= 0) && r[ix('invalid_identifier')] !== 't' && r[ix('invalid_identifier')] !== 'true', creat: r[ix('created_at')], activ: r[ix('last_active')] };
-  });
-}
+function fin() { fs.mkdirSync('out', { recursive: true }); fs.writeFileSync('out/diagnostic.txt', out.join('\n') + '\n'); }
