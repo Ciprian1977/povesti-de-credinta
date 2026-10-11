@@ -1,0 +1,12 @@
+dox_202601 123130 https://doxologia.ro/calendar-ortodox/202601
+dox_202602 118084 https://doxologia.ro/calendar-ortodox/202602
+dox_202603 118875 https://doxologia.ro/calendar-ortodox/202603
+dox_202604 121423 https://doxologia.ro/calendar-ortodox/202604
+dox_202605 123690 https://doxologia.ro/calendar-ortodox/202605
+dox_202606 121682 https://doxologia.ro/calendar-ortodox/202606
+dox_202607 125895 https://doxologia.ro/calendar-ortodox/202607
+dox_202608 123661 https://doxologia.ro/calendar-ortodox/202608
+dox_202609 121950 https://doxologia.ro/calendar-ortodox/202609
+dox_202610 127075 https://doxologia.ro/calendar-ortodox/202610
+dox_202611 122180 https://doxologia.ro/calendar-ortodox/202611
+dox_202612 120603 https://doxologia.ro/calendar-ortodox/202612
