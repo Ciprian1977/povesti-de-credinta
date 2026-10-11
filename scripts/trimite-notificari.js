@@ -19,6 +19,14 @@
 //   SUPABASE_URL, SUPABASE_SERVICE_KEY (pt. conținutul zilei)
 // ═══════════════════════════════════════════════════════════════════════════════
 
+// În GitHub Actions, mesajele apar și ca „annotations” (vizibile în pagina rulării, fără jurnal)
+if (process.env.GITHUB_ACTIONS) {
+  const fmt = (a) => a.map((x) => (typeof x === 'string' ? x : JSON.stringify(x))).join(' ').replace(/%/g, '%25').replace(/\r?\n/g, '%0A');
+  const e0 = console.error.bind(console), l0 = console.log.bind(console);
+  console.error = (...a) => { e0(...a); e0('::error::' + fmt(a)); };
+  console.log = (...a) => { l0(...a); const t = fmt(a); if (/[✅⚠️❌]/u.test(t)) l0('::notice::' + t); };
+}
+
 const ONESIGNAL_APP_ID = process.env.ONESIGNAL_APP_ID;
 const ONESIGNAL_API_KEY = process.env.ONESIGNAL_API_KEY;
 const SUPABASE_URL = process.env.SUPABASE_URL;
