@@ -1714,90 +1714,127 @@ function initOneSignal() {
   });
 }
 
-/**
- * Așteaptă ca SDK-ul OneSignal să fie disponibil și returnează instanța.
- * Rezolvă cu `null` dacă OneSignal nu este configurat.
- */
-function asteaptaOneSignal() {
+/* ═══ Notificări v2 — setarea se salvează imediat, nu mai depinde de răspunsul OneSignal ═══ */
+const SEGMENTE_NOTIF = ['dimineata', 'pranz', 'seara', 'alerte_post'];
+
+/** Așteaptă SDK-ul OneSignal, dar nu la nesfârșit (dacă nu se încarcă → null). */
+function asteaptaOneSignal(ms) {
   return new Promise((resolve) => {
     if (!ONESIGNAL_CONFIGURAT) return resolve(null);
     if (window.OneSignal && _oneSignalGata) return resolve(window.OneSignal);
+    let gata = false;
+    const t = setTimeout(() => { if (!gata) { gata = true; resolve(null); } }, ms || 8000);
     window.OneSignalDeferred = window.OneSignalDeferred || [];
-    window.OneSignalDeferred.push((OneSignal) => resolve(OneSignal));
+    window.OneSignalDeferred.push((OS) => { if (!gata) { gata = true; clearTimeout(t); resolve(OS); } });
   });
 }
 
-/**
- * Cere permisiunea nativă de notificări (Notification.requestPermission via OneSignal).
- * Returnează true dacă permisiunea a fost acordată.
- */
+/** Se rezolvă când utilizatorul a răspuns la fereastra de permisiune (sau după maxMs). */
+function asteaptaRaspunsPermisiune(maxMs) {
+  return new Promise((resolve) => {
+    const start = Date.now();
+    const iv = setInterval(() => {
+      if (Notification.permission !== 'default' || Date.now() - start > maxMs) { clearInterval(iv); resolve(); }
+    }, 300);
+  });
+}
+
+/** Abonează dispozitivul în OneSignal (fără să blocheze pagina). */
+async function aboneazaOneSignal() {
+  const OS = await asteaptaOneSignal(10000);
+  if (!OS || !OS.User || !OS.User.PushSubscription) return;
+  try {
+    if (!OS.User.PushSubscription.optedIn) await OS.User.PushSubscription.optIn();
+  } catch (e) { console.warn('⚠️ OneSignal optIn:', e); }
+}
+
+/** Cere permisiunea de notificări. Returnează true dacă a fost acordată. */
 async function cerePermisiuneNotificari() {
-  // Dacă browserul nu suportă notificări deloc
-  if (typeof Notification === 'undefined') {
-    return false;
-  }
-  // Deja acordată
-  if (Notification.permission === 'granted') {
-    return true;
-  }
-  // Deja refuzată definitiv — nu putem re-cere din cod
-  if (Notification.permission === 'denied') {
-    return false;
-  }
-  // Stare 'default' → cerem permisiunea
-  const OneSignal = await asteaptaOneSignal();
-  if (OneSignal) {
-    try {
-      // OneSignal v16: declanșează prompt-ul nativ
-      await OneSignal.Notifications.requestPermission();
-      return Notification.permission === 'granted';
-    } catch (e) {
-      // Fallback la API nativ dacă OneSignal eșuează
-    }
-  }
-  // Fallback: API nativ Notification
+  if (typeof Notification === 'undefined') return false;
+  if (Notification.permission === 'granted') { aboneazaOneSignal(); return true; }
+  if (Notification.permission === 'denied') return false;
+  const OS = await asteaptaOneSignal(6000);
   try {
-    const rezultat = await Notification.requestPermission();
-    return rezultat === 'granted';
+    const cerere = OS ? OS.Notifications.requestPermission() : Notification.requestPermission();
+    // Nu ne bazăm doar pe promisiunea OneSignal (uneori nu se mai rezolvă) — urmărim și răspunsul direct
+    await Promise.race([Promise.resolve(cerere).catch(() => {}), asteaptaRaspunsPermisiune(120000)]);
   } catch (e) {
-    return false;
+    try { await Notification.requestPermission(); } catch (e2) {}
   }
+  if (Notification.permission === 'granted') { aboneazaOneSignal(); return true; }
+  return false;
 }
 
-/**
- * Sincronizează o etichetă (tag) cu OneSignal pentru segmentare.
- * Ex: addTag("dimineata", "true").
- */
 async function sincronizeazaTag(cheie, valoare) {
-  const OneSignal = await asteaptaOneSignal();
-  if (!OneSignal) return; // App ID neconfigurat — skip silențios
-  try {
-    OneSignal.User.addTag(cheie, String(valoare));
-    console.log(`🏷️ Tag sincronizat: ${cheie} = ${valoare}`);
-  } catch (e) {
-    console.warn(`⚠️ Eroare sincronizare tag ${cheie}:`, e);
-  }
+  const OS = await asteaptaOneSignal();
+  if (!OS) return;
+  try { OS.User.addTag(cheie, String(valoare)); } catch (e) { console.warn(`⚠️ Tag ${cheie}:`, e); }
 }
 
-/**
- * Sincronizează toate tag-urile cu starea curentă din localStorage.
- */
+/** Trimite la OneSignal toate preferințele salvate pe acest dispozitiv (cu orele alese). */
 async function sincronizeazaToateTagurile() {
-  const OneSignal = await asteaptaOneSignal();
-  if (!OneSignal) return;
-  const pref = getPreferinteNotif();
-  try {
-    OneSignal.User.addTags({
-      dimineata: String(pref.dimineata),
-      pranz: String(pref.pranz),
-      seara: String(pref.seara),
-      seara_ora: pref.seara_ora,
-      alerte_post: String(pref.alerte_post)
-    });
-    console.log('🏷️ Toate tag-urile sincronizate cu OneSignal');
-  } catch (e) {
-    console.warn('⚠️ Eroare sincronizare tag-uri:', e);
+  const OS = await asteaptaOneSignal();
+  if (!OS) return;
+  let raw = null;
+  try { raw = localStorage.getItem(PDC_NOTIF_KEY); } catch (e) {}
+  if (!raw) {
+    // Nimic salvat pe acest dispozitiv (ex. aplicația instalată pe iPhone are memorie separată de Safari):
+    // nu ștergem abonările existente — le recuperăm din OneSignal.
+    try {
+      const tags = (OS.User.getTags && await OS.User.getTags()) || {};
+      if (SEGMENTE_NOTIF.some((s) => tags[s] === 'true')) {
+        const pref = { ...NOTIF_DEFAULTS };
+        SEGMENTE_NOTIF.forEach((s) => { pref[s] = tags[s] === 'true'; if (tags[s + '_ora']) pref[s + '_ora'] = tags[s + '_ora']; });
+        salveazaPreferinteNotif(pref);
+        if (document.getElementById('toggle-dimineata')) initSetariNotificari();
+      }
+    } catch (e) {}
+    return;
   }
+  const pref = getPreferinteNotif();
+  const t = {};
+  SEGMENTE_NOTIF.forEach((s) => { t[s] = String(!!pref[s]); if (pref[s + '_ora']) t[s + '_ora'] = pref[s + '_ora']; });
+  try { OS.User.addTags(t); } catch (e) { console.warn('⚠️ Tag-uri:', e); }
+}
+
+/** Comutatorul unei notificări: salvăm IMEDIAT, apoi cerem permisiunea dacă e nevoie. */
+async function onToggleSchimbat(checkbox) {
+  const segment = checkbox.getAttribute('data-segment');
+  const activ = checkbox.checked;
+  const idCard = `card-${segment === 'alerte_post' ? 'alerte' : segment}`;
+  const pref = getPreferinteNotif();
+  const inputOra = document.getElementById(`ora-${segment === 'alerte_post' ? 'alerte' : segment}`);
+  if (inputOra && inputOra.value) pref[`${segment}_ora`] = inputOra.value;
+  pref[segment] = activ;
+  salveazaPreferinteNotif(pref);
+  actualizeazaCardActiv(idCard, activ);
+
+  if (activ) {
+    const permisiuneOK = (typeof Notification !== 'undefined' && Notification.permission === 'granted')
+      ? (aboneazaOneSignal(), true)
+      : (afiseazaMesajSetari('Apasă „Permite” în fereastra care apare, ca să poți primi notificările.', 'info'), await cerePermisiuneNotificari());
+    actualizeazaStatusPermisiune();
+    if (!permisiuneOK) {
+      const p2 = getPreferinteNotif(); p2[segment] = false; salveazaPreferinteNotif(p2);
+      checkbox.checked = false;
+      actualizeazaCardActiv(idCard, false);
+      if (typeof Notification !== 'undefined' && Notification.permission === 'denied') {
+        afiseazaMesajSetari('Notificările sunt blocate pentru acest site. Deschide setările site-ului (lacătul 🔒 de lângă adresă) → Notificări → Permite, apoi revino aici.', 'avertisment');
+      } else {
+        afiseazaMesajSetari('Ca să primești notificările, apasă din nou comutatorul și alege „Permite”.', 'info');
+      }
+      return;
+    }
+    afiseazaMesajSetari('✅ Salvat. Vei primi notificarea la ora aleasă.', 'succes');
+  } else {
+    const p3 = getPreferinteNotif();
+    if (SEGMENTE_NOTIF.some((s) => p3[s])) afiseazaMesajSetari('Salvat. Notificarea a fost oprită.', 'info');
+    else ascundeMesajSetari();
+  }
+
+  // Sincronizarea cu OneSignal se face în fundal; dacă acum nu merge, se reface la următoarea deschidere
+  sincronizeazaTag(segment, activ);
+  if (pref[`${segment}_ora`]) sincronizeazaTag(`${segment}_ora`, pref[`${segment}_ora`]);
 }
 
 /**
@@ -1846,70 +1883,6 @@ function actualizeazaStatusPermisiune() {
 function actualizeazaCardActiv(idCard, activ) {
   const card = document.getElementById(idCard);
   if (card) card.classList.toggle('activ', activ);
-}
-
-/**
- * Gestionează schimbarea unui toggle.
- * - La PRIMUL toggle activat, cere permisiunea nativă.
- * - Dacă permisiunea e refuzată, revine toggle-ul pe OFF.
- * - Salvează în localStorage orele personalizate și sincronizează tag-urile.
- */
-async function onToggleSchimbat(checkbox) {
-  const segment = checkbox.getAttribute('data-segment');
-  const activ = checkbox.checked;
-  const pref = getPreferinteNotif();
-
-  // Salvez ora personalizată pentru acest segment (dacă există input time)
-  const inputOra = document.getElementById(`ora-${segment === 'alerte_post' ? 'alerte' : segment}`);
-  if (inputOra && inputOra.value) {
-    pref[`${segment}_ora`] = inputOra.value;
-  }
-
-  // Verificăm dacă acesta este PRIMUL toggle activat (toate erau OFF)
-  const vreunActivInainte = pref.dimineata || pref.pranz || pref.seara || pref.alerte_post;
-
-  if (activ && !vreunActivInainte) {
-    // Primul toggle activat → cerem permisiunea nativă ACUM
-    const permisiuneOK = await cerePermisiuneNotificari();
-    actualizeazaStatusPermisiune();
-
-    if (!permisiuneOK) {
-      // Permisiune refuzată → toggle revine pe OFF cu mesaj de ghidare
-      checkbox.checked = false;
-      actualizeazaCardActiv(`card-${segment === 'alerte_post' ? 'alerte' : segment}`, false);
-      if (Notification.permission === 'denied') {
-        afiseazaMesajSetari(
-          'Notificările sunt blocate în setările browserului. Pentru a le activa, deschide setările site-ului (🔒 lângă adresă) și permite notificările, apoi revino aici.',
-          'avertisment'
-        );
-      } else {
-        afiseazaMesajSetari(
-          'Ai nevoie să accepți notificările pentru a primi memento-uri. Apasă din nou pe comutator și alege "Permite".',
-          'info'
-        );
-      }
-      return;
-    }
-    afiseazaMesajSetari('🙏 Notificările au fost activate. Vei primi memento-urile alese la orele potrivite.', 'succes');
-  }
-
-  // Actualizăm starea în localStorage
-  pref[segment] = activ;
-  salveazaPreferinteNotif(pref);
-
-  // Actualizăm vizualul cardului
-  actualizeazaCardActiv(`card-${segment === 'alerte_post' ? 'alerte' : segment}`, activ);
-
-  // Sincronizăm tag-urile cu OneSignal (inclusiv ora personalizată)
-  await sincronizeazaTag(segment, activ);
-  if (pref[`${segment}_ora`]) {
-    await sincronizeazaTag(`${segment}_ora`, pref[`${segment}_ora`]);
-  }
-
-  // Dacă toate toggle-urile sunt acum OFF, ascundem mesajul de succes
-  const pref2 = getPreferinteNotif();
-  const vreunActivAcum = pref2.dimineata || pref2.pranz || pref2.seara || pref2.alerte_post;
-  if (!vreunActivAcum) ascundeMesajSetari();
 }
 
 /**
