@@ -2044,3 +2044,77 @@ window.onToggleSchimbat = onToggleSchimbat;
 window.onOraSchimbata = onOraSchimbata;
 window.stergeDefinitivID = stergeDefinitivID;
 window.startSchedulerNotificariLocale = startSchedulerNotificariLocale;
+
+/* ═══ Notificări v3 — OneSignal pornește imediat + starea abonării vizibilă în Setări ═══ */
+function initOneSignal() {
+  if (!ONESIGNAL_CONFIGURAT || window.__osInitPornit) return;
+  window.__osInitPornit = true;
+  window.__osStare = 'se-incarca';
+  const porneste = async function (OneSignal) {
+    try {
+      await OneSignal.init({
+        appId: ONESIGNAL_APP_ID,
+        allowLocalhostAsSecureOrigin: true,
+        autoResubscribe: true,
+        notifyButton: { enable: false },
+        serviceWorkerParam: { scope: '/onesignal/' },
+        serviceWorkerPath: 'onesignal/OneSignalSDKWorker.js'
+      });
+      _oneSignalGata = true;
+      window.__osStare = 'ok';
+      sincronizeazaToateTagurile();
+    } catch (err) {
+      window.__osStare = 'eroare';
+      window.__osEroare = (err && err.message) || String(err);
+      console.warn('⚠️ OneSignal init eșuat:', err);
+    }
+  };
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  // init trebuie să ruleze PRIMUL, înaintea oricărei alte cereri către OneSignal
+  if (Array.isArray(window.OneSignalDeferred)) window.OneSignalDeferred.unshift(porneste);
+  else window.OneSignalDeferred.push(porneste);
+}
+
+function cod6(id) { return id ? String(id).slice(-6).toUpperCase() : ''; }
+
+async function actualizeazaStareAbonare() {
+  const ancora = document.getElementById('setari-status-permisiune');
+  if (!ancora || !ancora.isConnected) return;
+  let el = document.getElementById('stare-abonare');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'stare-abonare';
+    el.className = 'stare-abonare';
+    el.setAttribute('aria-live', 'polite');
+    ancora.insertAdjacentElement('afterend', el);
+  }
+  if (typeof Notification === 'undefined') { el.innerHTML = ''; return; }
+  const perm = Notification.permission;
+  const OS = window.OneSignal;
+  let html = '';
+  if (window.__osStare === 'eroare') {
+    html = '⚠️ Serviciul de notificări a dat o eroare: <em>' + String(window.__osEroare || '').replace(/</g, '&lt;').slice(0, 160) + '</em>';
+  } else if (!OS || window.__osStare !== 'ok') {
+    if (perm === 'granted' && (Date.now() - (window.__pdcStart || 0)) > 8000) {
+      html = '⚠️ Serviciul de notificări nu s-a încărcat. Dacă ai blocare de reclame, „Economisire date” sau un VPN, oprește-le pentru acest site și redeschide pagina.';
+    }
+  } else if (perm === 'granted') {
+    const ps = OS.User && OS.User.PushSubscription;
+    if (ps && ps.optedIn && ps.id) {
+      html = '✅ Acest telefon este abonat la notificări <span class="cod-abonare">(cod ' + cod6(ps.id) + ')</span>';
+    } else {
+      html = '⚠️ Ai dat permisiunea, dar telefonul nu e încă abonat. <button type="button" class="buton-contur buton-mic" id="buton-aboneaza">Abonează acest telefon</button>';
+    }
+  }
+  if (el.getAttribute('data-html') !== html) { el.innerHTML = html; el.setAttribute('data-html', html); }
+}
+window.__pdcStart = window.__pdcStart || Date.now();
+document.addEventListener('click', async function (e) {
+  const b = e.target.closest && e.target.closest('#buton-aboneaza');
+  if (!b) return;
+  b.disabled = true; b.textContent = 'Se abonează…';
+  await aboneazaOneSignal();
+  setTimeout(actualizeazaStareAbonare, 1500);
+});
+setInterval(actualizeazaStareAbonare, 2500);
+initOneSignal();
