@@ -2,6 +2,7 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
+  <script src="/js/corectura-provizorie.js?v=1"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#FFFFFF">
   <title id="meta-title">Calendar Ortodox Azi — Sfântul, Apostolul și Evanghelia Zilei | Povești de Credință</title>
@@ -161,16 +162,6 @@
 
     <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.15);padding-bottom:14px;margin-bottom:14px">
       <div class="faq-intrebare" onclick="toggleFaq(this)" style="font-weight:600;color:var(--visineu);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem">
-        <span>Este post azi în calendarul ortodox 2026?</span>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
-        <span id="faq3-a">Informația despre post pentru ziua de azi este afișată în cardul principal. Zilele de post ortodox sunt miercurea și vinerea, plus perioadele de post mare.</span>
-      </div>
-    </div>
-
-    <div class="faq-item" style="border-bottom:1px solid rgba(201,168,76,0.15);padding-bottom:14px;margin-bottom:14px">
-      <div class="faq-intrebare" onclick="toggleFaq(this)" style="font-weight:600;color:var(--visineu);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem">
         <span>Apostolul și evanghelia zilei — unde le găsesc?</span>
         <span class="faq-icon">+</span>
       </div>
@@ -245,15 +236,14 @@ const CALENDAR = {
   "12-25":{"sfant":"Nașterea Domnului nostru Iisus Hristos (Crăciunul)","post":"dezlegare","culoare":"alb"}
 };
 
-const APOSTOLI_SCURT = {0:"Romani 8, 14-21",1:"Romani 1, 1-7",2:"I Corinteni 13, 1-13",3:"Evrei 11, 1-10",4:"I Timotei 1, 12-17",5:"Galateni 5, 22-26",6:"I Tesaloniceni 4, 13-17"};
-const EVANGHELII_SCURT = {0:"Ioan 20, 1-10",1:"Ioan 1, 1-17",2:"Matei 5, 1-12",3:"Luca 15, 11-32",4:"Ioan 10, 1-16",5:"Luca 23, 33-43",6:"Matei 11, 25-30"};
 const RUGACIUNI_ZILEI = {0:"Doamne, Dumnezeul nostru, Cel ce ești bun și iubitor de oameni, Cel ce în ziua aceasta a Învierii Tale ne-ai luminat cu lumina sfântă a slavei Tale, dăruiește-ne să petrecem această zi sfântă în bucurie duhovnicească, ferindu-ne de tot răul. Amin.",1:"Doamne, Dumnezeule, Cel ce ești fără de început, Cel ce ești fără de sfârșit, Cel ce ești mai înainte de veci și pururea ești, luminează mintea mea, întărește inima mea, îndreptează gândurile mele, ca să petrec această zi în pace și în sfințenie. Amin.",2:"Doamne Iisuse Hristoase, Fiul lui Dumnezeu, pentru rugăciunile Preasfintei Maicii Tale și ale tuturor sfinților, miluiește-ne pe noi. Doamne, curățește-ne pe noi de toate păcatele noastre și ne ajută să facem voia Ta cea sfântă. Amin.",3:"Doamne, Dumnezeul nostru, care ești Lumina cea adevărată, luminează sufletul meu cel întunecat de păcate. Dă-mi putere să postesc cu adevărat, nu numai de mâncare, ci și de gânduri rele, de vorbe deșarte și de fapte necurate. Amin.",4:"Stăpâne, Doamne, Dumnezeul nostru, Cel ce ești îndelung răbdător și mult milostiv, primește această rugăciune a noastră și ne ajută să petrecem ziua de astăzi în pace, în sănătate și în bucurie duhovnicească. Amin.",5:"Doamne Iisuse Hristoase, Cel ce ai pătimit pentru noi pe Cruce, dăruiește-ne puterea de a purta cu răbdare și cu bucurie crucile noastre cele de zi cu zi. Ajută-ne să postim cu evlavie și să ne rugăm cu inimă curată. Amin.",6:"Doamne, Dumnezeul nostru, mulțumim Ție pentru această săptămână pe care ai binevoit să ne-o dăruiești. Iartă-ne greșelile săptămânii trecute și ajută-ne să începem săptămâna nouă cu inimă curată și cu gânduri bune. Amin."};
 const CULORI = {alb:"⬜ Alb liturgic",rosu:"🔴 Roșu liturgic",verde:"🟢 Verde liturgic",visineu:"🟣 Vișiniu",auriu:"🟡 Auriu"};
 const ZILE_RO = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'];
 const LUNI_RO = ['ianuarie','februarie','martie','aprilie','mai','iunie','iulie','august','septembrie','octombrie','noiembrie','decembrie'];
 
 function getDataKey(d){return String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
-function getPostLabel(p){const l={'post':'🕯️ Zi de post','dezlegare':'✅ Dezlegare la toate','dezlegare_peste':'🐟 Dezlegare la pește','dezlegare_vin_ulei':'🫒 Dezlegare la vin și untdelemn'};return l[p]||'✅ Dezlegare';}
+function getPostLabel(p){ return ''; // corectură provizorie: etichetele de post sunt ascunse până la validarea BOR
+const l={'post':'🕯️ Zi de post','dezlegare':'✅ Dezlegare la toate','dezlegare_peste':'🐟 Dezlegare la pește','dezlegare_vin_ulei':'🫒 Dezlegare la vin și untdelemn'};return l[p]||'✅ Dezlegare';}
 function toggleFaq(el){const r=el.nextElementSibling;const i=el.querySelector('.faq-icon');const o=r.style.display!=='none';r.style.display=o?'none':'block';i.textContent=o?'+':'−';}
 function copiazaRug(){navigator.clipboard.writeText(document.getElementById('rugaciune-text').innerText).then(()=>alert('Rugăciunea a fost copiată!'));}
 function trimiteWhatsApp(){
@@ -272,30 +262,28 @@ document.addEventListener('DOMContentLoaded',function(){
 
   document.getElementById('data-mare').textContent=df;
   document.getElementById('sfant-azi').textContent='✝️ '+data.sfant;
-  document.getElementById('post-badge').textContent=getPostLabel(data.post);
   document.getElementById('culoare-badge').textContent=CULORI[data.culoare]||'⬜ Alb liturgic';
   document.getElementById('hero-h1').textContent='📅 Calendar Ortodox Azi — '+df;
   document.getElementById('hero-data').textContent='Conform Calendarului Ortodox Român 2026 — Patriarhia Română';
 
   const sfantScurt=data.sfant.split(';')[0].substring(0,50)+(data.sfant.length>50?'...':'');
   document.getElementById('sfant-card').textContent=sfantScurt;
-  document.getElementById('apostol-card').textContent=APOSTOLI_SCURT[zi];
-  document.getElementById('ev-card').textContent=EVANGHELII_SCURT[zi];
+  document.getElementById('apostol-card').textContent='Se încarcă…';
+  document.getElementById('ev-card').textContent='Se încarcă…';
   document.getElementById('rugaciune-text').textContent=RUGACIUNI_ZILEI[zi];
 
   document.getElementById('meta-title').textContent=`Calendar Ortodox Azi, ${df} — Sfântul, Apostolul și Evanghelia Zilei | Povești de Credință`;
-  document.getElementById('meta-desc').setAttribute('content',`Calendar ortodox azi, ${df}: ${data.sfant}. ${getPostLabel(data.post)}. Apostolul: ${APOSTOLI_SCURT[zi]}. Evanghelia: ${EVANGHELII_SCURT[zi]}.`);
+  document.getElementById('meta-desc').setAttribute('content',`Calendar ortodox azi, ${df}: ${data.sfant}.`);
   document.getElementById('og-title').setAttribute('content',`Calendar Ortodox Azi — ${df} | Povești de Credință`);
-  document.getElementById('og-desc').setAttribute('content',`${data.sfant}. ${getPostLabel(data.post)}. Apostolul: ${APOSTOLI_SCURT[zi]}.`);
+  document.getElementById('og-desc').setAttribute('content',`${data.sfant}.`);
 
   document.getElementById('faq1-q').textContent=`Ce sfânt este azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}, în calendarul ortodox?`;
-  document.getElementById('faq1-a').textContent=`Azi, ${df}, este prăznuit ${data.sfant}. ${getPostLabel(data.post)}.`;
-  document.getElementById('faq3-a').textContent=`${getPostLabel(data.post)} — aceasta este regula pentru ziua de azi, ${df}, conform Calendarului Ortodox Român 2026.`;
+  document.getElementById('faq1-a').textContent=`Azi, ${df}, este prăznuit ${data.sfant}.`;
 
   document.getElementById('schema-event').textContent=JSON.stringify({
     "@context":"https://schema.org","@type":"Event",
     "name":`Calendar Ortodox — ${df}`,
-    "description":`Sfântul zilei: ${data.sfant}. ${getPostLabel(data.post)}.`,
+    "description":`Sfântul zilei: ${data.sfant}.`,
     "startDate":azi.toISOString().split('T')[0],
     "endDate":azi.toISOString().split('T')[0],
     "url":"https://www.povestidecredinta.ro/calendar-ortodox-azi",
@@ -304,16 +292,15 @@ document.addEventListener('DOMContentLoaded',function(){
   document.getElementById('schema-faq').textContent=JSON.stringify({
     "@context":"https://schema.org","@type":"FAQPage",
     "mainEntity":[
-      {"@type":"Question","name":`Ce sfânt este azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}?`,"acceptedAnswer":{"@type":"Answer","text":`Azi este prăznuit ${data.sfant}. ${getPostLabel(data.post)}.`}},
+      {"@type":"Question","name":`Ce sfânt este azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}?`,"acceptedAnswer":{"@type":"Answer","text":`Azi este prăznuit ${data.sfant}.`}},
       {"@type":"Question","name":"Calendar ortodox azi — ce înseamnă culoarea liturgică?","acceptedAnswer":{"@type":"Answer","text":"Culoarea liturgică indică tipul slujbei: alb pentru sărbători ale Mântuitorului, roșu pentru mucenici, verde pentru cuvioși, vișiniu pentru post."}},
-      {"@type":"Question","name":"Este post azi în calendarul ortodox 2026?","acceptedAnswer":{"@type":"Answer","text":`${getPostLabel(data.post)} — aceasta este regula pentru ziua de azi conform Calendarului Ortodox Român 2026.`}},
       {"@type":"Question","name":"Apostolul și evanghelia zilei — unde le găsesc?","acceptedAnswer":{"@type":"Answer","text":"Apostolul și Evanghelia zilei le găsești pe povestidecredinta.ro/apostolul-zilei/ și povestidecredinta.ro/evanghelia-zilei/ cu textul complet."}},
       {"@type":"Question","name":"Calendar ortodox azi doxologia — alternativă?","acceptedAnswer":{"@type":"Answer","text":"povestidecredinta.ro este alternativa completă: sfântul zilei, sinaxarul, apostolul, evanghelia, predica zilei, rugăciunile și acatistele — toate pe un singur site optimizat pentru mobil."}}
     ]
   });
 });
 </script>
-<script src="/js/supabase-loader.js"></script>
+<script src="/js/supabase-loader.js?v=2"></script>
 <script>
 (async function() {
   const azi = new Date();
@@ -324,24 +311,23 @@ document.addEventListener('DOMContentLoaded',function(){
   const LUNI_RO = ['ianuarie','februarie','martie','aprilie','mai','iunie','iulie','august','septembrie','octombrie','noiembrie','decembrie'];
   const ZILE_RO = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'];
   const dataFormatata = ZILE_RO[azi.getDay()] + ', ' + azi.getDate() + ' ' + LUNI_RO[azi.getMonth()] + ' ' + azi.getFullYear();
-  const postLabel = {'post':'🕯️ Zi de post','dezlegare':'✅ Dezlegare la toate','dezlegare_peste':'🐟 Dezlegare la pește','dezlegare_vin_ulei':'🫒 Dezlegare la vin și untdelemn'}[date.tip_post] || '✅ Dezlegare';
+  const postLabel = ''; // corectură provizorie
 
   // Actualizează toate secțiunile paginii calendar-ortodox-azi
   if (date.sfant_nume) {
     const sfEl = document.getElementById('sfant-principal');
     if (sfEl) sfEl.textContent = date.sfant_nume;
     const postEl = document.getElementById('post-info');
-    if (postEl) postEl.textContent = postLabel;
     document.getElementById('meta-title').textContent = `Calendar Ortodox Azi — ${dataFormatata} | Povești de Credință`;
     if (date.meta_description) document.getElementById('meta-desc').setAttribute('content', date.meta_description);
   }
   if (date.apostol_carte) {
     const apEl = document.getElementById('apostol-card');
-    if (apEl) apEl.innerHTML = '<strong>' + date.apostol_carte + ' ' + (date.apostol_versete||'') + '</strong><br>' + (date.apostol_text||'').substring(0,150) + '...';
+    if (apEl) apEl.innerHTML = '<strong>' + date.apostol_carte + ' ' + (date.apostol_versete||'') + '</strong>';
   }
   if (date.evanghelie_carte) {
     const evEl = document.getElementById('evanghelie-card');
-    if (evEl) evEl.innerHTML = '<strong>' + date.evanghelie_carte + ' ' + (date.evanghelie_versete||'') + '</strong><br>' + (date.evanghelie_text||'').substring(0,150) + '...';
+    if (evEl) evEl.innerHTML = '<strong>' + date.evanghelie_carte + ' ' + (date.evanghelie_versete||'') + '</strong>';
   }
   if (date.sinaxar) {
     const sinEl = document.getElementById('sinaxar-card');

@@ -13,3 +13,6 @@ gen_rugaciuni.py
 # Archive
 *.zip
 povesti-de-credinta-v1.zip
+
+# Teste (nu fac parte din sit)
+tests/
