@@ -261,7 +261,7 @@ async function trimite(segment, dataISO, oraActuala) {
   }
   const r = await postOneSignal(payload);
   if (r.ok) console.log(`✅ [${segment}] Trimisă acum (id=${r.j.id}, destinatari≈${r.j.recipients ?? '?'})`);
-  else if (r.faraAbonati) { console.error(`⚠️ [${segment}] Niciun abonat nu se potrivește. Abonează-te întâi din sit (clopoțelul).`); process.exit(1); }
+  else if (r.faraAbonati) console.log(`ℹ️ [${segment}] Niciun abonat nu se potrivește încă; nu există destinatari pentru această trimitere.`);
   else { console.error(`❌ [${segment}] OneSignal a refuzat (HTTP ${r.status}):`, JSON.stringify(r.j)); process.exit(1); }
 }
 
