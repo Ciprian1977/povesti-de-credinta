@@ -88,10 +88,10 @@ with sync_playwright() as p:
                 'doxologia_formulare_noua': ('Citește lectura pe Doxologia' in t) if path == '/evanghelia-zilei' else None,
                 'regula_generala': ('regulă generală' in t) if path.endswith('miercuri') else None}
         rez['pagini'][path] = info
-        if len(v) > 1 or (v and v != ['19']): problema(f'{path}: versiuni de app amestecate sau vechi {v}')
+        if len(v) > 1 or (v and v != [os.environ.get('PDC_VERSIUNE_APP', '20')]): problema(f'{path}: versiuni de app amestecate sau vechi {v}')
         if any(x is False for x in info.values()): problema(f'{path}: conținut vechi după actualizare {info}')
-    if any(k.endswith('-v18') for k in rez['nou_cache']): problema(f'cache-uri vechi rămase: {rez["nou_cache"]}')
-    if not any(k.endswith('-v19') for k in rez['nou_cache']): problema(f'cache v19 lipsă: {rez["nou_cache"]}')
+    if any(k.endswith('-v' + str(int(os.environ.get('PDC_VERSIUNE_APP', '20')) - 1)) for k in rez['nou_cache']): problema(f'cache-uri vechi rămase: {rez["nou_cache"]}')
+    if not any(k.endswith('-v' + os.environ.get('PDC_VERSIUNE_APP', '20')) for k in rez['nou_cache']): problema(f'cache nou lipsă: {rez["nou_cache"]}')
     if err: problema(f'erori JS după actualizare: {err}')
 
     # 4. Offline după actualizare
