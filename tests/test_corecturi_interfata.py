@@ -183,7 +183,7 @@ with sync_playwright() as p:
         except Exception as e:
             rez['offline'][path] = 'eroare ' + str(e)[:100]; problema(f'offline {path}: {e}')
     ctx.set_offline(False)
-    if not any(k.endswith('-v20') for k in rez['pwa_cache']): problema(f'PWA: cache v20 lipsă {rez["pwa_cache"]}')
+    if not any(k.endswith('-v21') for k in rez['pwa_cache']): problema(f'PWA: cache v21 lipsă {rez["pwa_cache"]}')
     if rez['pwa_instalabilitate']: problema(f'PWA instalabilitate: {rez["pwa_instalabilitate"]}')
     ctx.close(); b.close()
 

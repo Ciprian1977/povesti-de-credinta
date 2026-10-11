@@ -41,9 +41,25 @@
   function numeValidat(z) { return z.sfinti + (z.duminica ? '; ' + z.duminica : ''); }
   window.pdcCalendarValidat = calendarValidat;
   window.pdcNumeValidat = numeValidat;
+  // Textele generate zilnic (viața, troparul, sinaxarul, predica) care vorbesc despre sfinți ce NU sunt în calendarul validat
+  // nu se afișează; în locul lor apare un mesaj neutru. Nu se inventează nimic, baza de date nu se modifică.
+  var TITLURI = /^(sfant|sfanta|sfantul|sfintii|sfintei|sfintilor|sfantului|sfintit|sfintiti|mucenic|mucenici|mucenica|mucenita|mare|marele|mari|cuvios|cuvioasa|cuviosi|ierarh|ierarhul|apostol|apostolul|apostoli|prooroc|proorocul|proroc|episcop|episcopul|arhiepiscop|arhiepiscopul|mitropolit|mitropolitul|patriarh|patriarhul|cinstirea|icoane|icoanei|icoana|maicii|domnului|maica|soborul|duminica|rusalii|biserica|bisericii|ortodoxa|ortodoxe|parinti|parintilor|stareti|staretilor|aducerea|moastelor|pomenirea|praznuirea|dupa|pilda|semanatorului|sinodul|ecumenic|lea|constantinopolului|constantinopol|ierusalimului|ierusalim|alexandriei|antiohiei|romei|niceei|rusiei|romaniei)$/;
+  function fd(t) { return String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); }
+  function numeStraine(numeDb, z) {
+    var valid = fd(z.sfinti + ' ' + (z.duminica || ''));
+    var c = (String(numeDb || '').match(/[A-ZĂÂÎȘŞȚŢ][^\s;,.()]{3,}/g) || []).map(fd)
+      .filter(function (w) { return !TITLURI.test(w) && valid.indexOf(w) === -1; });
+    return c.filter(function (w, i) { return c.indexOf(w) === i; });
+  }
+  var NEUTRU = { sfant_viata: 'Viața sfântului zilei nu este disponibilă momentan.', sinaxar: 'Sinaxarul zilei nu este disponibil momentan.',
+                 tropar: 'Troparul nu este disponibil momentan.', condac: 'Condacul nu este disponibil momentan.', predica: 'Predica zilei nu este disponibilă momentan.' };
   function aplicaValidat(rand, V) {
     var z = rand && typeof rand === 'object' && rand.data_calendaristica && V[rand.data_calendaristica];
     if (!z) return;
+    var straine = numeStraine(rand.sfant_nume, z);
+    if (straine.length) Object.keys(NEUTRU).forEach(function (k) {
+      if (typeof rand[k] === 'string' && straine.some(function (w) { return fd(rand[k]).indexOf(w) !== -1; })) rand[k] = NEUTRU[k];
+    });
     if ('sfant_nume' in rand) rand.sfant_nume = numeValidat(z);
     if ('sfinti_secundari' in rand) rand.sfinti_secundari = null;
     if ('meta_description' in rand) {
