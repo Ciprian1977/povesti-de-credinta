@@ -5,6 +5,9 @@ const fs = require('fs');
 (async () => {
   if (!APP || !KEY) { console.log('lipsesc cheile'); process.exit(0); }
   const diag = [];
+  const SIT = '865e5cce-41f3-4136-a2c7-d6da9044a3ca'; // App ID public, din codul sitului
+  diag.push(`secretul ONESIGNAL_APP_ID este identic cu App ID-ul din sit: ${APP.trim() === SIT ? 'DA' : 'NU'} (lungime ${APP.length}, spații la capete: ${APP !== APP.trim() ? 'DA' : 'nu'})`);
+  diag.push(`tipul cheii REST: ${KEY.startsWith('os_v2_app_') ? 'cheie nouă de aplicație (os_v2_app_…)' : KEY.startsWith('os_v2_org_') ? 'cheie de organizație (os_v2_org_…)' : 'cheie veche/alt format'} (lungime ${KEY.length})`);
   const toate = new Map();
   const variante = [
     ['https://api.onesignal.com/notifications', ''],
