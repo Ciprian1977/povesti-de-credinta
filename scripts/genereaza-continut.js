@@ -13,6 +13,7 @@ const { createClient } = require('@supabase/supabase-js');
 const OpenAI = require('openai');
 const ws = require('ws');
 const fs = require('fs');
+const { lecturiZi } = require('./surse-doxologia');
 const path = require('path');
 
 // —— Lecționar static BOR — texte sacre EXACTE (Apostol, Evanghelie, Tropar) ——
@@ -577,7 +578,28 @@ async function genereazaContiut(date) {
   const cheiaLectionar = date.substring(5); // 'MM-DD' din 'YYYY-MM-DD'
   // Căutăm mai întâi cu cheia completă YYYY-MM-DD (pentru Duminici mobile și zile speciale 2026)
   // apoi cu MM-DD (pentru sărbători fixe: Crăciun, Bobotează, Sf. Apostoli etc.)
-  const texteStatice = LECTIONAR[date] || LECTIONAR[cheiaLectionar] || null;
+  let texteStatice = LECTIONAR[date] || LECTIONAR[cheiaLectionar] || null;
+
+  // —— PASUL 1b: Lecturile OFICIALE din calendarul BOR (doxologia.ro, Mitropolia Moldovei) ——
+  // Au prioritate față de orice altă sursă: Apostolul și Evanghelia depind de Paști (ciclul mobil),
+  // deci nu pot fi deduse doar din data calendaristică.
+  let oficial = null;
+  try { oficial = await lecturiZi(date); } catch (e) { console.warn('⚠️ doxologia.ro indisponibil:', e.message); }
+  if (oficial && oficial.evanghelie_carte) {
+    console.log(`📖 Lecturi oficiale BOR: Ap. ${oficial.apostol_carte} ${oficial.apostol_versete} | Ev. ${oficial.evanghelie_carte} ${oficial.evanghelie_versete}`);
+    const vechi = texteStatice || {};
+    texteStatice = {
+      ...vechi,
+      apostol_carte: oficial.apostol_carte || vechi.apostol_carte,
+      apostol_versete: oficial.apostol_versete || vechi.apostol_versete,
+      apostol_text: oficial.apostol_text || (oficial.apostol_carte ? null : vechi.apostol_text),
+      evanghelie_carte: oficial.evanghelie_carte,
+      evanghelie_versete: oficial.evanghelie_versete,
+      evanghelie_text: oficial.evanghelie_text || null
+    };
+  } else {
+    console.warn('⚠️ Nu am putut lua lecturile oficiale de pe doxologia.ro — folosesc lecționarul local / AI.');
+  }
 
   if (texteStatice) {
     const cheiaGasita = LECTIONAR[date] ? date : cheiaLectionar;
@@ -592,11 +614,18 @@ async function genereazaContiut(date) {
   // NU generează texte liturgice sacre (Apostol, Evanghelie, Tropar)
   // Construieste lista completa de sfinti din CALENDAR_STATIC pentru context AI
   const sfantiZilei = CALENDAR_STATIC[cheiaLectionar]?.sfant || sfantDefault;
+  const contextOficial = oficial ? `
+DATE OFICIALE din calendarul ortodox al BOR (doxologia.ro) — sunt corecte, folosește-le întocmai:
+${oficial.sarbatoare ? `- Sărbătoarea zilei: ${oficial.sarbatoare}\n` : ''}- Sfinții zilei (cei marcați cu ✝) sunt cei principali în calendarul BOR): ${oficial.sfinti.join('; ')}
+- Apostolul zilei: ${oficial.apostol_carte || ''} ${oficial.apostol_versete || ''}
+- Evanghelia zilei: ${oficial.evanghelie_carte || ''} ${oficial.evanghelie_versete || ''}
+Predica și cuvântul de folos trebuie să se bazeze pe ACEASTĂ Evanghelie. „sfant_nume” = sărbătoarea zilei sau primul sfânt marcat cu ✝ (fără semnul ✝). Nu adăuga sfinți care nu sunt în listă.
+` : '';
 
   const prompt = `Ești un preot ortodox român erudit și un expert în Sinaxarul Bisericii Ortodoxe Române (BOR).
 Generează conținut COMPLET și AUTENTIC pentru calendarul ortodox pentru data ${date}.
-Sfinții principali ai zilei conform Calendarului BOR: ${sfantiZilei}
-Tipul postului: ${tipPost}
+Sfinții principali ai zilei conform Calendarului BOR: ${oficial && oficial.sfinti.length ? oficial.sfinti.join('; ') : sfantiZilei}
+${contextOficial}Tipul postului: ${tipPost}
 
 REGULI STRICTE:
 1. GENEREAZĂ textele Apostolului, Evangheliei și Troparului dacă nu sunt furnizate. Folosește traducerea sinodală BOR.
@@ -853,6 +882,12 @@ async function main(retryCount = 0) {
     }
 
     console.error(`❌ S-a atins numărul maxim de reîncercări (${MAX_RETRIES}). Se aplică fallback.`);
+
+    // La regenerare (--force) păstrăm conținutul existent — nu-l înlocuim cu textul de rezervă
+    if (existent) {
+      console.error('⚠️ Ziua avea deja conținut — îl păstrez neschimbat.');
+      process.exit(1);
+    }
 
     // Fallback: salvează date minime din calendar static — fără placeholder-uri vizibile
     console.log('⚠️ Salvez data fallback din calendar static...');

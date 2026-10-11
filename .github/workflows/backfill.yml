@@ -22,11 +22,13 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: |
-          read START END < ../.github/backfill.txt
+          read START END MOD < ../.github/backfill.txt
+          FORTA=""; [ "$MOD" = "force" ] && FORTA="--force"
           d="$START"
           while [ "$(date -d "$d" +%s)" -le "$(date -d "$END" +%s)" ]; do
             echo "=== $d ==="
-            node genereaza-continut.js "$d" || echo "EROARE la $d"
+            node genereaza-continut.js "$d" $FORTA || echo "::warning::EROARE la $d"
+            sleep 2
             d=$(date -d "$d + 1 day" +%F)
           done
       - name: Verifica ca toate zilele sunt complete
