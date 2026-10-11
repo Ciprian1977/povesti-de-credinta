@@ -15,7 +15,7 @@ const SCRIPT = path.resolve(process.argv[2] || path.join(__dirname, '..', 'trimi
 const PRELOAD = path.join(__dirname, 'simulare-retea.js');
 const INTERZIS = /\b(post|postul|postului|posturi|posturile|posturilor|dezleg\w*|har[țţt]i)\b|\/posturi\b/i;
 
-function ruleaza(argumente, zi, acum) {
+function ruleaza(argumente, zi, acum, caleCalendar) {
   const jurnal = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'pdc-')), 'retea.jsonl');
   fs.writeFileSync(jurnal, '');
   const r = spawnSync(process.execPath, ['-r', PRELOAD, SCRIPT, ...argumente], {
@@ -24,7 +24,9 @@ function ruleaza(argumente, zi, acum) {
       PATH: process.env.PATH,
       ONESIGNAL_APP_ID: 'app-test', ONESIGNAL_API_KEY: 'cheie-falsa-de-test',
       SUPABASE_URL: 'https://supabase.test', SUPABASE_SERVICE_KEY: 'cheie-falsa-de-test',
-      PDC_TEST_JURNAL: jurnal, PDC_TEST_ZI: zi ? JSON.stringify(zi) : '', PDC_TEST_ACUM: acum || '2026-10-14T00:30:00Z'
+      PDC_TEST_JURNAL: jurnal, PDC_TEST_ZI: zi ? JSON.stringify(zi) : '', PDC_TEST_ACUM: acum || '2026-10-14T00:30:00Z',
+      // implicit: fără calendarul validat (testele de filtrare verifică numele venite din Supabase)
+      PDC_CALENDAR_VALIDAT: caleCalendar || '/nu-exista/calendar.json'
     }
   });
   const cereri = fs.readFileSync(jurnal, 'utf8').trim().split('\n').filter(Boolean).map((l) => JSON.parse(l));
@@ -156,6 +158,40 @@ for (const seg of ['test', 'dimineata', 'pranz', 'seara']) {
       const iesire = faraPost(intrare);
       verifica(`filtru: „${intrare}”`, iesire === asteptat, `rezultat „${iesire}”, așteptat „${asteptat}”`);
     }
+  }
+}
+
+// 9. Calendarul validat (oct.–dec. 2026): numele din notificări vin din calendar, nu din Supabase
+{
+  const CAL = path.join(__dirname, '..', '..', 'data', 'calendar-validat-2026-t4.json');
+  if (!fs.existsSync(CAL)) verifica('fișierul calendarului validat există', false, CAL);
+  else {
+    const V = JSON.parse(fs.readFileSync(CAL, 'utf8')).zile;
+    const dim = (r) => r.trimise.find((p) => JSON.stringify(p.filters || []).includes('"key":"dimineata"'));
+    const dbGresit = (iso) => ({ data_calendaristica: iso, sfant_nume: 'Sf. Mc. Prov; Cinstirea Sfintei Icoane a Maicii Domnului din Kaluga; Sf. Lev de la Optina', tip_post: 'post' });
+    let r = ruleaza(['programeaza', '2026-10-12'], dbGresit('2026-10-12'), '2026-10-12T00:30:00Z', CAL);
+    verifica('12 oct.: titlul de dimineață = calendarul validat', dim(r) && dim(r).headings.ro === '☀️ Sf. Mc. Prov, Tarah și Andronic; Sf. Ier. Cosma, episcopul Maiumei', dim(r) && dim(r).headings.ro);
+    verifica('12 oct.: numele din Supabase care nu sunt în calendar nu apar în nicio notificare', !r.trimise.some((p) => /Kaluga|Optina/.test(textNotificare(p))));
+    verifica('12 oct.: programarea rămâne completă (25 de notificări)', r.cod === 0 && r.trimise.length === 25, `${r.trimise.length}`);
+    r = ruleaza(['programeaza', '2026-11-30'], dbGresit('2026-11-30'), '2026-11-30T00:30:00Z', CAL);
+    verifica('30 nov.: fără semnele de cruce și fără marcajul de dezlegare în titlu',
+      dim(r) && dim(r).headings.ro === '☀️ Sf. Ap. Andrei cel întâi chemat, Ocrotitorul României; Sf. Ier. Andrei Șaguna, mitropolitul Transilvaniei; Sf. Ier. Frumentie, episcopul Etiopiei', dim(r) && dim(r).headings.ro);
+    r = ruleaza(['programeaza', '2026-12-25'], null, '2026-12-25T00:30:00Z', CAL);
+    verifica('25 dec., fără rând în Supabase: titlul „Nașterea Domnului” din calendar', dim(r) && dim(r).headings.ro === '☀️ Nașterea Domnului', dim(r) && dim(r).headings.ro);
+    r = ruleaza(['programeaza', '2026-10-04'], dbGresit('2026-10-04'), '2026-10-04T00:30:00Z', CAL);
+    verifica('duminică: titlul include și numele duminicii', dim(r) && dim(r).headings.ro.endsWith('; Duminica a 19-a după Rusalii'), dim(r) && dim(r).headings.ro);
+    r = ruleaza(['programeaza', '2026-09-30'], { data_calendaristica: '2026-09-30', sfant_nume: 'Sf. Ier. Grigorie Luminătorul' }, '2026-09-30T00:30:00Z', CAL);
+    verifica('zi în afara calendarului validat: se folosește numele din Supabase, ca înainte', dim(r) && dim(r).headings.ro === '☀️ Sf. Ier. Grigorie Luminătorul', dim(r) && dim(r).headings.ro);
+    r = ruleaza(['test', '2026-10-14'], dbGresit('2026-10-14'), '2026-10-14T06:00:00Z', CAL);
+    verifica('notificarea de test folosește și ea calendarul validat', r.trimise[0] && /Azi: Sf\. Cuv\. Parascheva de la Iași; Sf\. Mc\. Nazarie/.test(r.trimise[0].contents.ro), r.trimise[0] && r.trimise[0].contents.ro);
+    let toate = [];
+    for (const iso of Object.keys(V)) {
+      const rr = ruleaza(['dimineata', iso], null, `${iso}T06:00:00Z`, CAL);
+      if (rr.cod !== 0 || rr.trimise.length !== 1 || INTERZIS.test(textNotificare(rr.trimise[0])) || /†/.test(textNotificare(rr.trimise[0]))) toate.push(iso);
+    }
+    verifica(`toate cele ${Object.keys(V).length} zile: notificarea pleacă, fără post/dezlegare/harți și fără †`, toate.length === 0, toate.slice(0, 5).join(', '));
+    r = ruleaza(['programeaza', '2026-10-12'], dbGresit('2026-10-12'), '2026-10-12T00:30:00Z', '/nu-exista/calendar.json');
+    verifica('dacă fișierul lipsește: se folosește Supabase, fără eroare', r.cod === 0 && dim(r) && /Sf\. Mc\. Prov/.test(dim(r).headings.ro) && /Calendarul validat nu a putut fi citit/.test(r.iesire), r.iesire.slice(-200));
   }
 }
 
