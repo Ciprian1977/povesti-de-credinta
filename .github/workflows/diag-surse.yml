@@ -1,0 +1,31 @@
+name: Diagnostic surse lecturi
+on:
+  push:
+    branches: [main]
+    paths: ['.github/diag.txt']
+permissions:
+  contents: write
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descarca pagini
+        run: |
+          mkdir -p out
+          while read -r nume url; do
+            [ -z "$nume" ] && continue
+            curl -sL -A "Mozilla/5.0 (povestidecredinta.ro)" "$url" -o "out/$nume.html" || echo "eroare $url"
+            echo "$nume $(wc -c < out/$nume.html)"
+          done <<'LISTA'
+          luna https://doxologia.ro/calendar-ortodox/202610
+          zi https://doxologia.ro/11-octombrie
+          ev https://doxologia.ro/ev-luca-8-5-15
+          ap https://doxologia.ro/apostol/ap-galateni-2-16-20
+          luna11 https://doxologia.ro/calendar-ortodox/202611
+          LISTA
+      - name: Publica pe ramura diag
+        run: |
+          cd out
+          git init -q -b diag && git add -A
+          git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -qm diag
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" diag

@@ -259,9 +259,17 @@ async function trimite(segment, dataISO, oraActuala) {
   } else {
     payload = construistePayload(segment, dataISO, continut, oraActuala);
   }
-  const r = await postOneSignal(payload);
+  let r = await postOneSignal(payload);
+  // Segmentul implicit are nume diferite în conturile OneSignal (vechi: „Subscribed Users”, noi: „Total Subscriptions”)
+  if (segment === 'test' && !r.ok && r.faraAbonati) {
+    for (const alt of ['Total Subscriptions', 'Active Subscriptions']) {
+      payload.included_segments = [alt];
+      r = await postOneSignal(payload);
+      if (r.ok || !r.faraAbonati) break;
+    }
+  }
   if (r.ok) console.log(`✅ [${segment}] Trimisă acum (id=${r.j.id}, destinatari≈${r.j.recipients ?? '?'})`);
-  else if (r.faraAbonati) { console.error(`⚠️ [${segment}] Niciun abonat nu se potrivește. Abonează-te întâi din sit (clopoțelul).`); process.exit(1); }
+  else if (r.faraAbonati) { console.error(`⚠️ [${segment}] Niciun abonat nu se potrivește. Abonează-te întâi din sit (clopoțelul). Răspuns OneSignal: ${JSON.stringify(r.j)}`); process.exit(1); }
   else { console.error(`❌ [${segment}] OneSignal a refuzat (HTTP ${r.status}):`, JSON.stringify(r.j)); process.exit(1); }
 }
 
