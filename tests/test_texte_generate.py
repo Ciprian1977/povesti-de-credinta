@@ -1,7 +1,7 @@
 """Verifică protecția din js/corectura-provizorie.js pentru textele generate zilnic:
 - 11 oct. 2026 (caz real): baza de date are viața și troparul Sf. Lev de la Optina, care NU e în calendarul validat
   -> textele respective nu se afișează nicăieri (nici în JSON-LD); apare mesajul neutru; predica despre Evanghelie rămâne.
-- 14 oct. 2026 (control): textele despre Sf. Parascheva (în calendarul validat) rămân neschimbate.
+- 14 oct. 2026 (control): textele despre Sf. Parascheva, scrise cu grafia alternativă „Paraschiva”, rămân neschimbate.
 Folosire: python3 tests/test_texte_generate.py <ROOT> <eticheta>"""
 import sys, os, json, threading, http.server, socketserver
 from playwright.sync_api import sync_playwright
@@ -46,9 +46,9 @@ CAZURI = {
         interzis=['Optina', 'Zenaida', 'Lev de la'], pastrat=['Pilda semănătorului', 'nu este disponibil']),
     '2026-10-14': dict(rand={
         "data_calendaristica": "2026-10-14",
-        "sfant_nume": "Sfânta Cuvioasă Parascheva de la Iași; Sfinții Mucenici Nazarie, Ghervasie, Protasie și Chelsie",
+        "sfant_nume": "Sfânta Cuvioasă Paraschiva de la Iași; Sfinții Mucenici Nazarie, Gervasie, Protasie și Chelsie",
         "sfinti_secundari": None,
-        "sfant_viata": "Sfânta Cuvioasă Parascheva s-a născut în satul Epivata, în secolul al XI-lea, și a trăit în rugăciune și nevoință.",
+        "sfant_viata": "Sfânta Cuvioasă Paraschiva (grafie alternativă) s-a născut în satul Epivata, în secolul al XI-lea, și a trăit în rugăciune și nevoință.",
         "tropar": "Troparul Sfintei Cuvioase Parascheva, glasul 4: Pustnicească și fără de zgomot viețuire iubind.",
         "sinaxar": "În această zi pomenim pe Sfânta Cuvioasă Parascheva de la Iași.",
         "predica": "Iubiți credincioși, viața Sfintei Parascheva ne arată calea smereniei.",
