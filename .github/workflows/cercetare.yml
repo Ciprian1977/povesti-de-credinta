@@ -7,11 +7,17 @@ permissions:
 jobs:
   c:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - run: bash verificari2.sh
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - name: Listare notificari OneSignal (doar citire)
+        env:
+          ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+        run: mkdir -p out && node verifica-onesignal.js | tee out/rezumat.txt
       - run: |
           cd out
-          git init -q -b rezultate-1b2 && git add -A && git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -qm r
-          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" rezultate-1b2
+          git init -q -b rezultate-onesignal && git add -A && git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -qm r
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" rezultate-onesignal
