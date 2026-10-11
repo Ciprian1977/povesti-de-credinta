@@ -1,0 +1,3 @@
+== RLS UPDATE (nedistructiv: scriem EXACT valoarea existenta, deci nimic nu se schimba chiar daca ar fi permis) ==
+valoare existenta: alb
+[] HTTP 200

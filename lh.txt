@@ -1,0 +1,16 @@
+== Lighthouse mobil (date de laborator) ==
+/ {'performance': 66, 'accessibility': 96, 'best-practices': 79, 'seo': 100} | LCP 5.7 s | CLS 0 | TBT 0 ms | FCP 4.9 s
+   oportunitati: [(0, 'uses-text-compression', ''), (0, 'uses-responsive-images', ''), (0, 'uses-optimized-images', ''), (0, 'uses-http2', '')]
+   esuate SEO/BP/A11y: ['third-party-cookies', 'color-contrast', 'label-content-name-mismatch', 'inspector-issues']
+/calendar {'performance': 87, 'accessibility': 89, 'best-practices': 100, 'seo': 100} | LCP 1.6 s | CLS 0.249 | TBT 0 ms | FCP 1.1 s
+   oportunitati: [(249, 'render-blocking-resources', 'Est savings of 250\xa0ms'), (0, 'uses-text-compression', ''), (0, 'uses-responsive-images', ''), (0, 'uses-optimized-images', '')]
+   esuate SEO/BP/A11y: ['aria-required-children', 'color-contrast', 'label-content-name-mismatch']
+/rugaciuni/tatal-nostru {'performance': 100, 'accessibility': 93, 'best-practices': 100, 'seo': 100} | LCP 1.6 s | CLS 0.002 | TBT 0 ms | FCP 1.1 s
+   oportunitati: [(210, 'render-blocking-resources', 'Est savings of 210\xa0ms'), (0, 'uses-text-compression', ''), (0, 'uses-responsive-images', ''), (0, 'uses-optimized-images', '')]
+   esuate SEO/BP/A11y: ['color-contrast', 'heading-order', 'label-content-name-mismatch']
+/sfanta-parascheva {'performance': 100, 'accessibility': 100, 'best-practices': 100, 'seo': 100} | LCP 0.9 s | CLS 0.023 | TBT 0 ms | FCP 0.9 s
+   oportunitati: [(87, 'render-blocking-resources', 'Est savings of 90\xa0ms'), (0, 'uses-text-compression', ''), (0, 'uses-responsive-images', ''), (0, 'uses-optimized-images', '')]
+   esuate SEO/BP/A11y: ['label-content-name-mismatch']
+/sfintii-zilei {'performance': 80, 'accessibility': 95, 'best-practices': 79, 'seo': 100} | LCP 5.4 s | CLS 0.006 | TBT 0 ms | FCP 0.9 s
+   oportunitati: [(300, 'unused-javascript', 'Est savings of 28\xa0KiB'), (0, 'uses-text-compression', ''), (0, 'uses-responsive-images', ''), (0, 'uses-optimized-images', '')]
+   esuate SEO/BP/A11y: ['third-party-cookies', 'color-contrast', 'label-content-name-mismatch', 'inspector-issues']
