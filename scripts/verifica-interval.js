@@ -15,6 +15,8 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_KEY
 );
 
+process.on('uncaughtException', (e) => { adnotare('error', ['Eroare verificare: ' + (e && e.stack || e)]); process.exit(1); });
+process.on('unhandledRejection', (e) => { adnotare('error', ['Eroare verificare: ' + (e && e.stack || e)]); process.exit(1); });
 (async () => {
   const { data, error } = await supabase
     .from('zile_ortodoxe')
@@ -22,7 +24,7 @@ const supabase = createClient(
     .gte('data_calendaristica', START)
     .lte('data_calendaristica', END)
     .order('data_calendaristica');
-  if (error) { console.error('❌', error.message); process.exit(1); }
+  if (error) { adnotare('error', ['Supabase: ' + error.message]); console.error('❌', error.message); process.exit(1); }
 
   const map = Object.fromEntries((data || []).map(r => [r.data_calendaristica, r]));
   const probleme = [];

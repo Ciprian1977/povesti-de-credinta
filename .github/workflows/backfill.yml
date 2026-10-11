@@ -37,5 +37,5 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: |
-          read START END < ../.github/backfill.txt
+          read START END MOD < ../.github/backfill.txt
           node verifica-interval.js "$START" "$END"
