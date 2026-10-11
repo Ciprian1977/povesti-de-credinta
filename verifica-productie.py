@@ -1,27 +1,48 @@
-# DOAR CITIRE: unde apar pe pagini numele din baza de date care nu sunt în calendarul validat (azi, 11 oct.)
-import json, re, urllib.request
+# DOAR CITIRE: verificarea funcțiilor esențiale pe situl de producție. OneSignal blocat; nicio scriere.
+import re, json
 from playwright.sync_api import sync_playwright
 B = 'https://www.povestidecredinta.ro'
-out = []
+out, probleme = [], []
 def log(s): out.append(s); print(s)
-SB = 'https://smuqpipxeotkbttolivp.supabase.co'; K = 'sb_publishable_gWS1MsHXjvIMth8yuYAnog_fBiv9DHk'
-rq = urllib.request.Request(SB + '/rest/v1/zile_ortodoxe?data_calendaristica=eq.2026-10-11&select=*', headers={'apikey': K, 'Authorization': 'Bearer ' + K})
-row = json.loads(urllib.request.urlopen(rq, timeout=30).read())[0]
-log('[A] Câmpurile din baza de date (11 oct.) care conțin Optina/Zenaida/Kokkinos/Filonila:')
-for k, v in row.items():
-    if isinstance(v, (str, list, dict)) and re.search(r'Optina|Zenaida|Kokkinos|Filonila', json.dumps(v, ensure_ascii=False)):
-        log(f'    {k}: {json.dumps(v, ensure_ascii=False)[:300]}')
+PAGINI = ['/', '/calendar', '/calendar-ortodox-azi', '/sfantul-zilei', '/rugaciuni', '/rugaciuni/tatal-nostru', '/rugaciunea-zilei', '/rugaciunea-zilei/luni',
+          '/acatiste', '/acatiste/sfantul-nicolae', '/evanghelia-zilei', '/apostolul-zilei', '/predica-zilei', '/setari-notificari', '/posturi', '/faq']
 with sync_playwright() as p:
     br = p.chromium.launch()
-    c = br.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True, locale='ro-RO', timezone_id='Europe/Bucharest', service_workers='block')
+    for mobil in (True, False):
+        opt = dict(viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True) if mobil else dict(viewport={'width': 1280, 'height': 900})
+        c = br.new_context(locale='ro-RO', timezone_id='Europe/Bucharest', service_workers='block', **opt)
+        c.route(re.compile(r'onesignal\.com'), lambda r: r.fulfill(status=200, content_type='application/javascript', body='window.OneSignalDeferred=window.OneSignalDeferred||[];'))
+        for path in PAGINI:
+            pg = c.new_page(); err = []; pg.on('pageerror', lambda e: err.append(str(e)[:100]))
+            r = pg.goto(B + path, wait_until='networkidle', timeout=60000); pg.wait_for_timeout(1500)
+            t = pg.evaluate('document.body.innerText'); lat = pg.evaluate('document.documentElement.scrollWidth > window.innerWidth + 2')
+            gol = len(t.strip()) < 300; incarca = len(re.findall(r'Se încarcă', t))
+            ok = r.status == 200 and not err and not lat and not gol and incarca == 0
+            log(f'    {"mobil  " if mobil else "desktop"} {path}: HTTP {r.status} {"OK" if ok else "PROBLEMĂ"}{" erori=" + str(err) if err else ""}{" depășire" if lat else ""}{" pagină goală" if gol else ""}{f" „Se încarcă” rămas x{incarca}" if incarca else ""}')
+            if not ok: probleme.append(f'{"mobil" if mobil else "desktop"} {path}: {err} lat={lat} gol={gol} incarca={incarca}')
+            pg.close()
+        c.close()
+    # rugăciunea afișată efectiv
+    c = br.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True, locale='ro-RO', service_workers='block'); pg = c.new_page()
+    pg.goto(B + '/rugaciuni/tatal-nostru', wait_until='networkidle'); t = pg.evaluate('document.body.innerText')
+    log(f'\n    Tatăl nostru: text prezent = {"Tatăl nostru, Care ești în ceruri" in t}')
+    if 'Care ești în ceruri' not in t: probleme.append('textul rugăciunii lipsește')
+    pg.goto(B + '/pagina-inexistenta-xyz'); log(f'    404: {pg.evaluate("document.title")[:40]}')
+    c.close()
+    # PWA offline
+    c = br.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True, locale='ro-RO', service_workers='allow'); pg = c.new_page()
     c.route(re.compile(r'onesignal\.com'), lambda r: r.fulfill(status=200, content_type='application/javascript', body=''))
-    for path in ['/', '/sfantul-zilei', '/sfintii-zilei']:
-        pg = c.new_page(); pg.goto(B + path, wait_until='networkidle', timeout=60000); pg.wait_for_timeout(2000)
-        r = pg.evaluate(r"""() => { const rx=/Optina|Zenaida|Kokkinos|Filonila/; const res=[];
-          document.querySelectorAll('body *').forEach(el=>{ if(el.children.length===0 && rx.test(el.textContent) && el.offsetParent!==null) res.push((el.id?'#'+el.id:el.tagName)+' ['+(el.closest('[id]')||{}).id+']: '+el.textContent.trim().slice(0,160)); });
-          document.querySelectorAll('meta,title,script[type="application/ld+json"]').forEach(el=>{const t=el.content||el.textContent||''; if(rx.test(t)) res.push(el.tagName+': '+t.slice(0,160));});
-          return res.slice(0,12); }""")
-        log(f'\n[B] {path}:'); [log('    ' + x) for x in r]
-        pg.close()
+    pg.goto(B + '/', wait_until='networkidle'); pg.wait_for_timeout(4000); pg.reload(wait_until='networkidle'); pg.wait_for_timeout(2000)
+    for path in ['/calendar', '/rugaciuni']: pg.goto(B + path, wait_until='networkidle'); pg.wait_for_timeout(1000)
+    c.set_offline(True)
+    for path in ['/', '/calendar', '/rugaciuni']:
+        try:
+            r = pg.goto(B + path, wait_until='domcontentloaded', timeout=15000); pg.wait_for_timeout(1500)
+            ok = r and r.status == 200 and len(pg.evaluate('document.body.innerText')) > 300
+            log(f'    offline {path}: {"OK" if ok else "PROBLEMĂ"}')
+            if not ok: probleme.append('offline ' + path)
+        except Exception as e: log(f'    offline {path}: {str(e)[:60]}'); probleme.append('offline ' + path)
     br.close()
+log(f'\nREZULTAT: {"FĂRĂ PROBLEME" if not probleme else str(len(probleme)) + " PROBLEME"}')
+for x in probleme: log('  - ' + x)
 open('out/productie.txt', 'w').write('\n'.join(out) + '\n')
