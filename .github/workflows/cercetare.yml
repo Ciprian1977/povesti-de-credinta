@@ -11,13 +11,7 @@ jobs:
       - run: |
           mkdir out; cd out
           ia(){ curl -sL --max-time 40 -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36" "$2" -o "$1.html"; echo "$1 $(wc -c < $1.html) $2" >> index.txt; }
-          ia cal https://calendar.patriarhia.ro/
-          ia cal_app https://calendar.patriarhia.ro/aplicatia-calendar/
-          ia cal_2026_10 https://calendar.patriarhia.ro/2026/10/
-          ia cal_2026_10_11 https://calendar.patriarhia.ro/2026/10/11/
-          ia robots https://calendar.patriarhia.ro/robots.txt
-          ia sitemap https://calendar.patriarhia.ro/sitemap.xml
-          ia wpjson https://calendar.patriarhia.ro/wp-json/
+          for m in 01 02 03 04 05 06 07 08 09 10 11 12; do ia dox_2026$m https://doxologia.ro/calendar-ortodox/2026$m; sleep 2; done
           cat index.txt
           git init -q -b rezultate-surse && git add -A && git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -qm r
           git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" rezultate-surse
