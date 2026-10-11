@@ -1,138 +1,111 @@
-# DOAR CITIRE: verificarea sitului de producție după publicarea PR #7.
-# Pagini reale (mobil + desktop), date reale din Supabase (doar citire). OneSignal BLOCAT în browser.
+# DOAR CITIRE: verificarea sitului de producție după publicarea PR #8 (calendar oct.–dec. 2026).
+# Date reale din Supabase (doar citire). OneSignal BLOCAT în browser.
 import json, re, urllib.request, hashlib
 from playwright.sync_api import sync_playwright
 
 B = 'https://www.povestidecredinta.ro'
 RAW = 'https://raw.githubusercontent.com/Ciprian1977/povesti-de-credinta/main/'
-SB = 'https://smuqpipxeotkbttolivp.supabase.co'
-K = 'sb_publishable_gWS1MsHXjvIMth8yuYAnog_fBiv9DHk'
 out, probleme = [], []
 def log(s): out.append(s); print(s)
-def get(url, hdr=None):
-    rq = urllib.request.Request(url, headers=hdr or {'User-Agent': 'Mozilla/5.0 verificare-pdc'})
+def get(url):
     try:
-        with urllib.request.urlopen(rq, timeout=30) as r: return r.status, r.read()
+        with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 verificare-pdc'}), timeout=30) as r: return r.status, r.read()
     except urllib.error.HTTPError as e: return e.code, e.read()
+def norm(t): return re.sub(r'\s+', ' ', t or '').strip()
 
-INTERZIS = {
-    'tâlcuire completă': re.compile(r'Tâlcuire Completă|tâlcuirea completă'),
-    'text integral Evanghelie': re.compile(r'[Tt]extul integral al Evangheliei(?! zilei îl puteți citi)|Evanghelia zilei — Textul integral'),
-    'text complet lecturi': re.compile(r'cu textul complet'),
-    'tip post / culoare liturgică': re.compile(r'tipul de post|culoarea liturgic|[Aa]lb liturgic'),
-    'sfânt inventat': re.compile(r'Sfânt din Sinaxarul BOR'),
-    'promisiune post zilnic': re.compile(r'afișăm zilnic dacă este post'),
-    'tâlcuire patristică': re.compile(r'[Tt]âlcuire patristică|[Tt]âlcuirea patristică a Evangheliei|Tâlcuirea Evangheliei și Cuvântul de Folos|pregătite zilnic de echipa'),
-    'Cuvant de folos (meniu)': re.compile(r'Cuvant de folos'),
-    'date greșite 2026': re.compile(r'19 aprilie|2 martie|15 iunie – 28 iunie'),
-    'etichetă de post pe zi': re.compile(r'Zi de post|Dezlegare la (toate|pește)|Post negru|Post aspru'),
-    'alerte post active': re.compile(r'Te anunțăm când începe un post'),
-    'atribuire „sursă oficială”': re.compile(r'(linkul|link) către textul oficial|textul oficial de pe|sursa oficială|referința și textul oficial|linkul oficial'),
-    'va fi disponibil în curând': re.compile(r'va fi disponibil(ă)? în curând'),
-}
-PAGINI = ['/', '/calendar-ortodox-azi', '/setari-notificari', '/sfintii-zilei', '/rugaciunea-zilei', '/rugaciunea-zilei/miercuri',
-          '/rugaciunea-zilei/vineri', '/apostolul-zilei', '/evanghelia-zilei', '/predica-zilei', '/sfantul-zilei', '/sinaxar',
-          '/sinaxarul-zilei', '/calendar', '/faq']
-
-# ── 1. Versiunea publicată = main ──
-log('[1] Versiunea publicată pe www.povestidecredinta.ro')
-for f in ['sw.js', 'js/app.js', 'js/min/app.min.js', 'js/corectura-provizorie.js', 'js/min/rugaciuni-saptamana.min.js', 'faq.html', 'calendar-ortodox-azi/index.html', 'setari-notificari/index.html']:
-    live = B + '/' + (f.replace('/index.html', '').replace('.html', '') if f.endswith('.html') else f)
-    s1, b1 = get(live); s2, b2 = get(RAW + f)
+log('[1] Versiunea publicată = main')
+for f, live in [('data/calendar-validat-2026-t4.json', 'data/calendar-validat-2026-t4.json?v=1'), ('js/corectura-provizorie.js', 'js/corectura-provizorie.js?v=3'),
+                ('sw.js', 'sw.js'), ('js/app.js', 'js/app.js?v=20'), ('js/min/app.min.js', 'js/min/app.min.js?v=20'), ('calendar.html', 'calendar')]:
+    s1, b1 = get(B + '/' + live); s2, b2 = get(RAW + f)
     ok = s1 == 200 and hashlib.sha1(b1).digest() == hashlib.sha1(b2).digest()
-    log(f'    /{f}: HTTP {s1} — {"IDENTIC cu main" if ok else "DIFERIT de main"}')
-    if not ok: probleme.append(f'versiune diferită: {f}')
+    log(f'    /{live}: HTTP {s1} — {"IDENTIC cu main" if ok else "DIFERIT"}')
+    if not ok: probleme.append('versiune: ' + f)
+V = json.loads(get(B + '/data/calendar-validat-2026-t4.json?v=1')[1])['zile']
+LOCALI = [l for z in V.values() for l in z.get('locali', [])]
+log(f'    fișierul publicat: {len(V)} zile, {sum(1 for z in V.values() if z["stare"]=="validat")} validate')
 
-st, b = get(f'{SB}/rest/v1/zile_ortodoxe?data_calendaristica=eq.2026-10-11&select=sfant_nume,apostol_carte,apostol_versete,evanghelie_carte,evanghelie_versete',
-            {'apikey': K, 'Authorization': 'Bearer ' + K})
-zi = (json.loads(b) or [{}])[0] if st == 200 else {}
-ref_ap = f"{zi.get('apostol_carte','')} {zi.get('apostol_versete','')}".strip(); ref_ev = f"{zi.get('evanghelie_carte','')} {zi.get('evanghelie_versete','')}".strip()
-log(f'\n[2] Date reale azi: sfinți „{zi.get("sfant_nume","")[:70]}”, Apostol „{ref_ap}”, Evanghelie „{ref_ev}”')
-
-def ctx_nou(br, mobil, sw=False):
+GRESITE = ['Optina', 'Zenaida', 'Kokkinos', 'Filonila', 'Kaluga', 'Sfânt din Sinaxarul BOR']
+STATICE = ['Cuvioasa Parascheva de la Iași', 'Soborul Sfinților Arhangheli Mihail și Gavriil', 'Sfântul Apostol Andrei, Ocrotitorul României',
+           'Sfântul Apostol Andrei, cel Întâi chemat', 'Sfântul Ierarh Nicolae, arhiepiscopul Mirelor Lichiei', 'Nașterea Domnului nostru Iisus Hristos (Crăciunul)']
+def ctx_nou(br, mobil, zi=None, sw=False):
     opt = dict(viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True) if mobil else dict(viewport={'width': 1280, 'height': 900})
     c = br.new_context(locale='ro-RO', timezone_id='Europe/Bucharest', service_workers='allow' if sw else 'block', **opt)
+    if zi: c.add_init_script("(()=>{const T=new Date('%sT09:00:00+03:00').getTime();const D=Date;class F extends D{constructor(...a){super(...(a.length?a:[T]))}static now(){return T}};window.Date=F;})();" % zi)
     c.route(re.compile(r'onesignal\.com'), lambda r: r.fulfill(status=200, content_type='application/javascript', body='window.OneSignalDeferred=window.OneSignalDeferred||[];'))
     return c
-def ascunse(pg):
-    return pg.evaluate("""() => [document.title,...[...document.querySelectorAll('meta[name=description],meta[property^="og:"],meta[name^="twitter:"]')].map(m=>m.content||''),
-      ...[...document.querySelectorAll('script[type="application/ld+json"]')].map(s=>s.textContent)].join(' \\n ')""")
+def seo(pg):
+    return pg.evaluate("""() => ({titlu: document.title, meta: [...document.querySelectorAll('meta[name=description],meta[property^="og:"],meta[name^="twitter:"]')].map(m=>m.content||'').join(' | '),
+        ld: [...document.querySelectorAll('script[type="application/ld+json"]')].map(s=>s.textContent).join(' | '), viz: document.body.innerText})""")
 
 with sync_playwright() as p:
     br = p.chromium.launch()
-    log('\n[3] Pagini (mobil + desktop): promisiuni false în text / titlu / meta / OG / JSON-LD, erori JS, depășire')
+    # ── 2. Calendarul lunar: 92 de zile = fișierul validat ──
+    log('\n[2] Calendarul lunar (oct.–dec.), mobil și desktop')
     for mobil in (True, False):
-        c = ctx_nou(br, mobil)
-        for path in PAGINI:
+        c = ctx_nou(br, mobil); pg = c.new_page(); err = []; pg.on('pageerror', lambda e: err.append(str(e)[:120]))
+        pg.goto(B + '/calendar', wait_until='networkidle', timeout=60000); pg.wait_for_timeout(2000)
+        total, dif = 0, []
+        for luna in (10, 11, 12):
+            if luna > 10: pg.evaluate('navigheazaCalendar(1)'); pg.wait_for_timeout(2000)
+            rows = pg.evaluate("[...document.querySelectorAll('#lista-sfinti-luna .cal-rand')].map(r=>({nr:+(r.querySelector('.cal-nr')||{}).textContent, sfant:(r.querySelector('.cal-sfant')||{}).innerText||'', marcaj:(r.querySelector('.cal-marcaj')||{}).innerText||'', post:(r.querySelector('.cal-post')||{}).innerText||'', text:r.innerText}))")
+            total += len(rows)
+            for r in rows:
+                iso = f'2026-{luna:02d}-{r["nr"]:02d}'; z = V.get(iso)
+                if not z: dif.append((iso, 'lipsă în fișier')); continue
+                if not norm(r['sfant']).startswith(norm(z['sfinti'])): dif.append((iso, 'sfinți', r['sfant'][:60]))
+                if z.get('duminica') and norm(z['duminica']) not in norm(r['sfant']): dif.append((iso, 'duminica'))
+                if norm(r['marcaj']) != norm(z.get('marcaj') or '') or r['post']: dif.append((iso, 'marcaj', r['marcaj'], r['post']))
+                if 'Se publică' in r['text'] or any(g in r['text'] for g in GRESITE): dif.append((iso, 'text interzis'))
+                if any(l.split(' din ')[0][-14:] in r['text'] for l in LOCALI): dif.append((iso, 'pomenire locală'))
+            log(f'    {"mobil" if mobil else "desktop"} {luna:02d}: {len(rows)} zile')
+        d2 = pg.evaluate("1")
+        log(f'    {"mobil" if mobil else "desktop"}: total {total} zile, diferențe față de fișier: {dif[:5] or "niciuna"}, erori JS: {err or "niciuna"}')
+        if total != 92 or dif or err: probleme.append(f'calendar {"mobil" if mobil else "desktop"}: {total} zile, {dif[:5]}, {err}')
+        c.close()
+    z2 = V['2026-12-02']; log(f'    2 decembrie: marcaj în fișier = {z2.get("marcaj")!r} (afișat: fără marcaj dacă diferențele de mai sus sunt „niciuna”)')
+
+    # ── 3. Paginile cu sfântul zilei: azi (date reale) + alte zile (fără rând în baza de date) ──
+    log('\n[3] Prima pagină, pagini dedicate, SEO (titlu, meta, OG, JSON-LD)')
+    for zi in [None, '2026-10-14', '2026-11-30', '2026-12-25']:
+        iso = zi or '2026-10-11'; primul = re.sub(r'^[†()\s]+', '', V[iso]['sfinti'].split(';')[0]).strip()[:28]
+        c = ctx_nou(br, True, zi)
+        for path in ['/', '/calendar-ortodox-azi', '/sfantul-zilei', '/sfintii-zilei', '/sinaxar', '/sinaxarul-zilei']:
             pg = c.new_page(); err = []; pg.on('pageerror', lambda e: err.append(str(e)[:120]))
-            r = pg.goto(B + path, wait_until='networkidle', timeout=60000); pg.wait_for_timeout(1500)
-            t = pg.evaluate('document.body.innerText') + ' \n ' + ascunse(pg)
-            g = {k: sorted(set(map(str, rx.findall(t))))[:2] for k, rx in INTERZIS.items() if rx.search(t) and not (k == 'etichetă de post pe zi' and path == '/faq')}
-            lat = pg.evaluate('document.documentElement.scrollWidth > window.innerWidth + 2')
-            ok = r and r.status == 200 and not g and not err and not lat
-            if not ok: probleme.append(f'{"mobil" if mobil else "desktop"} {path}: HTTP {r.status if r else "-"} {g} {err} depasire={lat}')
-            log(f'    {"mobil  " if mobil else "desktop"} {path}: HTTP {r.status if r else "-"} {"OK" if ok else "PROBLEMĂ " + json.dumps(g, ensure_ascii=False) + str(err)}')
+            pg.goto(B + path, wait_until='networkidle', timeout=60000); pg.wait_for_timeout(2000)
+            s = seo(pg); tot = ' '.join(s.values()); pr = []
+            g = [x for x in GRESITE if x in tot]
+            if g: pr.append('nume din baza de date care nu sunt în calendar: ' + str(g))
+            st = [x for x in STATICE if x in tot and x not in V[iso]['sfinti']]
+            if st: pr.append('nume din calendarul static vechi: ' + str(st))
+            if primul not in s['viz']: pr.append('numele validat nu apare în pagină')
+            if path != '/sfintii-zilei' and primul not in s['titlu'] + s['meta']: pr.append('numele validat lipsește din titlu/meta')
+            if re.search(r'prăznuit|"Sf\.|Sfântul zilei', s['ld']) and primul not in s['ld']: pr.append('JSON-LD fără numele validat')
+            if err: pr.append('erori JS ' + str(err))
+            log(f'    {iso} {path}: {"OK" if not pr else "PROBLEMĂ " + str(pr)} | titlu: {s["titlu"][:70]}')
+            if pr: probleme.append(f'{iso} {path}: {pr}')
             pg.close()
         c.close()
 
-    c = ctx_nou(br, True); pg = c.new_page()
-    # ── 4. Calendar azi, sfântul zilei, cardul Evangheliei ──
-    pg.goto(B + '/calendar-ortodox-azi', wait_until='networkidle'); pg.wait_for_timeout(1500)
-    ca = {'erou': pg.inner_text('#sfant-azi'), 'apostol': pg.inner_text('#apostol-card'), 'evanghelie': pg.inner_text('#ev-card'),
-          'insigna_culoare': pg.locator('#culoare-badge').count(), 'meta': pg.get_attribute('meta[name=description]', 'content')}
-    log(f'\n[4] /calendar-ortodox-azi: {json.dumps(ca, ensure_ascii=False)[:400]}')
-    if zi.get('sfant_nume') and zi['sfant_nume'][:20] not in ca['erou']: probleme.append('calendar azi: sfântul din date lipsește')
-    if ref_ap not in ca['apostol'] or ref_ev not in ca['evanghelie']: probleme.append(f'calendar azi: referințe {ca}')
-    if ca['insigna_culoare']: probleme.append('calendar azi: insigna culoare liturgică')
-    pg.goto(B + '/sfantul-zilei', wait_until='networkidle'); pg.wait_for_timeout(1500)
-    sz = pg.inner_text('#sfant-principal'); log(f'    /sfantul-zilei: sfântul principal „{sz[:80]}”')
-    if zi.get('sfant_nume') and zi['sfant_nume'][:20] not in sz: probleme.append('sfântul zilei nu vine din date')
-    pg.goto(B + '/calendar', wait_until='networkidle'); pg.wait_for_timeout(2000)
-    cal = pg.evaluate("document.querySelectorAll('.cal-rand').length"); azi_cal = pg.evaluate("(document.querySelector('.cal-rand-azi')||{}).innerText||''")
-    log(f'    /calendar: {cal} zile în listă; ziua de azi: „{azi_cal[:80]}”')
-    if cal < 28 or 'Astăzi' not in azi_cal: probleme.append('calendarul lunii nu se afișează corect')
-
-    # ── 5. SEO + Doxologia ──
-    log('\n[5] Formulări SEO și Doxologia')
-    for path in ['/evanghelia-zilei', '/apostolul-zilei', '/calendar-ortodox-azi', '/faq']:
-        pg.goto(B + path, wait_until='networkidle'); pg.wait_for_timeout(1200)
-        t = pg.evaluate('document.body.textContent'); m = pg.get_attribute('meta[name=description]', 'content') or ''
-        info = {'meta': m[:150], 'formulare_doxologia': ('lectura publicată pe Doxologia' in t + m) or ('Citește lectura pe Doxologia' in t),
-                'buton_doxologia': pg.locator('a[href*="doxologia.ro"]').count()}
-        if path == '/faq': info = {'meta': m[:120], 'Pasti_12_aprilie': '12 aprilie 2026' in t, 'Post_Mare_23_feb': '23 februarie' in t, 'Apostoli_8_28_iunie': '8 – 28 iunie' in t}
-        log(f'    {path}: {json.dumps(info, ensure_ascii=False)}')
-        if path != '/faq' and not info['formulare_doxologia']: probleme.append(f'{path}: formularea Doxologia lipsește')
-        if path in ('/evanghelia-zilei', '/apostolul-zilei') and not info['buton_doxologia']: probleme.append(f'{path}: link Doxologia lipsă')
-        if path == '/faq' and not all(v for k, v in info.items() if k != 'meta'): probleme.append(f'FAQ: {info}')
-
-    # ── 6. Alerte post suspendate (fără a atinge OneSignal) ──
-    pg.goto(B + '/setari-notificari', wait_until='networkidle'); pg.wait_for_timeout(1500)
-    al = pg.evaluate("""() => {const t=document.getElementById('toggle-alerte'),o=document.getElementById('ora-alerte'),c=document.getElementById('card-alerte');
-       return {comutator_dezactivat:!!(t&&t.disabled), ora_dezactivata:!!(o&&o.disabled), eticheta:c?c.innerText.replace(/\\s+/g,' ').slice(0,160):''}}""")
-    log(f'\n[6] Alerte post: {json.dumps(al, ensure_ascii=False)}')
-    if not (al['comutator_dezactivat'] and al['ora_dezactivata'] and 'suspendat temporar' in al['eticheta']): probleme.append(f'alerte post: {al}')
-    c.close()
-
-    # ── 7. PWA + offline ──
+    # ── 4. PWA + offline ──
     c = ctx_nou(br, True, sw=True); pg = c.new_page()
     pg.goto(B + '/', wait_until='networkidle'); pg.wait_for_timeout(4000); pg.reload(wait_until='networkidle'); pg.wait_for_timeout(2500)
-    for path in ['/calendar-ortodox-azi', '/setari-notificari']: pg.goto(B + path, wait_until='networkidle'); pg.wait_for_timeout(800)
-    sw = pg.evaluate("navigator.serviceWorker.getRegistrations().then(r=>r.map(x=>x.active&&x.active.state))"); cache = pg.evaluate('caches.keys()')
+    pg.goto(B + '/calendar', wait_until='networkidle'); pg.wait_for_timeout(2000)
+    cache = pg.evaluate('caches.keys()')
+    jc = pg.evaluate("caches.keys().then(async ks=>{for(const k of ks){const c=await caches.open(k);if(await c.match('/data/calendar-validat-2026-t4.json?v=1'))return k}return null})")
     cdp = c.new_cdp_session(pg)
     try: inst = [e.get('errorId') for e in cdp.send('Page.getInstallabilityErrors').get('installabilityErrors', [])]
     except Exception: inst = 'n/a'
-    log(f'\n[7] PWA: service worker {sw}; cache {cache}; erori instalare: {inst or "niciuna"}')
-    if not any(k.endswith('-v19') for k in cache) or any(k.endswith('-v18') for k in cache): probleme.append(f'PWA cache: {cache}')
-    if inst: probleme.append(f'PWA instalare: {inst}')
+    log(f'\n[4] PWA: cache {cache}; calendarul validat în cache: {jc}; erori instalare: {inst or "niciuna"}')
+    if not jc or not any(k.endswith('-v20') for k in cache) or inst: probleme.append(f'PWA {cache} {jc} {inst}')
     c.set_offline(True)
-    for path in ['/', '/calendar-ortodox-azi', '/setari-notificari']:
+    for path in ['/calendar', '/', '/calendar-ortodox-azi']:
         try:
-            r = pg.goto(B + path, wait_until='domcontentloaded', timeout=20000); pg.wait_for_timeout(700)
-            t = pg.evaluate('document.body.innerText'); g = [k for k, rx in INTERZIS.items() if rx.search(t)]
-            log(f'    offline {path}: HTTP {r.status if r else "-"} „{pg.title()[:45]}”{" interzis=" + str(g) if g else ""}')
-            if not r or r.status != 200 or g: probleme.append(f'offline {path}')
+            r = pg.goto(B + path, wait_until='domcontentloaded', timeout=20000); pg.wait_for_timeout(2500)
+            t = pg.evaluate('document.body.innerText'); ok = bool(r) and r.status == 200 and (path != '/calendar' or V['2026-10-25']['sfinti'][:25] in t)
+            log(f'    offline {path}: HTTP {r.status if r else "-"} {"OK" if ok else "PROBLEMĂ"}')
+            if not ok: probleme.append('offline ' + path)
         except Exception as e:
-            log(f'    offline {path}: eroare {str(e)[:80]}'); probleme.append(f'offline {path}')
+            log(f'    offline {path}: {str(e)[:80]}'); probleme.append('offline ' + path)
     c.set_offline(False); c.close(); br.close()
 
 log(f'\nREZULTAT: {"FĂRĂ PROBLEME" if not probleme else str(len(probleme)) + " PROBLEME"}')
