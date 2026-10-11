@@ -1,0 +1,465 @@
+{
+ "descriere": "Calendarul ortodox octombrie–decembrie 2026, transcris din fotografia calendarului bisericesc tipărit (BOR, 2026) trimisă de proprietarul sitului. Conține doar ce se vede în fotografie; nimic nu este completat automat sau din AI.",
+ "sursa": "Fotografie calendar bisericesc tipărit 2026, paginile octombrie, noiembrie, decembrie",
+ "transcris_la": "2026-10-11",
+ "verificare": "Comparat zi cu zi cu calendarul publicat de Patriarhia Română pentru 2026: nume și marcaje identice, cu excepția zilei 2 decembrie (marcaj diferit, vezi nota).",
+ "legenda": {
+  "sfinti": "sfinții și sărbătorile zilei, ca în calendar",
+  "marcaj": "textul tipărit în paranteză (dezlegare, harți, început de post etc.)",
+  "duminica": "numele duminicii",
+  "lecturi": "lecturile tipărite pentru duminică",
+  "locali": "pomeniri tipărite cu verde (ediția locală); nu se afișează pe site",
+  "stare": "validat / de_verificat"
+ },
+ "zile": {
+  "2026-10-01": {
+   "sfinti": "(†) Acoperământul Maicii Domnului; Sf. Ap. Anania; †) Sf. Cuv. Iosif și Chiriac de la Bisericani; Sf. Cuv. Roman Melodul",
+   "stare": "validat"
+  },
+  "2026-10-02": {
+   "sfinti": "Sf. Sfințit Mc. Ciprian; Sf. Mc. Iustina fecioara",
+   "stare": "validat"
+  },
+  "2026-10-03": {
+   "sfinti": "Sf. Sfințit Mc. Dionisie Areopagitul; Sf. Mc. Teoctist",
+   "stare": "validat"
+  },
+  "2026-10-04": {
+   "sfinti": "†) Sf. Preot Mărturisitor Dumitru Stăniloae; Sf. Sfințit Mc. Ierotei, episcopul Atenei",
+   "duminica": "Duminica a 19-a după Rusalii",
+   "lecturi": "Ap. 2 Corinteni 11, 31-33; 12, 1-9; Ev. Luca 6, 31-36 (Predica de pe munte. Iubirea vrăjmașilor)",
+   "glas": "glas 1, voscr. 7",
+   "stare": "validat"
+  },
+  "2026-10-05": {
+   "sfinti": "†) Sf. Cuv. Daniil și Misail de la Mănăstirea Turnu; Sf. Mc. Haritina",
+   "stare": "validat"
+  },
+  "2026-10-06": {
+   "sfinti": "Sf. Ap. Toma; Sf. Mc. Erotiida",
+   "stare": "validat"
+  },
+  "2026-10-07": {
+   "sfinti": "† Sf. Mari Mc. Serghie și Vah; Sf. Mc. Iulian preotul, Chesarie diaconul și Polihronie",
+   "stare": "validat"
+  },
+  "2026-10-08": {
+   "sfinti": "Sf. Cuv. Pelaghia și Taisia",
+   "stare": "validat"
+  },
+  "2026-10-09": {
+   "sfinti": "Sf. Ap. Iacob al lui Alfeu; Sf. Cuv. Andronic și Atanasia",
+   "stare": "validat"
+  },
+  "2026-10-10": {
+   "sfinti": "Sf. Mc. Evlampie și sora sa, Evlampia; Sf. Cuv. Vasian și Teofil Mărturisitorul",
+   "locali": [
+    "Sf. Mc. Cassius și Florentius din Bonn și Gereon din Köln"
+   ],
+   "stare": "validat"
+  },
+  "2026-10-11": {
+   "sfinti": "Sf. Ap. Filip, unul dintre cei 7 diaconi; Sf. Ier. Teofan Mărturisitorul, episcopul Niceei",
+   "duminica": "Duminica a 21-a după Rusalii (a Sfinților Părinți de la Sinodul al VII-lea Ecumenic)",
+   "lecturi": "Ap. Galateni 2, 16-20; al Sf. Părinți: Tit 3, 8-15; Ev. Luca 8, 5-15 (Pilda semănătorului); a Sf. Părinți: Ioan 17, 1-13 (Rugăciunea lui Iisus)",
+   "glas": "glas 2, voscr. 8",
+   "stare": "validat"
+  },
+  "2026-10-12": {
+   "sfinti": "Sf. Mc. Prov, Tarah și Andronic; Sf. Ier. Cosma, episcopul Maiumei",
+   "stare": "validat"
+  },
+  "2026-10-13": {
+   "sfinti": "† Aducerea moaștelor Sfântului Apostol Andrei la Iași; Sf. Mc. Carp, Papil, Agatodor, Agatonica și Florentie",
+   "stare": "validat"
+  },
+  "2026-10-14": {
+   "sfinti": "†) Sf. Cuv. Parascheva de la Iași; Sf. Mc. Nazarie, Ghervasie, Protasie și Chelsie",
+   "stare": "validat"
+  },
+  "2026-10-15": {
+   "sfinti": "† Sf. Magdalena de la Mălainița; Sf. Sfințit Mc. Lucian, preotul din Antiohia",
+   "stare": "validat"
+  },
+  "2026-10-16": {
+   "sfinti": "Sf. Mc. Longhin Sutașul",
+   "stare": "validat"
+  },
+  "2026-10-17": {
+   "sfinti": "Sf. Proroc Oseea; Sf. Cuv. Mc. Andrei Criteanul",
+   "stare": "validat"
+  },
+  "2026-10-18": {
+   "sfinti": "Sf. Ap. și Evanghelist Luca; Sf. Mc. Marin cel Bătrân",
+   "duminica": "Duminica a 20-a după Rusalii",
+   "lecturi": "Ap. Galateni 1, 11-19; Ev. Luca 7, 11-16 (Învierea fiului văduvei din Nain)",
+   "glas": "glas 3, voscr. 9",
+   "stare": "validat"
+  },
+  "2026-10-19": {
+   "sfinti": "Sf. Proroc Ioil; Sf. Mc. Uar; Sf. Cleopatra; Sf. Cuv. Ioan de la Rila",
+   "stare": "validat"
+  },
+  "2026-10-20": {
+   "sfinti": "Sf. Mare Mc. Artemie; Sf. Cuv. Gherasim din Chefalonia",
+   "stare": "validat"
+  },
+  "2026-10-21": {
+   "sfinti": "†) Sf. Cuv. Mărturisitori: Visarion și Sofronie; Sf. Mc. Oprea; Sf. Preoți Mărturisitori: Ioan din Galeș și Moise Măcinic din Sibiel; Sf. Cuv. Ilarion cel Mare",
+   "stare": "validat"
+  },
+  "2026-10-22": {
+   "sfinti": "Sf. Ier. Averchie, episcopul Ierapolei, cel întocmai cu Apostolii; Sf. 7 tineri din Efes",
+   "stare": "validat"
+  },
+  "2026-10-23": {
+   "sfinti": "Sf. Ap. Iacob, rudenia Domnului, întâiul episcop al Ierusalimului; †) Sf. Preot Mucenic Constantin Sârbu; Sf. Cuv. Macarie Romanul",
+   "stare": "validat"
+  },
+  "2026-10-24": {
+   "sfinti": "Sf. Mare Mucenic Areta; Sf. Mc. Marcu, Sotirih și Valentin",
+   "stare": "validat"
+  },
+  "2026-10-25": {
+   "sfinti": "Sf. Mc. Marcian și Martirie; Sf. Tavita",
+   "duminica": "Duminica a 23-a după Rusalii",
+   "lecturi": "Ap. Efeseni 2, 4-10; Ev. Luca 8, 26-39 (Vindecarea demonizatului din ținutul Gherghesenilor)",
+   "glas": "glas 4, voscr. 10",
+   "stare": "validat"
+  },
+  "2026-10-26": {
+   "sfinti": "†) Sf. Mare Mc. Dimitrie, Izvorâtorul de Mir",
+   "stare": "validat"
+  },
+  "2026-10-27": {
+   "sfinti": "†) Sf. Cuv. Dimitrie cel Nou, Ocrotitorul Bucureștilor (ale cărui moaște se află în Catedrala Patriarhală); Sf. Mc. Nestor",
+   "stare": "validat"
+  },
+  "2026-10-28": {
+   "sfinti": "† Sf. Ier. Iachint, mitropolitul Țării Românești; †) Sf. Cuv. Teofana Basarab; Sf. Mc. Terentie, soția sa, Neonila și cei 7 fii; Sf. Cuv. Ștefan Savaitul; Sf. Ier. Firmilian, episcopul Cezareei Capadociei",
+   "stare": "validat",
+   "sursa_suplimentara": "Fotografie clară a paginii octombrie, trimisă pe 11 oct. 2026, 12:15"
+  },
+  "2026-10-29": {
+   "sfinti": "Sf. Cuv. Mc. Anastasia Romana; Sf. Cuv. Avramie și Maria, nepoata sa",
+   "stare": "validat",
+   "sursa_suplimentara": "Fotografie clară a paginii octombrie, trimisă pe 11 oct. 2026, 12:15"
+  },
+  "2026-10-30": {
+   "sfinti": "Sf. Sfințit Mc. Zenovie, episcopul Ciliciei, și sora sa, Zenovia; Sf. Ap. Cleopa",
+   "stare": "validat"
+  },
+  "2026-10-31": {
+   "sfinti": "Sf. Ap. Apelie, Stahie, Amplie, Urban, Aristobul și Narcis; Sf. Mc. Epimah",
+   "locali": [
+    "Sf. Wolfgang din Regensburg"
+   ],
+   "stare": "validat"
+  },
+  "2026-11-01": {
+   "sfinti": "Sf. doctori fără de arginți Cosma și Damian, cei din Asia",
+   "duminica": "Duminica a 22-a după Rusalii",
+   "lecturi": "Ap. Galateni 6, 11-18; Ev. Luca 16, 19-31 (Bogatul nemilostiv și săracul Lazăr)",
+   "glas": "glas 5, voscr. 11",
+   "stare": "validat"
+  },
+  "2026-11-02": {
+   "sfinti": "Sf. Mc. Achindin, Pigasie, Aftonie, Elpidifor și Anempodist",
+   "stare": "validat"
+  },
+  "2026-11-03": {
+   "sfinti": "Sf. Sfințiți Mc. Achepsima, Iosif și Aitala; Așezarea moaștelor Sf. Mare Mc. Gheorghe în Lida",
+   "locali": [
+    "Sf. Ier. Pirmin din Pfalz"
+   ],
+   "stare": "validat"
+  },
+  "2026-11-04": {
+   "sfinti": "Sf. Cuv. Ioanichie cel Mare; Sf. Mc. Nicandru și Ermeu; Sf. Cuv. Gheorghe Mărturisitorul din Drama",
+   "stare": "validat"
+  },
+  "2026-11-05": {
+   "sfinti": "Sf. Mc. Galaction și Epistimia",
+   "stare": "validat"
+  },
+  "2026-11-06": {
+   "sfinti": "Sf. Ier. Pavel Mărturisitorul, arhiepiscopul Constantinopolului; Sf. Cuv. Luca din Sicilia",
+   "stare": "validat"
+  },
+  "2026-11-07": {
+   "sfinti": "Sfinții 33 de Mucenici din Melitina; Sf. Cuv. Lazăr din Muntele Galisiei",
+   "marcaj": "Sâmbăta celor adormiți - Moșii de toamnă",
+   "locali": [
+    "Sf. Willibrord din Luxemburg"
+   ],
+   "stare": "validat"
+  },
+  "2026-11-08": {
+   "sfinti": "†) Soborul Sf. Arhangheli Mihail și Gavriil și al tuturor cereștilor puteri",
+   "duminica": "Duminica a 24-a după Rusalii",
+   "lecturi": "Ap. Efeseni 2, 14-22; al Arhanghelilor: Evrei 2, 2-10; Ev. Luca 8, 41-56 (Învierea fiicei lui Iair); a Arhanghelilor: Luca 10, 16-21",
+   "glas": "glas 6, voscr. 1",
+   "stare": "validat"
+  },
+  "2026-11-09": {
+   "sfinti": "†) Sf. Ier. Nectarie de la Eghina; Sf. Mc. Claudiu, Castor, Sempronian și Nicostrat; Sf. Mc. Onisifor și Porfirie; Sf. Cuv. Matrona",
+   "stare": "validat"
+  },
+  "2026-11-10": {
+   "sfinti": "Sf. Ap. Olimp, Rodion, Sosipatru, Erast, Terțiu și Cvart; †) Sf. Cuv. Mc. Visarion de la Lainici; Sf. Mc. Orest",
+   "stare": "validat"
+  },
+  "2026-11-11": {
+   "sfinti": "† Sf. Mare Mc. Mina; Sf. Mc. Victor, Vichentie și Ștefanida; Sf. Cuv. Teodor Studitul",
+   "stare": "validat"
+  },
+  "2026-11-12": {
+   "sfinti": "†) Sf. Martiri și Mărturisitori Năsăudeni: Atanasie Todoran din Bichigiu, Vasile din Mocod, Grigorie din Zagra și Vasile din Telciu; Sf. Ier. Ioan cel Milostiv, patriarhul Alexandriei; Sf. Cuv. Nil Pustnicul",
+   "stare": "validat"
+  },
+  "2026-11-13": {
+   "sfinti": "†) Sf. Ier. Ioan Gură de Aur, arhiepiscopul Constantinopolului, și mama sa, Sf. Antuza",
+   "stare": "validat"
+  },
+  "2026-11-14": {
+   "sfinti": "†) Sf. Ap. Filip, unul dintre cei 12 Apostoli; Sf. Ier. Grigorie Palama, arhiepiscopul Tesalonicului; Sfinții Palamiți",
+   "marcaj": "Lăsatul secului pentru Postul Nașterii Domnului",
+   "stare": "validat"
+  },
+  "2026-11-15": {
+   "sfinti": "†) Sf. Cuv. Paisie de la Neamț; Sf. Mc. și Mărturisitori: Gurie, Samona și Aviv diaconul",
+   "marcaj": "Începutul Postului Nașterii Domnului",
+   "duminica": "Duminica a 25-a după Rusalii",
+   "lecturi": "Ap. Efeseni 4, 1-7; Ev. Luca 10, 25-37 (Pilda samarineanului milostiv)",
+   "glas": "glas 7, voscr. 2",
+   "stare": "validat"
+  },
+  "2026-11-16": {
+   "sfinti": "Sf. Ap. și Evanghelist Matei",
+   "stare": "validat"
+  },
+  "2026-11-17": {
+   "sfinti": "Sf. Ier. Grigorie Taumaturgul, episcopul Neocezareei, și Ghenadie, arhiepiscopul Constantinopolului; Sf. Cuv. Lazăr Zugravul",
+   "stare": "validat"
+  },
+  "2026-11-18": {
+   "sfinti": "Sf. Mc. Platon, Roman și Zaheu",
+   "stare": "validat"
+  },
+  "2026-11-19": {
+   "sfinti": "Sf. Proroc Avdie; Sf. Mc. Varlaam",
+   "stare": "validat"
+  },
+  "2026-11-20": {
+   "sfinti": "Înainte-prăznuirea Intrării în biserică a Maicii Domnului; †) Sf. Cuv. Grigorie Decapolitul; † Sf. Mc. Dasie; Sf. Ier. Proclu, arhiepiscopul Constantinopolului",
+   "locali": [
+    "Sf. Ier. Corbinian din Freising"
+   ],
+   "stare": "validat"
+  },
+  "2026-11-21": {
+   "sfinti": "(†) Intrarea în biserică a Maicii Domnului",
+   "marcaj": "Dezlegare la pește",
+   "stare": "validat"
+  },
+  "2026-11-22": {
+   "sfinti": "Sf. Ap. Filimon, Arhip, Onisim și Apfia; Sf. Mc. Cecilia",
+   "marcaj": "Dezlegare la pește",
+   "duminica": "Duminica a 26-a după Rusalii",
+   "lecturi": "Ap. Efeseni 5, 8-19; Ev. Luca 12, 16-21 (Pilda bogatului căruia i-a rodit țarina)",
+   "glas": "glas 8, voscr. 3",
+   "stare": "validat"
+  },
+  "2026-11-23": {
+   "sfinti": "†) Sf. Cuv. Antonie de la Iezerul Vâlcii; Sf. Ier. Amfilohie, episcopul Iconiei, și Grigorie, episcopul Acragandelor",
+   "marcaj": "Dezlegare la pește",
+   "stare": "validat"
+  },
+  "2026-11-24": {
+   "sfinti": "Sf. Sfințiți Mc. Clement, episcopul Romei, și Petru, episcopul Alexandriei",
+   "stare": "validat"
+  },
+  "2026-11-25": {
+   "sfinti": "Odovania praznicului Intrării în biserică a Maicii Domnului; † Sf. Mare Mc. Ecaterina; Sf. Mare Mc. Mercurie",
+   "stare": "validat"
+  },
+  "2026-11-26": {
+   "sfinti": "Sf. Cuv. Alipie Stâlpnicul, Nicon și Stelian Paflagonul",
+   "locali": [
+    "Sf. Ier. Conrad din Konstanz"
+   ],
+   "stare": "validat"
+  },
+  "2026-11-27": {
+   "sfinti": "Sf. Mare Mc. Iacob Persul; Sf. Cuv. Natanael și Pinufrie",
+   "stare": "validat"
+  },
+  "2026-11-28": {
+   "sfinti": "†) Sf. Cuv. Mărturisitor Arsenie de la Prislop; Sf. Cuv. Mc. Ștefan cel Nou; Sf. Mc. Irinarh",
+   "marcaj": "Dezlegare la pește",
+   "stare": "validat"
+  },
+  "2026-11-29": {
+   "sfinti": "Sf. Mc. Paramon și Filumen; Sf. Cuv. Pitirun",
+   "marcaj": "Dezlegare la pește",
+   "duminica": "Duminica a 30-a după Rusalii",
+   "lecturi": "Ap. Coloseni 3, 12-16; Ev. Luca 18, 18-27 (Dregătorul bogat – Păzirea poruncilor)",
+   "glas": "glas 1, voscr. 4",
+   "stare": "validat"
+  },
+  "2026-11-30": {
+   "sfinti": "†) Sf. Ap. Andrei cel întâi chemat, Ocrotitorul României; †) Sf. Ier. Andrei Șaguna, mitropolitul Transilvaniei; Sf. Ier. Frumentie, episcopul Etiopiei",
+   "marcaj": "Dezlegare la pește",
+   "stare": "validat"
+  },
+  "2026-12-01": {
+   "sfinti": "† Sf. Anastasia, mama Sfântului Ier. Andrei Șaguna; Sf. Proroc Naum; Sf. Filaret cel Milostiv",
+   "marcaj": "Tedeum. Dezlegare la pește",
+   "stare": "validat"
+  },
+  "2026-12-02": {
+   "sfinti": "†) Sf. Cuv. Paisie și Cleopa de la Sihăstria; Sf. Proroc Avacum; Sf. Mc. Miropi; Sf. Cuv. Porfirie Cavsocalivitul; Sf. Ier. Solomon, arhiepiscopul Efesului",
+   "stare": "de_verificat",
+   "nota": "Calendarul fotografiat nu are marcaj de dezlegare; calendarul publicat de Patriarhia Română indică „Dezlegare la pește”. Pe site nu se afișează niciun marcaj până la clarificare."
+  },
+  "2026-12-03": {
+   "sfinti": "†) Sf. Cuv. Gheorghe de la Cernica și Căldărușani; Sf. Proroc Sofonie",
+   "marcaj": "Dezlegare la pește",
+   "stare": "validat"
+  },
+  "2026-12-04": {
+   "sfinti": "† Sf. Mare Mc. Varvara; Sf. Cuv. Ioan Damaschin",
+   "stare": "validat"
+  },
+  "2026-12-05": {
+   "sfinti": "†) Sf. Cuv. Sava cel Sfințit",
+   "marcaj": "Dezlegare la pește",
+   "stare": "validat"
+  },
+  "2026-12-06": {
+   "sfinti": "†) Sf. Ier. Nicolae, arhiepiscopul Mirelor Lichiei, făcătorul de minuni",
+   "marcaj": "Dezlegare la pește",
+   "duminica": "Duminica a 27-a după Rusalii",
+   "lecturi": "Ap. Efeseni 6, 10-17; al Ierarhului: Evrei 13, 17-21; Ev. Luca 13, 10-17 (Tămăduirea femeii gârbove); a Ierarhului: Luca 6, 17-23",
+   "glas": "glas 2, voscr. 5",
+   "stare": "validat"
+  },
+  "2026-12-07": {
+   "sfinti": "†) Sf. Mc. Filofteia de la Curtea de Argeș; Sf. Ier. Ambrozie, episcopul Mediolanului",
+   "marcaj": "Dezlegare la pește",
+   "stare": "validat"
+  },
+  "2026-12-08": {
+   "sfinti": "Sf. Cuv. Patapie; Sf. Ap. Cezar, Tihic și Onisifor",
+   "stare": "validat"
+  },
+  "2026-12-09": {
+   "sfinti": "Zămislirea Sfintei Fecioare Maria de către Sf. Ana; Sf. Prorociță Ana, mama Prorocului Samuel",
+   "stare": "validat"
+  },
+  "2026-12-10": {
+   "sfinti": "Sf. Mc. Mina, Ermoghen și Evgraf",
+   "stare": "validat"
+  },
+  "2026-12-11": {
+   "sfinti": "Sf. Cuv. Daniil Stâlpnicul și Luca cel Nou",
+   "stare": "validat"
+  },
+  "2026-12-12": {
+   "sfinti": "†) Sf. Ier. Spiridon, episcopul Trimitundei, făcătorul de minuni",
+   "marcaj": "Dezlegare la pește",
+   "stare": "validat"
+  },
+  "2026-12-13": {
+   "sfinti": "†) Sf. Ier. Dosoftei, mitropolitul Moldovei; † Sf. Mari Mc. Eustratie, Auxentie, Evghenie, Mardarie și Orest; Sf. Mc. Lucia din Siracuza",
+   "marcaj": "Dezlegare la pește",
+   "duminica": "Duminica a 28-a după Rusalii (a Sf. Strămoși după trup ai Domnului)",
+   "lecturi": "Ap. Sf. Strămoși: Coloseni 3, 4-11; Ev. Luca 14, 16-24 (Pilda celor poftiți la cină)",
+   "glas": "glas 3, voscr. 6",
+   "stare": "validat"
+  },
+  "2026-12-14": {
+   "sfinti": "Sf. Mc. Tirs, Calinic, Filimon și Apolonie",
+   "stare": "validat"
+  },
+  "2026-12-15": {
+   "sfinti": "Sf. Sfințit Mc. Elefterie, episcopul Iliriei; Sf. Mc. Antia și Suzana; Sf. Cuv. Pavel din Latro",
+   "stare": "validat"
+  },
+  "2026-12-16": {
+   "sfinti": "Sf. Proroc Agheu; Sf. împărăteasă Teofana",
+   "stare": "validat"
+  },
+  "2026-12-17": {
+   "sfinti": "Sf. Proroc Daniel și Sfinții trei tineri: Anania, Azaria și Misail",
+   "stare": "validat"
+  },
+  "2026-12-18": {
+   "sfinti": "†) Sf. Cuv. Daniil Sihastrul; Sf. Mc. Sebastian și Zoe; Sf. Ier. Modest, arhiepiscopul Ierusalimului",
+   "stare": "validat"
+  },
+  "2026-12-19": {
+   "sfinti": "† Sf. Cuv. Muceniță Evloghia de la Samurcășești; Sf. Mc. Bonifatie; Sf. Aglaia; Sf. Ier. Grichentie, episcopul Etiopiei",
+   "marcaj": "Dezlegare la pește",
+   "stare": "validat"
+  },
+  "2026-12-20": {
+   "sfinti": "Înainte-prăznuirea Nașterii Domnului; Sf. Sfințit Mc. Ignatie Teoforul, episcopul Antiohiei; †) Sf. Cuv. Serafim cel Răbdător de la Sâmbăta de Sus",
+   "duminica": "Duminica dinaintea Nașterii Domnului (a Sf. Părinți după trup ai Domnului)",
+   "lecturi": "Ap. Evrei 11, 9-10; 32-40; Ev. Matei 1, 1-25 (Genealogia Mântuitorului)",
+   "glas": "glas 4, voscr. 7",
+   "stare": "validat"
+  },
+  "2026-12-21": {
+   "sfinti": "Sf. Mc. Iuliana din Nicomidia; Sf. Mc. Temistocle",
+   "stare": "validat"
+  },
+  "2026-12-22": {
+   "sfinti": "†) Sf. Ier. Petru Movilă, mitropolitul Kievului; Sf. Mare Mc. Anastasia",
+   "stare": "validat"
+  },
+  "2026-12-23": {
+   "sfinti": "† Sf. Cuv. Antonina de la Tismana; Sfinții 10 Mucenici din Creta; Sf. Ier. Pavel, arhiepiscopul Neocezareei",
+   "stare": "validat"
+  },
+  "2026-12-24": {
+   "sfinti": "Sf. Cuv. Mc. Eugenia",
+   "marcaj": "Ajunul Crăciunului",
+   "stare": "validat"
+  },
+  "2026-12-25": {
+   "sfinti": "(†) Nașterea Domnului",
+   "marcaj": "Crăciunul. Harți",
+   "stare": "validat"
+  },
+  "2026-12-26": {
+   "sfinti": "†) Soborul Maicii Domnului; †) Sf. Cuv. Nicodim cel Sfințit de la Tismana; †) Sf. Cuv. Mc. Gherasim de la Tismana",
+   "stare": "validat"
+  },
+  "2026-12-27": {
+   "sfinti": "† Sf. Ap., întâiul Mc. și Arhidiacon Ștefan; Sf. Cuv. Teodor Mărturisitorul",
+   "duminica": "Duminica după Nașterea Domnului (a Sfinților Iosif Logodnicul, David Prorocul și Iacob, rudenia Domnului)",
+   "lecturi": "Ap. Galateni 1, 11-19; al Sfântului: Fapte 6, 8-15; 7, 1-5, 47-60; Ev. Matei 2, 13-23 (Fuga în Egipt); a Sfântului: Matei 21, 33-44",
+   "glas": "glas 5, voscr. 8",
+   "stare": "validat"
+  },
+  "2026-12-28": {
+   "sfinti": "Sfinții 20.000 de Mucenici din Nicomidia",
+   "stare": "validat"
+  },
+  "2026-12-29": {
+   "sfinti": "Sfinții 14.000 de prunci uciși din porunca lui Irod; Sf. Cuv. Marcel și Tadeu",
+   "stare": "validat"
+  },
+  "2026-12-30": {
+   "sfinti": "Sf. Mc. Anisia fecioara",
+   "marcaj": "Harți",
+   "stare": "validat"
+  },
+  "2026-12-31": {
+   "sfinti": "Odovania praznicului Nașterii Domnului; † Sf. Mc. Hermes; Sf. Cuv. Melania Romana",
+   "marcaj": "Slujba la cumpăna dintre ani",
+   "stare": "validat"
+  }
+ }
+}

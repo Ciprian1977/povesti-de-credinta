@@ -2,18 +2,18 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
-  <script src="/js/corectura-provizorie.js?v=2"></script>
+  <script src="/js/corectura-provizorie.js?v=3"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#FFFFFF">
 
   <title>Calendar Ortodox 2026 — Sfinții lunii | Povești de Credință</title>
-  <meta name="description" content="Calendar ortodox 2026 pe luni: sfinții zilelor din calendarul bisericesc, publicați zi de zi. Calendar creștin ortodox românesc.">
+  <meta name="description" content="Calendar ortodox 2026 pe luni: sfinții și sărbătorile fiecărei zile din octombrie, noiembrie și decembrie 2026, după calendarul bisericesc tipărit.">
   <meta name="keywords" content="calendar ortodox 2026, sfântul zilei, sfinții lunii, posturi ortodoxe, sărbători ortodoxe, calendar creștin">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.povestidecredinta.ro/calendar">
 
   <meta property="og:title" content="Calendar Ortodox 2026 — Povești de Credință">
-  <meta property="og:description" content="Calendar ortodox 2026 pe luni, cu sfinții zilelor.">
+  <meta property="og:description" content="Calendar ortodox 2026 pe luni: sfinții și sărbătorile pentru octombrie–decembrie 2026.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.povestidecredinta.ro/calendar">
   <meta property="og:image" content="https://www.povestidecredinta.ro/images/og-image.jpg">
@@ -32,7 +32,7 @@
     "@type": "WebPage",
     "name": "Calendar Ortodox 2026",
     "url": "https://www.povestidecredinta.ro/calendar",
-    "description": "Calendar ortodox 2026 pe luni, cu sfinții zilelor din calendarul bisericesc.",
+    "description": "Calendar ortodox 2026 pe luni: sfinții și sărbătorile pentru octombrie–decembrie 2026, după calendarul bisericesc tipărit.",
     "isPartOf": { "@type": "WebSite", "name": "Povești de Credință", "url": "https://www.povestidecredinta.ro/" }
   }
   </script>
@@ -175,7 +175,7 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="/js/app.js?v=19"></script>
+<script src="/js/app.js?v=20"></script>
 <script>
 // ── Calendar: sfinții lunii din baza de date (Supabase), nu din calendar.json ──
 (function () {
@@ -216,14 +216,26 @@
     if (titlu) titlu.textContent = LUNI[luna] + ' ' + an;
     if (cont) cont.innerHTML = '<p class="cal-gol">Se încarcă sfinții lunii…</p>';
     var rows = await incarcaLuna(an, luna);
+    // Calendarul validat (oct.–dec. 2026, din calendarul tipărit) are prioritate față de baza de date
+    var V = {};
+    try { V = window.pdcCalendarValidat ? await window.pdcCalendarValidat() : {}; } catch (e) { V = {}; }
+    if (typeof calendarData !== 'undefined' && calendarData) {
+      Object.keys(V).forEach(function (iso) {
+        if (+iso.slice(0, 4) !== an || +iso.slice(5, 7) !== luna + 1) return;
+        calendarData[an] = calendarData[an] || {};
+        calendarData[an][iso.slice(5)] = { sfant: window.pdcNumeValidat(V[iso]), post: '', culoare: '' };
+      });
+    }
     if (typeof randeazaCalendar === 'function') randeazaCalendar(luna, an);
     var map = {}; rows.forEach(function (z) { map[z.data_calendaristica] = z; });
     var azi = aziRO(), ultima = new Date(an, luna+1, 0).getDate(), html = '';
     for (var zi = 1; zi <= ultima; zi++) {
-      var d = an + '-' + p2(luna+1) + '-' + p2(zi), z = map[d], esteAzi = d === azi;
-      var nume = z && z.sfant_nume && !/conform Calendarului Ortodox BOR/.test(z.sfant_nume) ? esc(z.sfant_nume)
+      var d = an + '-' + p2(luna+1) + '-' + p2(zi), z = map[d], v = V[d], esteAzi = d === azi;
+      var nume = v ? esc(v.sfinti) + (v.duminica ? '<span class="cal-duminica-nume">' + esc(v.duminica) + '</span>' : '')
+               : z && z.sfant_nume && !/conform Calendarului Ortodox BOR/.test(z.sfant_nume) ? esc(z.sfant_nume)
                : (d > azi ? '<span class="cal-viitor">Se publică în ziua respectivă</span>' : '<span class="cal-viitor">—</span>');
-      var post = z && z.tip_post ? '<span class="cal-post ' + (/^post/.test(z.tip_post) ? 'e-post' : 'e-dezlegare') + '">' + (POST[z.tip_post] || 'Dezlegare') + '</span>' : '';
+      var post = v ? (v.marcaj ? '<span class="cal-marcaj">' + esc(v.marcaj) + '</span>' : '')
+               : z && z.tip_post ? '<span class="cal-post ' + (/^post/.test(z.tip_post) ? 'e-post' : 'e-dezlegare') + '">' + (POST[z.tip_post] || 'Dezlegare') + '</span>' : '';
       var ziSapt = ZILE[new Date(an, luna, zi).getDay()];
       var interior = '<div class="cal-data"><span class="cal-nr">' + zi + '</span><span class="cal-zi">' + ziSapt.slice(0,3) + '</span></div>'
         + '<div class="cal-text"><div class="cal-sfant">' + nume + '</div>' + post + (esteAzi ? '<div class="cal-azi">Astăzi</div>' : '') + '</div>';

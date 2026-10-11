@@ -7,6 +7,7 @@
  *     fără textul integral al Apostolului și al Evangheliei. Baza de date NU se modifică.
  *  2. Elementele care afișau aceste informații sunt ascunse.
  *  3. În locul textului integral apare referința biblică + link către lectura publicată pe Doxologia.
+ *  4. Pentru 1 octombrie – 31 decembrie 2026, sfinții afișați vin din calendarul validat (data/calendar-validat-2026-t4.json).
  *
  * Pentru a anula măsura: se scoate acest fișier din pagini (sau PDC_CORECTURA.activ = false).
  */
@@ -24,16 +25,54 @@
     }
     return rand;
   }
-  if (window.fetch) {
-    var fetchOriginal = window.fetch.bind(window);
+  // ── 1b. Calendarul validat octombrie–decembrie 2026 (din calendarul tipărit fotografiat) ──
+  // Are prioritate la afișare față de numele din Supabase și față de calendarul static vechi.
+  // Supabase NU se modifică; generarea zilnică NU este atinsă.
+  var fetchOriginal = window.fetch ? window.fetch.bind(window) : null;
+  var URL_VALIDAT = '/data/calendar-validat-2026-t4.json?v=1';
+  var pValidat = null;
+  function calendarValidat() {
+    if (!pValidat) {
+      pValidat = fetchOriginal ? fetchOriginal(URL_VALIDAT).then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) { return (j && j.zile) || {}; }).catch(function () { return {}; }) : Promise.resolve({});
+    }
+    return pValidat;
+  }
+  function numeValidat(z) { return z.sfinti + (z.duminica ? '; ' + z.duminica : ''); }
+  window.pdcCalendarValidat = calendarValidat;
+  window.pdcNumeValidat = numeValidat;
+  function aplicaValidat(rand, V) {
+    var z = rand && typeof rand === 'object' && rand.data_calendaristica && V[rand.data_calendaristica];
+    if (!z) return;
+    if ('sfant_nume' in rand) rand.sfant_nume = numeValidat(z);
+    if ('sfinti_secundari' in rand) rand.sfinti_secundari = null;
+    if ('meta_description' in rand) {
+      var p = rand.data_calendaristica.split('-');
+      var m = 'Calendar ortodox ' + (+p[2]) + ' ' + LUNI[+p[1] - 1] + ' ' + p[0] + ': ' + numeValidat(z);
+      rand.meta_description = m.length > 158 ? m.slice(0, 155).replace(/[\s;,]+\S*$/, '') + '…' : m;
+    }
+  }
+
+  if (fetchOriginal) {
     window.fetch = function (resursa, opt) {
       var url = typeof resursa === 'string' ? resursa : (resursa && resursa.url) || '';
       var p = fetchOriginal(resursa, opt);
-      if (!C.activ || url.indexOf('/rest/v1/zile_ortodoxe') === -1) return p;
+      var esteZile = url.indexOf('/rest/v1/zile_ortodoxe') !== -1;
+      var esteCalendarStatic = /\/data\/calendar\.json(\?|$)/.test(url);
+      if (!C.activ || (!esteZile && !esteCalendarStatic)) return p;
       return p.then(function (r) {
         if (!r || !r.ok) return r;
-        return r.clone().json().then(function (d) {
-          if (Array.isArray(d)) d.forEach(curata); else curata(d);
+        return Promise.all([r.clone().json(), calendarValidat()]).then(function (x) {
+          var d = x[0], V = x[1];
+          if (esteZile) {
+            (Array.isArray(d) ? d : [d]).forEach(function (rand) { curata(rand); aplicaValidat(rand, V); });
+          } else if (d && typeof d === 'object') {
+            // calendarul static vechi (fallback): zilele validate îl înlocuiesc, fără etichete de post
+            Object.keys(V).forEach(function (iso) {
+              var an = iso.slice(0, 4); d[an] = d[an] || {};
+              d[an][iso.slice(5)] = { sfant: numeValidat(V[iso]), post: '', culoare: '' };
+            });
+          }
           return new Response(JSON.stringify(d), { status: r.status, statusText: r.statusText, headers: r.headers });
         }).catch(function () { return r; });
       });
@@ -46,6 +85,8 @@
     '[aria-labelledby="titlu-cuvant-folos"],#card-cuvant-folos,.sectiune-cuvant-folos,#cuvant-folos-text,' +
     'button[onclick^="copiazaApostol"],button[onclick^="copiazaEvanghelia"],#btn-copie-apostol,#btn-copie-evanghelie,' +
     '[data-faq-post],div:has(> #talcuire-text){display:none!important}' +
+    '.cal-marcaj{display:inline-block;margin-top:4px;padding:2px 8px;border-radius:10px;font-size:.78rem;background:rgba(107,27,43,.08);color:var(--visineu,#6B1B2B)}' +
+    '.cal-duminica-nume{display:block;margin-top:2px;font-size:.85rem;color:var(--text-medium,#555)}' +
     '.lectura-sursa{margin:4px 0 0;padding:16px 18px;border-radius:14px;background:#F4F6FB;color:#1a1a1a;font-style:normal;' +
     'font-family:Inter,system-ui,sans-serif;font-size:1.05rem;line-height:1.6}' +
     '.lectura-sursa p{margin:0 0 10px}' +
@@ -109,4 +150,67 @@
     }
   }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
   document.addEventListener('DOMContentLoaded', aplica);
+
+  // ── 4. Sfântul zilei, ieri și mâine pe paginile cu calendar static vechi (fallback) ──
+  // Rulează după scripturile paginii, ca să nu rămână nume din calendarul static vechi.
+  function isoRo(zile) {
+    try {
+      var p = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Bucharest', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+      var d = new Date(p + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + zile); return d.toISOString().slice(0, 10);
+    } catch (e) { var x = new Date(); x.setDate(x.getDate() + zile); return x.getFullYear() + '-' + ('0' + (x.getMonth() + 1)).slice(-2) + '-' + ('0' + x.getDate()).slice(-2); }
+  }
+  function scurt(n, max) { var p = n.split(';')[0]; return p.length > max ? p.substring(0, max) + '...' : p; }
+  function seteaza(sel, text) { var el = document.querySelector(sel); if (el && text) el.textContent = text; }
+  // Titlul, descrierile (meta / Open Graph / Twitter), datele structurate (JSON-LD) și răspunsurile FAQ
+  // construite de pagină din calendarul static vechi primesc numele validat.
+  function inlocuiesteNumeVechi(n) {
+    var cheie = isoRo(0).slice(5), vechi = [];
+    document.querySelectorAll('script:not([src])').forEach(function (sc) {
+      var m = new RegExp('"' + cheie + '"\\s*:\\s*\\{\\s*"?sfant"?\\s*:\\s*"([^"]+)"').exec(sc.textContent || '');
+      if (m && vechi.indexOf(m[1]) === -1) vechi.push(m[1]);
+    });
+    vechi = vechi.filter(function (v) { return v && n.indexOf(v) === -1; });
+    var perechi = vechi.map(function (v) { return [v, n]; })
+      .concat([[': Sfinții zilei', ': ' + n], ['✝️ Sfinții zilei', '✝️ ' + n], ['este Sfinții zilei', 'este ' + n], ['prăznuit Sfinții zilei', 'prăznuit ' + n],
+               ['Viața Sfinții zilei', 'Viața ' + n.split(';')[0].trim()], ['Sfânt din Sinaxarul BOR', n], ['Sfânt din Sinaxar', n]]);
+    function inloc(t, json) {
+      perechi.forEach(function (p) {
+        var a = json ? JSON.stringify(p[0]).slice(1, -1) : p[0], b2 = json ? JSON.stringify(p[1]).slice(1, -1) : p[1];
+        t = t.split(a).join(b2);
+      });
+      return t;
+    }
+    if (document.title) document.title = inloc(document.title);
+    document.querySelectorAll('meta[name=description],meta[property^="og:"],meta[name^="twitter:"]').forEach(function (m) {
+      var c = m.getAttribute('content'); if (c) { var x = inloc(c); if (x !== c) m.setAttribute('content', x); }
+    });
+    document.querySelectorAll('script[type="application/ld+json"]').forEach(function (sc) {
+      var t = sc.textContent || '';
+      var x = inloc(t, true).split('"name":"Sfinții zilei"').join('"name":' + JSON.stringify(n.split(';')[0].trim()));
+      if (x !== t) sc.textContent = x;
+    });
+    document.querySelectorAll('#viata-text strong').forEach(function (el) {
+      var t = (el.textContent || '').trim(); if (t === 'Sfinții zilei' || vechi.indexOf(t) !== -1) el.textContent = n;
+    });
+    document.querySelectorAll('[id^="faq"], #viata-titlu, #hero-h1').forEach(function (el) {
+      if (el.children.length) return; var t = el.textContent || ''; var x = inloc(t); if (x !== t) el.textContent = x;
+    });
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!C.activ) return;
+    calendarValidat().then(function (V) {
+      setTimeout(function () {
+        var z = V[isoRo(0)], zi = V[isoRo(-1)], zm = V[isoRo(1)];
+        if (z) {
+          var n = numeValidat(z);
+          seteaza('#sfant-azi', '✝️ ' + n);
+          seteaza('#sfant-card', scurt(n, 50));
+          seteaza('#sfant-principal', n);
+        }
+        if (zi) seteaza('#sfant-ieri', scurt(numeValidat(zi), 35));
+        if (zm) seteaza('#sfant-maine', scurt(numeValidat(zm), 35));
+        if (z) inlocuiesteNumeVechi(numeValidat(z));
+      }, 0);
+    });
+  });
 })();

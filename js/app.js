@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // ─── Supabase: Încarcă date pentru ziua de azi (fus orar Bucharest + cache) ────
-const PDC_CACHE_KEY = 'pdc_cache_v4';
+const PDC_CACHE_KEY = 'pdc_cache_v5';
 async function incarcaDateSupabase() {
   try {
     // ① Data corectă în fusul orar al României (nu UTC!)
