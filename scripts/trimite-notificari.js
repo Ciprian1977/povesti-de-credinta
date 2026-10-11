@@ -112,7 +112,6 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
             ? `Bună dimineața! Astăzi, ${dataRo}. ${badge}. Apasă pentru viața sfântului și cuvântul de folos.`
             : `Bună dimineața! Astăzi, ${dataRo}. Apasă pentru viața sfântului și cuvântul de folos al zilei.`
         },
-        url: `${BASE}`,
         web_url: `${BASE}`
       };
 
@@ -124,7 +123,6 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
         contents: {
           ro: 'O clipă de mulțumire la mijlocul zilei. „Toate către Tine așteaptă, ca să le dai lor hrană la bună vreme." Apasă pentru rugăciunea mesei.'
         },
-        url: `${BASE}rugaciuni`,
         web_url: `${BASE}rugaciuni`
       };
 
@@ -136,7 +134,6 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
         contents: {
           ro: 'Liniștea nopții. Înainte de culcare, încredințează ziua lui Dumnezeu prin rugăciunile din Ceaslov. Apasă pentru rânduiala serii.'
         },
-        url: `${BASE}rugaciuni`,
         web_url: `${BASE}rugaciuni`
       };
 
@@ -150,7 +147,6 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
             ? `Astăzi, ${dataRo}: ${badge}. Apasă pentru rânduiala postului și sfatul duhovnicesc al zilei.`
             : `Astăzi, ${dataRo}. Apasă pentru rânduiala zilei din calendarul ortodox.`
         },
-        url: `${BASE}posturi`,
         web_url: `${BASE}posturi`
       };
 
