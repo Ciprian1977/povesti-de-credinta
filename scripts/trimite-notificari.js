@@ -76,12 +76,47 @@ async function getContinutZi(dataISO) {
 // iar alertele dedicate postului (segmentul alerte_post) nu se mai programează și nu se mai trimit.
 // Pentru revenire: ALERTE_POST_OPRITE = false și se restaurează textele din istoricul git.
 const ALERTE_POST_OPRITE = true;
-const RX_POST = /\b(post(ul|ului|uri|urile|urilor)?|dezleg\w*|har[țţt]i)\b/i;
-// Scoate din text grupurile din paranteze care vorbesc despre post (ex. „(Dezlegare la pește)”)
+// Cuvintele care țin de post. Granițele sunt litere Unicode (nu \b), ca să meargă și cu diacritice.
+//  - NU se potrivesc: „Apostol”, „Postitorul” (nume de sfânt), „Duminica a 2-a din Post” (numele duminicii),
+//    „post și neagonisire” (titlul unei pericope; „post” simplu contează doar cu majusculă, ca marcaj: „(Post)”).
+//  - SE potrivesc: „Postul/Postului …”, „Post” (marcaj), „Dezlegare …”, „Harți”.
+const CUV_POST = '(?<!\\p{L})(?:(?<!din\\s+)(?:[Pp]ost(?:ul|ului|uri|urile|urilor)|Post)|[Dd]ezleg\\p{L}*|[Hh]ar[țţt]i)(?!\\p{L})';
+const RX_POST = new RegExp(CUV_POST, 'u');
+// Restul mențiunii: până la următorul ; , . sau paranteză. Punctul din abrevieri („Sf. Ap.”) nu oprește fraza,
+// iar lista de alimente a unei dezlegări („brânză, lapte, ouă şi peşte”) face parte din mențiune.
+const COADA = '(?:[^;,.()]|\\.(?<=(?<!\\p{L})(?:Sf|Ap|Mc|Cuv|Ier|Mari|Prooroc|Proroc|Sfinţit|Sfințit)\\.)|,(?=\\s*(?:lapte|ouă|ouă|brânză|pește|peşte|vin|untdelemn|ulei|icre)(?!\\p{L})))*';
+// Plus cuvintele de dinainte care fără mențiune nu au sens („Începutul”, „Lăsatul secului pentru”, „zi de”).
+const RX_FRAZA_POST = new RegExp(
+  '(?:(?<!\\p{L})(?:[ÎI]nceputul|[îi]nceputul|Sfârșitul|Sfârşitul|sfârșitul|Lăsatul\\s+sec\\p{L}*(?:\\s+de\\s+\\p{L}+)?\\s+pentru|[Zz]i(?:le)?\\s+de)\\s+)?' +
+  CUV_POST + COADA, 'gu');
+// Scoate DOAR mențiunile despre post/dezlegări/harți; păstrează numele sfinților și ale sărbătorilor.
+//   „Sf. Cuv. Parascheva (Dezlegare la pește)”            → „Sf. Cuv. Parascheva”
+//   „Nașterea Domnului (Crăciunul. Harți)”                → „Nașterea Domnului (Crăciunul)”
+//   „Începutul Postului Nașterii Domnului; Sf. Mc. Gurie” → „Sf. Mc. Gurie”
 function faraPost(text) {
-  return String(text || '')
-    .replace(/\s*\([^()]*\b(post(ul|ului|uri|urile|urilor)?|dezleg\w*|har[țţt]i)\b[^()]*\)/gi, '')
-    .replace(/\s{2,}/g, ' ').trim();
+  const original = String(text || '').trim();
+  let t = original.replace(RX_FRAZA_POST, '');
+  if (t === original) return original; // fără mențiuni de post: textul rămâne exact cum era
+  for (let k = 0; k < 3; k++) {
+    t = t
+      .replace(/\(\s*[.;,:\s]*\)/g, '')          // paranteze rămase goale
+      .replace(/\(\s*[.;,:]+\s+/g, '(')            // „( . Tedeum” → „(Tedeum”
+      .replace(/\s*[.;,:]+\s+\)/g, ')')            // „Tedeum. )” → „Tedeum)”
+      .replace(/\s*([;,])(?:\s*[;,.])+/g, '$1')     // separatori dublați
+      .replace(/\.(?:\s*\.)+/g, '.')
+      .replace(/\s+([;,.)])/g, '$1')
+      .replace(/\s{2,}/g, ' ')
+      .replace(/^[\s;,.:–-]+|[\s;,:–-]+$/g, '');
+  }
+  return t.trim();
+}
+// Aplică faraPost pe toate textele unei notificări (titlu, subtitlu, mesaj, date suplimentare)
+function curataPayload(payload) {
+  for (const camp of ['headings', 'subtitle', 'contents', 'data']) {
+    const o = payload[camp];
+    if (o && typeof o === 'object') for (const k of Object.keys(o)) if (typeof o[k] === 'string') o[k] = faraPost(o[k]);
+  }
+  return payload;
 }
 // Ultima plasă de siguranță înainte de trimitere: niciun câmp text nu are voie să menționeze postul
 function contineInfoPost(payload) {
@@ -128,8 +163,8 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
         headings: { ro: `☀️ ${sfant}`, en: `☀️ ${sfant}` },
         contents: {
           ro: badge
-            ? `Bună dimineața! Astăzi, ${dataRo}. ${badge}. Apasă pentru viața sfântului și cuvântul de folos.`
-            : `Bună dimineața! Astăzi, ${dataRo}. Apasă pentru viața sfântului și cuvântul de folos al zilei.`
+            ? `Bună dimineața! Astăzi, ${dataRo}. ${badge}. Apasă pentru viața sfântului și calendarul zilei.`
+            : `Bună dimineața! Astăzi, ${dataRo}. Apasă pentru viața sfântului și calendarul zilei.`
         },
         web_url: `${BASE}`
       };
@@ -216,10 +251,8 @@ function oraAcumRo() {
 
 async function postOneSignal(payload) {
   if (contineInfoPost(payload)) {
-    // nu trimitem informații de post nevalidate: păstrăm notificarea, dar cu un titlu neutru
-    const zi = payload.send_after ? String(payload.send_after).slice(0, 10) : '';
-    payload.headings = { ro: `☀️ Calendar ortodox${zi ? ' — ' + formateazaDataRo(zi) : ''}`, en: '☀️ Calendar ortodox' };
-    if (payload.contents && RX_POST.test(Object.values(payload.contents).join(' '))) payload.contents = { ro: 'Apasă pentru sfinții și rânduiala zilei din calendarul ortodox.' };
+    // nu trimitem informații de post nevalidate: scoatem doar mențiunea, restul notificării rămâne
+    curataPayload(payload);
     if (contineInfoPost(payload)) { console.error('❌ Notificare blocată: conține informații despre post.'); return { ok: false, faraAbonati: false, status: 0, j: { errors: ['blocat: informatii de post'] } }; }
   }
   const r = await fetch('https://onesignal.com/api/v1/notifications', {

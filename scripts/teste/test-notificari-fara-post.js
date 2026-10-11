@@ -75,6 +75,8 @@ for (const [cheie, zi] of [['dezlegare', ZILE.dezlegare], ['post', ZILE.post], [
   const dim = r.trimise.find((p) => JSON.stringify(p.filters).includes('"key":"dimineata"'));
   verifica('dimineață: titlul păstrează sfântul, fără „(Dezlegare la pește)”', dim && dim.headings.ro === '☀️ Sf. Cuv. Parascheva', dim && dim.headings.ro);
   verifica('dimineață: mesajul păstrează data zilei', dim && /14 octombrie/.test(dim.contents.ro), dim && dim.contents.ro);
+  verifica('dimineață: mesajul nu mai pomenește „cuvântul de folos” (ascuns de PR #5)', dim && !/cuv[âa]ntul de folos/i.test(dim.contents.ro), dim && dim.contents.ro);
+  verifica('nicio notificare din zi nu primește titlul neutru „Calendar ortodox”', !r.trimise.some((p) => /Calendar ortodox/.test(p.headings.ro)));
 }
 {
   const r = ruleaza(['programeaza', '2026-11-30'], ZILE.apostol, '2026-11-30T00:30:00Z');
@@ -89,7 +91,8 @@ for (const [cheie, zi] of [['dezlegare', ZILE.dezlegare], ['post', ZILE.post], [
 {
   const r = ruleaza(['programeaza', '2026-11-15'], ZILE.inceputPost, '2026-11-15T00:30:00Z');
   const dim = r.trimise.find((p) => JSON.stringify(p.filters).includes('"key":"dimineata"'));
-  verifica('zi al cărei nume menționează postul: notificarea pleacă totuși, cu titlu neutru', dim && dim.headings.ro.startsWith('☀️ Calendar ortodox'), dim && dim.headings.ro);
+  verifica('„Începutul Postului …; Sf. Mc. Gurie …”: dispare doar mențiunea postului, sfinții rămân în titlu',
+    dim && dim.headings.ro === '☀️ Sf. Mc. Gurie, Samona și Aviv', dim && dim.headings.ro);
 }
 
 // 5. Fără date în Supabase: notificarea generală pleacă, cu „Sfinții zilei”
@@ -122,6 +125,38 @@ for (const seg of ['test', 'dimineata', 'pranz', 'seara']) {
   const r = ruleaza(['alerte_post', '2026-10-14'], ZILE.post, '2026-10-14T06:00:00Z');
   verifica('trimitere manuală „alerte_post”: nu pleacă nimic spre OneSignal', r.trimise.length === 0, `${r.trimise.length} trimise`);
   verifica('trimitere manuală „alerte_post”: se oprește fără eroare și explică de ce', r.cod === 0 && /oprit provizoriu/.test(r.iesire), r.iesire.slice(-300));
+}
+
+// 8. Filtrul de text, pe denumiri reale din calendarul BOR 2026: scoate DOAR mențiunea despre post
+{
+  const src = fs.readFileSync(SCRIPT, 'utf8');
+  const a = src.indexOf('const CUV_POST'), b = src.indexOf('// Ultima plasă');
+  if (a < 0 || b < 0) verifica('filtrul de text există în script', false, 'funcția faraPost lipsește');
+  else {
+    const { faraPost } = new Function(src.slice(a, b) + ';return { faraPost };')();
+    const CAZURI = [
+      ['Nașterea Domnului (Crăciunul. Harți)', 'Nașterea Domnului (Crăciunul)'],
+      ['Sf. Proroc Naum; Sf. Filaret cel Milostiv (Tedeum. Dezlegare la pește)', 'Sf. Proroc Naum; Sf. Filaret cel Milostiv (Tedeum)'],
+      ['(†) Intrarea în biserică a Maicii Domnului (Dezlegare la pește)', '(†) Intrarea în biserică a Maicii Domnului'],
+      ['Sf. Mc. Zenaida (Lăsatul secului pentru Postul Sf. Ap. Petru și Pavel)', 'Sf. Mc. Zenaida'],
+      ['Aducerea moaştelor Sf. Mare Mc. Teodor Stratilat (Începutul Postului Sf. Ap. Petru și Pavel. Dezlegare la pește)', 'Aducerea moaştelor Sf. Mare Mc. Teodor Stratilat'],
+      ['Sf. Ier. Leon cel Mare, episcopul Romei (Zi aliturgică. Dezlegare la brânză, lapte, ouă şi peşte)', 'Sf. Ier. Leon cel Mare, episcopul Romei (Zi aliturgică)'],
+      ['Sf. Gorgonia (Începutul Postului Sfintelor Paşti. Zi aliturgică. Canonul Mare)', 'Sf. Gorgonia (Zi aliturgică. Canonul Mare)'],
+      ['Sf. Cuv. Sinclitichia (Ajunul Botezului Domnului. Post)', 'Sf. Cuv. Sinclitichia (Ajunul Botezului Domnului)'],
+      ['(†) Înălțarea Sfintei Cruci (Post)', '(†) Înălțarea Sfintei Cruci'],
+      ['Sf. Mc. Anisia fecioara (Harți)', 'Sf. Mc. Anisia fecioara'],
+      // fără mențiune de post → textul rămâne identic
+      ['Sf. Mc. Agapie, Plisie şi Timolau; Duminica a 3-a din Post (a Sfintei Cruci)', 'Sf. Mc. Agapie, Plisie şi Timolau; Duminica a 3-a din Post (a Sfintei Cruci)'],
+      ['Ev. Matei 6, 14-21 (Învățătură despre iertare, post și neagonisire)', 'Ev. Matei 6, 14-21 (Învățătură despre iertare, post și neagonisire)'],
+      ['Sf. Ioan Postitorul, Patriarhul Constantinopolului', 'Sf. Ioan Postitorul, Patriarhul Constantinopolului'],
+      ['Sf. Ap. și Evanghelist Ioan Teologul; Sf. Cuv. Arsenie cel Mare', 'Sf. Ap. și Evanghelist Ioan Teologul; Sf. Cuv. Arsenie cel Mare'],
+      ['Duminica Izgonirii lui Adam din Rai (a Lăsatului sec de brânză)', 'Duminica Izgonirii lui Adam din Rai (a Lăsatului sec de brânză)']
+    ];
+    for (const [intrare, asteptat] of CAZURI) {
+      const iesire = faraPost(intrare);
+      verifica(`filtru: „${intrare}”`, iesire === asteptat, `rezultat „${iesire}”, așteptat „${asteptat}”`);
+    }
+  }
 }
 
 // Raport
