@@ -53,7 +53,26 @@ function formateazaDataRo(dataISO) {
 }
 
 // ─── Aduce conținutul zilei din Supabase (sfânt + badge post) ────────────────
-async function getContinutZi(dataISO) {
+// ─── Calendarul validat (oct.–dec. 2026, transcris din calendarul tipărit) ─────
+// Fișierul este în depozit (data/calendar-validat-2026-t4.json); site-ul îl folosește deja la afișare.
+// Pentru zilele din fișier, numele sfinților din notificări vin de aici, nu din Supabase. Baza de date nu se modifică.
+const CALE_CALENDAR_VALIDAT = process.env.PDC_CALENDAR_VALIDAT ||
+  require('path').join(__dirname, '..', 'data', 'calendar-validat-2026-t4.json');
+let _calendarValidat;
+function calendarValidat() {
+  if (_calendarValidat === undefined) {
+    try { _calendarValidat = JSON.parse(require('fs').readFileSync(CALE_CALENDAR_VALIDAT, 'utf8')).zile || {}; }
+    catch (e) { _calendarValidat = {}; console.warn('⚠️ Calendarul validat nu a putut fi citit — folosesc numele din Supabase.'); }
+  }
+  return _calendarValidat;
+}
+// Numele pentru notificare: sfinții și sărbătoarea zilei (+ numele duminicii), fără semnele de cruce tipărite
+function numeNotificare(z) {
+  const t = z.sfinti + (z.duminica ? '; ' + z.duminica : '');
+  return t.replace(/\(†\)\s*|†\)\s*|†\s*/g, '').replace(/\s{2,}/g, ' ').trim();
+}
+
+async function getContinutZiSupabase(dataISO) {
   if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) return null;
   try {
     const url = `${SUPABASE_URL}/rest/v1/zile_ortodoxe?data_calendaristica=eq.${dataISO}&select=*`;
@@ -69,6 +88,14 @@ async function getContinutZi(dataISO) {
     console.warn('⚠️ Nu am putut citi conținutul din Supabase:', e.message);
     return null;
   }
+}
+
+async function getContinutZi(dataISO) {
+  const continut = await getContinutZiSupabase(dataISO);
+  const z = calendarValidat()[dataISO];
+  if (!z) return continut;
+  console.log(`ℹ️ Numele sfinților pentru ${dataISO} vin din calendarul validat.`);
+  return { ...(continut || {}), data_calendaristica: dataISO, sfant_nume: numeNotificare(z) };
 }
 
 // ─── MĂSURĂ PROVIZORIE: fără informații despre post în notificări ───────────
