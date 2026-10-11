@@ -41,7 +41,7 @@
   function numeValidat(z) { return z.sfinti + (z.duminica ? '; ' + z.duminica : ''); }
   window.pdcCalendarValidat = calendarValidat;
   window.pdcNumeValidat = numeValidat;
-  // Textele generate zilnic (viața, troparul, condacul, sinaxarul) care vorbesc despre sfinți ce NU sunt în calendarul validat
+  // Textele generate zilnic (viața, troparul, condacul, sinaxarul, predica) care vorbesc despre sfinți ce NU sunt în calendarul validat
   // nu se afișează; în locul lor apare un mesaj neutru. Nu se inventează nimic, baza de date nu se modifică.
   var TITLURI = /^(sfant|sfanta|sfantul|sfintii|sfintei|sfintilor|sfantului|sfintit|sfintiti|sfintitul|mucenic|mucenicul|mucenici|mucenica|mucenita|mucenitele|mare|marele|mari|marii|nou|noul|noi|cuvios|cuviosul|cuvioasa|cuviosi|cuvioasele|ierarh|ierarhul|ierarhi|apostol|apostolul|apostoli|apostolilor|prooroc|proorocul|proroc|prorocul|preot|preotul|diacon|diaconul|marturisitor|marturisitorul|episcop|episcopul|arhiepiscop|arhiepiscopul|mitropolit|mitropolitul|patriarh|patriarhul|arhanghel|arhanghelul|arhangheli|arhanghelii|imparat|imparatul|imparati|imparatii|imparateasa|cinstirea|icoane|icoanei|icoana|acatist|maicii|domnului|maica|soborul|duminica|rusalii|biserica|bisericii|ortodoxa|ortodoxe|parinti|parintilor|stareti|staretilor|aducerea|moastelor|pomenirea|praznuirea|dupa|pilda|semanatorului|sinodul|ecumenic|lea|manastirea|manastirii|lavra|constantinopolului|constantinopol|ierusalimului|ierusalim|alexandriei|antiohiei|romei|niceei|rusiei|romaniei)$/;
   function fd(t) { return String(t || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); }
@@ -68,19 +68,23 @@
     }).filter(function (k) { return k.length; });
   }
   // Un text e ascuns doar dacă numește clar o pomenire străină: toate numele ei, sau cel puțin două dintre ele.
-  function numesteStrain(text, straine) {
+  // În predică, numele Sfinților Părinți citați des nu contează (ex. „Sfântul Ioan Gură de Aur spune…”).
+  var PARINTI = /^(ioan|vasile|grigorie|ignatie|atanasie|chiril|maxim|efrem|isaac|serafim|paisie|teofan|nicolae|dumitru|ambrozie|augustin|siluan|porfirie|cleopa|arsenie|simeon|macarie|antonie|ieronim|teofil|nectarie|nicodim|iustin|filaret|dimitrie|marcu|petru|pavel|iacob|andrei|toma|luca|matei)$/;
+  function numesteStrain(text, straine, predica) {
     var t = fd(text);
-    return straine.some(function (k) { var n = k.filter(function (w) { return t.indexOf(w) !== -1; }).length; return n >= Math.min(2, k.length); });
+    return straine.some(function (k) {
+      if (predica) k = k.filter(function (w) { return !PARINTI.test(w); });
+      var n = k.filter(function (w) { return t.indexOf(w) !== -1; }).length; return k.length && n >= Math.min(2, k.length);
+    });
   }
-  // Predica (despre Evanghelie, cu citate din Sfinții Părinți) nu se filtrează.
   var NEUTRU = { sfant_viata: 'Viața sfântului zilei nu este disponibilă momentan.', sinaxar: 'Sinaxarul zilei nu este disponibil momentan.',
-                 tropar: 'Troparul nu este disponibil momentan.', condac: 'Condacul nu este disponibil momentan.' };
+                 tropar: 'Troparul nu este disponibil momentan.', condac: 'Condacul nu este disponibil momentan.', predica: 'Predica zilei nu este disponibilă momentan.' };
   function aplicaValidat(rand, V) {
     var z = rand && typeof rand === 'object' && rand.data_calendaristica && V[rand.data_calendaristica];
     if (!z) return;
     var straine = pomeniriStraine(rand.sfant_nume, z);
     if (straine.length) Object.keys(NEUTRU).forEach(function (k) {
-      if (typeof rand[k] === 'string' && numesteStrain(rand[k], straine)) rand[k] = NEUTRU[k];
+      if (typeof rand[k] === 'string' && numesteStrain(rand[k], straine, k === 'predica')) rand[k] = NEUTRU[k];
     });
     if ('sfant_nume' in rand) rand.sfant_nume = numeValidat(z);
     if ('sfinti_secundari' in rand) rand.sfinti_secundari = null;

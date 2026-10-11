@@ -30,4 +30,10 @@ const st11=g.pomeniriStraine(db11,z11);
 const caz=[['Sfântul Lev de la Optina a fost stareț.',true],['Sfânta Zenaida a fost doctoriță fără de arginți.',true],
   ['Sfântul Apostol Filip a botezat pe famenul etiopian, după cum spune Sfântul Ioan Gură de Aur.',false],['Sfântul Teofan Mărturisitorul a apărat icoanele.',false]];
 for(const [t,asteptat] of caz){ n++; if(g.numesteStrain(t,st11)!==asteptat){probleme++; console.log('PROBLEMĂ 11 oct.:',t);} }
+// predica: citatele din Sfinții Părinți rămân; o predică despre un sfânt din afara calendarului e ascunsă
+const db1='Sfântul Cuvios Roman Melodul; Sfântul Ioan Cucuzel; Sfânta Sidonia din Georgia', db8='Sfânta Cuvioasă Pelaghia; Sfântul Nou Mucenic Ignatie';
+const pred=[[db11,'2026-10-11','Sfântul Ioan Gură de Aur ne spune că sămânța este cuvântul lui Dumnezeu.',false],[db11,'2026-10-11','Să urmăm pilda Sfântului Lev de la Optina.',true],
+  [db1,'2026-10-01','Sfântul Ioan Gură de Aur tâlcuiește această Evanghelie.',false],[db8,'2026-10-08','Sfântul Ignatie Teoforul spunea că suntem grâul lui Dumnezeu.',false],
+  [db1,'2026-10-01','Sfântul Ioan Cucuzel cânta cu glas îngeresc.',true]];
+for(const [d,zi,t,asteptat] of pred){ n++; if(g.numesteStrain(t,g.pomeniriStraine(d,V[zi]),true)!==asteptat){probleme++; console.log('PROBLEMĂ predică',zi,t);} }
 console.log(`verificări: ${n} | probleme: ${probleme}`); process.exit(probleme?1:0);
