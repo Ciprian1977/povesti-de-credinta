@@ -20,7 +20,7 @@ const STATIC_ASSETS = [
   '/css/style.min.css',
   '/css/tema.css?v=14',
   '/js/ui.js?v=11',
-  '/js/corectura-provizorie.js?v=1',
+  '/js/corectura-provizorie.js?v=2',
   '/js/min/app.min.js?v=19',
   '/js/app.js?v=19',
   '/manifest.json',

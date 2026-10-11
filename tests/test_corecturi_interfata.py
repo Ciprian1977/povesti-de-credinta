@@ -54,6 +54,7 @@ INTERZIS = {
     'date greșite Paști / Post 2026': re.compile(r'19 aprilie|2 martie|15 iunie – 28 iunie|Paștelui 2026 \(19'),
     'etichetă de post pe zi': re.compile(r'Zi de post|Dezlegare la (toate|pește)|Post negru|Post aspru'),
     'alerte post active': re.compile(r'Te anunțăm când începe un post'),
+    'atribuire „sursă oficială”': re.compile(r'(linkul|link) către textul oficial|textul oficial de pe|sursa oficială|referința și textul oficial|linkul oficial'),
 }
 PAGINI = ['/', '/calendar-ortodox-azi', '/setari-notificari', '/sfintii-zilei', '/rugaciunea-zilei', '/rugaciunea-zilei/luni',
           '/rugaciunea-zilei/miercuri', '/rugaciunea-zilei/vineri', '/apostolul-zilei', '/evanghelia-zilei', '/predica-zilei',

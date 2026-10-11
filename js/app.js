@@ -63,7 +63,7 @@ const RUTE_SPA = {
   '/evanghelia-zilei': {
     container: 'ruta-evanghelia-zilei',
     titluFn: (d, azi) => `Evanghelia Zilei - ${formatDateForTitle(azi)} — ${d.evanghelie_carte || 'Sfânta Evanghelie'} | Povești de Credință`,
-    descFn: (d, azi) => `Evanghelia zilei: ${d.evanghelie_carte || 'Sfânta Evanghelie'} ${d.evanghelie_versete || ''} — referința și linkul către textul oficial, pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`.substring(0, 160)
+    descFn: (d, azi) => `Evanghelia zilei: ${d.evanghelie_carte || 'Sfânta Evanghelie'} ${d.evanghelie_versete || ''} — referința biblică și link către lectura publicată pe Doxologia, pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`.substring(0, 160)
   },
   '/predica-zilei': {
     container: 'ruta-predica-zilei',
@@ -705,7 +705,7 @@ function actualizeazaJsonLd(path, date, azi) {
     '/evanghelia-zilei': {
       type: 'Article',
       headline: `Evanghelia Zilei - ${formatDateForTitle(azi)} — ${date.evanghelie_carte || 'Sfânta Evanghelie'}`,
-      description: `Referința Evangheliei ${date.evanghelie_carte || ''} ${date.evanghelie_versete || ''} și linkul către textul oficial, pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`,
+      description: `Referința Evangheliei ${date.evanghelie_carte || ''} ${date.evanghelie_versete || ''} și link către lectura publicată pe Doxologia, pentru ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`,
       articleBody: date.evanghelie_text || `Evanghelia zilei de ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`,
       url: `${siteUrl}/evanghelia-zilei`
     },

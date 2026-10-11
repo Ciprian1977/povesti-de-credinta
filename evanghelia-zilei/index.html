@@ -2,11 +2,11 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
-  <script src="/js/corectura-provizorie.js?v=1"></script>
+  <script src="/js/corectura-provizorie.js?v=2"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#FFFFFF">
   <title id="meta-title">Evanghelia Zilei de Azi — Calendar Ortodox | Povești de Credință</title>
-  <meta name="description" id="meta-desc" content="Evanghelia zilei de azi din calendarul ortodox: referința exactă și linkul către textul oficial. Actualizat zilnic. Alternativă la evanghelia zilei doxologia.">
+  <meta name="description" id="meta-desc" content="Evanghelia zilei de azi din calendarul ortodox: referința biblică și link către lectura publicată pe Doxologia. Actualizat zilnic. Alternativă la evanghelia zilei doxologia.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.povestidecredinta.ro/evanghelia-zilei">
   <link rel="manifest" href="/manifest.json">
@@ -14,7 +14,7 @@
   <link rel="icon" type="image/png" href="/images/favicon.png">
   <link rel="stylesheet" href="/css/style.css">
   <meta property="og:title" id="og-title" content="Evanghelia Zilei de Azi | Povești de Credință">
-  <meta property="og:description" id="og-desc" content="Evanghelia zilei de azi — referința exactă și linkul către textul oficial.">
+  <meta property="og:description" id="og-desc" content="Evanghelia zilei de azi — referința biblică și link către lectura publicată pe Doxologia.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://www.povestidecredinta.ro/evanghelia-zilei">
   <meta property="og:image" content="https://www.povestidecredinta.ro/images/og-image.jpg">
@@ -124,7 +124,7 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
-        <span id="faq1-a">Evanghelia zilei de azi este afișată mai sus: cartea, versetele și linkul către textul oficial.</span>
+        <span id="faq1-a">Evanghelia zilei de azi este afișată mai sus: cartea, versetele și link către lectura publicată pe Doxologia.</span>
       </div>
     </div>
 
@@ -134,7 +134,7 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
-        Evanghelia zilei o găsești chiar aici, pe povestidecredinta.ro, cu cartea, versetele și linkul către textul oficial. Pagina se actualizează zilnic conform Tipicului Bisericii Ortodoxe Române.
+        Evanghelia zilei o găsești chiar aici, pe povestidecredinta.ro, cu cartea, versetele și link către lectura publicată pe Doxologia. Pagina se actualizează zilnic conform Tipicului Bisericii Ortodoxe Române.
       </div>
     </div>
 
@@ -232,10 +232,10 @@ document.addEventListener('DOMContentLoaded', function() {
   { const t = document.getElementById('talcuire-text'); if (t && t.parentElement) t.parentElement.style.display = 'none'; } // tâlcuirea era legată de lectura „implicită”
 
   document.getElementById('meta-title').textContent = `Evanghelia Zilei de Azi, ${dataFormatata} | Povești de Credință`;
-  document.getElementById('meta-desc').setAttribute('content', `Evanghelia zilei de azi, ${dataFormatata}: referința exactă din calendarul ortodox și linkul către textul oficial. Alternativă la evanghelia zilei doxologia.`);
+  document.getElementById('meta-desc').setAttribute('content', `Evanghelia zilei de azi, ${dataFormatata}: referința biblică din calendarul ortodox și link către lectura publicată pe Doxologia. Alternativă la evanghelia zilei doxologia.`);
 
   document.getElementById('faq1-q').textContent = `Care este evanghelia zilei de azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}?`;
-  document.getElementById('faq1-a').textContent = `Referința Evangheliei zilei de azi, ${dataFormatata}, este afișată mai sus, cu linkul către textul oficial.`;
+  document.getElementById('faq1-a').textContent = `Referința Evangheliei zilei de azi, ${dataFormatata}, este afișată mai sus, cu link către lectura publicată pe Doxologia.`;
 
   document.getElementById('schema-article').textContent = JSON.stringify({
     "@context": "https://schema.org", "@type": "Article",
@@ -250,9 +250,9 @@ document.addEventListener('DOMContentLoaded', function() {
     "@context": "https://schema.org", "@type": "FAQPage",
     "mainEntity": [
       { "@type": "Question", "name": `Care este evanghelia zilei de azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}?`, "acceptedAnswer": { "@type": "Answer", "text": `Referința Evangheliei zilei de azi este afișată pe pagină.` } },
-      { "@type": "Question", "name": "Evanghelia zilei doxologia — unde o găsesc?", "acceptedAnswer": { "@type": "Answer", "text": "Evanghelia zilei o găsești pe povestidecredinta.ro cu referința exactă și linkul către textul oficial patristică, actualizat zilnic." } },
+      { "@type": "Question", "name": "Evanghelia zilei doxologia — unde o găsesc?", "acceptedAnswer": { "@type": "Answer", "text": "Evanghelia zilei o găsești pe povestidecredinta.ro cu referința biblică și link către lectura publicată pe Doxologia, actualizat zilnic." } },
       { "@type": "Question", "name": "Evanghelia zilei de azi audio — unde o ascult?", "acceptedAnswer": { "@type": "Answer", "text": "Evanghelia zilei în format audio o găsești pe canalul YouTube @povestidecredinta." } },
-      { "@type": "Question", "name": "Evanghelia zilei duminica — ce se citește?", "acceptedAnswer": { "@type": "Answer", "text": "Duminica se citesc Evangheliile Învierii (Eothinale) din ciclul celor 11 Evanghelii, conform Tipicului BOR." } },
+      { "@type": "Question", "name": "Evanghelia zilei duminica — ce se citește?", "acceptedAnswer": { "@type": "Answer", "text": "La Utrenia duminicii se citește una dintre cele 11 Evanghelii ale Învierii; la Sfânta Liturghie se citește pericopa rânduită pentru duminica respectivă, a cărei referință biblică apare pe această pagină." } },
       { "@type": "Question", "name": "Evanghelia și apostolul zilei — unde le citesc împreună?", "acceptedAnswer": { "@type": "Answer", "text": "Pe povestidecredinta.ro/calendar-ortodox-azi/ găsești Evanghelia și Apostolul zilei împreună pe o singură pagină." } }
     ]
   });
