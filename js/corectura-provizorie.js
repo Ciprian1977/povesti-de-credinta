@@ -161,6 +161,41 @@
   }
   function scurt(n, max) { var p = n.split(';')[0]; return p.length > max ? p.substring(0, max) + '...' : p; }
   function seteaza(sel, text) { var el = document.querySelector(sel); if (el && text) el.textContent = text; }
+  // Titlul, descrierile (meta / Open Graph / Twitter), datele structurate (JSON-LD) și răspunsurile FAQ
+  // construite de pagină din calendarul static vechi primesc numele validat.
+  function inlocuiesteNumeVechi(n) {
+    var cheie = isoRo(0).slice(5), vechi = [];
+    document.querySelectorAll('script:not([src])').forEach(function (sc) {
+      var m = new RegExp('"' + cheie + '"\\s*:\\s*\\{\\s*"?sfant"?\\s*:\\s*"([^"]+)"').exec(sc.textContent || '');
+      if (m && vechi.indexOf(m[1]) === -1) vechi.push(m[1]);
+    });
+    vechi = vechi.filter(function (v) { return v && n.indexOf(v) === -1; });
+    var perechi = vechi.map(function (v) { return [v, n]; })
+      .concat([[': Sfinții zilei', ': ' + n], ['✝️ Sfinții zilei', '✝️ ' + n], ['este Sfinții zilei', 'este ' + n], ['prăznuit Sfinții zilei', 'prăznuit ' + n],
+               ['Viața Sfinții zilei', 'Viața ' + n.split(';')[0].trim()], ['Sfânt din Sinaxarul BOR', n], ['Sfânt din Sinaxar', n]]);
+    function inloc(t, json) {
+      perechi.forEach(function (p) {
+        var a = json ? JSON.stringify(p[0]).slice(1, -1) : p[0], b2 = json ? JSON.stringify(p[1]).slice(1, -1) : p[1];
+        t = t.split(a).join(b2);
+      });
+      return t;
+    }
+    if (document.title) document.title = inloc(document.title);
+    document.querySelectorAll('meta[name=description],meta[property^="og:"],meta[name^="twitter:"]').forEach(function (m) {
+      var c = m.getAttribute('content'); if (c) { var x = inloc(c); if (x !== c) m.setAttribute('content', x); }
+    });
+    document.querySelectorAll('script[type="application/ld+json"]').forEach(function (sc) {
+      var t = sc.textContent || '';
+      var x = inloc(t, true).split('"name":"Sfinții zilei"').join('"name":' + JSON.stringify(n.split(';')[0].trim()));
+      if (x !== t) sc.textContent = x;
+    });
+    document.querySelectorAll('#viata-text strong').forEach(function (el) {
+      var t = (el.textContent || '').trim(); if (t === 'Sfinții zilei' || vechi.indexOf(t) !== -1) el.textContent = n;
+    });
+    document.querySelectorAll('[id^="faq"], #viata-titlu, #hero-h1').forEach(function (el) {
+      if (el.children.length) return; var t = el.textContent || ''; var x = inloc(t); if (x !== t) el.textContent = x;
+    });
+  }
   document.addEventListener('DOMContentLoaded', function () {
     if (!C.activ) return;
     calendarValidat().then(function (V) {
@@ -174,6 +209,7 @@
         }
         if (zi) seteaza('#sfant-ieri', scurt(numeValidat(zi), 35));
         if (zm) seteaza('#sfant-maine', scurt(numeValidat(zm), 35));
+        if (z) inlocuiesteNumeVechi(numeValidat(z));
       }, 0);
     });
   });

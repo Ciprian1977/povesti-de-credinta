@@ -2,7 +2,7 @@
  "descriere": "Calendarul ortodox octombrie–decembrie 2026, transcris din fotografia calendarului bisericesc tipărit (BOR, 2026) trimisă de proprietarul sitului. Conține doar ce se vede în fotografie; nimic nu este completat automat sau din AI.",
  "sursa": "Fotografie calendar bisericesc tipărit 2026, paginile octombrie, noiembrie, decembrie",
  "transcris_la": "2026-10-11",
- "verificare": "Comparat zi cu zi cu calendarul publicat de Patriarhia Română pentru 2026: nume și marcaje identice, cu excepțiile marcate «de_verificat».",
+ "verificare": "Comparat zi cu zi cu calendarul publicat de Patriarhia Română pentru 2026: nume și marcaje identice, cu excepția zilei 2 decembrie (marcaj diferit, vezi nota).",
  "legenda": {
   "sfinti": "sfinții și sărbătorile zilei, ca în calendar",
   "marcaj": "textul tipărit în paranteză (dezlegare, harți, început de post etc.)",
@@ -136,14 +136,14 @@
    "stare": "validat"
   },
   "2026-10-28": {
-   "sfinti": "† Sf. Ier. Iachint, mitropolitul Țării Românești; †) Sf. Cuv. Teofana Basarab; Sf. Mc. Terentie, soția sa, Neonila și cei 7 fii; Sf. Cuv. Ștefan Savaitul",
-   "stare": "de_verificat",
-   "nota": "Ultimul nume este acoperit parțial de filigran: se vede „Sf. Ier. Firmi… …copul Cezareei Capadociei”. Pe site se afișează doar textul clar vizibil."
+   "sfinti": "† Sf. Ier. Iachint, mitropolitul Țării Românești; †) Sf. Cuv. Teofana Basarab; Sf. Mc. Terentie, soția sa, Neonila și cei 7 fii; Sf. Cuv. Ștefan Savaitul; Sf. Ier. Firmilian, episcopul Cezareei Capadociei",
+   "stare": "validat",
+   "sursa_suplimentara": "Fotografie clară a paginii octombrie, trimisă pe 11 oct. 2026, 12:15"
   },
   "2026-10-29": {
-   "sfinti": "Sf. Cuv. Avramie și Maria, nepoata sa",
-   "stare": "de_verificat",
-   "nota": "Începutul rândului (inclusiv data) este acoperit de filigran: se vede doar „… Mc. Anastasia Romana”. Pe site se afișează doar textul clar vizibil."
+   "sfinti": "Sf. Cuv. Mc. Anastasia Romana; Sf. Cuv. Avramie și Maria, nepoata sa",
+   "stare": "validat",
+   "sursa_suplimentara": "Fotografie clară a paginii octombrie, trimisă pe 11 oct. 2026, 12:15"
   },
   "2026-10-30": {
    "sfinti": "Sf. Sfințit Mc. Zenovie, episcopul Ciliciei, și sora sa, Zenovia; Sf. Ap. Cleopa",
