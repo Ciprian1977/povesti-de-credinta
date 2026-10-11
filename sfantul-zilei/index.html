@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#FFFFFF">
   <title id="meta-title">Sfântul Zilei de Azi — Calendar Ortodox | Povești de Credință</title>
-  <meta name="description" id="meta-desc" content="Sfântul zilei de azi din calendarul ortodox românesc: numele sfântului, viața pe scurt, troparul și tipul de post. Actualizat zilnic conform Sinaxarului BOR.">
+  <meta name="description" id="meta-desc" content="Sfântul zilei de azi din calendarul ortodox românesc: numele sfinților prăznuiți, viața pe scurt și troparul. Actualizat zilnic.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.povestidecredinta.ro/sfantul-zilei" id="canonical">
   <link rel="manifest" href="/manifest.json">
@@ -317,7 +317,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const keyAzi = getDataKey(azi);
 
   // Sfântul principal
-  const sfantNume = dataAzi.sfant || 'Sfânt din Sinaxarul BOR';
+  const sfantNume = dataAzi.sfant || 'Sfinții zilei';
   document.getElementById('sfant-principal').textContent = sfantNume;
   document.getElementById('data-completa').textContent = dataFormatata;
 
@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Meta tags dinamice
   document.getElementById('meta-title').textContent = `Sfântul Zilei de Azi — ${dataFormatata} | Povești de Credință`;
-  document.getElementById('meta-desc').setAttribute('content', `Sfântul zilei de azi, ${dataFormatata}: ${sfantNume}. Troparul și viața sfântului conform Sinaxarului BOR.`);
+  document.getElementById('meta-desc').setAttribute('content', `Sfântul zilei de azi, ${dataFormatata}: ${sfantNume}.`);
   document.getElementById('og-title').setAttribute('content', `Sfântul Zilei — ${dataFormatata} | Povești de Credință`);
   document.getElementById('og-desc').setAttribute('content', `${sfantNume} — ${dataFormatata}.`);
 
@@ -338,13 +338,13 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('viata-text').textContent = viataData.viata;
     document.getElementById('tropar-text').textContent = viataData.tropar;
   } else {
-    document.getElementById('viata-text').innerHTML = `<strong>${sfantNume}</strong> este prăznuit în calendarul ortodox pe ${azi.getDate()} ${LUNI_RO[azi.getMonth()]}. Conform Sinaxarului BOR, acesta este unul dintre sfinții care au slujit lui Dumnezeu cu credință și sfințenie, lăsând o pildă de viețuire creștinească pentru urmași. Viața completă a acestui sfânt va fi disponibilă în curând pe povestidecredinta.ro.`;
-    document.getElementById('tropar-text').textContent = 'Troparul ' + sfantNume.split(';')[0] + ' va fi disponibil în curând. Consultați Mineiul lunii pentru textul complet al troparului.';
+    document.getElementById('viata-text').innerHTML = `<strong>${sfantNume}</strong> — ${azi.getDate()} ${LUNI_RO[azi.getMonth()]}. Viața pe scurt a sfântului nu este disponibilă momentan.`;
+    document.getElementById('tropar-text').textContent = 'Troparul nu este disponibil momentan.';
   }
 
   // Navigare ieri/mâine
-  const sfantIeriNume = dataIeri.sfant || 'Sfânt din Sinaxar';
-  const sfantMaineNume = dataMaine.sfant || 'Sfânt din Sinaxar';
+  const sfantIeriNume = dataIeri.sfant || '';
+  const sfantMaineNume = dataMaine.sfant || '';
   document.getElementById('sfant-ieri').textContent = sfantIeriNume ? sfantIeriNume.split(';')[0].substring(0,35)+'...' : '';
   document.getElementById('sfant-maine').textContent = sfantMaineNume ? sfantMaineNume.split(';')[0].substring(0,35)+'...' : '';
 

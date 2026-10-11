@@ -6,21 +6,21 @@ Povești de Credință este un site de calendar ortodox românesc, rugăciuni, a
 
 ## Rute principale
 
-- [Calendar Ortodox — Sfântul Zilei](https://www.povestidecredinta.ro/) — calendar ortodox zilnic cu sfântul zilei, tipul de post și culoarea liturgică
-- [Sinaxar](https://www.povestidecredinta.ro/sinaxar) — viața completă a sfinților prăznuiți conform Mineiului BOR
+- [Calendar Ortodox — Sfântul Zilei](https://www.povestidecredinta.ro/) — calendar ortodox zilnic cu sfinții zilei și referințele lecturilor
+- [Sinaxar](https://www.povestidecredinta.ro/sinaxar) — viețile sfinților prăznuiți în ziua respectivă
 - [Sfinții Zilei](https://www.povestidecredinta.ro/sfintii-zilei) — icoana, troparul și prăznuirea sfinților zilei
-- [Evanghelia Zilei](https://www.povestidecredinta.ro/evanghelia-zilei) — textul integral al Evangheliei citite la Sfânta Liturghie
-- [Apostolul Zilei](https://www.povestidecredinta.ro/apostolul-zilei) — pericopa apostolică a zilei
-- [Predica Zilei](https://www.povestidecredinta.ro/predica-zilei) — tâlcuire patristică și cuvânt de folos duhovnicesc
+- [Evanghelia Zilei](https://www.povestidecredinta.ro/evanghelia-zilei) — referința Evangheliei citite la Sfânta Liturghie, cu link către textul oficial
+- [Apostolul Zilei](https://www.povestidecredinta.ro/apostolul-zilei) — referința pericopei apostolice a zilei, cu link către textul oficial
+- [Predica Zilei](https://www.povestidecredinta.ro/predica-zilei) — o reflecție duhovnicească pentru ziua de azi
 - [Rugăciunea Zilei](https://www.povestidecredinta.ro/rugaciunea-zilei) — rugăciunile oficiale ale fiecărei zile din săptămână
 
 ## Conținut disponibil
 
 Acest site conține:
 
-- Calendar ortodox zilnic cu sfântul zilei, tipul de post și culoarea liturgică
+- Calendar ortodox zilnic cu sfinții zilei și referințele Apostolului și Evangheliei
 - Rugăciuni ortodoxe românești (de dimineață, de seară, pentru diverse nevoi)
-- Acatiste complete (Maica Domnului, Sfântul Nicolae, Sfântul Gheorghe și alții)
+- Acatiste (Acatistul Domnului Iisus Hristos, al Bunei Vestiri și al Sfântului Nicolae)
 - Pricesne ortodoxe românești cu text complet
 - Calendar posturi ortodoxe 2026 (Postul Mare, Postul Apostolilor etc.)
 - Biografii ale sfinților ortodocși prăznuiți în calendarul BOR
