@@ -10,8 +10,8 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
-      - run: bash verificari.sh
+      - run: bash verificari2.sh
       - run: |
           cd out
-          git init -q -b rezultate-1b && git add -A && git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -qm r
-          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" rezultate-1b
+          git init -q -b rezultate-1b2 && git add -A && git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -qm r
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" rezultate-1b2
