@@ -7,7 +7,7 @@
 //   - dimineata    (true)  → Gândul de dimineață + Sfântul Zilei         (~07:30)
 //   - pranz        (true)  → Rugăciunea de la prânz                       (~13:00)
 //   - seara        (true)  → Rugăciunea de seară (oră personalizată)      (seara_ora)
-//   - alerte_post  (true)  → Alerte posturi/sărbători + dezlegări         (ad-hoc)
+//   - alerte_post  (true)  → OPRIT PROVIZORIU: alerte posturi/dezlegări (datele de post nu sunt încă validate BOR)
 //
 // Utilizare:
 //   node trimite-notificari.js programeaza [YYYY-MM-DD]   ← rularea zilnică: programează fiecare abonat la ora aleasă
@@ -71,7 +71,26 @@ async function getContinutZi(dataISO) {
   }
 }
 
-// ─── Etichetă lizibilă pentru badge-ul de post ───────────────────────────────
+// ─── MĂSURĂ PROVIZORIE: fără informații despre post în notificări ───────────
+// Până la validarea calendarului BOR, notificările NU menționează postul, dezlegările sau harțile,
+// iar alertele dedicate postului (segmentul alerte_post) nu se mai programează și nu se mai trimit.
+// Pentru revenire: ALERTE_POST_OPRITE = false și se restaurează textele din istoricul git.
+const ALERTE_POST_OPRITE = true;
+const RX_POST = /\b(post(ul|ului|uri|urile|urilor)?|dezleg\w*|har[țţt]i)\b/i;
+// Scoate din text grupurile din paranteze care vorbesc despre post (ex. „(Dezlegare la pește)”)
+function faraPost(text) {
+  return String(text || '')
+    .replace(/\s*\([^()]*\b(post(ul|ului|uri|urile|urilor)?|dezleg\w*|har[țţt]i)\b[^()]*\)/gi, '')
+    .replace(/\s{2,}/g, ' ').trim();
+}
+// Ultima plasă de siguranță înainte de trimitere: niciun câmp text nu are voie să menționeze postul
+function contineInfoPost(payload) {
+  const t = [payload.headings, payload.contents, payload.subtitle, payload.data]
+    .map((x) => (x && typeof x === 'object') ? Object.values(x).join(' ') : (x || '')).join(' ') + ' ' + (payload.web_url || '');
+  return RX_POST.test(t) || /\/posturi\b/.test(t);
+}
+
+// ─── Etichetă lizibilă pentru badge-ul de post (nefolosită cât timp măsura provizorie e activă) ───
 function etichetaPost(tipPost) {
   switch (tipPost) {
     case 'dezlegare_peste': return '🐟 Dezlegare la pește';
@@ -88,8 +107,8 @@ function etichetaPost(tipPost) {
 // activat segmentul respectiv. Cheile sunt cele OFICIALE OneSignal REST API.
 function construistePayload(segment, dataISO, continut, oraActuala) {
   const dataRo = formateazaDataRo(dataISO);
-  const sfant = (continut && continut.sfant_nume) ? continut.sfant_nume : 'Sfinții zilei';
-  const badge = continut ? etichetaPost(continut.tip_post) : '';
+  const sfant = faraPost((continut && continut.sfant_nume) ? continut.sfant_nume : 'Sfinții zilei') || 'Sfinții zilei';
+  const badge = ''; // măsură provizorie: fără etichetă de post (vezi ALERTE_POST_OPRITE)
 
   // Bază comună
   const baza = {
@@ -138,6 +157,7 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
       };
 
     case 'alerte_post':
+      if (ALERTE_POST_OPRITE) throw new Error('Segmentul alerte_post este oprit provizoriu.');
       return {
         ...baza,
         filters: [{ field: 'tag', key: 'alerte_post', relation: '=', value: 'true' }, { operator: 'OR' }, { field: 'tag', key: 'alerte_post', relation: '=', value: '1' }],
@@ -195,6 +215,13 @@ function oraAcumRo() {
 }
 
 async function postOneSignal(payload) {
+  if (contineInfoPost(payload)) {
+    // nu trimitem informații de post nevalidate: păstrăm notificarea, dar cu un titlu neutru
+    const zi = payload.send_after ? String(payload.send_after).slice(0, 10) : '';
+    payload.headings = { ro: `☀️ Calendar ortodox${zi ? ' — ' + formateazaDataRo(zi) : ''}`, en: '☀️ Calendar ortodox' };
+    if (payload.contents && RX_POST.test(Object.values(payload.contents).join(' '))) payload.contents = { ro: 'Apasă pentru sfinții și rânduiala zilei din calendarul ortodox.' };
+    if (contineInfoPost(payload)) { console.error('❌ Notificare blocată: conține informații despre post.'); return { ok: false, faraAbonati: false, status: 0, j: { errors: ['blocat: informatii de post'] } }; }
+  }
   const r = await fetch('https://onesignal.com/api/v1/notifications', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json; charset=utf-8', 'Authorization': `Key ${ONESIGNAL_API_KEY}` },
@@ -220,6 +247,10 @@ async function programeazaZiua(dataISO) {
   const off = offsetRo(), acum = oraAcumRo();
   let ok = 0, goale = 0, erori = 0;
   for (const seg of Object.keys(ORE)) {
+    if (seg === 'alerte_post' && ALERTE_POST_OPRITE) {
+      console.log('ℹ️ [alerte_post] oprit provizoriu până la validarea calendarului BOR — nu programez alerte de post.');
+      continue;
+    }
     if (seg === 'alerte_post' && !(continut && /post/.test(continut.tip_post || ''))) {
       console.log('ℹ️ [alerte_post] azi nu e zi de post — nu programez alerte.');
       continue;
@@ -251,7 +282,7 @@ async function trimite(segment, dataISO, oraActuala) {
     payload.filters = undefined;
     payload.included_segments = ['Subscribed Users'];
     payload.headings = { ro: '🔔 Test — Povești de Credință', en: '🔔 Test — Povești de Credință' };
-    payload.contents = { ro: `Notificările funcționează! Azi: ${(continut && continut.sfant_nume) || 'Sfinții zilei'}.`, en: 'Notifications work!' };
+    payload.contents = { ro: `Notificările funcționează! Azi: ${faraPost(continut && continut.sfant_nume) || 'Sfinții zilei'}.`, en: 'Notifications work!' };
   } else {
     payload = construistePayload(segment, dataISO, continut, oraActuala);
   }
@@ -279,6 +310,10 @@ async function main() {
     process.exit(1);
   }
   if (segment === 'programeaza') return programeazaZiua(dataISO);
+  if (segment === 'alerte_post' && ALERTE_POST_OPRITE) {
+    console.log('ℹ️ [alerte_post] oprit provizoriu până la validarea calendarului BOR — nu se trimite nimic.');
+    return;
+  }
   console.log(`📤 Trimit ACUM segment="${segment}" pentru data=${dataISO} ...`);
   await trimite(segment, dataISO);
 }
