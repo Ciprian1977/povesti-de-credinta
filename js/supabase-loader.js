@@ -198,3 +198,6 @@ window.shareWhatsApp = shareWhatsApp;
 window.aratToast = aratToast;
 window.initFAQ = initFAQ;
 window.initNavMobil = initNavMobil;
+
+/* Corectură provizorie: fără etichete de post nevalidate (vezi js/corectura-provizorie.js) */
+function getTextPost() { return ''; }

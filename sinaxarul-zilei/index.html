@@ -2,6 +2,7 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
+  <script src="/js/corectura-provizorie.js?v=1"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#FFFFFF">
   <title id="meta-title">Sinaxarul Zilei de Azi — Calendar Ortodox | Povești de Credință</title>
@@ -201,7 +202,8 @@ const LUNI_RO = ['ianuarie','februarie','martie','aprilie','mai','iunie','iulie'
 function getDataKey(d) {
   return String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
 }
-function getPostLabel(post) {
+function getPostLabel(post){ return ''; // corectură provizorie: etichetele de post sunt ascunse până la validarea BOR
+
   const l = { 'post':'🕯️ Zi de post', 'dezlegare':'✅ Dezlegare la toate', 'dezlegare_peste':'🐟 Dezlegare la pește', 'dezlegare_vin_ulei':'🫒 Dezlegare la vin și untdelemn' };
   return l[post] || '✅ Dezlegare';
 }
@@ -228,7 +230,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('sfant-principal').textContent = data.sfant;
   document.getElementById('data-completa').textContent = df;
-  document.getElementById('post-info').textContent = getPostLabel(data.post);
   document.getElementById('hero-h1').textContent = `📜 Sinaxarul Zilei de Azi, ${df}`;
   document.getElementById('hero-data').textContent = 'Conform Sinaxarului BOR — Patriarhia Română';
   document.getElementById('viata-titlu').textContent = 'Viața din Sinaxar: ' + data.sfant.split(';')[0];
@@ -246,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('meta-title').textContent = `Sinaxarul Zilei de Azi, ${df} | Povești de Credință`;
   document.getElementById('meta-desc').setAttribute('content', `Sinaxarul zilei de azi, ${df}: ${data.sfant}. Viața sfântului, troparul și condacul conform Sinaxarului BOR.`);
   document.getElementById('faq1-q').textContent = `Sinaxarul zilei de azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()} — ce sfânt este?`;
-  document.getElementById('faq1-a').textContent = `Sinaxarul zilei de azi, ${df}: ${data.sfant}. ${getPostLabel(data.post)}.`;
+  document.getElementById('faq1-a').textContent = `Sinaxarul zilei de azi, ${df}: ${data.sfant}.`;
 
   document.getElementById('schema-article').textContent = JSON.stringify({
     "@context":"https://schema.org","@type":"Article",
@@ -259,14 +260,14 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('schema-faq').textContent = JSON.stringify({
     "@context":"https://schema.org","@type":"FAQPage",
     "mainEntity":[
-      {"@type":"Question","name":`Sinaxarul zilei de azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}?`,"acceptedAnswer":{"@type":"Answer","text":`Sinaxarul zilei de azi: ${data.sfant}. ${getPostLabel(data.post)}.`}},
+      {"@type":"Question","name":`Sinaxarul zilei de azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}?`,"acceptedAnswer":{"@type":"Answer","text":`Sinaxarul zilei de azi: ${data.sfant}.`}},
       {"@type":"Question","name":"Ce este sinaxarul în Biserica Ortodoxă?","acceptedAnswer":{"@type":"Answer","text":"Sinaxarul este cartea liturgică a Bisericii Ortodoxe cu viețile sfinților pentru fiecare zi. Se citește la Utrenie, după a 6-a Cântare a Canonului."}},
       {"@type":"Question","name":"Unde găsesc sinaxarul ortodox online?","acceptedAnswer":{"@type":"Answer","text":"Sinaxarul zilei îl găsești pe povestidecredinta.ro, actualizat zilnic cu viața sfântului, troparul și condacul, conform Sinaxarului BOR."}}
     ]
   });
 });
 </script>
-<script src="/js/supabase-loader.js"></script>
+<script src="/js/supabase-loader.js?v=2"></script>
 <script>
 (async function() {
   const azi = new Date();

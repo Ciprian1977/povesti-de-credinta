@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // ─── Supabase: Încarcă date pentru ziua de azi (fus orar Bucharest + cache) ────
-const PDC_CACHE_KEY = 'pdc_cache_v3';
+const PDC_CACHE_KEY = 'pdc_cache_v4';
 async function incarcaDateSupabase() {
   try {
     // ① Data corectă în fusul orar al României (nu UTC!)
@@ -2119,3 +2119,29 @@ document.addEventListener('click', async function (e) {
 });
 setInterval(actualizeazaStareAbonare, 2500);
 initOneSignal();
+
+/* ═══ Corectură provizorie — fără etichete de post nevalidate, fără citate neverificate,
+       fără texte de rezervă inventate pentru lecturi (vezi js/corectura-provizorie.js) ═══ */
+function getTextPost() { return ''; }
+function afiseazaCuvantulFolos() {}
+function afiseazaLectiiAcasa() {
+  try {
+    var date = getDateAzi();
+    var setRef = function (id, carte, versete) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = (carte && versete) ? carte + ' ' + versete : '';
+    };
+    setRef('evanghelie-ref-acasa', date.evanghelie_carte, date.evanghelie_versete);
+    setRef('apostol-ref-acasa', date.apostol_carte, date.apostol_versete);
+    var cutie = window.pdcCutieLectura;
+    var ev = document.getElementById('evanghelie-text-acasa');
+    if (ev && cutie) ev.innerHTML = cutie('evanghelie');
+    var ap = document.getElementById('apostol-text-acasa');
+    if (ap && cutie) ap.innerHTML = cutie('apostol');
+    var pr = document.getElementById('predica-text-acasa');
+    if (pr) {
+      if (date.predica && date.predica.trim().length > 10) pr.textContent = date.predica.substring(0, 350) + '...';
+      else pr.textContent = '';
+    }
+  } catch (e) { console.warn('afiseazaLectiiAcasa:', e); }
+}

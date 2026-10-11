@@ -2,6 +2,7 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
+  <script src="/js/corectura-provizorie.js?v=1"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#FFFFFF">
   <title id="meta-title">Sfântul Zilei de Azi — Calendar Ortodox | Povești de Credință</title>
@@ -169,16 +170,6 @@
         <span id="faq3-a">Conform Calendarului Ortodox Român, sfântul zilei de azi este afișat în secțiunea principală a paginii. Pagina se actualizează automat la miezul nopții pentru a afișa sfântul zilei următoare.</span>
       </div>
     </div>
-
-    <div class="faq-item">
-      <div class="faq-intrebare" onclick="toggleFaq(this)" style="font-weight:600;color:var(--visineu);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem">
-        <span>Este post azi în calendarul ortodox?</span>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
-        <span id="faq4-a">Informația despre post pentru ziua de azi este afișată în cardul sfântului de mai sus. Zilele de post ortodox sunt miercurea și vinerea, plus perioadele de post mare (Postul Mare, Postul Sfinților Apostoli, Postul Adormirii Maicii Domnului, Postul Crăciunului).</span>
-      </div>
-    </div>
   </div>
 
   <div class="separator-ortodox" aria-hidden="true">✦ ✝ ✦</div>
@@ -257,7 +248,8 @@ const VIETI = {
 const ZILE_RO = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'];
 const LUNI_RO = ['ianuarie','februarie','martie','aprilie','mai','iunie','iulie','august','septembrie','octombrie','noiembrie','decembrie'];
 
-function getPostLabel(post) {
+function getPostLabel(post){ return ''; // corectură provizorie: etichetele de post sunt ascunse până la validarea BOR
+
   const labels = {
     'post': '🕯️ Zi de post',
     'dezlegare': '✅ Dezlegare la toate',
@@ -328,7 +320,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const sfantNume = dataAzi.sfant || 'Sfânt din Sinaxarul BOR';
   document.getElementById('sfant-principal').textContent = sfantNume;
   document.getElementById('data-completa').textContent = dataFormatata;
-  document.getElementById('post-info').textContent = getPostLabel(dataAzi.post);
 
   // Hero
   document.getElementById('hero-h1').textContent = '✝️ Sfântul Zilei de Azi, ' + dataFormatata;
@@ -336,9 +327,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Meta tags dinamice
   document.getElementById('meta-title').textContent = `Sfântul Zilei de Azi — ${dataFormatata} | Povești de Credință`;
-  document.getElementById('meta-desc').setAttribute('content', `Sfântul zilei de azi, ${dataFormatata}: ${sfantNume}. ${getPostLabel(dataAzi.post)}. Troparul și viața sfântului conform Sinaxarului BOR.`);
+  document.getElementById('meta-desc').setAttribute('content', `Sfântul zilei de azi, ${dataFormatata}: ${sfantNume}. Troparul și viața sfântului conform Sinaxarului BOR.`);
   document.getElementById('og-title').setAttribute('content', `Sfântul Zilei — ${dataFormatata} | Povești de Credință`);
-  document.getElementById('og-desc').setAttribute('content', `${sfantNume} — ${dataFormatata}. ${getPostLabel(dataAzi.post)}.`);
+  document.getElementById('og-desc').setAttribute('content', `${sfantNume} — ${dataFormatata}.`);
 
   // Viața sfântului
   const viataData = VIETI[keyAzi];
@@ -359,17 +350,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // FAQ dinamic
   document.getElementById('faq1-q').textContent = `Ce sfânt este azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}?`;
-  document.getElementById('faq1-a').textContent = `Sfântul zilei de azi, ${dataFormatata}, este ${sfantNume}. ${getPostLabel(dataAzi.post)}.`;
+  document.getElementById('faq1-a').textContent = `Sfântul zilei de azi, ${dataFormatata}, este ${sfantNume}.`;
   document.getElementById('faq3-q').textContent = `Ce sfânt este pe ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} în calendarul ortodox?`;
-  document.getElementById('faq3-a').textContent = `Pe ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} în calendarul ortodox român este prăznuit ${sfantNume}. Conform Sinaxarului BOR, această zi este marcată cu ${getPostLabel(dataAzi.post).toLowerCase()}.`;
-  document.getElementById('faq4-a').textContent = `${getPostLabel(dataAzi.post)} — aceasta este regula pentru ziua de azi, ${dataFormatata}, conform Calendarului Ortodox Român 2026.`;
+  document.getElementById('faq3-a').textContent = `Pe ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} în calendarul ortodox român este prăznuit ${sfantNume}.`;
 
   // Schema.org Person dinamic
   document.getElementById('schema-person').textContent = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Person",
     "name": sfantNume.split(';')[0],
-    "description": `Sfânt prăznuit în calendarul ortodox pe ${azi.getDate()} ${LUNI_RO[azi.getMonth()]}. ${getPostLabel(dataAzi.post)}.`,
+    "description": `Sfânt prăznuit în calendarul ortodox pe ${azi.getDate()} ${LUNI_RO[azi.getMonth()]}.`,
     "url": "https://www.povestidecredinta.ro/sfantul-zilei"
   });
 
@@ -381,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
       {
         "@type": "Question",
         "name": `Ce sfânt este azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}?`,
-        "acceptedAnswer": { "@type": "Answer", "text": `Sfântul zilei de azi este ${sfantNume}. ${getPostLabel(dataAzi.post)}.` }
+        "acceptedAnswer": { "@type": "Answer", "text": `Sfântul zilei de azi este ${sfantNume}.` }
       },
       {
         "@type": "Question",
@@ -392,17 +382,12 @@ document.addEventListener('DOMContentLoaded', function() {
         "@type": "Question",
         "name": `Ce sfânt este pe ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} în calendarul ortodox?`,
         "acceptedAnswer": { "@type": "Answer", "text": `Pe ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} în calendarul ortodox este prăznuit ${sfantNume}.` }
-      },
-      {
-        "@type": "Question",
-        "name": "Este post azi în calendarul ortodox?",
-        "acceptedAnswer": { "@type": "Answer", "text": `${getPostLabel(dataAzi.post)} — aceasta este regula pentru ziua de azi conform Calendarului Ortodox Român 2026.` }
       }
     ]
   });
 });
 </script>
-<script src="/js/supabase-loader.js"></script>
+<script src="/js/supabase-loader.js?v=2"></script>
 <script>
 // ===== SUPABASE ENHANCEMENT =====
 // Îmbunătățește conținutul static cu date din Supabase dacă sunt disponibile
@@ -438,12 +423,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const LUNI_RO2 = ['ianuarie','februarie','martie','aprilie','mai','iunie','iulie','august','septembrie','octombrie','noiembrie','decembrie'];
     const ZILE_RO2 = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'];
     const dataFormatata = ZILE_RO2[azi.getDay()] + ', ' + azi.getDate() + ' ' + LUNI_RO2[azi.getMonth()] + ' ' + azi.getFullYear();
-    const postLabel = {'post':'🕯️ Zi de post','dezlegare':'✅ Dezlegare la toate','dezlegare_peste':'🐟 Dezlegare la pește','dezlegare_vin_ulei':'🫒 Dezlegare la vin și untdelemn'}[date.tip_post] || '✅ Dezlegare';
+    const postLabel = ''; // corectură provizorie
     document.getElementById('faq1-q').textContent = `Ce sfânt este azi, ${azi.getDate()} ${LUNI_RO2[azi.getMonth()]} ${azi.getFullYear()}?`;
-    document.getElementById('faq1-a').textContent = `Sfântul zilei de azi, ${dataFormatata}, este ${date.sfant_nume}. ${postLabel}.`;
+    document.getElementById('faq1-a').textContent = `Sfântul zilei de azi, ${dataFormatata}, este ${date.sfant_nume}.`;
     document.getElementById('faq3-q').textContent = `Ce sfânt este pe ${azi.getDate()} ${LUNI_RO2[azi.getMonth()]} în calendarul ortodox?`;
     document.getElementById('faq3-a').textContent = `Pe ${azi.getDate()} ${LUNI_RO2[azi.getMonth()]} în calendarul ortodox român este prăznuit ${date.sfant_nume}.`;
-    document.getElementById('faq4-a').textContent = `${postLabel} — aceasta este regula pentru ziua de azi, ${dataFormatata}, conform Calendarului Ortodox Român 2026.`;
 
     // Schema.org actualizat
     document.getElementById('schema-person').textContent = JSON.stringify({
@@ -457,9 +441,8 @@ document.addEventListener('DOMContentLoaded', function() {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type":"Question","name":`Ce sfânt este azi, ${azi.getDate()} ${LUNI_RO2[azi.getMonth()]} ${azi.getFullYear()}?`,"acceptedAnswer":{"@type":"Answer","text":`Sfântul zilei de azi este ${date.sfant_nume}. ${postLabel}.`}},
-        {"@type":"Question","name":"Este post azi?","acceptedAnswer":{"@type":"Answer","text":postLabel}}
-      ]
+        {"@type":"Question","name":`Ce sfânt este azi, ${azi.getDate()} ${LUNI_RO2[azi.getMonth()]} ${azi.getFullYear()}?`,"acceptedAnswer":{"@type":"Answer","text":`Sfântul zilei de azi este ${date.sfant_nume}.`}},
+        ]
     });
   }
 })();

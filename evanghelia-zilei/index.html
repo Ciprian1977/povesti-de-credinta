@@ -2,10 +2,11 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
+  <script src="/js/corectura-provizorie.js?v=1"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#FFFFFF">
   <title id="meta-title">Evanghelia Zilei de Azi — Calendar Ortodox | Povești de Credință</title>
-  <meta name="description" id="meta-desc" content="Evanghelia zilei de azi din calendarul ortodox: textul complet, cartea și versetele. Actualizat zilnic. Alternativă la evanghelia zilei doxologia.">
+  <meta name="description" id="meta-desc" content="Evanghelia zilei de azi din calendarul ortodox: referința exactă și linkul către textul oficial. Actualizat zilnic. Alternativă la evanghelia zilei doxologia.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.povestidecredinta.ro/evanghelia-zilei">
   <link rel="manifest" href="/manifest.json">
@@ -13,7 +14,7 @@
   <link rel="icon" type="image/png" href="/images/favicon.png">
   <link rel="stylesheet" href="/css/style.css">
   <meta property="og:title" id="og-title" content="Evanghelia Zilei de Azi | Povești de Credință">
-  <meta property="og:description" id="og-desc" content="Evanghelia zilei de azi — textul complet cu cartea și versetele.">
+  <meta property="og:description" id="og-desc" content="Evanghelia zilei de azi — referința exactă și linkul către textul oficial.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://www.povestidecredinta.ro/evanghelia-zilei">
   <meta property="og:image" content="https://www.povestidecredinta.ro/images/og-image.jpg">
@@ -86,7 +87,6 @@
     <div id="ev-text" style="font-family:'IM Fell English',serif;font-size:1.05rem;color:var(--visineu-dark);line-height:2.2;font-style:italic">
       Se încarcă...
     </div>
-    <div style="margin-top:8px;font-size:0.75rem;color:var(--text-light)">Conform Bibliei Ortodoxe — traducere BOR</div>
     <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
       <button onclick="copiazaEvanghelia()" style="background:var(--visineu);color:white;border:none;border-radius:20px;padding:8px 18px;font-size:0.85rem;cursor:pointer">
         📋 Copiază Evanghelia
@@ -124,7 +124,7 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
-        <span id="faq1-a">Evanghelia zilei de azi este afișată mai sus cu textul complet, cartea și versetele.</span>
+        <span id="faq1-a">Evanghelia zilei de azi este afișată mai sus: cartea, versetele și linkul către textul oficial.</span>
       </div>
     </div>
 
@@ -134,7 +134,7 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-raspuns" style="display:none;margin-top:10px;font-size:0.9rem;color:var(--text-medium);line-height:1.8">
-        Evanghelia zilei o găsești chiar aici, pe povestidecredinta.ro, cu textul complet, cartea, versetele și tâlcuire patristică. Pagina se actualizează zilnic conform Tipicului Bisericii Ortodoxe Române.
+        Evanghelia zilei o găsești chiar aici, pe povestidecredinta.ro, cu cartea, versetele și linkul către textul oficial. Pagina se actualizează zilnic conform Tipicului Bisericii Ortodoxe Române.
       </div>
     </div>
 
@@ -193,15 +193,6 @@
 </nav>
 
 <script>
-const EVANGHELII = {
-  "default_luni": { carte: "Evanghelia după Ioan", versete: "1, 1-17", text: "La început era Cuvântul și Cuvântul era la Dumnezeu și Dumnezeu era Cuvântul. Acesta era întru început la Dumnezeu. Toate prin El s-au făcut; și fără El nimic nu s-a făcut din ce s-a făcut. Întru El era viață și viața era lumina oamenilor. Și lumina luminează în întuneric și întunericul nu a cuprins-o. Fost-a om trimis de la Dumnezeu, numele lui era Ioan. Acesta a venit spre mărturie, ca să mărturisească despre Lumină, ca toți să creadă prin el. Nu era el Lumina, ci ca să mărturisească despre Lumină. Cuvântul era Lumina cea adevărată care luminează pe tot omul, care vine în lume. În lume era și lumea prin El s-a făcut, dar lumea nu L-a cunoscut. Întru ale Sale a venit, dar ai Săi nu L-au primit. Și celor câți L-au primit, care cred în numele Lui, le-a dat putere ca să se facă fii ai lui Dumnezeu.", talcuire: "Prologul Evangheliei după Ioan este una dintre cele mai profunde mărturisiri teologice din Scriptură. 'Cuvântul' (Logos) este Fiul lui Dumnezeu, Care exista înainte de creație, prin Care toate s-au făcut și Care S-a întrupat pentru mântuirea noastră. Sfântul Ioan Evanghelistul ne invită să primim Lumina lui Hristos și să devenim fii ai lui Dumnezeu." },
-  "default_marti": { carte: "Evanghelia după Matei", versete: "5, 1-12", text: "Și văzând mulțimile, Iisus S-a suit în munte și, ședând El, ucenicii Lui au venit la El. Și deschizând gura Sa, îi învăța zicând: Fericiți cei săraci cu duhul, că a lor este împărăția cerurilor. Fericiți cei ce plâng, că aceia se vor mângâia. Fericiți cei blânzi, că aceia vor moșteni pământul. Fericiți cei ce flămânzesc și însetează de dreptate, că aceia se vor sătura. Fericiți cei milostivi, că aceia se vor milui. Fericiți cei curați cu inima, că aceia vor vedea pe Dumnezeu. Fericiți făcătorii de pace, că aceia fiii lui Dumnezeu se vor chema. Fericiți cei prigoniți pentru dreptate, că a lor este împărăția cerurilor. Fericiți veți fi voi când vă vor ocărî și vă vor prigoni și vor zice tot cuvântul rău împotriva voastră, mințind din pricina Mea. Bucurați-vă și vă veseliți, că plata voastră multă este în ceruri.", talcuire: "Fericirile sunt Magna Carta a Împărăției lui Dumnezeu. Iisus răstoarnă valorile lumești: nu bogații, puternicii și mândrii sunt fericiți, ci cei săraci cu duhul, blânzii, milostivii, curații cu inima. Fiecare fericire descrie o virtute și promite o răsplată cerească. Sfinții Părinți văd în Fericiri treptele urcușului duhovnicesc spre desăvârșire." },
-  "default_miercuri": { carte: "Evanghelia după Luca", versete: "15, 11-32", text: "Zis-a Domnul pilda aceasta: Un om avea doi fii. Și a zis cel mai tânăr dintre ei tatălui său: Tată, dă-mi partea ce mi se cuvine din avere. Și el le-a împărțit averea. Și nu după multe zile, adunând toate, fiul cel mai tânăr s-a dus într-o țară îndepărtată și acolo și-a risipit averea, trăind în desfrânări. Și după ce a cheltuit totul, s-a făcut foamete mare în țara aceea, și el a început să ducă lipsă. Și ducându-se, s-a alipit el de unul din locuitorii acelei țări, și acesta l-a trimis la țarinile sale să pască porcii. Și dorea să-și sature pântecele din roșcovele pe care le mâncau porcii, și nimeni nu-i dădea. Dar, venindu-și în sine, a zis: Câți argați ai tatălui meu sunt îndestulați de pâine, iar eu pier aici de foame! Sculându-mă, mă voi duce la tatăl meu și-i voi zice: Tată, am greșit la cer și înaintea ta; nu mai sunt vrednic să mă numesc fiul tău; fă-mă ca pe unul din argații tăi. Și, sculându-se, a venit la tatăl său. Și încă departe fiind el, l-a văzut tatăl său și i s-a făcut milă și, alergând, a căzut pe grumazul lui și l-a sărutat.", talcuire: "Pilda Fiului Risipitor este cea mai completă icoană a pocăinței și a iubirii părintești a lui Dumnezeu. Tatăl — chip al lui Dumnezeu — nu așteaptă ca fiul să ajungă acasă, ci aleargă înaintea lui. Îmbrățișarea tatălui este imaginea Spovedaniei: Dumnezeu nu ne judecă, ci ne îmbrățișează. Sfântul Luca este evanghelistul milei și al pocăinței." },
-  "default_joi": { carte: "Evanghelia după Ioan", versete: "10, 1-16", text: "Adevărat, adevărat zic vouă: Cel ce nu intră pe ușă în staulul oilor, ci sare pe aiurea, acela este fur și tâlhar. Iar cel ce intră pe ușă este păstorul oilor. Acestuia portarul îi deschide și oile ascultă glasul lui și oile sale le cheamă pe nume și le scoate afară. Și când le-a scos afară pe toate ale sale, merge înaintea lor, și oile merg după el, căci cunosc glasul lui. Iar după un străin nu vor merge, ci vor fugi de el, căci nu cunosc glasul străinilor. Eu sunt ușa oilor. Toți câți au venit înainte de Mine sunt furi și tâlhari, dar oile nu i-au ascultat. Eu sunt ușa; de va intra cineva prin Mine, se va mântui; și va intra și va ieși și pășune va afla. Eu sunt Păstorul cel Bun. Păstorul cel Bun își pune sufletul pentru oi.", talcuire: "Iisus se revelează ca Ușa și Păstorul cel Bun — două imagini complementare. Ca Ușă, El este singura cale de intrare în mântuire. Ca Păstor, El cunoaște oile pe nume (relație personală) și își dă viața pentru ele (iubire jertfelnică). Spre deosebire de păstorii mercenari, Hristos nu fuge când vine primejdia, ci rămâne cu turma Sa până la moarte și Înviere." },
-  "default_vineri": { carte: "Evanghelia după Luca", versete: "23, 33-43", text: "Și când au venit la locul care se cheamă al Căpățânii, L-au răstignit acolo pe El și pe tâlhari: unul de-a dreapta și altul de-a stânga. Iar Iisus zicea: Părinte, iartă-le lor, că nu știu ce fac. Și împărțind hainele Lui, au aruncat sorții. Și stătea poporul privind, iar căpeteniile își băteau joc de El, zicând: Pe alții i-a mântuit; să se mântuiască pe Sine Însuși, dacă El este Hristosul lui Dumnezeu, Alesul. Și ostașii Îl batjocoreau, apropiindu-se și aducându-I oțet, și zicând: Dacă Tu ești regele iudeilor, mântuiește-Te pe Tine Însuți. Și era deasupra Lui și o inscripție scrisă cu litere grecești, latinești și evreiești: Acesta este Regele iudeilor. Iar unul dintre tâlharii răstigniți Îl hulea, zicând: Nu ești Tu Hristosul? Mântuiește-Te pe Tine Însuți și pe noi. Dar celălalt, răspunzând, îl certa, zicând: Nu te temi tu de Dumnezeu, că ești în aceeași osândă? Și noi pe drept, căci noi primim cele cuvenite după faptele noastre; Acesta însă n-a făcut nimic rău. Și zicea lui Iisus: Pomenește-mă, Doamne, când vei veni în împărăția Ta. Și Iisus i-a zis: Adevărat grăiesc ție, astăzi vei fi cu Mine în rai.", talcuire: "Răstignirea lui Hristos este centrul istoriei mântuirii. Iisus, chiar pe Cruce, iartă pe cei ce Îl răstignesc — suprema lecție de iubire și iertare. Tâlharul pocăit este primul om care intră în Rai prin credință și pocăință, chiar în ultimele clipe ale vieții. Vinerea este zi de post în amintirea Răstignirii Domnului." },
-  "default_sambata": { carte: "Evanghelia după Matei", versete: "11, 25-30", text: "În vremea aceea, răspunzând, Iisus a zis: Te laud pe Tine, Părinte, Doamne al cerului și al pământului, că ai ascuns acestea de cei înțelepți și pricepuți și le-ai descoperit pruncilor. Da, Părinte, căci așa a fost bunăvoința Ta. Toate Mi-au fost date de către Tatăl Meu și nimeni nu cunoaște pe Fiul, afară de Tatăl, nici pe Tatăl nu-L cunoaște nimeni, afară de Fiul și cel căruia voiește Fiul să-i descopere. Veniți la Mine toți cei osteniți și împovărați și Eu vă voi da odihnă. Luați jugul Meu asupra voastră și învățați-vă de la Mine, că sunt blând și smerit cu inima și veți găsi odihnă sufletelor voastre. Căci jugul Meu este bun și povara Mea este ușoară.", talcuire: "Iisus revelează că cunoașterea lui Dumnezeu nu vine din înțelepciunea omenească, ci din smerenie și simplitate. Chemarea 'Veniți la Mine toți cei osteniți' este invitația universală a lui Hristos la odihnă duhovnicească. Jugul lui Hristos — ascultarea de Evanghelie — nu este o povară, ci eliberare din robia păcatului și a grijilor lumești." },
-  "default_duminica": { carte: "Evanghelia după Ioan", versete: "20, 1-10", text: "Și în ziua cea dintâi a săptămânii, Maria Magdalena a venit dis-de-dimineață, pe când era încă întuneric, la mormânt și a văzut piatra ridicată de pe mormânt. A alergat deci și a venit la Simon Petru și la celălalt ucenic, pe care îl iubea Iisus, și le-a zis: Au luat pe Domnul din mormânt și nu știm unde L-au pus. Deci a ieșit Petru și celălalt ucenic și veneau la mormânt. Și alergau amândoi împreună, dar celălalt ucenic a alergat înainte, mai repede decât Petru, și a ajuns cel dintâi la mormânt. Și, plecându-se, a văzut giulgiurile puse jos, dar n-a intrat. A venit deci și Simon Petru, urmând după el, și a intrat în mormânt și a văzut giulgiurile puse jos, și mahrama, care fusese pe capul Lui, nu era pusă împreună cu giulgiurile, ci înfășurată, pusă la o parte, într-un loc. Atunci a intrat și celălalt ucenic, care venise cel dintâi la mormânt, și a văzut și a crezut.", talcuire: "Evanghelia Învierii — prima descoperire a mormântului gol. Maria Magdalena, Petru și Ioan sunt primii martori ai Învierii lui Hristos. Giulgiurile rămase ordonate în mormânt mărturisesc că nu a fost o furt, ci o Înviere. Ioan vede și crede — credința izvorăște din întâlnirea personală cu semnele Învierii. Duminica este ziua Învierii, Ziua Domnului." }
-};
 
 const ZILE_RO = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'];
 const LUNI_RO = ['ianuarie','februarie','martie','aprilie','mai','iunie','iulie','august','septembrie','octombrie','noiembrie','decembrie'];
@@ -233,26 +224,23 @@ document.addEventListener('DOMContentLoaded', function() {
   const azi = new Date();
   const ziSapt = azi.getDay();
   const dataFormatata = ZILE_RO[ziSapt] + ', ' + azi.getDate() + ' ' + LUNI_RO[azi.getMonth()] + ' ' + azi.getFullYear();
-  const evData = EVANGHELII[ZILE_KEY[ziSapt]];
+  const evData = { carte: '', versete: '' }; // corectură provizorie: fără lecturi „implicite” pe zile ale săptămânii
 
-  document.getElementById('ev-referinta').textContent = `Evanghelia zilei de azi, ${ZILE_RO[ziSapt].toLowerCase()} ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}, este din ${evData.carte}, ${evData.versete}.`;
   document.getElementById('data-completa').textContent = dataFormatata;
   document.getElementById('hero-h1').textContent = `✝️ Evanghelia Zilei de Azi, ${dataFormatata}`;
   document.getElementById('hero-data').textContent = 'Conform Tipicului Bisericii Ortodoxe Române';
-  document.getElementById('ev-titlu').textContent = `${evData.carte} (${evData.versete})`;
-  document.getElementById('ev-text').textContent = evData.text;
-  document.getElementById('talcuire-text').textContent = evData.talcuire;
+  { const t = document.getElementById('talcuire-text'); if (t && t.parentElement) t.parentElement.style.display = 'none'; } // tâlcuirea era legată de lectura „implicită”
 
   document.getElementById('meta-title').textContent = `Evanghelia Zilei de Azi, ${dataFormatata} | Povești de Credință`;
-  document.getElementById('meta-desc').setAttribute('content', `Evanghelia zilei de azi, ${dataFormatata}: ${evData.carte}, ${evData.versete}. Text complet și tâlcuire. Alternativă la evanghelia zilei doxologia.`);
+  document.getElementById('meta-desc').setAttribute('content', `Evanghelia zilei de azi, ${dataFormatata}: referința exactă din calendarul ortodox și linkul către textul oficial. Alternativă la evanghelia zilei doxologia.`);
 
   document.getElementById('faq1-q').textContent = `Care este evanghelia zilei de azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}?`;
-  document.getElementById('faq1-a').textContent = `Evanghelia zilei de azi, ${dataFormatata}, este din ${evData.carte}, ${evData.versete}.`;
+  document.getElementById('faq1-a').textContent = `Referința Evangheliei zilei de azi, ${dataFormatata}, este afișată mai sus, cu linkul către textul oficial.`;
 
   document.getElementById('schema-article').textContent = JSON.stringify({
     "@context": "https://schema.org", "@type": "Article",
     "headline": `Evanghelia Zilei de Azi — ${dataFormatata}`,
-    "description": `Evanghelia zilei de azi: ${evData.carte}, ${evData.versete}`,
+    "description": `Evanghelia zilei de azi — referința exactă`,
     "url": "https://www.povestidecredinta.ro/evanghelia-zilei",
     "datePublished": azi.toISOString().split('T')[0],
     "publisher": { "@type": "Organization", "name": "Povești de Credință", "url": "https://www.povestidecredinta.ro/" }
@@ -261,8 +249,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('schema-faq').textContent = JSON.stringify({
     "@context": "https://schema.org", "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": `Care este evanghelia zilei de azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}?`, "acceptedAnswer": { "@type": "Answer", "text": `Evanghelia zilei de azi este din ${evData.carte}, ${evData.versete}.` } },
-      { "@type": "Question", "name": "Evanghelia zilei doxologia — unde o găsesc?", "acceptedAnswer": { "@type": "Answer", "text": "Evanghelia zilei o găsești pe povestidecredinta.ro cu textul complet și tâlcuire patristică, actualizat zilnic." } },
+      { "@type": "Question", "name": `Care este evanghelia zilei de azi, ${azi.getDate()} ${LUNI_RO[azi.getMonth()]} ${azi.getFullYear()}?`, "acceptedAnswer": { "@type": "Answer", "text": `Referința Evangheliei zilei de azi este afișată pe pagină.` } },
+      { "@type": "Question", "name": "Evanghelia zilei doxologia — unde o găsesc?", "acceptedAnswer": { "@type": "Answer", "text": "Evanghelia zilei o găsești pe povestidecredinta.ro cu referința exactă și linkul către textul oficial patristică, actualizat zilnic." } },
       { "@type": "Question", "name": "Evanghelia zilei de azi audio — unde o ascult?", "acceptedAnswer": { "@type": "Answer", "text": "Evanghelia zilei în format audio o găsești pe canalul YouTube @povestidecredinta." } },
       { "@type": "Question", "name": "Evanghelia zilei duminica — ce se citește?", "acceptedAnswer": { "@type": "Answer", "text": "Duminica se citesc Evangheliile Învierii (Eothinale) din ciclul celor 11 Evanghelii, conform Tipicului BOR." } },
       { "@type": "Question", "name": "Evanghelia și apostolul zilei — unde le citesc împreună?", "acceptedAnswer": { "@type": "Answer", "text": "Pe povestidecredinta.ro/calendar-ortodox-azi/ găsești Evanghelia și Apostolul zilei împreună pe o singură pagină." } }
@@ -270,32 +258,30 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
-<script src="/js/supabase-loader.js"></script>
+<script src="/js/supabase-loader.js?v=2"></script>
 <script>
 (async function() {
   const azi = new Date();
   const dataStr = azi.toISOString().split('T')[0];
   const date = await incarcaDateSupabase(dataStr);
-  if (!date) return;
+  if (!date || !date.evanghelie_carte) { const r = document.getElementById('ev-referinta'); if (r) r.textContent = 'Referința nu este disponibilă acum. Reveniți mai târziu.'; return; }
 
   const LUNI_RO = ['ianuarie','februarie','martie','aprilie','mai','iunie','iulie','august','septembrie','octombrie','noiembrie','decembrie'];
   const ZILE_RO = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'];
 
-  if (date.evanghelie_carte && date.evanghelie_text) {
+  if (date.evanghelie_carte) {
     const carteVerset = date.evanghelie_carte + ' ' + (date.evanghelie_versete || '');
-    const titluEl = document.getElementById('evanghelie-titlu');
+    const titluEl = document.getElementById('ev-titlu');
     if (titluEl) titluEl.textContent = 'Evanghelia zilei — ' + carteVerset;
-    const refEl = document.getElementById('evanghelie-referinta');
+    const refEl = document.getElementById('ev-referinta');
     if (refEl) refEl.textContent = carteVerset;
-    const textEl = document.getElementById('evanghelie-text');
-    if (textEl) textEl.textContent = date.evanghelie_text;
     document.getElementById('meta-title').textContent = `Evanghelia Zilei — ${carteVerset} | Povești de Credință`;
     if (date.meta_description) document.getElementById('meta-desc').setAttribute('content', date.meta_description);
     document.getElementById('schema-article').textContent = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": "Evanghelia Zilei — " + carteVerset,
-      "description": "Textul complet al Evangheliei zilei de azi: " + carteVerset,
+      "description": "Referința Evangheliei zilei de azi: " + carteVerset,
       "datePublished": dataStr,
       "publisher": {"@type":"Organization","name":"Povești de Credință","url":"https://www.povestidecredinta.ro/"}
     });
