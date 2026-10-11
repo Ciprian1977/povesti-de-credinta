@@ -623,7 +623,7 @@ Predica și cuvântul de folos trebuie să se bazeze pe ACEASTĂ Evanghelie. „
 ORDINEA în „titlu_sfinti” și în sinaxar: întâi sărbătoarea zilei (dacă există), apoi sfinții marcați cu ✝, apoi sfinții prăznuiți tradițional în Sinaxarul grecesc/românesc. Sfinții cinstiți mai ales în alte Biserici (de ex. de la Optina, din Rusia, din Georgia) și cinstirile icoanelor se pun la final sau se omit din „titlu_sfinti”. Nu scrie semnul ✝ în texte.
 ` : '';
 
-  const prompt = `Ești un preot ortodox român erudit și un expert în Sinaxarul Bisericii Ortodoxe Române (BOR).
+  let prompt = `Ești un preot ortodox român erudit și un expert în Sinaxarul Bisericii Ortodoxe Române (BOR).
 Generează conținut COMPLET și AUTENTIC pentru calendarul ortodox pentru data ${date}.
 Sfinții principali ai zilei conform Calendarului BOR: ${oficial && oficial.sfinti.length ? oficial.sfinti.join('; ') : sfantiZilei}
 ${contextOficial}Tipul postului: ${tipPost}
@@ -657,6 +657,9 @@ JSON exact (toate câmpurile obligatorii):
   "evanghelie_text": "textul integral al Evangheliei zilei în limba română, conform traducerii sinodale BOR",
   "tropar": "troparul sfântului zilei, conform Mineiului BOR"
 }`;
+  // Textele sacre oficiale există deja → nu le mai cerem AI-ului (răspuns mai scurt, fără trunchieri)
+  if (texteStatice && texteStatice.apostol_text && texteStatice.apostol_text.length > 50) prompt = prompt.replace(/\n  "apostol_text": "[^"]*",/, '');
+  if (texteStatice && texteStatice.evanghelie_text && texteStatice.evanghelie_text.length > 50) prompt = prompt.replace(/\n  "evanghelie_text": "[^"]*",/, '');
 
   console.log(`\n🔄 Generez conținut creativ pentru ${date} – ${sfantDefault}`);
   const response = await openai.chat.completions.create({
@@ -669,7 +672,7 @@ JSON exact (toate câmpurile obligatorii):
       { role: 'user', content: prompt }
     ],
     temperature: 0.3,
-    max_tokens: 3500
+    max_tokens: 6000
   });
 
   const continut = response.choices[0].message.content.trim();
@@ -756,7 +759,11 @@ JSON exact (toate câmpurile obligatorii):
   // MAPĂM câmpurile noi la coloanele EXISTENTE în Supabase
   // (până la migrarea SQL care adaugă coloanele titlu_sfinti, sinaxar_complet, post_info)
   // titlu_sfinti → sfant_nume (suprascrie cu grupul complet)
-  continutAI.sfant_nume = titluSfintiText;
+  // Sfinții cinstiți mai ales în alte Biserici (Optina, Rusia, Georgia) și cinstirile icoanelor trec la final
+  const laFinal = /Optina|Rusia|rus[ăe]\b|Georgia|georgian|Kiev|Moscova|Tbilisi|icoan/i;
+  const parti = String(titluSfintiText || '').replace(/[✝†]\)?\s*/g, '').split(/\s*;\s*/).filter(Boolean);
+  const ordonat = [...parti.filter((p) => !laFinal.test(p)), ...parti.filter((p) => laFinal.test(p))];
+  continutAI.sfant_nume = ordonat.length ? ordonat.join('; ') : titluSfintiText;
   // sinaxar_complet → sinaxar (extinde sinaxarul scurt cu versiunea lungă)
   continutAI.sinaxar = sinaxarCompletText;
   // post_info → stocat în meta_description ca prefix (până la migrare)
