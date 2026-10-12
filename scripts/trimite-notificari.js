@@ -276,7 +276,16 @@ function oraAcumRo() {
   return a.getHours() * 60 + a.getMinutes();
 }
 
+// OneSignal cere textul și în engleză („Any/English language content”); abonații sunt români, deci folosim același text.
+function completeazaEngleza(payload) {
+  for (const camp of ['headings', 'contents', 'subtitle']) {
+    if (payload[camp] && payload[camp].ro && !payload[camp].en) payload[camp].en = payload[camp].ro;
+  }
+  return payload;
+}
+
 async function postOneSignal(payload) {
+  completeazaEngleza(payload);
   if (contineInfoPost(payload)) {
     // nu trimitem informații de post nevalidate: scoatem doar mențiunea, restul notificării rămâne
     curataPayload(payload);
