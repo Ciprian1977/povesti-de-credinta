@@ -290,6 +290,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (vtEl) vtEl.textContent = 'Viața din Sinaxar: ' + date.sfant_nume.split(';')[0];
     const vEl = document.getElementById('viata-text');
     if (vEl && /nu este disponibilă momentan/.test(vEl.textContent)) vEl.innerHTML = '<strong>' + date.sfant_nume.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])) + '</strong> — ' + azi.getDate() + ' ' + LUNI_RO[azi.getMonth()] + '. Viața din Sinaxar nu este disponibilă momentan pe această pagină.';
+    // Sinaxarul zilei din baza de date (deja curățat de js/corectura-provizorie.js: fără sfinți din afara calendarului BOR,
+    // fără post/dezlegări sau citate neverificate). Troparul generat nu se afișează (doar din surse sigure).
+    const textZi = [date.sinaxar, date.sfant_viata].find(t => t && t.length > 200 && !/nu este disponibil/.test(t));
+    if (vEl && textZi) {
+      vEl.innerHTML = textZi.split(/\n+/).map(p => '<p style="margin:0 0 12px">' + p.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])) + '</p>').join('');
+      if (vtEl) vtEl.textContent = 'Din Sinaxarul zilei';
+    }
     const titluEl = document.getElementById('sinaxar-titlu');
     if (titluEl) titluEl.textContent = 'Sinaxarul zilei — ' + date.sfant_nume.split(';')[0];
     document.getElementById('meta-title').textContent = `Sinaxarul Zilei — ${date.sfant_nume.split(';')[0]} | Povești de Credință`;
