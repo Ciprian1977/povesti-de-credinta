@@ -195,6 +195,20 @@ for (const seg of ['test', 'dimineata', 'pranz', 'seara']) {
   }
 }
 
+// Regula OneSignal: „Message Notifications must have Any/English language content” (HTTP 400 la 12 oct. 2026, 07:30)
+{
+  const r = ruleaza(['programeaza', '2026-10-14'], ZILE.post, '2026-10-14T00:30:00Z');
+  const faraEn = r.trimise.filter((p) => !(p.contents && p.contents.en) || !(p.headings && p.headings.en));
+  verifica('fiecare notificare programată are titlu și text și în engleză (cerința OneSignal)', r.trimise.length > 0 && faraEn.length === 0,
+    `${faraEn.length} din ${r.trimise.length} fără „en”`);
+  const dim = r.trimise.find((p) => JSON.stringify(p.filters || []).includes('"dimineata"'));
+  verifica('dimineața: textul „en” e același cu cel românesc', dim && dim.contents.en === dim.contents.ro && dim.headings.en === dim.headings.ro);
+  for (const seg of ['test', 'dimineata', 'pranz', 'seara']) {
+    const t = ruleaza([seg, '2026-10-14'], ZILE.post, '2026-10-14T06:00:00Z');
+    verifica(`trimitere imediată „${seg}”: are text în engleză`, t.trimise[0] && t.trimise[0].contents.en && t.trimise[0].headings.en, JSON.stringify(t.trimise[0] && t.trimise[0].contents));
+  }
+}
+
 // Raport
 const picate = rezultate.filter((x) => !x.ok);
 for (const x of rezultate) console.log(`${x.ok ? '✔' : '✘'} ${x.nume}${x.ok ? '' : '\n    → ' + x.detaliu}`);
