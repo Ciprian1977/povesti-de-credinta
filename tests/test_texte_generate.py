@@ -31,7 +31,9 @@ srv = socketserver.ThreadingTCPServer(('127.0.0.1', 0), H)
 threading.Thread(target=srv.serve_forever, daemon=True).start()
 B = f'http://127.0.0.1:{srv.server_address[1]}'
 
-PREDICA_OK = 'Evanghelia zilei, după Luca 8, 5-15, ne aduce în fața ochilor Pilda semănătorului. Sfântul Ioan Gură de Aur ne spune că sămânța este cuvântul lui Dumnezeu.'
+PREDICA_OK = ('Evanghelia zilei, după Luca 8, 5-15, ne aduce în fața ochilor Pilda semănătorului, o învățătură profundă despre primirea cuvântului lui Dumnezeu. '
+              'Sfântul Ioan Gură de Aur ne spune că sămânța este cuvântul lui Dumnezeu, iar solul este inima noastră. Numai inima smerită și curată poate primi cuvântul. '
+              'Să ne întrebăm: ce fel de sol sunt inimile noastre? Suntem gata să primim cuvântul și să-l facem rodnic?')
 CAZURI = {
     '2026-10-11': dict(rand={
         "data_calendaristica": "2026-10-11",
@@ -43,7 +45,7 @@ CAZURI = {
         "predica": PREDICA_OK + " Să urmăm pilda Sfântului Lev de la Optina, care a fost semănător al cuvântului.",
         "meta_description": "Calendar ortodox 11 octombrie 2026: cinstirea Sfântului Lev de la Optina.",
         "apostol_carte": "Tit", "apostol_versete": "3, 8-15", "evanghelie_carte": "Luca", "evanghelie_versete": "8, 5-15"},
-        interzis=['Optina', 'Zenaida', 'Lev de la'], pastrat=['Predica zilei nu este disponibilă', 'nu este disponibil']),
+        interzis=['Optina', 'Zenaida', 'Lev de la', 'Predica zilei nu este disponibilă'], pastrat=['Ioan Gură de Aur ne spune că sămânța', 'nu este disponibil']),  # predica rămâne, fără propoziția despre Optina
     '2026-10-14': dict(rand={
         "data_calendaristica": "2026-10-14",
         "sfant_nume": "Sfânta Cuvioasă Paraschiva de la Iași; Sfinții Mucenici Nazarie, Gervasie, Protasie și Chelsie",
