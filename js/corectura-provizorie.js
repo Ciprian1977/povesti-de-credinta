@@ -13,6 +13,15 @@
  */
 (function () {
   var C = window.PDC_CORECTURA = { activ: true };
+  // Datele zilei salvate pe telefon (localStorage, valabile toată ziua) au fost filtrate de versiunea de atunci a acestui
+  // fișier. La o versiune nouă a corecturii, se șterg, ca pagina să ia din nou textul zilei, filtrat cu regulile noi.
+  var VERSIUNE = '8';
+  try {
+    if (localStorage.getItem('pdc_corectura_v') !== VERSIUNE) {
+      localStorage.removeItem('pdc_cache_v5');
+      localStorage.setItem('pdc_corectura_v', VERSIUNE);
+    }
+  } catch (e) { /* localStorage indisponibil */ }
   var LUNI = ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'];
   var CAMPURI_ASCUNSE = ['apostol_text', 'evanghelie_text', 'cuvant_folos', 'tip_post', 'post_info'];
 

@@ -91,8 +91,8 @@ with sync_playwright() as p:
         rez['pagini'][path] = info
         if len(v) > 1 or (v and v != [os.environ.get('PDC_VERSIUNE_APP', '21')]): problema(f'{path}: versiuni de app amestecate sau vechi {v}')
         if any(x is False for x in info.values()): problema(f'{path}: conținut vechi după actualizare {info}')
-    if any(k.endswith('-v' + os.environ.get('PDC_CACHE_VECHI', '23')) for k in rez['nou_cache']): problema(f'cache-uri vechi rămase: {rez["nou_cache"]}')
-    if not any(k.endswith('-v' + os.environ.get('PDC_CACHE_NOU', '24')) for k in rez['nou_cache']): problema(f'cache nou lipsă: {rez["nou_cache"]}')
+    if any(k.endswith('-v' + os.environ.get('PDC_CACHE_VECHI', '24')) for k in rez['nou_cache']): problema(f'cache-uri vechi rămase: {rez["nou_cache"]}')
+    if not any(k.endswith('-v' + os.environ.get('PDC_CACHE_NOU', '25')) for k in rez['nou_cache']): problema(f'cache nou lipsă: {rez["nou_cache"]}')
     if err: problema(f'erori JS după actualizare: {err}')
 
     # 4. Offline după actualizare
