@@ -77,14 +77,41 @@
       var n = k.filter(function (w) { return t.indexOf(w) !== -1; }).length; return k.length && n >= Math.min(2, k.length);
     });
   }
+  // Predica și sinaxarul pomenesc de obicei sfinții greșiți doar în câteva propoziții: se scot doar acelea (și propoziția
+  // următoare, dacă vorbește tot despre ei: „El…”, „Aceste icoane…”), plus propozițiile cu informații de post neverificate.
+  // Dacă se scot prea multe propoziții sau rămâne prea puțin, textul nu se afișează (mesaj neutru).
+  var CONTINUARE = /^(el|ea|ei|ele|acesta|aceasta|această|acest|aceste|acestea|aceștia|acești|viața (lui|ei|lor)|prin (el|ea|ei|viața))\b/i;
+  // afirmații despre ziua respectivă care nu sunt verificate (post, dezlegări, culoare liturgică); „rugăciune, post și fapte bune” rămâne
+  var POST = /\b(dezlegare|dezlegarea|dezlegări|dezlegări?le|harți|ajunare|frupt|de dulce|zi de post|zi cu post|zi fără post|tipul de post|postul (este|zilei|de azi|de astăzi)|se postește|se ține post|culoare(a)? (liturgic\w*|alb\w*|verde|roș\w*|auri\w*|violet\w*|albastr\w*|neagr\w*|mov))\b/i;
+  // citate între ghilimele (neverificate; regula: doar citate autentice, cu sursă) — numele scurte de icoane („Odighitria”) nu contează
+  var CITAT = /[„"“][^”"„“]{25,}[”"“]/;
+  var LIMITE = { predica: { max: 2, rest: 0.6 }, sinaxar: { max: 7, rest: 0.5 } };
+  function textFaraStraini(text, straine, camp) {
+    var L = LIMITE[camp], predica = camp === 'predica', scoase = 0, urmeaza = false;
+    var par = String(text).split(/\n+/).map(function (p) {
+      return (p.match(/[^.!?]+(?:[.!?]+["”»)]*|$)/g) || []).map(function (x) { return x.trim(); }).filter(function (prop) {
+        if (!prop) return false;
+        var strain = numesteStrain(prop, straine, predica);
+        var rau = strain || POST.test(prop) || CITAT.test(prop) || (urmeaza && CONTINUARE.test(prop));
+        urmeaza = strain || (urmeaza && rau && CONTINUARE.test(prop));
+        if (rau) scoase++;
+        return !rau;
+      }).join(' ');
+    }).filter(function (p) { return p.trim(); });
+    var rest = par.join('\n\n');
+    return scoase <= L.max && rest.length >= 200 && rest.length >= L.rest * String(text).length && !numesteStrain(rest, straine, predica) ? rest : null;
+  }
   var NEUTRU = { sfant_viata: 'Viața sfântului zilei nu este disponibilă momentan.', sinaxar: 'Sinaxarul zilei nu este disponibil momentan.',
                  tropar: 'Troparul nu este disponibil momentan.', condac: 'Condacul nu este disponibil momentan.', predica: 'Predica zilei nu este disponibilă momentan.' };
   function aplicaValidat(rand, V) {
     var z = rand && typeof rand === 'object' && rand.data_calendaristica && V[rand.data_calendaristica];
     if (!z) return;
     var straine = pomeniriStraine(rand.sfant_nume, z);
-    if (straine.length) Object.keys(NEUTRU).forEach(function (k) {
-      if (typeof rand[k] === 'string' && numesteStrain(rand[k], straine, k === 'predica')) rand[k] = NEUTRU[k];
+    Object.keys(NEUTRU).forEach(function (k) {
+      if (typeof rand[k] !== 'string') return;
+      var strain = straine.length && numesteStrain(rand[k], straine, k === 'predica');
+      if (!strain && !(LIMITE[k] && (POST.test(rand[k]) || CITAT.test(rand[k])))) return;
+      rand[k] = (LIMITE[k] && textFaraStraini(rand[k], straine, k)) || NEUTRU[k];
     });
     if ('sfant_nume' in rand) rand.sfant_nume = numeValidat(z);
     if ('sfinti_secundari' in rand) rand.sfinti_secundari = null;
@@ -151,9 +178,14 @@
   // din fișiere statice /data/biblia-1914/<carte>.json (vezi data/biblia-1914/SURSA.md). Fără AI, fără linkuri externe.
   var BIBLIA_V = '1';
   var lecturi = {};
+  var asteapta = [];   // casetele create înainte să sosească referința zilei din baza de date
   function retineLecturi(r) {
     if (r && r.data_calendaristica) lecturi[r.data_calendaristica] = {
       apostol: [r.apostol_carte, r.apostol_versete], evanghelie: [r.evanghelie_carte, r.evanghelie_versete] };
+    if (r && r.data_calendaristica === isoRo(0) && asteapta.length) {
+      var lista = asteapta; asteapta = [];
+      lista.forEach(function (x) { umple(x[0], x[1], true); });
+    }
   }
   function referintaAzi(tip) {
     var iso = isoRo(0), l = lecturi[iso];
@@ -236,10 +268,18 @@
       '<div class="lectura-text"><p class="lectura-asteptare">Pregătim textul ' + numeLectura + '…</p></div>' +
       '<p class="lectura-nota">Textul: Biblia 1914, Ediția Sfântului Sinod.</p></div>';
   }
-  function umple(el, tip) {
+  function umple(el, tip, final) {
     var r = referintaAzi(tip), box = el.querySelector('.lectura-text');
     var nu = '<p>Textul ' + (tip === 'apostol' ? 'Apostolului' : 'Evangheliei') + ' zilei nu este disponibil momentan.</p>';
     if (!box) return;
+    if (!r && !final) {   // datele zilei încă nu au sosit: așteptăm (cel mult 10 secunde)
+      asteapta.push([el, tip]);
+      setTimeout(function () {
+        var i = asteapta.findIndex(function (x) { return x[0] === el; });
+        if (i !== -1) { asteapta.splice(i, 1); umple(el, tip, true); }
+      }, 10000);
+      return;
+    }
     if (!r || !r[0] || !r[1]) { box.innerHTML = nu; return; }
     textPericopa(r[0], r[1]).then(function (h) { box.innerHTML = h; }, function () { box.innerHTML = nu; });
   }

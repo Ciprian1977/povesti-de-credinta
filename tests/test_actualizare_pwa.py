@@ -53,6 +53,7 @@ def scripturi(pg):
 with sync_playwright() as p:
     ctx = p.chromium.launch_persistent_context(tempfile.mkdtemp(), viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True,
                                                locale='ro-RO', timezone_id='Europe/Bucharest', service_workers='allow')
+    ctx.add_init_script("""(()=>{const T=new Date('2026-10-11T09:00:00+03:00').getTime();const D=Date;class F extends D{constructor(...a){super(...(a.length?a:[T]))}static now(){return T}};window.Date=F;})();""")  # rândul simulat e pentru 11 oct. 2026
     ctx.route('**/fonts.googleapis.com/**', lambda r: r.fulfill(status=200, content_type='text/css', body=''))
     ctx.route('**/fonts.gstatic.com/**', lambda r: r.fulfill(status=404, body=''))
     ctx.route('**/*supabase.co/**', lambda r: r.fulfill(status=200, content_type='application/json', body=json.dumps(ROW)))
@@ -90,8 +91,8 @@ with sync_playwright() as p:
         rez['pagini'][path] = info
         if len(v) > 1 or (v and v != [os.environ.get('PDC_VERSIUNE_APP', '21')]): problema(f'{path}: versiuni de app amestecate sau vechi {v}')
         if any(x is False for x in info.values()): problema(f'{path}: conținut vechi după actualizare {info}')
-    if any(k.endswith('-v' + os.environ.get('PDC_CACHE_VECHI', '22')) for k in rez['nou_cache']): problema(f'cache-uri vechi rămase: {rez["nou_cache"]}')
-    if not any(k.endswith('-v' + os.environ.get('PDC_CACHE_NOU', '23')) for k in rez['nou_cache']): problema(f'cache nou lipsă: {rez["nou_cache"]}')
+    if any(k.endswith('-v' + os.environ.get('PDC_CACHE_VECHI', '23')) for k in rez['nou_cache']): problema(f'cache-uri vechi rămase: {rez["nou_cache"]}')
+    if not any(k.endswith('-v' + os.environ.get('PDC_CACHE_NOU', '24')) for k in rez['nou_cache']): problema(f'cache nou lipsă: {rez["nou_cache"]}')
     if err: problema(f'erori JS după actualizare: {err}')
 
     # 4. Offline după actualizare

@@ -47,6 +47,8 @@ for w in (400, 500, 600):
 AP_TEXT = 'Fraților, știind că omul nu se îndreptează din faptele Legii, ci prin credința în Hristos Iisus, am crezut și noi în Hristos Iisus.'
 EV_TEXT = 'Zis-a Domnul pilda aceasta: Ieșit-a semănătorul să semene sămânța sa. Și, semănând el, una a căzut lângă drum.'
 CITAT = 'Cuvântul lui Dumnezeu este sămânța cea bună, iar noi suntem ogorul. — Sfântul Ioan Gură de Aur, Omilii la Matei'
+# data simulată în pagină, ca rândul de mai jos să fie „azi” indiferent de ziua în care rulează testul
+ZI_FIXA = """(()=>{const T=new Date('2026-10-11T09:00:00+03:00').getTime();const D=Date;class F extends D{constructor(...a){super(...(a.length?a:[T]))}static now(){return T}};window.Date=F;})();"""
 ROW = [{"data_calendaristica": "2026-10-11", "sfant_nume": "Sf. Ap. Filip, unul dintre cei 7 diaconi; Sf. Ier. Teofan Mărturisitorul",
         "tip_post": "post", "post_info": "Zi de post — abstinență de la carne", "cuvant_folos": CITAT,
         "apostol_carte": "Galateni", "apostol_versete": "2, 16-20", "apostol_text": AP_TEXT,
@@ -78,6 +80,7 @@ with sync_playwright() as p:
         ctx = b.new_context(viewport=vp, is_mobile=(disp == 'mobil'), has_touch=(disp == 'mobil'), locale='ro-RO', timezone_id='Europe/Bucharest',
                             device_scale_factor=1, service_workers='block')
         ctx.add_init_script("try{localStorage.setItem('cookies-acceptate','da')}catch(e){}")
+        ctx.add_init_script(ZI_FIXA)  # rândul simulat e pentru 11 oct. 2026
         ctx.route('**/fonts.googleapis.com/**', lambda r: r.fulfill(status=200, content_type='text/css', body=css))
         ctx.route('**/__f/**', lambda r: r.fulfill(path=FD + '/' + r.request.url.split('/__f/')[1]) if os.path.isdir(FD) else r.fulfill(status=404, body=''))
         ctx.route('**/*supabase.co/**', lambda r: r.fulfill(status=200, content_type='application/json', body=json.dumps(ROW)))
@@ -123,6 +126,7 @@ with sync_playwright() as p:
 
     # ── PWA: service worker, instalabilitate, offline ──
     ctx = b.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True, locale='ro-RO', timezone_id='Europe/Bucharest')
+    ctx.add_init_script(ZI_FIXA)
     ctx.route('**/fonts.googleapis.com/**', lambda r: r.fulfill(status=200, content_type='text/css', body=css))
     ctx.route('**/*supabase.co/**', lambda r: r.fulfill(status=200, content_type='application/json', body=json.dumps(ROW)))
     ctx.route('**/cdn.onesignal.com/**', lambda r: r.fulfill(status=200, content_type='application/javascript', body=SDK))
@@ -132,7 +136,7 @@ with sync_playwright() as p:
     cdp = ctx.new_cdp_session(pg)
     try: rez['pwa_instalabilitate_erori'] = [e.get('errorId') for e in cdp.send('Page.getInstallabilityErrors').get('installabilityErrors', [])]
     except Exception as e: rez['pwa_instalabilitate_erori'] = 'n/a ' + str(e)
-    rez['pwa_cache_corectura'] = pg.evaluate("caches.keys().then(async ks=>{for(const k of ks){const c=await caches.open(k);const m=await c.match('/js/corectura-provizorie.js?v=6');if(m)return k}return null})")
+    rez['pwa_cache_corectura'] = pg.evaluate("caches.keys().then(async ks=>{for(const k of ks){const c=await caches.open(k);const m=await c.match('/js/corectura-provizorie.js?v=7');if(m)return k}return null})")
     ctx.set_offline(True)
     try:
         r = pg.reload(wait_until='domcontentloaded'); pg.wait_for_timeout(800)
