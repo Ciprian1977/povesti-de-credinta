@@ -13,6 +13,15 @@
  */
 (function () {
   var C = window.PDC_CORECTURA = { activ: true };
+  // Datele zilei salvate pe telefon (localStorage, valabile toată ziua) au fost filtrate de versiunea de atunci a acestui
+  // fișier. La o versiune nouă a corecturii, se șterg, ca pagina să ia din nou textul zilei, filtrat cu regulile noi.
+  var VERSIUNE = '8';
+  try {
+    if (localStorage.getItem('pdc_corectura_v') !== VERSIUNE) {
+      localStorage.removeItem('pdc_cache_v5');
+      localStorage.setItem('pdc_corectura_v', VERSIUNE);
+    }
+  } catch (e) { /* localStorage indisponibil */ }
   var LUNI = ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'];
   var CAMPURI_ASCUNSE = ['apostol_text', 'evanghelie_text', 'cuvant_folos', 'tip_post', 'post_info'];
 
@@ -134,7 +143,7 @@
         return Promise.all([r.clone().json(), calendarValidat()]).then(function (x) {
           var d = x[0], V = x[1];
           if (esteZile) {
-            (Array.isArray(d) ? d : [d]).forEach(function (rand) { curata(rand); aplicaValidat(rand, V); retineLecturi(rand); });
+            (Array.isArray(d) ? d : [d]).forEach(function (rand) { curata(rand); aplicaValidat(rand, V); retineLecturi(rand); retineZi(rand); });
           } else if (d && typeof d === 'object') {
             // calendarul static vechi (fallback): zilele validate îl înlocuiesc, fără etichete de post
             Object.keys(V).forEach(function (iso) {
@@ -290,8 +299,23 @@
     ['apostol-text', 'apostol'], ['evanghelie-text', 'evanghelie'], ['ev-text', 'evanghelie'],
     ['apostol-text-acasa', 'apostol'], ['evanghelie-text-acasa', 'evanghelie']
   ];
+  // Pagini /sinaxar și /sinaxarul-zilei (inclusiv versiuni vechi păstrate pe telefon): caseta „Viața din Sinaxar nu este
+  // disponibilă momentan pe această pagină” primește sinaxarul zilei, deja curățat de regulile de mai sus.
+  var ziCurata = null;
+  function retineZi(r) {
+    if (r && r.data_calendaristica === isoRo(0)) { ziCurata = r; completeazaSinaxar(); }
+  }
+  function completeazaSinaxar() {
+    var el = document.getElementById('viata-text');
+    if (!el || !ziCurata || !/nu este disponibil[ăa] momentan pe această pagină/.test(el.textContent || '')) return;
+    var t = [ziCurata.sinaxar, ziCurata.sfant_viata].filter(function (x) { return x && x.length > 200 && !/nu este disponibil/.test(x); })[0];
+    if (!t) return;
+    el.innerHTML = t.split(/\n+/).map(function (p) { return '<p style="margin:0 0 12px">' + escapa(p) + '</p>'; }).join('');
+    var tt = document.getElementById('viata-titlu'); if (tt) tt.textContent = 'Din Sinaxarul zilei';
+  }
   function aplica() {
     if (!C.activ) return;
+    completeazaSinaxar();
     TINTE.forEach(function (t) {
       document.querySelectorAll('#' + t[0]).forEach(function (el) {
         if (el.getAttribute('data-corectura') === '1' && el.querySelector('.lectura-sursa')) return;
