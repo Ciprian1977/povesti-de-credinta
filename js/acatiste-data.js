@@ -1,6 +1,5 @@
-// js/acatiste-data.js — Texte integrale autentice din Acatistier BOR
-// Sursa: Doxologia.ro (publicatie oficiala a Patriarhiei Romane)
-// Licenta: domeniu public liturgic ortodox
+// js/acatiste-data.js — textele acatistelor
+// Acatistul Bunei Vestiri: ro.wikisource.org/wiki/Acatistul_Buneivestiri (domeniu public), generat cu scripts/acatiste/genereaza-buna-vestire.py
 
 const ACATISTE = {
 
@@ -17,13 +16,15 @@ const ACATISTE = {
     metaDescription: "Acatistul Maicii Domnului — Buna Vestire, text integral autentic. Cel mai vechi acatist creștin, cu toate cele 13 Condace și 12 Icoase. Sursa BOR.",
     sectiuni: [
       {
-        tip: "condac", nr: 1,
-        text: "Apărătoare Doamnă, pentru biruință, mulțumiri, izbăvindu-ne din nevoi, aducem ție, Născătoare de Dumnezeu, noi, robii tăi. Ci, ca aceea ce ai stăpânire nebiruită, izbăvește-ne din toate nevoile, ca să strigăm ție: Bucură-te, Mireasă, pururea Fecioară!"
+        "tip": "condac",
+        "nr": 1,
+        "text": "Apărătoare Doamnă, mulțumiri pentru biruință, izbăvindu-ne din nevoi, aducem ție, Născătoare de Dumnezeu, noi, robii tăi. Ci, ca ceea ce ai stăpânire nebiruită, slobozește-ne pe noi dintru toate nevoile, ca să strigăm ție: Bucură-te, Mireasă, pururea fecioară!"
       },
       {
-        tip: "icos", nr: 1,
-        intro: "Îngerul cel întâistătător din Cer a fost trimis să zică Născătoarei de Dumnezeu: Bucură-te! Și împreună cu glasul cel netrupesc, văzându-Te pe Tine, Doamne, Întrupat, s-a înspăimântat și i-a stat înainte, grăind către dânsa unele ca acestea:",
-        bucurate: [
+        "tip": "icos",
+        "nr": 1,
+        "intro": "Îngerul cel mai întâistătător, din cer a fost trimis să zică Născătoarei de Dumnezeu: Bucură-te! Și împreună cu glasul lui cel netrupesc, văzându-Te pe Tine, Doamne, întrupat, s-a spăimântat și a stătut strigând către dânsa unele ca acestea:",
+        "bucurate": [
           "cea prin care răsare bucuria",
           "cea prin care piere blestemul",
           "chemarea lui Adam celui căzut",
@@ -35,271 +36,294 @@ const ACATISTE = {
           "steaua, care arăți Soarele",
           "pântecele dumnezeieștii întrupări",
           "cea prin care se înnoiește făptura",
-          "cea prin care Prunc Se face Făcătorul"
+          "cea prin care prunc se face Făcătorul"
         ],
-        refren: "Bucură-te, Mireasă, pururea Fecioară!"
+        "refren": "Bucură-te, Mireasă, pururea fecioară!"
       },
       {
-        tip: "condac", nr: 2,
-        text: "Știindu-se pe sine sfânta întru curăție, a zis lui Gavriil cu îndrăznire: Preaslăvitul tău glas cu anevoie se arată a fi primit sufletului meu, că naștere cu zămislire fără sămânță, cum îmi spui, cântând: Aliluia?"
+        "tip": "condac",
+        "nr": 2,
+        "text": "Văzându-se pe sine Sfânta întru curăție, zis-a lui Gavriil cu îndrăznire: preaslăvitul tău glas se arată a fi cu anevoie primit sufletului meu; ca naștere cu zămislire fără sămânță cum îmi spui, strigând: Aliluia?"
       },
       {
-        tip: "icos", nr: 2,
-        intro: "Înțelesul cel greu de pătruns căutând Fecioara să-l înțeleagă, a grăit către cel ce slujea: Din pântece curat, cum este cu putință să Se nască Fiu, spune-mi? Iar el cu frică a zis:",
-        bucurate: [
+        "tip": "icos",
+        "nr": 2,
+        "intro": "Înțelesul cel greu de pătruns căutând Fecioara să-L înțeleagă, a strigat către cel ce slujea: Din pântece curat, cum este cu putință să se nască fiu, spune-mi? Iar el a zis către ea, cu frică, strigând așa:",
+        "bucurate": [
           "tăinuitoarea sfatului celui nespus",
           "încredințarea celor ce au trebuință de tăcere",
           "începătura minunilor lui Hristos",
           "capul poruncilor Lui",
-          "scara Cerului, pe care S-a pogorât Dumnezeu",
-          "pod care-i treci la Cer pe cei de pe pământ",
+          "scara cerului, pe care S-a pogorât Dumnezeu",
+          "pod, care treci la cer pe cei de pe pământ",
           "minune, care de îngeri ești mult slăvită",
           "ceea ce ești rană de mult plâns a diavolilor",
-          "ceea ce ai născut Lumina cea neapusă",
-          "ceea ce n-ai învățat pe nimeni în ce chip s-a petrecut",
+          "ceea ce ai născut lumina cea neapusă",
+          "ceea ce n-ai învățat pe nici unul în ce chip a fost",
           "ceea ce covârșești mintea celor înțelepți",
           "ceea ce luminezi gândurile celor credincioși"
         ],
-        refren: "Bucură-te, Mireasă, pururea Fecioară!"
+        "refren": "Bucură-te, Mireasă, pururea fecioară!"
       },
       {
-        tip: "condac", nr: 3,
-        text: "Puterea Celui de Sus a umbrit-o atunci, spre zămislire, pe cea care nu știa de nuntă, și pântecele ei cel cu bună roadă, ca o țarină dulce, l-a arătat tuturor celor ce vor să secere mântuire, când vor cânta așa: Aliluia!"
+        "tip": "condac",
+        "nr": 3,
+        "text": "Puterea Celui de sus a umbrit atunci, spre zămislire, pe ceea ce nu știa de nuntă, și pântecele ei cel cu bună roadă, ca o țarină dulce, l-a arătat tuturor celor ce vor să secere mântuire, când vor striga așa: Aliluia!"
       },
       {
-        tip: "icos", nr: 3,
-        intro: "Având Fecioara primit în pântece pe Dumnezeu, a alergat la Elisabeta; iar pruncul acesteia, îndată cunoscând închinarea ei, s-a bucurat și, cu săltări în pântece, ca și cum ar fi cântat, a grăit către Născătoarea de Dumnezeu:",
-        bucurate: [
-          "vița mlădiței celei nevești­jite",
+        "tip": "icos",
+        "nr": 3,
+        "intro": "Având Fecioara primit în pântece pe Dumnezeu, a alergat la Elisabeta; iar pruncul aceleia, îndată cunoscând închinarea ei, s-a bucurat, și cu săltările în pântece, ca prin niște cântări, a strigat către Născătoarea de Dumnezeu:",
+        "bucurate": [
+          "vița mlădiței celei neveștejite",
           "câștigarea rodului celui fără de moarte",
-          "ceea ce ai lucrat pe Lucrătorul iubirii de oameni",
+          "ceea ce ai lucrat pe Lucrătorul cel iubitor de oameni",
           "ceea ce ai născut pe Săditorul vieții noastre",
-          "brazdă care ai crescut înmulțirea milelor",
-          "masă care porți îndestularea milostivilor",
-          "ceea ce înflorești Raiul desfătării",
+          "brazdă, care ai crescut înmulțirea milelor",
+          "masă, care porți îndestularea milostivilor",
+          "ceea ce înflorești raiul desfătării",
           "ceea ce gătești adăpostire sufletelor",
           "tămâia rugăciunii celei primite",
           "curăția a toată lumea",
           "voia cea bună a lui Dumnezeu către noi, cei muritori",
           "îndrăznirea celor muritori către Dumnezeu"
         ],
-        refren: "Bucură-te, Mireasă, pururea Fecioară!"
+        "refren": "Bucură-te, Mireasă, pururea fecioară!"
       },
       {
-        tip: "condac", nr: 4,
-        text: "Vifor de gânduri necredincioase având în sine, înțeleptul Iosif s-a tulburat, uitându-se la tine, cea neamestecată cu nunta, gândind că ești furată de nuntă, tu, ceea ce ești fără de prihană. Iar când a cunoscut că zămislirea ta este de la Duhul Sfânt, a zis: Aliluia!"
+        "tip": "condac",
+        "nr": 4,
+        "text": "Vifor de gânduri necuviincioase având în sine, înțeleptul Iosif s-a tulburat, uitându-se spre tine cea neamestecată cu nunta, gândind că ești furată de nuntă, ceea ce ești fără de prihană; iar dacă a cunoscut că zămislirea ta este de la Duhul Sfânt, a zis: Aliluia!"
       },
       {
-        tip: "icos", nr: 4,
-        intro: "Au auzit păstorii pe îngeri lăudând venirea lui Hristos în trup și, alergând la Acela ca la un păstor, L-au văzut ca pe un miel fără de prihană în brațele Mariei, pe care lăudând-o, au zis:",
-        bucurate: [
+        "tip": "icos",
+        "nr": 4,
+        "intro": "Au auzit păstorii pe îngeri lăudând venirea lui Hristos în trup și, alergând ca la un păstor, L-au văzut pe Acesta ca pe un Miel fără de prihană în brațele Mariei, pe care lăudând-o au zis:",
+        "bucurate": [
           "Maica Mielului și a Păstorului",
           "staulul oilor cuvântătoare",
-          "ceea ce ești chinuire pentru vrăjmașii cei nevăzuți",
-          "ceea ce deschizi ușile Raiului",
+          "ceea ce ești muncire pentru vrăjmașii cei nevăzuți",
+          "ceea ce deschizi ușile raiului",
           "că cele cerești se bucură cu cele pământești",
           "că cele pământești dănțuiesc împreună cu cele cerești",
-          "gura apostolilor cea fără de tăcere",
+          "gura Apostolilor cea fără de tăcere",
           "îndrăznirea cea nebiruită a purtătorilor de chinuri",
           "temeiul cel tare al credinței",
           "cunoștința harului cea luminoasă",
           "cea prin care s-a golit iadul",
-          "cea prin care ne-am îmbrăcat cu slavă"
+          "cea prin care noi ne-am îmbrăcat cu slavă"
         ],
-        refren: "Bucură-te, Mireasă, pururea Fecioară!"
+        "refren": "Bucură-te, Mireasă, pururea fecioară!"
       },
       {
-        tip: "condac", nr: 5,
-        text: "Steaua cea cu dumnezeiască mergere văzând-o magii, au mers pe urma luminii ei; și, ținând-o ca pe o făclie, cu dânsa căutau pe puternicul Împărat; și, ajungând la Cel neajuns, s-au bucurat cântându-I: Aliluia!"
+        "tip": "condac",
+        "nr": 5,
+        "text": "Steaua cea cu dumnezeiască mergere văzând-o magii, au mers pe urma luminii ei; și, ținând-o ca pe o făclie, cu dânsa căutau pe Împăratul cel tare; și, ajungând pe Cel neajuns, s-au bucurat strigându-I: Aliluia!"
       },
       {
-        tip: "icos", nr: 5,
-        intro: "Au văzut pruncii haldeilor în brațele Fecioarei pe Cel ce a zidit pe om cu mâna; și, cunoscându-L a le fi Stăpân, deși luase chip de rob, s-au nevoit cu daruri a-I sluji Lui și a-i cânta celei binecuvântate:",
-        bucurate: [
+        "tip": "icos",
+        "nr": 5,
+        "intro": "Au văzut pruncii haldeilor în mâinile Fecioarei pe Cel ce a zidit pe oameni cu mâna; și, cunoscându-L a fi Stăpân, măcar de a și luat chip de rob, s-au grăbit cu daruri a-I sluji Lui și a striga celei binecuvântate:",
+        "bucurate": [
           "Maica stelei celei neapuse",
           "raza zilei celei de taină",
           "ceea ce ai stins cuptorul înșelăciunii",
           "ceea ce luminezi pe tăinuitorii Treimii",
-          "ceea ce ai aruncat dintru dregătorie pe tiranul cel fără de omenie",
-          "ceea ce ai arătat pe Domnul Hristos, iubitorul de oameni",
+          "ceea ce ai lepădat dintru dregătorie pe tiranul cel fără de omenie",
+          "ceea ce ai arătat pe Domnul Hristos iubitorul de oameni",
           "ceea ce ne-ai izbăvit din slujirea cea idolească",
           "ceea ce ne curățești de lucrurile cele întinate",
-          "ceea ce ai stins închinarea la foc",
-          "ceea ce ne-ai potolit văpaia patimilor",
+          "ceea ce ai stins închinăciunea focului",
+          "ceea ce ne-ai izbăvit de văpaia patimilor",
           "îndreptătoarea înțelepciunii celor credincioși",
           "veselia tuturor neamurilor"
         ],
-        refren: "Bucură-te, Mireasă, pururea Fecioară!"
+        "refren": "Bucură-te, Mireasă, pururea fecioară!"
       },
       {
-        tip: "condac", nr: 6,
-        text: "Vestitori purtători de Dumnezeu făcându-se magii, s-au întors în Babilon, săvârșind prorocia Ta; și, mărturisindu-Te tuturor pe Tine, Hristoase, au lăsat pe Irod ca pe un mincinos, că nu știa să cânte: Aliluia!"
+        "tip": "condac",
+        "nr": 6,
+        "text": "Vestitori purtători de Dumnezeu făcându-se magii, s-au întors în Babilon, săvârșind proorocia Ta; și, mărturisindu-Te pe Tine, Hristoase, tuturor au lăsat pe Irod ca pe un mincinos, că nu știa să cânte: Aliluia!"
       },
       {
-        tip: "icos", nr: 6,
-        intro: "Strălucind Tu în Egipt, Lumina adevărului, ai izgonit întunericul minciunii. Că idolii lui, Mântuitorule, nerăbdând tăria Ta, au căzut; iar cei ce s-au izbăvit de dânșii cântau către Născătoarea de Dumnezeu:",
-        bucurate: [
+        "tip": "icos",
+        "nr": 6,
+        "intro": "Strălucind Tu în Egipt lumina adevărului, ai izgonit întunericul minciunii; că idolii lui, Mântuitorule, nerăbdând tăria Ta, au căzut; iar cei ce s-au izbăvit de dânșii strigau către Născătoarea de Dumnezeu:",
+        "bucurate": [
           "îndreptarea oamenilor",
-          "căderea demonilor",
-          "ceea ce ai zdrobit stăpânirea înșelăciunii",
+          "căderea diavolilor",
+          "ceea ce ai călcat rătăcirea înșelăciunii",
           "ceea ce ai vădit înșelăciunea idolească",
-          "mare care ai înecat pe faraonul cel netrupesc",
-          "piatră care ai adăpat pe cei însetați de viață",
-          "stâlp de foc care povățuiești pe cei dintru întuneric",
-          "acoperământul lumii cel mai lat decât norul",
-          "hrană și potir cu mană",
-          "slujitoarea bucuriei celei sfinte",
+          "mare, care ai înecat pe faraonul cel netrupesc",
+          "piatră, care ai adăpat pe cei însetați de viață",
+          "stâlp de foc, care povățuiești pe cei dintru întuneric",
+          "acoperământul lumii, cel mai lat decât norul",
+          "hrana cea în loc de mană",
+          "slujitoarea desfătării celei sfinte",
           "pământul făgăduinței",
-          "izvorâtoare de miere și lapte"
+          "cea dintru care curge miere și lapte"
         ],
-        refren: "Bucură-te, Mireasă, pururea Fecioară!"
+        "refren": "Bucură-te, Mireasă, pururea fecioară!"
       },
       {
-        tip: "condac", nr: 7,
-        text: "Vrând Simeon să se mute din veacul acesta înșelător, Te-ai dat lui ca un prunc, dar Te-ai făcut cunoscut lui și ca Dumnezeu desăvârșit. Pentru aceea s-a mirat de înțelepciunea Ta cea nespusă, cântând: Aliluia!"
+        "tip": "condac",
+        "nr": 7,
+        "text": "Vrând Simeon să se mute din acest veac înșelător de acum, Te-ai dat lui ca un prunc, dar Te-ai făcut cunoscut lui și ca Dumnezeu desăvârșit; pentru aceea s-a mirat de înțelepciunea Ta cea nespusă, strigând: Aliluia!"
       },
       {
-        tip: "icos", nr: 7,
-        intro: "Arătat-a făptură nouă arătându-Se Făcătorul nouă, celor ce suntem făcuți de Dânsul, răsărind din pântecele cel fără de sămânță și păzindu-l întreg, precum a fost; ca noi, văzând minunea, să o lăudăm, grăind:",
-        bucurate: [
+        "tip": "icos",
+        "nr": 7,
+        "intro": "Arătat-a făptură nouă, arătându-Se Făcătorul nouă, celor ce suntem făcuți de Dânsul, răsărind din pântecele cel fără de sămânță și păzindu-l întreg, precum a fost, ca, văzând minunea, să o lăudăm pe dânsa, strigând:",
+        "bucurate": [
           "floarea nestricăciunii",
           "cununa înfrânării",
-          "ceea ce ai strălucit chipul Învierii",
-          "ceea ce ai arătat viața îngerească",
+          "ceea ce ai strălucit chipul învierii",
+          "ceea ce ai arătat viață îngerească",
           "pomul cel cu luminoasă roadă, din care se hrănesc credincioșii",
-          "copacul cel înfrunzit cu bună umbră, sub care mulți se odihnesc",
-          "ceea ce ai purtat în pântece pe Îndreptătorul celor rătăciți",
+          "copacul cel înfrunzit cu bună umbră, sub care mulți se acoperă",
+          "ceea ce ai purtat în pântece pe Povățuitorul celor rătăciți",
           "ceea ce ai născut pe Izbăvitorul celor robiți",
           "îmblânzirea Judecătorului celui drept",
-          "iertarea multor greșiți",
+          "iertarea a multor greșiți",
           "haina celor goi de îndrăzneală",
           "dragostea care biruiește toată dorirea"
         ],
-        refren: "Bucură-te, Mireasă, pururea Fecioară!"
+        "refren": "Bucură-te, Mireasă, pururea fecioară!"
       },
       {
-        tip: "condac", nr: 8,
-        text: "Văzând naștere minunată, să ne înstrăinăm de lume, mutându-ne mintea la Cer; că pentru aceasta Preaînaltul Dumnezeu pe pământ S-a arătat Om smerit, vrând să tragă la înălțime pe cei care-I cântă: Aliluia!"
+        "tip": "condac",
+        "nr": 8,
+        "text": "Văzând naștere străină să ne înstrăinăm din lume, mutându-ne mintea la cer; că pentru aceasta Dumnezeu cel preaînalt pe pământ S-a arătat om plecat, vrând să tragă la înălțime pe cei ce strigă Lui: Aliluia!"
       },
       {
-        tip: "icos", nr: 8,
-        intro: "Cu totul a fost între cei de jos, iar de cei de Sus nicicum nu S-a depărtat Cuvântul cel necuprins; că dumnezeiască pogorâre a fost, iar nu mutare din loc, și naștere din Fecioară primitoare de Dumnezeu, care aude acestea:",
-        bucurate: [
+        "tip": "icos",
+        "nr": 8,
+        "intro": "Cu totul a fost între cei de jos, iar de cei de sus, nicicum nu S-a depărtat Cuvântul cel necuprins; că dumnezeiască pogorâre a fost, iar nu mutare din loc, și naștere din Fecioară primitoare de Dumnezeu, care aude acestea:",
+        "bucurate": [
           "încăperea lui Dumnezeu celui neîncăput",
           "ușa tainei celei de cinste",
-          "auzirea cea cu nepricepere pentru cei necredincioși",
-          "lauda cea fără de îndoială a celor credincioși",
-          "purtătoarea cea preasfântă a Celui ce este pe heruvimi",
+          "auzirea cea cu nepricepere a celor necredincioși",
+          "lauda cea fără de îndoire a celor credincioși",
+          "căruța cea preasfântă a Celui ce este pe heruvimi",
           "sălașul cel preaslăvit al Celui ce este pe serafimi",
-          "ceea ce ai adunat lucruri potrivnice întru una",
-          "ceea ce ai unit fecioria și nașterea",
+          "cea care ai adunat cele potrivnice întru una",
+          "ceea ce ai împreunat fecioria și nașterea",
           "cea prin care s-a dezlegat călcarea poruncii",
-          "cea prin care s-a deschis Raiul",
-          "cheia Împărăției lui Hristos",
+          "cea prin care s-a deschis raiul",
+          "cheia împărăției lui Hristos",
           "nădejdea bunătăților celor veșnice"
         ],
-        refren: "Bucură-te, Mireasă, pururea Fecioară!"
+        "refren": "Bucură-te, Mireasă, pururea fecioară!"
       },
       {
-        tip: "condac", nr: 9,
-        text: "Toată firea îngerească s-a minunat de lucrul cel mare al întrupării lui Hristos; că pe Cel neapropiat, ca Dumnezeu, L-a văzut Om apropiat tuturor, petrecând împreună cu noi și auzind de la toți: Aliluia!"
+        "tip": "condac",
+        "nr": 9,
+        "text": "Toată firea îngerească s-a minunat de lucrul cel mare al întrupării Tale; că pe Cel neapropiat, ca Dumnezeu, L-a văzut om apropiat tuturor, petrecând împreună cu noi și auzind de la toți: Aliluia!"
       },
       {
-        tip: "icos", nr: 9,
-        intro: "Pe oratorii cei mult-vorbitori îi vedem tăcând ca niște pești fără de glas, despre tine, Născătoare de Dumnezeu; că nu se pricep să spună în ce chip și Fecioară ai rămas, și ai putut naște. Iar noi, minunându-ne de o taină ca aceasta, cu credință cântăm:",
-        bucurate: [
-          "sălașul înțelepciunii lui Dumnezeu",
+        "tip": "icos",
+        "nr": 9,
+        "intro": "Pe ritorii cei mult vorbitori îi vedem tăcând ca niște pești fără de glas, despre tine, Născătoare de Dumnezeu; că nu se pricep să spună în ce chip și fecioară ai rămas și ai putut naște. Iar noi, minunându-ne de o minune ca aceasta, cu credință strigăm:",
+        "bucurate": [
+          "sălașul Înțelepciunii lui Dumnezeu",
           "comoara rânduielii Lui",
-          "ceea ce îi arăți pe filosofi neînțelepți",
+          "ceea ce arăți pe filosofi neînțelepți",
           "ceea ce ai vădit pe cei meșteri la cuvânt a fi necuvântători",
           "că au înnebunit întrebătorii cei cumpliți",
-          "că s-au veștejit făcătorii de basme",
-          "ceea ce ai risipit vorbele cele încâlcite ale atenienilor",
+          "că s-au vestejit făcătorii de basme",
+          "ceea ce ai rupt vorbele cele încurcate ale atenienilor",
           "ceea ce ai umplut mrejele pescarilor",
-          "ceea ce ne-ai ridicat din adâncul necunoștinței",
+          "ceea ce ne-ai tras din adâncul necunoștinței",
           "ceea ce pe mulți i-ai luminat la minte",
           "corabia celor ce vor să se mântuiască",
           "limanul celor ce umblă cu corăbiile acestei vieți"
         ],
-        refren: "Bucură-te, Mireasă, pururea Fecioară!"
+        "refren": "Bucură-te, Mireasă, pururea fecioară!"
       },
       {
-        tip: "condac", nr: 10,
-        text: "Vrând să mântuiască lumea, Împodobitorul tuturor a venit la ea, așa cum Însuși făgăduise; și, Păstor fiind, ca un Dumnezeu, pentru noi S-a arătat om ca și noi. Căci, cu asemănarea chemând pe cel asemenea, ca un Dumnezeu aude: Aliluia!"
+        "tip": "condac",
+        "nr": 10,
+        "text": "Vrând să mântuiască lumea, Împodobitorul tuturor a venit la ea, așa cum Însuși făgăduise; și, păstor fiind, ca Dumnezeu, pentru noi S-a arătat om ca noi; căci cu asemănarea chemând pe cel asemenea, ca un Dumnezeu, aude: Aliluia!"
       },
       {
-        tip: "icos", nr: 10,
-        intro: "Zid ești fecioarelor, Născătoare de Dumnezeu Fecioară, și tuturor celor ce aleargă la tine, că Făcătorul cerului și al pământului te-a gătit pe tine, Curată, sălășluindu-Se în pântecele tău și învățând pe toți să îți cânte:",
-        bucurate: [
+        "tip": "icos",
+        "nr": 10,
+        "intro": "Zid ești fecioarelor, Născătoare de Dumnezeu Fecioară, și tuturor celor ce aleargă la tine; că Făcătorul cerului și al pământului te-a gătit pe tine, Curată, sălășluindu-Se în pântecele tău și învățând pe toți să strige:",
+        "bucurate": [
           "turnul fecioriei",
           "ușa mântuirii",
-          "începătoarea prefacerii celei pline de înțeles",
-          "dătătoarea darului celui dumnezeiesc",
-          "că tu ai înnoit pe cei zămisliți întru rușine",
-          "că tu ai învățat pe cei lipsiți de minte",
+          "începătoarea prefacerii celei înțelegătoare",
+          "dătătoarea bunătății celei dumnezeiești",
+          "că tu ai înnoit pe cei zămisliți cu rușinea",
+          "că tu ai învățat pe cei furați de minte",
           "ceea ce ai stricat pe stricătorul gândurilor",
           "ceea ce ai născut pe Semănătorul curăției",
           "cămara nunții celei fără de sămânță",
-          "ceea ce ai unit cu Domnul pe cei credincioși",
-          "ceea ce între fecioare singură ai fost hrănitoare de prunc",
+          "ceea ce ai împreunat cu Domnul pe cei credincioși",
+          "ceea ce între fecioare singură ai fost bună hrănitoare de prunc",
           "cămara cea împodobită a sufletelor sfinților"
         ],
-        refren: "Bucură-te, Mireasă, pururea Fecioară!"
+        "refren": "Bucură-te, Mireasă, pururea fecioară!"
       },
       {
-        tip: "condac", nr: 11,
-        text: "Împărate sfinte, de Ți-am aduce cântări și psalmi la număr întocmai ca nisipul, nimic nu plinim cum se cuvine, căci se biruiește toată cântarea care se îndreaptă către mulțimea milelor Tale celor multe, pe care le-ai dat celor ce-Ți cântă: Aliluia!"
+        "tip": "condac",
+        "nr": 11,
+        "text": "Împărate sfinte, de Ți-am aduce cântări și psalmi la număr întocmai ca nisipul, nimic nu plinim cum se cuvine, căci se biruiește toată cântarea care se îndreaptă către mulțimea milelor Tale celor multe, pe care le-ai dat celor ce-Ți strigă Ție: Aliluia!"
       },
       {
-        tip: "icos", nr: 11,
-        intro: "Făclie primitoare de lumină, arătată celor ce sunt întru întuneric, o vedem pe Preasfânta Fecioară; că, aprinzând în sine Focul cel netrupesc, pe toți îi îndreptează spre cunoștința cea dumnezeiască ce luminează mintea cu raza ei și se cinstește cu chemarea aceasta:",
-        bucurate: [
+        "tip": "icos",
+        "nr": 11,
+        "intro": "Făclie primitoare de lumină, arătată celor ce sunt întru întuneric, o vedem pe Preasfânta Fecioară; că, aprinzând în sine Focul cel netrupesc, îndreptează spre cunoștința cea dumnezeiască pe toți, și luminează mintea cu raza și cu chemarea se cinstește cu acestea:",
+        "bucurate": [
           "raza Soarelui celui înțelegător",
           "raza Luminii celei neapuse",
           "fulgerul care luminezi sufletele",
-          "ceea ce îi îngrozești pe vrăjmași ca un tunet",
+          "ceea ce îngrozești pe vrăjmași ca un tunet",
           "că dintru tine a răsărit strălucirea cea cu multă lumină",
           "că ai izvorât râul care curge cu ape multe",
-          "ceea ce te-ai arătat icoană a cristelniței",
+          "ceea ce ai zugrăvit chipul colimvitrei",
           "ceea ce curățești întinăciunea păcatului",
           "baie, care speli conștiința",
-          "pahar, care dai gust bucuriei",
+          "paharul, care dregi bucuria",
           "mireasma mirosului celui bun al lui Hristos",
           "viața veseliei celei de taină"
         ],
-        refren: "Bucură-te, Mireasă, pururea Fecioară!"
+        "refren": "Bucură-te, Mireasă, pururea fecioară!"
       },
       {
-        tip: "condac", nr: 12,
-        text: "Vrând să dea har datoriilor celor de demult, Dezlegătorul tuturor datoriilor omenești a venit Singur la cei ce se îndepărtaseră de harul Lui și, rupând zapisul, aude de la toți cântarea: Aliluia!"
+        "tip": "condac",
+        "nr": 12,
+        "text": "Vrând să dea har datoriilor celor de demult, dezlegătorul tuturor datoriilor omenești a venit singur la cei ce se depărtaseră de harul Lui, și, spărgând zapisul, aude de la toți: Aliluia!"
       },
       {
-        tip: "icos", nr: 12,
-        intro: "Cântând nașterea ta, te lăudăm toți, ca pe o biserică însuflețită, Născătoare de Dumnezeu; că, locuind în pântecele tău Domnul, Care ține toate cu mâna, a sfințit, a slăvit și a învățat pe toți să-ți cânte:",
-        bucurate: [
+        "tip": "icos",
+        "nr": 12,
+        "intro": "Cântând nașterea ta, te lăudăm toți, ca pe o Biserică însuflețită, Născătoare de Dumnezeu; că, locuind în pântecele tău, Domnul, Care ține toate cu mâna, a sfințit, a slăvit și a învățat pe toți să strige către tine:",
+        "bucurate": [
           "locașul lui Dumnezeu-Cuvântul",
-          "sfântă care ești mai mare decât toți sfinții",
+          "sfântă, ceea ce ești mai mare decât sfinții",
           "chivot poleit cu Duhul",
-          "comoara vieții cea nedeșertată",
+          "comoara vieții cea neîmpuținată",
           "coroana cea scumpă a împăraților celor credincioși",
-          "lauda cea de cinste a preoților cuvioși",
-          "stâlp neclintit al Bisericii",
-          "zidul cel nebiruit al Împărăției",
+          "lauda cea de cinste a preoților celor cuvioși",
+          "stâlpul Bisericii cel neclintit",
+          "zidul împărăției cel nebiruit",
           "cea prin care se înalță biruințele",
           "cea prin care cad vrăjmașii",
           "tămăduirea trupului meu",
-          "mântuirea sufletului meu"
+          "izbăvirea sufletului meu"
         ],
-        refren: "Bucură-te, Mireasă, pururea Fecioară!"
+        "refren": "Bucură-te, Mireasă, pururea fecioară!"
       },
       {
-        tip: "condac", nr: 13,
-        text: "O, Maică prealăudată, care ai născut pe Cuvântul, Cel ce este mai sfânt decât toți sfinții, primind acest dar de acum, izbăvește de toată ispita și scoate din chinul ce va să fie pe toți cei care-ți cântă: Aliluia! (acest condac se zice de trei ori)"
+        "tip": "condac",
+        "nr": 13,
+        "text": "O, Maică prealăudată, care ai născut pe Cuvântul, Cel ce este mai sfânt decât toți sfinții, primind acest dar de acum, izbăvește de toată ispita și scoate din munca ce va să fie, pe toți cei ce-ți cântă: Aliluia! <em>(acest Condac se zice de trei ori)</em><br><br><em>După aceasta se zice iarăși Icosul întâi: Îngerul cel mai întâistătător... și Condacul întâi: Apărătoare Doamnă... și apoi această rugăciune:</em>"
       },
       {
-        tip: "rugaciune",
-        titlu: "Rugăciune către Preasfânta Născătoare de Dumnezeu",
-        text: "O, Preasfântă Născătoare de Dumnezeu, Fecioară stăpână, ceea ce ești mai înaltă și mai presus decât îngerii și arhanghelii și mai cinstită decât toată făptura; mirarea cea mare a îngerilor, propovăduirea prorocilor, podoaba cea aleasă a arhanghelilor, întărirea cea tare a mucenicilor, lauda cea preamărită a apostolilor, povățuitoarea cea tare a călugărilor, înfrânarea cea tare a postitorilor, curăția și slava fecioarelor, veselia cea lină a maicilor, înțelepciunea și învățătura pruncilor, cârmuitoarea săracilor și a văduvelor; îmbrăcăminte celor goi, sănătate celor bolnavi, izbăvire celor robiți; liniște celor de pe mare, liman bun celor înviforați, povățuitoare neostenită celor rătăciți, mergere ușoară celor călători, odihnă bună celor osteniți, acoperământ și scăpare celor asupriți; nădejde celor fără de nădejde, ajutătoare celor lipsiți; celor săraci bogăție neîmpuținată, celor întristați de-a pururea mângâiere, celor pe care nu-i iubește nimeni iubire cu smerenie; celor păcătoși mântuire către Dumnezeu; tuturor creștinilor ocrotire tare, ajutătoare nebiruită și folositoare.\n\nPrin tine, Cel nevăzut S-a făcut văzut, pentru care aducem rugăciune ție noi, robii tăi, Doamna noastră. O, preamilostivă împărăteasă a luminii celei înțelegătoare și preamărită, care ai născut pe Împăratul nostru, Hristos Dumnezeu, Cel ce dă viață tuturor, ceea ce ești slăvită de cele cerești, minte îngerească, stea cu totul luminoasă și mai sfântă decât toți sfinții; împărăteasa împăraților, stăpâna tuturor făpturilor, Fecioară încuviințată de Dumnezeu, Mireasă nestricată, palat al Preasfântului Duh, tron de foc al Împăratului celui nevăzut, chivot ceresc, purtător al Cuvântului lui Dumnezeu, căruța cea în chipul focului; odihna Dumnezeului celui viu, zămislirea negrăită a trupului lui Hristos.\n\nO, întru tot milostivă Doamnă Fecioară, stăpână Născătoare de Dumnezeu, auzi-ne pe noi cei ce ne rugăm ție și arată mila ta poporului drept-credincios; roagă pe Fiul tău să ne izbăvească de tot răul. Și păzește locașul acesta și toate orașele și satele creștinești și tot poporul cel bine-credincios, care scapă la tine și cheamă numele tău cel sfânt, de toate năpastele, de boală, de cutremur, de potop, de foc, de sabie, de venirea altor neamuri asupra noastră și de războiul cel dintre noi, de toate durerile și tot necazul.\n\nNădejdea noastră, adună pe cele risipite: pe cei rătăciți pe cale povățuiește-i, pe cei căzuți de la dreapta credință iarăși la credință întoarce-i, pe cei bătrâni sprijinește-i, pe cei tineri îi învață, pe prunci hrănește-i și preamărește pe cei ce te preamăresc; dar, mai ales, păzește Sfântă Biserica Fiului tău și o ferește întru lungime de zile.\n\nO, milostivă și preaîndurată împărăteasă a cerului și a pământului, Născătoare de Dumnezeu, pururea Fecioară, miluiește cu mijlocirea ta poporul drept-credincios și toată drept-credincioasa creștinătate. Păzește-o sub acoperământul milei tale, apăr-o pe ea cu cinstitul tău acoperământ și roagă pe Hristos, Dumnezeul nostru, pe Care mai presus de fire L-ai întrupat, să ne încingă pe noi cu putere de sus, ca să ne putem apăra împotriva vrăjmașilor ce se luptă împotriva noastră. Miluiește și mântuiește prin rugăciunile tale, Maică, pe Prea Fericitul Părintele nostru Patriarhul Bisericii Ortodoxe Române, pe toți ortodocșii arhierei, preoți și diaconi și pe tot clerul bisericesc și pe tot poporul drept-credincios.\n\nCaută spre noi toți cu folosința ta cea preamilostivă, ridică-ne pe noi din adâncul păcatelor și ne luminează ochii inimii spre căutarea mântuirii. Milostivă fii nouă aici, iar la înfricoșătoarea Judecată, pe Fiul tău pentru noi roagă-L. Că tu ești, Doamnă, slavă a celor cerești și ajutătoare a pământenilor; tu ești nădejdea și folositoarea tuturor celor ce aleargă la tine și cer ajutorul tău cel sfânt; tu ești rugătoarea cea fierbinte către Fiul tău și Dumnezeul nostru, că rugăciunile Maicii mult pot spre îmblânzirea Stăpânului. Amin."
+        "tip": "rugaciune",
+        "titlu": "Rugăciune către Preasfânta Născătoare de Dumnezeu",
+        "text": "Preacurată Doamnă, Stăpână de Dumnezeu Născătoare Fecioară, care poți face tot binele, primește aceste daruri, care se cuvin numai ție, de la noi, nevrednicii robii tăi, ceea ce ești aleasă din toate neamurile, și te-ai arătat mai înaltă decât toate făpturile cerești și pământești. Căci pentru tine a fost cu noi Domnul puterilor; și prin tine am cunoscut pe Fiul lui Dumnezeu, și ne-am învrednicit Sfântului Lui Trup și Preacuratului Lui Sânge. Pentru aceea fericită ești întru neamurile neamurilor, ceea ce ești de Dumnezeu fericită, mai luminată decât Heruvimii și mai cinstită decât Serafimii fiind.<br><br>Și acum, Preasfântă Stăpână de Dumnezeu Născătoare Fecioară întru tot cântată, nu înceta a te ruga pentru noi, nevrednicii robii tăi, ca să ne izbăvim de tot sfatul celui înșelător, și de toată primejdia și să fim păziți nevătămați de toată lovirea cea înveninată a diavolului; ci până la sfârșit cu rugăciunile tale, păzește-ne pe noi neosândiți. Ca întru paza și cu ajutorul tău fiind mântuiți, slavă, laudă, mulțumită și închinăciune, pentru toate să înălțăm unuia în Treime Dumnezeu, Ziditorul tuturor, acum și pururea și în vecii vecilor. Amin."
       }
     ]
   },

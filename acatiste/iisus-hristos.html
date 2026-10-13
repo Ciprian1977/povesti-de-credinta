@@ -275,7 +275,7 @@
   <button type="button" class="nav-item" id="buton-meniu" aria-label="Meniu complet" aria-expanded="false" aria-controls="nav-mobil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></svg><span class="nav-label">Meniu</span></button>
 </nav>
 
-<script src="/js/acatiste-data.js" defer></script>
+<script src="/js/acatiste-data.js?v=2" defer></script>
 <script>
 function toggleFaq(el) {
   el.parentElement.classList.toggle('deschis');
@@ -322,7 +322,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (window.ACATISTE) {
     randeazaAcatist('iisus-hristos');
   } else {
-    document.querySelector('[src="/js/acatiste-data.js"]').addEventListener('load', () => randeazaAcatist('iisus-hristos'));
+    document.querySelector('[src="/js/acatiste-data.js?v=2"]').addEventListener('load', () => randeazaAcatist('iisus-hristos'));
   }
 });
 window.addEventListener('load', function() {
