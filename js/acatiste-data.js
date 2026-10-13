@@ -1,20 +1,18 @@
-// js/acatiste-data.js — textele acatistelor
-// Acatistul Bunei Vestiri: ro.wikisource.org/wiki/Acatistul_Buneivestiri (domeniu public), generat cu scripts/acatiste/genereaza-buna-vestire.py
+// js/acatiste-data.js — textele acatistelor, generate din surse de domeniu public cu scripts/acatiste/genereaza.py
+// Acatistul Bunei Vestiri: ro.wikisource.org/wiki/Acatistul_Buneivestiri
+// Acatistul Sfântului Antonie cel Mare: ro.wikisource.org/wiki/Acatistul_Sfântului_Antonie_cel_Mare
+// Acatistele Mântuitorului și Sfântului Nicolae sunt scoase până la o sursă confirmată.
 
 const ACATISTE = {
-
-  // ═══════════════════════════════════════════════════════════════
-  // 1. ACATISTUL BUNEI VESTIRI (Maica Domnului)
-  // ═══════════════════════════════════════════════════════════════
   "maica-domnului": {
-    slug: "maica-domnului",
-    titlu: "Acatistul Maicii Domnului — Buna Vestire",
-    titluScurt: "Acatistul Maicii Domnului",
-    icon: "🕊️",
-    refren: "Bucură-te, Mireasă, pururea Fecioară!",
-    descriere: "Cel mai vechi acatist creștin, compus în secolul al VI-lea. Se citește vinerea seara și în Postul Mare.",
-    metaDescription: "Acatistul Maicii Domnului — Buna Vestire, text integral autentic. Cel mai vechi acatist creștin, cu toate cele 13 Condace și 12 Icoase. Sursa BOR.",
-    sectiuni: [
+    "slug": "maica-domnului",
+    "titlu": "Acatistul Maicii Domnului — Buna Vestire",
+    "titluScurt": "Acatistul Maicii Domnului",
+    "icon": "🕊️",
+    "refren": "Bucură-te, Mireasă, pururea Fecioară!",
+    "descriere": "Cel mai vechi acatist creștin, compus în secolul al VI-lea. Se citește vinerea seara și în Postul Mare.",
+    "metaDescription": "Acatistul Maicii Domnului — Buna Vestire, text integral, cu toate cele 13 Condace și 12 Icoase.",
+    "sectiuni": [
       {
         "tip": "condac",
         "nr": 1,
@@ -318,7 +316,7 @@ const ACATISTE = {
       {
         "tip": "condac",
         "nr": 13,
-        "text": "O, Maică prealăudată, care ai născut pe Cuvântul, Cel ce este mai sfânt decât toți sfinții, primind acest dar de acum, izbăvește de toată ispita și scoate din munca ce va să fie, pe toți cei ce-ți cântă: Aliluia! <em>(acest Condac se zice de trei ori)</em><br><br><em>După aceasta se zice iarăși Icosul întâi: Îngerul cel mai întâistătător... și Condacul întâi: Apărătoare Doamnă... și apoi această rugăciune:</em>"
+        "text": "O, Maică prealăudată, care ai născut pe Cuvântul, Cel ce este mai sfânt decât toți sfinții, primind acest dar de acum, izbăvește de toată ispita și scoate din munca ce va să fie, pe toți cei ce-ți cântă: Aliluia! <em>(Acest Condac se zice de trei ori)</em><br><br><em>Apoi se zice iarăși Icosul 1 și Condacul 1, și apoi rugăciunea.</em>"
       },
       {
         "tip": "rugaciune",
@@ -327,603 +325,319 @@ const ACATISTE = {
       }
     ]
   },
-
-  // ═══════════════════════════════════════════════════════════════
-  // 2. ACATISTUL DOMNULUI NOSTRU IISUS HRISTOS
-  // ═══════════════════════════════════════════════════════════════
-  "iisus-hristos": {
-    slug: "iisus-hristos",
-    titlu: "Acatistul Domnului nostru Iisus Hristos",
-    titluScurt: "Acatistul lui Iisus Hristos",
-    icon: "✝️",
-    refren: "Iisuse, Fiul lui Dumnezeu, miluiește-mă!",
-    descriere: "Acatist de pocăință și laudă adresat Mântuitorului. Se citește la orice vreme de nevoie sau de mulțumire.",
-    metaDescription: "Acatistul Domnului nostru Iisus Hristos — text integral autentic BOR. Toate cele 13 Condace și 12 Icoase cu rugăciunea Sfântului Isaac Sirul.",
-    sectiuni: [
+  "sfantul-antonie": {
+    "slug": "sfantul-antonie",
+    "titlu": "Acatistul Sfântului Antonie cel Mare",
+    "titluScurt": "Acatistul Sfântului Antonie cel Mare",
+    "icon": "⛰️",
+    "refren": "Bucură-te, Părinte Antonie, de Dumnezeu cugetătorule!",
+    "descriere": "Acatistul Sfântului Cuvios Antonie cel Mare, părintele monahilor, prăznuit pe 17 ianuarie.",
+    "metaDescription": "Acatistul Sfântului Antonie cel Mare — text integral, cu toate cele 13 Condace și 12 Icoase.",
+    "sectiuni": [
       {
-        tip: "condac", nr: 1,
-        text: "Apărătorule cel mai mare și Doamne, Biruitorul iadului, izbăvindu-ne de moartea cea veșnică, cele de laudă aducem Ție noi, robii Tăi și zidirea Ta. Ci, ca Unul ce ai îndurări nenumărate, de toate nevoile ne izbăvește pe noi, care-Ți cântăm: Iisuse, Fiul lui Dumnezeu, miluiește-ne!"
+        "tip": "condac",
+        "nr": 1,
+        "text": "Fugind de întunericul cel negru al Egiptului, ai căutat pământul cel de viață dătător al pustiului. Prin înfrânare și nevoința veștejind săltările trupului, prealăudate, te-ai făcut pilda monahilor, de Dumnezeu cugetătorule, celor ce cântă: Bucură-te, Părinte Antonie, de Dumnezeu cugetătorule!"
       },
       {
-        tip: "icos", nr: 1,
-        intro: "Făcătorule al îngerilor și Doamne al puterilor, deschide-mi mie, nepriceputului, mintea și limba, spre lauda preacu­ratului Tău nume, precum ai deschis auzul și limba celui surd și gângav de demult, ca să grăiesc și eu acestea:",
-        bucurate: [
-          "Iisuse preaminunate, mirarea îngerilor",
-          "Iisuse preaputernice, izbăvirea strămoșilor",
-          "Iisuse preadulce, slava patriarhilor",
-          "Iisuse preaslăvite, tăria ocârmuitorilor",
-          "Iisuse preaiubite, plinirea prorocilor",
-          "Iisuse preaminunate, întărirea mucenicilor",
-          "Iisuse prealine, bucuria călugărilor",
-          "Iisuse preamilostive, dulceața preoților",
-          "Iisuse preaîndurate, înfrânarea pustnicilor",
-          "Iisuse preadulce, bucuria cuvioșilor",
-          "Iisuse preacurate, mintea cea întreagă a celor curați cu fecioria",
-          "Iisuse cel mai înainte de veci, mântuirea păcătoșilor"
+        "tip": "icos",
+        "nr": 1,
+        "intro": "Om cu firea te-ai arătat, Părinte, dar te-ai văzut împreună cetățean cu îngerii, căci ca un fără de trup ai viețuit pe pământ, Preacuvioase Antonie, lepădând toată purtarea de grijă a trupului; pentru aceasta grăim ție:",
+        "bucurate": [
+          "odrasla cucernicului Părinte",
+          "ramura credincioasei Maicii Sfinte",
+          "vlăstarul cel neveștejit al Egiptului",
+          "povățuitorul cel mare al pustiului",
+          "că din tinerețe lui Hristos ai urmat",
+          "că firește de trup te-ai depărtat",
+          "arătătorule al căilor monahicești",
+          "cel ce voiești mântuirea muritorilor",
+          "izbăvitorul din înșelăciuni al celor mulți",
+          "dătătorul râurilor de tămăduiri",
+          "prin care Dumnezeu s-a preaînălțat",
+          "prin care satana s-a rușinat"
         ],
-        refren: "Iisuse, Fiul lui Dumnezeu, miluiește-mă!"
+        "refren": "Bucură-te, Părinte Antonie, de Dumnezeu cugetătorule!"
       },
       {
-        tip: "condac", nr: 2,
-        text: "Văzând, Doamne, pe văduva care plângea foarte și, precum atunci, milostivindu-Te, ai înviat pe fiul ei pe care îl ducea să-l îngroape, așa înviază și sufletul meu cel omorât cu păcatele, Iubitorule de oameni, și Te milostivește spre mine, care-ți cânt: Aliluia!"
+        "tip": "condac",
+        "nr": 2,
+        "text": "Văzându-te pe tine, de Dumnezeu purtătorule, vrăjmașul, la înălțime ridicat, se ispitea a te împiedica de la toate faptele bune; însă după puțin s-a rușinat de sporirea ta, care, nevoindu-te cu trupul și înălțându-te cu sufletul, cântai lui Dumnezeu: Aliluia!"
       },
       {
-        tip: "icos", nr: 2,
-        intro: "Înțelesul cel greu de pătruns, căutând Filip să-l înțeleagă, grăia: Doamne, arată nouă pe Tatăl. Iar Tu ai zis către dânsul: Atâta vreme ai fost cu Mine și n-ai cunoscut că Tatăl este întru Mine și Eu întru Tatăl? De aceea, Ție, Celui ce ești necuprins, cu frică Îți grăim:",
-        bucurate: [
-          "Iisuse, Dumnezeule cel mai înainte de veci",
-          "Iisuse, Împăratul cel preaputernic",
-          "Iisuse, Stăpânul cel îndelung-răbdător",
-          "Iisuse, Mântuitorul cel preamilostiv",
-          "Iisuse, Păzitorul meu cel preabun",
-          "Iisuse, curățește păcatele mele",
-          "Iisuse, ridică fărădelegile mele",
-          "Iisuse, iartă nedreptățile mele",
-          "Iisuse, Nădejdea mea, nu mă lăsa pe mine",
-          "Iisuse, Ajutorul meu, nu mă lepăda pe mine",
-          "Iisuse, Ziditorul meu, nu mă uita pe mine",
-          "Iisuse, Păstorul meu, nu mă pierde pe mine"
+        "tip": "icos",
+        "nr": 2,
+        "intro": "Având cunoștința celor ce sunt ca și cum nu ar fi, ai trecut cu vederea trecătoarele desfătări ale vieții; deci în mormânt închizându-te, prin multe necazuri te-ai înțelepțit, nădejdea spre Dumnezeu punându-ți, pentru care auzi acestea:",
+        "bucurate": [
+          "insuflătorule al nădejdii în Dumnezeu",
+          "pierzătorule al nebuniei vrăjmașului",
+          "cel ce nu te înspăimânți de rănirile lui",
+          "biruitorul uneltirilor lui",
+          "lauda cea vestită a pământului Egiptului",
+          "cel mai strălucit decât toți monahii, lumina cea mai strălucită",
+          "floarea cea de Dumnezeu împodobită a cuvioșilor",
+          "frumusețea cea preastrălucită a sfinților",
+          "luminat deslușitor al înțelepților",
+          "luceafărul strălucitor al luceferilor",
+          "izvorul cel viu al pustiei",
+          "glasul cel puternic, risipitor al trandăviei"
         ],
-        refren: "Iisuse, Fiul lui Dumnezeu, miluiește-mă!"
+        "refren": "Bucură-te, Părinte Antonie, de Dumnezeu cugetătorule!"
       },
       {
-        tip: "condac", nr: 3,
-        text: "Iisuse, Care ai îmbrăcat cu putere de sus pe apostolii Tăi, care ședeau în Ierusalim, îmbracă-mă și pe mine, cel golit de toate faptele cele bune, cu căldura Duhului Tău celui Sfânt, și-mi dă să-Ți cânt cu dragoste: Aliluia!"
+        "tip": "condac",
+        "nr": 3,
+        "text": "Puterea Celui Preaînalt tare te-a făcut în toate, Antonie fericite, că văzând pornirea vrăjmașilor cea neputincioasă venind asupra ta, neclintit ai rămas și, cu darul înconjurat fiind de toate părțile, cântai lui Dumnezeu: Aliluia!"
       },
       {
-        tip: "icos", nr: 3,
-        intro: "Iisuse, Cel ce ai mulțime de îndurări, Care ai chemat pe vameși și pe păcătoși și pe cei necredincioși, nu mă trece cu vederea acum pe mine, cel asemenea lor; ci, ca niște mir de mult preț, primește cântarea aceasta:",
-        bucurate: [
-          "Iisuse, puterea cea nebiruită",
-          "Iisuse, mila cea fără de sfârșit",
-          "Iisuse, frumusețea cea prealuminată",
-          "Iisuse, dragostea cea nebiruită",
-          "Iisuse, Fiul lui Dumnezeu celui viu",
-          "Iisuse, miluiește-mă pe mine, păcătosul",
-          "Iisuse, auzi-mă pe mine, cel zămislit întru fărădelegi",
-          "Iisuse, curățește-mă pe mine, cel născut în păcate",
-          "Iisuse, învață-mă pe mine, netrebnicul",
-          "Iisuse, luminează-mă pe mine, întunecatul",
-          "Iisuse, curățește-mă pe mine, întinatul",
-          "Iisuse, scoate-mă pe mine, desfrânatul"
+        "tip": "icos",
+        "nr": 3,
+        "intro": "Având dumnezeiască dorință, încă mai mult a fi necăjit, cugetătorule de Dumnezeu, ai văzut dumnezeiescul har; că din cer lumina pogorându-se, te-a cercetat pe tine în nevoință, și glas ai auzit, întărindu-te și grăind:",
+        "bucurate": [
+          "fiule al dumnezeieștii lumini",
+          "locaș al Duhului Sfânt",
+          "făclia cea nestinsă a liniștii",
+          "canonul cel preadrept al înfrânării",
+          "privirea cea preadulce a îngerilor și a oamenilor",
+          "mărirea cea laudată a celor aleși",
+          "izgonitorule al patimilor omenești",
+          "îmbogătitorule de dumnezeiesc har",
+          "Părinte întâistătător al părinților",
+          "preacinstite iscusit păzitor al celor neînsoțiți",
+          "cel ce covârșești întru cunoștința pe cei înțelepți",
+          "cel ce întărești pe credincioșii cei căzuți ridicându-i"
         ],
-        refren: "Iisuse, Fiul lui Dumnezeu, miluiește-mă!"
+        "refren": "Bucură-te, Părinte Antonie, de Dumnezeu cugetătorule!"
       },
       {
-        tip: "condac", nr: 4,
-        text: "Vifor de gânduri îndoielnice având înăuntru, Petru se afunda; iar văzându-Te, Iisuse, fiind cu trup și umblând pe apă, Te-a cunoscut pe Tine Dumnezeu adevărat și, primind mâna Ta cea mântuitoare, a zis: Aliluia!"
+        "tip": "condac",
+        "nr": 4,
+        "text": "Aprins fiind de dumnezeiască dorință, către muntele pustiului ai alergat, Antonie, bucurându-te; iar cel nărăvit întru răutate, un disc mare de argint a pus înaintea ta, însă tu ca pe un gunoi defăimându-l cântai lui Dumnezeu: Aliluia!"
       },
       {
-        tip: "icos", nr: 4,
-        intro: "Auzit-a orbul, Doamne, că Tu treci pe cale și a strigat: Iisuse, Fiul lui David, miluiește-mă; și chemându-l i-ai deschis ochii. Luminează cu mila Ta și ochii cei cugetători ai inimii mele, ai celui ce grăiesc:",
-        bucurate: [
-          "Iisuse, ziditorul celor de sus",
-          "Iisuse, răscumpărătorul celor de jos",
-          "Iisuse, pierzătorul celor de dedesubt",
-          "Iisuse, înfrumusețătorul făpturilor",
-          "Iisuse, mângâierea sufletului meu",
-          "Iisuse, luminătorul minții mele",
-          "Iisuse, veselia inimii mele",
-          "Iisuse, sănătatea trupului meu",
-          "Iisuse, Mântuitorul meu, mântuiește-mă",
-          "Iisuse, luminătorul meu, luminează-mă",
-          "Iisuse, izbăvește-mă de tot chinul",
-          "Iisuse, mântuiește-mă pe mine, nevrednicul"
+        "tip": "icos",
+        "nr": 4,
+        "intro": "Nevoindu-te mai presus de fire, Părinte Antonie, și biruind relele vicleșuguri diavolești, mai presus de acestea te-ai arătat; deci, făcându-te cetățean al pustiei, auzi acestea:",
+        "bucurate": [
+          "canonul și temelia pustnicilor",
+          "plângerea împotriva răilor vrăjmași",
+          "slujitorule al slujbelor celor mai bune",
+          "dătătorule al celor ce cer cele dumnezeiești",
+          "că rău ai pătimit, vrăjmașului împotrivindu-te",
+          "că, unindu-te cu Dumnezeu, te-ai veselit",
+          "minunea cea preaveselitoare a îngerilor",
+          "cel ce ești rana grea a demonilor",
+          "credinciosule slujitor al lui Dumnezeu",
+          "înaintestătător al credincioșilor",
+          "prin care s-au deșertat cetățile",
+          "prin care munți în cetăți s-au schimbat"
         ],
-        refren: "Iisuse, Fiul lui Dumnezeu, miluiește-mă!"
+        "refren": "Bucură-te, Părinte Antonie, de Dumnezeu cugetătorule!"
       },
       {
-        tip: "condac", nr: 5,
-        text: "Precum ne-ai răscumpărat pe noi de demult din blestemul Legii cu sângele cel izvorâtor din Dumnezeu, Iisuse, așa ne scoate și din lanțurile cu care șarpele ne-a împiedicat, prin patimile cele trupești, prin îndemnările spre desfrânare și prin trândăvia cea rea, pe cei care-Ți cântăm: Aliluia!"
+        "tip": "condac",
+        "nr": 5,
+        "text": "Vrând a trece Nilul, Părinte de Dumnezeu purtătorule Antonie, luntre neaflându-se, te-ai suit pe un crocodil, mergând spre cercetarea rugătorilor tăi, cântând împreună cu dânșii lui Dumnezeu: Aliluia!"
       },
       {
-        tip: "icos", nr: 5,
-        intro: "Văzând pruncii evreilor în chip omenesc pe Cel ce a zidit pe om cu mâinile și, cunoscându-L pe El a fi Stăpânul, s-au nevoit cu stâlpări a-I plăcea Lui, strigând: Osana! Iar noi aducem Ție cântare, grăind:",
-        bucurate: [
-          "Iisuse, Dumnezeul cel adevărat",
-          "Iisuse, Fiul lui David",
-          "Iisuse, Împăratul cel preaslăvit",
-          "Iisuse, Mielul cel nevinovat",
-          "Iisuse, Păstorul cel prealuminat",
-          "Iisuse, păzitorul prunciei mele",
-          "Iisuse, îndreptătorul tinereților mele",
-          "Iisuse, lauda bătrâneților mele",
-          "Iisuse, nădejdea cea de la moartea mea",
-          "Iisuse, viața mea de după moarte",
-          "Iisuse, liniștea mea la judecata Ta",
-          "Iisuse, dorirea mea, nu mă rușina pe mine atuncea"
+        "tip": "icos",
+        "nr": 5,
+        "intro": "Văzându-te tinerii Egiptului în pustie locuind, ca pe unul mai presus de oameni, și auzind învățătura ta, s-au schimbat cu dumnezeiască schimbare; pentru care, slăvind pe Dumnezeu, grăim ție:",
+        "bucurate": [
+          "cel ce ești om între îngeri",
+          "cel ce ești înger între oameni",
+          "cel ce, prin pildele tale, pământul l-ai făcut cer",
+          "cel ce, prin faptele tale, ai slujit lui Dumnezeu",
+          "că ai surpat sprânceana demonilor",
+          "cel ce ai înălțat viață muritorilor",
+          "tăinuitorule al dumnezeieștii stăpâniri cea în trei Sori",
+          "povățuitorule al dumnezeieștii petreceri",
+          "ridicarea celor căzuți",
+          "mântuirea multora",
+          "că ne povățuiești pe noi a urma ție",
+          "că urmând povețelor tale, adunăm sufletului bogăție"
         ],
-        refren: "Iisuse, Fiul lui Dumnezeu, miluiește-mă!"
+        "refren": "Bucură-te, Părinte Antonie, de Dumnezeu cugetătorule!"
       },
       {
-        tip: "condac", nr: 6,
-        text: "Vestirea și graiurile propovăduitorilor celor de Dumnezeu purtători plinind-o, Iisuse, pe pământ Te-ai arătat și cu oamenii ai viețuit, Cel ce ești neajuns, și durerile noastre le-ai ridicat, de unde, cu rănile Tale noi tămăduindu-ne, ne-am deprins a-Ți cânta: Aliluia!"
+        "tip": "condac",
+        "nr": 6,
+        "text": "Propovăduitor al dreptei credințe celor fără de Dumnezeu te-ai arătat și voind a te face mucenic, cu bărbăție în oraș ai intrat; dar, neîmplinindu-ți dorința, cu singură bunăvoința te-ai făcut desăvârșit nevoitor, cântând lui Dumnezeu: Aliluia!"
       },
       {
-        tip: "icos", nr: 6,
-        intro: "Răsărit-a în lume lumina adevărului Tău și s-a izgonit înșelăciunea cea diavolească, Mântuitorul nostru, că idolii nerăbdând tăria Ta au căzut, iar noi dobândind mântuire, mulțumire Îți aducem, cântând așa:",
-        bucurate: [
-          "Iisuse, adevărul cel ce izgonești înșelăciunea",
-          "Iisuse, lumina cea mai presus de toate luminile",
-          "Iisuse, Împărate, întăritorul tuturor tăriilor",
-          "Iisuse, Dumnezeule, Cel ce petreci întru milă",
-          "Iisuse, pâinea vieții, satură-mă pe mine, cel flămând",
-          "Iisuse, izvorul înțelepciunii, adapă-mă pe mine, cel însetat",
-          "Iisuse, veșmântul cel de veselie, îmbracă-mă pe mine, cel întinat",
-          "Iisuse, acoperământul cel de bucurie, acoperă-mă pe mine, nevrednicul",
-          "Iisuse, dătătorul celor care cer, dă-mi să plâng pentru păcatele mele",
-          "Iisuse, Cel ce afli pe cei care Te caută, află și sufletul meu",
-          "Iisuse, deschizătorul celor ce bat, deschide inima mea cea ticăloasă",
-          "Iisuse, răscumpărătorul păcătoșilor, curățește fărădelegile mele"
+        "tip": "icos",
+        "nr": 6,
+        "intro": "Ca un luceafăr în pustiul Egiptului strălucind, întunericul înșelăciunii ai gonit și, săvârșind pururea tămăduiri, prin tine Dumnezeu S-a preaslăvit; pentru care primești de la noi acestea:",
+        "bucurate": [
+          "prin care se împodobesc cuvioșii",
+          "prin care oamenii se mântuiesc",
+          "dumnezeiască mângâiere a bolnavilor",
+          "harul cel dumnezeiesc al călătorilor",
+          "că ai vindecat prin rugăciune pe cea îndrăcită",
+          "preafericite, cel ce de toți te-ai depărtat",
+          "că îndată în pustie ai fugit",
+          "cel ce viață îngerească ai uneltit",
+          "cel ce te-ai făcut dumnezeiesc slujitor",
+          "cel ce te-ai arătat pentru noi mijlocitor către Domnul",
+          "povățuitorul poporului către Dumnezeu",
+          "împăciuitorul oamenilor cu Dumnezeu"
         ],
-        refren: "Iisuse, Fiul lui Dumnezeu, miluiește-mă!"
+        "refren": "Bucură-te, Părinte Antonie, de Dumnezeu cugetătorule!"
       },
       {
-        tip: "condac", nr: 7,
-        text: "Vrând să descoperi taina cea ascunsă din veac, ca un miel spre junghiere Te-ai adus, Iisuse, și ca o oaie fără de glas înaintea celor ce o tund, și ca un Dumnezeu din morți ai înviat și cu slavă la ceruri Te-ai înălțat și ne-ai ridicat pe noi, care-Ți cântăm: Aliluia!"
+        "tip": "condac",
+        "nr": 7,
+        "text": "Rămânând în munții pustiului marele Antonie, hrana de la saracini avea, apoi lucrând pământul, cu grâu și cu finice se hrănea, fiarele înfricoșându-se, iar pe credincioși îndemnându-i a cânta lui Dumnezeu: Aliluia!"
       },
       {
-        tip: "icos", nr: 7,
-        intro: "Arătat-a făptură minunată, arătându-Se nouă, Făcătorul; că din Fecioară, mai presus de fire, S-a întrupat și din mormânt a înviat, nestricând pecețile, și la apostoli prin ușile încuiate a intrat cu trupul. Drept aceea, minunându-ne, cu credință strigăm:",
-        bucurate: [
-          "Iisuse, Cuvântul cel necuprins",
-          "Iisuse, Cuvântul cel nevăzut",
-          "Iisuse, puterea cea neajunsă",
-          "Iisuse, înțelepciunea cea mai presus de cuget",
-          "Iisuse, Dumnezeirea cea de necuprins în scris",
-          "Iisuse, domnia cea nenumărată cu anii",
-          "Iisuse, împărăția cea nebiruită",
-          "Iisuse, stăpânirea cea fără de sfârșit",
-          "Iisuse, tăria cea preaînaltă",
-          "Iisuse, puterea cea veșnică",
-          "Iisuse, Făcătorul meu, miluiește-mă",
-          "Iisuse, Mântuitorul meu, mântuiește-mă"
+        "tip": "icos",
+        "nr": 7,
+        "intro": "Nou oraș ai arătat adâncimea pustietății, Antonie fericite, cel deopotrivă cu îngerii; căci ca un alt Ierusalim și Sinai muntele tău s-a preamărit, și ca un alt Moise și Ilie arătându-te, auzi acestea:",
+        "bucurate": [
+          "al doilea Moise cu faptele",
+          "al doilea Ilie cu chipurile",
+          "cel ce blândeții lui David te-ai asemănat",
+          "cel ce cărările Botezului ai urmat",
+          "cel ce ai izvorât apa monahilor în loc însetat",
+          "cel ce lui Pavel cel simplu te-ai asemănat",
+          "cel ce în fiecare zi ai sfătuit pe monahi",
+          "cel ce ai povățuit îndeosebi pe cei greșiți",
+          "cel ce ai vindecat pe cei orbi",
+          "cel ce ai îndreptat pe cei slăbănogi",
+          "cel ce ai gonit patimile cele sufletești",
+          "cel ce ai vindecat durerile cele trupești"
         ],
-        refren: "Iisuse, Fiul lui Dumnezeu, miluiește-mă!"
+        "refren": "Bucură-te, Părinte Antonie, de Dumnezeu cugetătorule!"
       },
       {
-        tip: "condac", nr: 8,
-        text: "Văzând străină întruparea lui Dumnezeu, să ne înstrăinăm din lumea cea deșartă și mintea spre cele dumnezeiești să o suim, că pentru aceasta Dumnezeu pe pământ S-a pogorât, ca să ne ridice la ceruri pe noi, cei care-I cântăm Lui: Aliluia!"
+        "tip": "condac",
+        "nr": 8,
+        "text": "Străină minune! Văzând vânarea în multe feluri, nicidecum nu te-ai înspăimântat, de trei ori fericite; iar vânătorul, dumnezeiasca ta față văzând, de frică fiind cuprins, îndată a murit, făcându-te tu pilda tuturor celor ispitiți, a cânta lui Dumnezeu: Aliluia!"
       },
       {
-        tip: "icos", nr: 8,
-        intro: "Cu totul era între cei de jos, și dintre cei de sus nicicum nu S-a despărțit Cel negrăit, când de voie pentru noi a pătimit, și cu moartea Sa moartea noastră a omorât-o, iar cu învierea Sa, a dăruit viață celor ce-I cântă:",
-        bucurate: [
-          "Iisuse, bucuria inimii",
-          "Iisuse, tăria trupului",
-          "Iisuse, lumina sufletului",
-          "Iisuse, repejunea minții",
-          "Iisuse, bucuria cunoștinței",
-          "Iisuse, nădejdea cea aleasă",
-          "Iisuse, pomenirea cea preaveșnică",
-          "Iisuse, lauda cea mai presus de ceruri",
-          "Iisuse, slava mea cea preaînaltă",
-          "Iisuse, dorirea mea, nu mă lepăda pe mine",
-          "Iisuse, Păstorul meu, caută-mă pe mine",
-          "Iisuse, Mântuitorul meu, mântuiește-mă"
+        "tip": "icos",
+        "nr": 8,
+        "intro": "Cu totul vesel te-ai arătat, văzând înălțarea sufletului lui Ammun, pe care ai arătat-o celor împreună cu tine întrebat fiind de dânșii, de Dumnezeu purtătorule Antonie; deci, văzând sfințenia ta, minunându-ne, grăim ție:",
+        "bucurate": [
+          "însuți văzătorule al tainelor",
+          "trecătorule cu vederea al pământeștilor lucruri",
+          "luminarea adevărată a celor necunoscători",
+          "grabnică supunere a supușilor",
+          "că pe cele viitoare, că pe cele de față le vedeai",
+          "că arătai cu putința pe cele cu neputința",
+          "că ai mântuit pe tinerii cei îndrăciți",
+          "cel ce ai tămăduit pe cei bolnavi de ochi",
+          "cel ce vedeai înălțarea sufletelor",
+          "cel ce mai înainte spuneai ieșirea lor",
+          "toiagul cel bun al monahilor",
+          "cinstita împodobire a credincioșilor"
         ],
-        refren: "Iisuse, Fiul lui Dumnezeu, miluiește-mă!"
+        "refren": "Bucură-te, Părinte Antonie, de Dumnezeu cugetătorule!"
       },
       {
-        tip: "condac", nr: 9,
-        text: "Toată firea îngerească, Iisuse, fără de încetare slăvește preasfânt numele Tău în ceruri, strigând: Sfânt, Sfânt, Sfânt; iar noi, păcătoșii, pe pământ, cu buze de tină, cântăm: Aliluia!"
+        "tip": "condac",
+        "nr": 9,
+        "text": "Tot darul cel dumnezeiesc, ca și Pavel ai primit, ca cel ce te-ai făcut și tu, toate tuturor, pe toți covârșindu-i Antonie, până și în văzduh te-ai răpit, cuvioase; pentru care, încutremurat cu totul cântai lui Dumnezeu: Aliluia!"
       },
       {
-        tip: "icos", nr: 9,
-        intro: "Pe retorii cei mult grăitori îi vedem tăcând ca niște pești fără de glas când voiesc a vorbi despre Tine, Iisuse, Mântuitorul meu; că nu se pricep să spună cum Dumnezeu cel neschimbat ești și viețuiești ca om deplin. Iar noi, minunându-ne de o taină ca aceasta, cu credință grăim:",
-        bucurate: [
-          "Iisuse, Dumnezeul cel preaveșnic",
-          "Iisuse, Împăratul împăraților",
-          "Iisuse, Stăpânul stăpânitorilor",
-          "Iisuse, Judecătorul celor vii și al celor morți",
-          "Iisuse, nădejdea celor fără de nădejde",
-          "Iisuse, mângâierea celor ce plâng",
-          "Iisuse, slava săracilor",
-          "Iisuse, nu mă judeca pe mine după faptele mele",
-          "Iisuse, curățește-mă după mare mila Ta",
-          "Iisuse, izgonește de la mine trândăvirea",
-          "Iisuse, luminează-mi gândul cel tainic al inimii",
-          "Iisuse, dă-mi aducere aminte de moarte"
+        "tip": "icos",
+        "nr": 9,
+        "intro": "Pe ritorii cei mult vorbitori, ca pe niște pești fără de glas i-ai arătat prin cuvintele tale, de Dumnezeu purtătorule, că, ritorisind despre Dumnezeu, cuvintele tale asemănându-le cu lucrurile, te-ai făcut minunat și mărit; pentru aceasta cântăm ție:",
+        "bucurate": [
+          "versul înțelepciunii lui Dumnezeu",
+          "vistieria cuvintelor Lui",
+          "cel mai înțelept decât toți filozofii",
+          "cel mai iscusit și mai înalt în cuvinte",
+          "preamărita auzire și grăire a celor înțelepți",
+          "preacinstita oglindire a monahilor și a tuturor celor ce te caută",
+          "cel ce veselești auzul credincioșilor",
+          "cel ce ai dezlegat împleticirile filozofilor",
+          "fiu al lui Dumnezeu, după împărtășire",
+          "înălțarea preacuvioșilor după străduire",
+          "prin care s-a înființat monahismul",
+          "prin care s-au îndreptat credincioșii"
         ],
-        refren: "Iisuse, Fiul lui Dumnezeu, miluiește-mă!"
+        "refren": "Bucură-te, Părinte Antonie, de Dumnezeu cugetătorule!"
       },
       {
-        tip: "condac", nr: 10,
-        text: "Vrând să mântuiești lumea, Răsăritule al răsăriturilor, venind către apus, la firea noastră cea întunecată, Te-ai smerit până la moarte; drept aceea, s-a preaînălțat numele Tău mai mult decât tot numele și de la toate făpturile cerești și pământești auzi: Aliluia!"
+        "tip": "condac",
+        "nr": 10,
+        "text": "Grăbindu-te, de Dumnezeu purtătorule Părinte, după porunca dinainte primită de la Dumnezeu, te-ai dus către Pavel Tebeul; și, împiedicându-te de multe ispite, nu te-ai înfricoșat de relele întâmplări și, dobândind ceea ce doreai, ai încetat întristarea, cântând lui Dumnezeu: Aliluia!"
       },
       {
-        tip: "icos", nr: 10,
-        intro: "Împărate cel preaveșnic, Mângâietorule cel adevărat, Hristoase, curățește-ne de toată întinăciunea, precum ai curățit pe cei zece leproși, și ne tămăduiește pe noi, precum ai tămăduit sufletul cel iubitor de argint al lui Zaheu vameșul, ca să cântăm Ție cu umilință acestea:",
-        bucurate: [
-          "Iisuse, vistierul cel nestricat",
-          "Iisuse, bogăția cea neîmpuținată",
-          "Iisuse, hrana cea tare",
-          "Iisuse, băutura cea nesecată",
-          "Iisuse, îmbrăcămintea săracilor",
-          "Iisuse, folositorul văduvelor",
-          "Iisuse, apărătorul celor lipsiți",
-          "Iisuse, ajutătorul celor osteniți",
-          "Iisuse, îndreptătorul celor străini",
-          "Iisuse, cârmaciul celor ce înoată pe mare",
-          "Iisuse, liniștea celor învăluiți",
-          "Iisuse, Dumnezeule, ridică-mă pe mine, cel căzut"
+        "tip": "icos",
+        "nr": 10,
+        "intro": "A doua oară, făcând călătoria marele Antonie și grăbindu-se către Pavel Tebeul, a văzut înălțarea sufletului lui; deci, alergând și găsindu-l mort, l-a îngropat, luându-i îmbrăcămintea; pentru care grăim lui:",
+        "bucurate": [
+          "înger purtător de trup",
+          "omule cel ce cu Dumnezeu ai vorbit",
+          "cel ce ai văzut nevoințele lui Pavel",
+          "slujitorul îngropării lui",
+          "cel ce ai istorisit viețuirea lui",
+          "cel ce te-ai îmbogățit cu a lui făptura bună",
+          "cel ce mai înainte ai cunoscut înșelăciunea eresurilor",
+          "cel ce ai alinat tulburarea Bisericilor",
+          "cel ce ai gonit primejdia eresului",
+          "părtașul dreptei cunoștințe",
+          "buna mireasmă a pustiurilor",
+          "buna insuflare a monahilor"
         ],
-        refren: "Iisuse, Fiul lui Dumnezeu, miluiește-mă!"
+        "refren": "Bucură-te, Părinte Antonie, de Dumnezeu cugetătorule!"
       },
       {
-        tip: "condac", nr: 11,
-        text: "Cântare cu totul de umilință aduc Ție eu, nevrednicul, și strig Ție ca și cananeeanca: Iisuse, miluiește-mă, că nu am fiică, ci trup, care cumplit este stăpânit de diavolul, cu patimi și cu urgie fiind aprins, și dă-mi tămăduire mie, celui ce-Ți cânt: Aliluia!"
+        "tip": "condac",
+        "nr": 11,
+        "text": "Nevoind Valachie, cel de cele arienești cugetător, a cunoaște pe Fiul, Dumnezeu preaînalt, te-ai pornit împotriva lui, Antonie; și el, ticălosul, luând cele după faptele sale, de cal a fost ucis, iar tu lui Dumnezeu cântai: Aliluia!"
       },
       {
-        tip: "icos", nr: 11,
-        intro: "Luminătorul cel primitor de lumină al celor dintru întunericul necunoștinței, Pavel, care mai înainte Te izgonea pe Tine, socotind puterea glasului cel de Dumnezeu înțelepțitor, și-a limpezit pornirea cea rea a sufletului. Așa și mie luminează-mi luminile cele întunecate ale sufletului, ale celui ce grăiesc Ție:",
-        bucurate: [
-          "Iisuse, Împăratul meu cel preatare",
-          "Iisuse, Dumnezeul meu cel preaputernic",
-          "Iisuse, Domnul meu cel fără de moarte",
-          "Iisuse, Ziditorul meu cel preaslăvit",
-          "Iisuse, Îndreptătorul meu cel preabun",
-          "Iisuse, Păstorul meu cel preaîndurat",
-          "Iisuse, Stăpânul meu cel preamilostiv",
-          "Iisuse, Mântuitorul meu cel preamilosârd",
-          "Iisuse, luminează-mi mintea cea întunecată cu patimile",
-          "Iisuse, tămăduiește-mi trupul cel rănit cu păcatele",
-          "Iisuse, curățește-mi mintea de gândurile cele deșarte",
-          "Iisuse, păzește-mi inima de poftele cele viclene"
+        "tip": "icos",
+        "nr": 11,
+        "intro": "Lumina, trimisă de Luminătorul cel mare, arătându-te tu Antonie, ai luminat pe toți, și pe ucenicii tăi sfătuind, mai înainte le-ai arătat mutarea ta din viață de aici; iar ei, de întristare fiind cuprinși, cântau ție acestea:",
+        "bucurate": [
+          "mângâierea noastră",
+          "încurajarea tuturor",
+          "hrănitorul celor flămânzi de cele cerești",
+          "sfătuitorul celor doritori de cele sufletești",
+          "că ieșirea ta mai înainte ai cunoscut-o, de Dumnezeu purtătorule",
+          "următorule al înțelepțiților de Dumnezeu apostoli",
+          "prin care pământenii se laudă",
+          "prin care înțelepții se apără",
+          "desfătarea slavei tale celei negrăite",
+          "amintirea hranei tale celei sfinte",
+          "că învățăturile tale cu drag le primim",
+          "că ne mântuim sufletul urmându-ți sfaturile"
         ],
-        refren: "Iisuse, Fiul lui Dumnezeu, miluiește-mă!"
+        "refren": "Bucură-te, Părinte Antonie, de Dumnezeu cugetătorule!"
       },
       {
-        tip: "condac", nr: 12,
-        text: "Dăruiește-mi har, Dezlegătorule al tuturor datoriilor, Iisuse, și mă primește pe mine, cel ce mă pocăiesc, precum ai primit pe Petru, care s-a lepădat de Tine, și mă cheamă pe mine, trândavul, precum de demult pe Pavel, care Te prigonea pe Tine, și mă auzi pe mine, cel care-Ți cânt Ție: Aliluia!"
+        "tip": "condac",
+        "nr": 12,
+        "text": "De mare dar s-a învrednicit marele Atanasie, luând amândouă hainele tale, de Dumnezeu purtătorule Antonie, și scriind dumnezeiasca viață a ta, cea de una sută și cinci ani, cânta lui Dumnezeu: Aliluia!"
       },
       {
-        tip: "icos", nr: 12,
-        intro: "Slăvind întruparea Ta, Te lăudăm toți și credem cu Toma că Domn și Dumnezeu ești, Cel ce șezi de-a dreapta Tatălui, și vei judeca viii și morții. Atunci mă învrednicește șederii celei de-a dreapta pe mine, cel ce zic:",
-        bucurate: [
-          "Iisuse, Împăratul cel mai înainte de veci, mântuiește-mă",
-          "Iisuse, floarea cea cu bun miros, bine înmiresmează-mă",
-          "Iisuse, căldura cea iubită, încălzește-mă",
-          "Iisuse, acoperământul cel mai înainte de veci, acoperă-mă",
-          "Iisuse, veșmântul cel luminat, înfrumusețează-mă",
-          "Iisuse, mărgăritarul cel cinstit, luminează-mă",
-          "Iisuse, piatra cea scumpă, strălucește peste mine",
-          "Iisuse, soarele dreptății, luminează-mă",
-          "Iisuse, lumina cea sfântă, strălucește peste mine",
-          "Iisuse, de durerile cele sufletești și trupești izbăvește-mă",
-          "Iisuse, scoate-mă din mâna potrivnicului",
-          "Iisuse, izbăvește-mă de focul cel nestins și de alte chinuri veșnice"
+        "tip": "icos",
+        "nr": 12,
+        "intro": "Cânți împreună cu îngerii ca mai înainte cu oamenii, în ceruri veselindu-te, fericite, cântarea cea întreit-sfântă lui Dumnezeu, pe Care roagă-L pentru cei ce te cinstim pe tine, Antonie, și cu dragoste cântăm acestea:",
+        "bucurate": [
+          "locuitorul celor cerești",
+          "împodobitorul celor pământești",
+          "cel ce împreună petreci cu îngerii",
+          "împreună-vorbitorule cu sfinții",
+          "pururea lăudătorule al Preasfintei Treimi",
+          "fierbinte mijlocitorule al tuturor către Dumnezeu",
+          "povățuitorul și sprijinitorul celor ce te laudă pe tine",
+          "strălucitule păstor și învățătorule al ucenicilor tăi",
+          "înaintestătător al tuturor cuvioșilor",
+          "preacinstitule conducător al celor necăsătoriți",
+          "cel ce ești cald mijlocitor al celor ce poartă numele tău",
+          "mare apărător al celor ce te cinstesc pe tine"
         ],
-        refren: "Iisuse, Fiul lui Dumnezeu, miluiește-mă!"
+        "refren": "Bucură-te, Părinte Antonie, de Dumnezeu cugetătorule!"
       },
       {
-        tip: "condac", nr: 13,
-        text: "O, preadulce și întru tot îndurate Iisuse Hristoase, Fiul lui Dumnezeu, primește acum această puțină rugăciune a noastră, precum ai primit cei doi bani ai văduvei, și păzește moștenirea Ta de vrăjmașii cei văzuți și de cei nevăzuți, de venirea altor neamuri asupra noastră, de neputințe și de foamete, de toate supărările și rănile cele aducătoare de moarte, și din chinurile cele viitoare scoate-ne pe toți, care cântăm Ție: Aliluia! (Acest Condac se zice de trei ori)"
-      },
-      {
-        tip: "rugaciune",
-        titlu: "Rugăciune către Domnul nostru Iisus Hristos (alcătuită de Sfântul Isaac Sirul)",
-        text: "Doamne, Iisuse Hristoase, Dumnezeul nostru, Care ai plâns pentru Lazăr și lacrimi de întristare și de milostivire ai vărsat pentru dânsul, primește lacrimile mele. Cu patimile Tale, vindecă patimile mele. Cu rănile Tale, tămăduiește rănile mele. Cu Sângele Tău, curățește sângele meu și amestecă în trupul meu mireasma trupului Tău cel de viață făcător. Fierea cu care vrăjmașii Te-au adăpat să îndulcească amărăciunea cu care potrivnicul m-a adăpat. Trupul Tău întins pe Cruce să întindă către Tine mintea mea, cea trasă jos de diavoli. Capul Tău, pe care l-ai aplecat pe Cruce, să înalțe capul meu cel pălmuit de potrivnici. Preasfintele Tale mâini, pironite de cei fără de lege pe Cruce, să mă tragă spre Tine din prăpastia pierzării, precum a făgăduit preasfântă gura Ta. Fața Ta, cea batjocorită cu pălmuiri și cu scuipări, să umple de strălucire fața mea cea întinată în fărădelegi. Duhul Tău, pe care l-ai încredințat Tatălui când erai pe Cruce, să mă povățuiască spre Tine, prin harul Tău.\n\nNu am inimă plină de durere ca să Te caut. Nu am pocăința, nici umilința care întorc pe fii la moștenirea lor. Nu am lacrimi mângâietoare, Stăpâne. S-a întunecat mintea mea cu cele lumești și nu poate să caute spre Tine cu durere. S-a răcit inima mea de atâtea ispite și nu poate să se înfierbânte cu lacrimile dragostei celei pentru Tine. Ci Tu, Doamne Iisuse Hristoase, Dumnezeule, Vistieria bunătăților, dăruiește-mi pocăință neștirbită și inimă îndurerată, ca să pornesc cu tot sufletul în căutarea Ta; căci fără de Tine mă voi înstrăina de tot binele. Dă-mi așadar, Bunule, harul Tău. Tatăl, Care Te-a născut din sânurile Sale fără de ani și mai înainte de veci, să înnoiască în mine închipuirea icoanei Tale. Te-am părăsit, Doamne; să nu mă părăsești. Am ieșit de la Tine; ieși în căutarea mea. Du-mă la pășunea Ta cea duhovnicească. Numără-mă între oile turmei Tale preaalese. Hrănește-mă împreună cu ele din verdeața dumnezeieștilor Tale Taine. Căci inima lor curată este sălașul Tău și se vede într-însa strălucirea descoperirilor Tale. Strălucirea Ta este mângâierea și odihna celor ce s-au ostenit pentru Tine în necazuri și în toate felurile de chinuri. Acestei străluciri mă învrednicește și pe mine, nevrednicul, cu harul și cu iubirea de oameni a Mântuitorului nostru Iisus Hristos, în vecii vecilor. Amin."
-      }
-    ]
-  },
-
-  // ═══════════════════════════════════════════════════════════════
-  // 3. ACATISTUL SFÂNTULUI IERARH NICOLAE
-  // ═══════════════════════════════════════════════════════════════
-  "sfantul-nicolae": {
-    slug: "sfantul-nicolae",
-    titlu: "Acatistul Sfântului Ierarh Nicolae",
-    titluScurt: "Acatistul Sfântului Nicolae",
-    icon: "⚓",
-    refren: "Bucură-te, Sfinte Ierarhe Nicolae, mare făcător de minuni!",
-    descriere: "Ocrotitorul săracilor, copiilor și călătorilor. Se citește pe 6 și 19 decembrie, și oricând în nevoie.",
-    metaDescription: "Acatistul Sfântului Ierarh Nicolae — text integral autentic BOR. Toate cele 13 Condace și 12 Icoase cu rugăciunea finală. Sursa Doxologia.",
-    sectiuni: [
-      {
-        tip: "condac", nr: 1,
-        text: "Cel care verși mir de mult preț la toată lumea, și mie, celui nevrednic și mai mult decât toți păcătos, dăruiește-mi ca să-ți aduc ție cântare, Părinte Nicolae. Tu, ca acela care ai îndrăznire către Dumnezeu, slobozește-mă din toate necazurile, ca să cânt ție: Bucură-te, Sfinte Ierarhe Nicolae, mare făcător de minuni!"
-      },
-      {
-        tip: "icos", nr: 1,
-        intro: "Arătatu-te-ai în vis împăratului celui cinstitor de Dumnezeu și pentru moartea voievozilor acelora l-ai îngrozit pe el, și degrab ascultând de porunca ta, Nicolae, a poruncit ca să-i elibereze pe dânșii. Pentru aceea, ei au fost cuprinși de bucurie și de frică, iar eu cu dânșii grăiesc ție, Sfinte Nicolae:",
-        bucurate: [
-          "capul cel sfințit",
-          "cel care ai sfărâmat capul cel diavolesc prin rugăciunile tale",
-          "slujitorule al Împăratului tuturor",
-          "ajutătorul celor credincioși",
-          "întărirea Ortodoxiei",
-          "pierzătorul celor fără de lege",
-          "cel care ești insuflat cu suflarea Duhului Sfânt",
-          "cel care ai pierdut viforul mulțimii zeilor",
-          "cel care ești dimpreună vorbitor cu îngerii",
-          "izgonitorul demonilor",
-          "glasul dumnezeieștilor cuvinte",
-          "cel care ai astupat gurile ereticilor"
-        ],
-        refren: "Bucură-te, Sfinte Ierarhe Nicolae, mare făcător de minuni!"
-      },
-      {
-        tip: "condac", nr: 2,
-        text: "Văzând sfântul pe cei trei bărbați osândiți la moarte pe nedrept, a alergat degrab la locul de osândă și, oprindu-l pe cel ce voia să-i taie cu sabia, i-a slobozit pe ei din moarte. Drept aceea, și noi, cei izbăviți din cursele morții, cu mulțumire cântăm lui Dumnezeu: Aliluia!"
-      },
-      {
-        tip: "icos", nr: 2,
-        intro: "Înțelegând Sfântul Nicolae că trei fecioare sunt în primejdie de a cădea în păcat din pricina sărăciei tatălui lor, a aruncat noaptea pe fereastră pungi cu aur, izbăvindu-le pe ele de rușine. Drept aceea, cu mulțumire grăim ție:",
-        bucurate: [
-          "cel care ai dăruit bogăție celor săraci",
-          "cel care ai acoperit rușinea fecioarelor",
-          "cel care ai izbăvit pe cei nedreptățiți",
-          "cel care ai apărat pe cei nevinovați",
-          "cel care ești grabnic ajutător în nevoi",
-          "cel care ești scut al celor asupriți",
-          "cel care ești mângâierea celor întristați",
-          "cel care ești bucuria celor necăjiți",
-          "cel care ești lumina celor din întuneric",
-          "cel care ești nădejdea celor deznădăjduiți",
-          "cel care ești tăria celor slabi",
-          "cel care ești vindecătorul celor bolnavi"
-        ],
-        refren: "Bucură-te, Sfinte Ierarhe Nicolae, mare făcător de minuni!"
-      },
-      {
-        tip: "condac", nr: 3,
-        text: "Puterea lui Dumnezeu lucrând prin tine, Sfinte Nicolae, ai săvârșit minuni nenumărate: ai potolit furtunile pe mare, ai izbăvit pe cei înecați, ai tămăduit pe cei bolnavi și ai înviat pe cei morți. Drept aceea, cu mulțumire cântăm lui Dumnezeu: Aliluia!"
-      },
-      {
-        tip: "icos", nr: 3,
-        intro: "Având râvnă pentru dreapta credință la Sinodul din Niceea, ai pălmuit pe Arie cel hulitor și ai apărat dogma Sfintei Treimi. Drept aceea, cu evlavie grăim ție:",
-        bucurate: [
-          "apărătorul dreptei credințe",
-          "cel care ai rușinat eresul lui Arie",
-          "stâlpul Ortodoxiei",
-          "cel care ai strălucit la Sinodul din Niceea",
-          "cel care ai apărat dumnezeirea lui Hristos",
-          "cel care ai mărturisit Sfânta Treime",
-          "cel care ai izgonit erezia din Biserică",
-          "cel care ai întărit credința dreptmăritorilor",
-          "cel care ești pildă de râvnă pentru Dumnezeu",
-          "cel care ești model al ierarhilor",
-          "cel care ești lauda Bisericii Ortodoxe",
-          "cel care ești cununa arhiereilor"
-        ],
-        refren: "Bucură-te, Sfinte Ierarhe Nicolae, mare făcător de minuni!"
-      },
-      {
-        tip: "condac", nr: 4,
-        text: "Vifor de ispite și de necazuri bântuie sufletele noastre, Sfinte Nicolae, dar tu, ca un bun cârmaci, ne povățuiești la limanul mântuirii. Drept aceea, cu mulțumire cântăm lui Dumnezeu: Aliluia!"
-      },
-      {
-        tip: "icos", nr: 4,
-        intro: "Auzind credincioșii de minunile tale, Sfinte Nicolae, aleargă la tine cu credință și primesc ajutor grabnic. Drept aceea, cu evlavie grăim ție:",
-        bucurate: [
-          "cel care asculți rugăciunile celor ce te cheamă",
-          "cel care ești grabnic în ajutor",
-          "cel care ești aproape de cei ce te caută",
-          "cel care ești ocrotitorul copiilor",
-          "cel care ești apărătorul fecioarelor",
-          "cel care ești ajutătorul văduvelor",
-          "cel care ești sprijinul orfanilor",
-          "cel care ești mângâierea bătrânilor",
-          "cel care ești tămăduitorul bolnavilor",
-          "cel care ești izbăvitorul celor din primejdie",
-          "cel care ești liman al celor naufragiați",
-          "cel care ești stea călăuzitoare pe mare"
-        ],
-        refren: "Bucură-te, Sfinte Ierarhe Nicolae, mare făcător de minuni!"
-      },
-      {
-        tip: "condac", nr: 5,
-        text: "Stea dumnezeiască ai fost în lume, Sfinte Nicolae, luminând calea mântuirii tuturor celor ce alergau la tine. Drept aceea, cu mulțumire cântăm lui Dumnezeu: Aliluia!"
-      },
-      {
-        tip: "icos", nr: 5,
-        intro: "Văzând credincioșii minunile tale, Sfinte Nicolae, se minunează și slăvesc pe Dumnezeu. Drept aceea, cu evlavie grăim ție:",
-        bucurate: [
-          "cel care ai strălucit ca soarele în Mira Lichiei",
-          "cel care ai luminat toată lumea cu minunile tale",
-          "cel care ai hrănit pe cei flămânzi în vreme de foamete",
-          "cel care ai potolit furtuna pe mare cu rugăciunea ta",
-          "cel care ai izbăvit pe cei înecați din adâncul mării",
-          "cel care ai tămăduit pe cei bolnavi cu atingerea ta",
-          "cel care ai alungat demonii cu puterea lui Dumnezeu",
-          "cel care ai înviat pe cei morți prin rugăciunile tale",
-          "cel care ai apărat pe nedreptățiți înaintea judecătorilor",
-          "cel care ai dăruit bogăție celor lipsiți",
-          "cel care ai mângâiat pe cei întristați",
-          "cel care ai adus bucurie celor deznădăjduiți"
-        ],
-        refren: "Bucură-te, Sfinte Ierarhe Nicolae, mare făcător de minuni!"
-      },
-      {
-        tip: "condac", nr: 6,
-        text: "Propovăduitor al dreptei credințe și apărător al celor nedreptățiți te-ai arătat, Sfinte Nicolae, și cu puterea lui Dumnezeu ai săvârșit minuni nenumărate. Drept aceea, cu mulțumire cântăm lui Dumnezeu: Aliluia!"
-      },
-      {
-        tip: "icos", nr: 6,
-        intro: "Strălucind cu viața ta sfântă, Sfinte Nicolae, ai fost pildă de virtute pentru toți credincioșii. Drept aceea, cu evlavie grăim ție:",
-        bucurate: [
-          "cel care ai trăit în curăție și sfințenie",
-          "cel care ai postit și te-ai rugat neîncetat",
-          "cel care ai miluit pe săraci din averea ta",
-          "cel care ai îngrijit de turma ta cu dragoste",
-          "cel care ai apărat pe cei nedreptățiți cu curaj",
-          "cel care ai mustrat pe cei nedrepți fără frică",
-          "cel care ai iertat pe cei ce te-au greșit",
-          "cel care ai iubit pe vrăjmașii tăi",
-          "cel care ai răbdat cu bucurie necazurile",
-          "cel care ai mulțumit lui Dumnezeu în toate",
-          "cel care ai trăit ca un înger în trup",
-          "cel care ești acum în ceruri lângă Dumnezeu"
-        ],
-        refren: "Bucură-te, Sfinte Ierarhe Nicolae, mare făcător de minuni!"
-      },
-      {
-        tip: "condac", nr: 7,
-        text: "Vrând Dumnezeu să arate lumii un mare sfânt, te-a ales pe tine, Nicolae, din pântecele maicii tale și te-a sfințit cu harul Său. Drept aceea, cu mulțumire cântăm lui Dumnezeu: Aliluia!"
-      },
-      {
-        tip: "icos", nr: 7,
-        intro: "Arătatu-te-ai vrednic de arhierie, Sfinte Nicolae, prin viața ta sfântă și prin minunile tale. Drept aceea, cu evlavie grăim ție:",
-        bucurate: [
-          "cel care ai primit harul arhieriei de la Dumnezeu",
-          "cel care ai păstorit turma lui Hristos cu dragoste",
-          "cel care ai propovăduit Evanghelia cu râvnă",
-          "cel care ai săvârșit Sfânta Liturghie cu evlavie",
-          "cel care ai împărțit Sfintele Taine cu sfințenie",
-          "cel care ai tămăduit sufletele cu cuvântul tău",
-          "cel care ai vindecat trupurile cu rugăciunea ta",
-          "cel care ai alungat demonii cu puterea lui Hristos",
-          "cel care ai apărat credința de eresuri",
-          "cel care ai întărit pe credincioși în dreapta credință",
-          "cel care ai murit ca un sfânt și ai fost primit în ceruri",
-          "cel care mijlocești pentru noi înaintea lui Dumnezeu"
-        ],
-        refren: "Bucură-te, Sfinte Ierarhe Nicolae, mare făcător de minuni!"
-      },
-      {
-        tip: "condac", nr: 8,
-        text: "Văzând minunile tale, Sfinte Nicolae, credincioșii se minunează și slăvesc pe Dumnezeu Cel ce te-a învrednicit de atâta har. Drept aceea, cu mulțumire cântăm lui Dumnezeu: Aliluia!"
-      },
-      {
-        tip: "icos", nr: 8,
-        intro: "Cu inima plină de evlavie ne îndreptăm către tine, Sfinte Nicolae, cerând ajutorul tău. Drept aceea, cu umilință grăim ție:",
-        bucurate: [
-          "cel care auzi rugăciunile noastre",
-          "cel care cunoști nevoile noastre",
-          "cel care mijlocești pentru noi la Dumnezeu",
-          "cel care ne aperi de ispitele diavolului",
-          "cel care ne ferești de primejdiile vieții",
-          "cel care ne tămăduiești bolile trupului",
-          "cel care ne vindeci rănile sufletului",
-          "cel care ne mângâi în întristările noastre",
-          "cel care ne dai putere în slăbiciunile noastre",
-          "cel care ne luminezi în nedumeririle noastre",
-          "cel care ne povățuiești pe calea mântuirii",
-          "cel care ne vei ajuta și la judecata lui Dumnezeu"
-        ],
-        refren: "Bucură-te, Sfinte Ierarhe Nicolae, mare făcător de minuni!"
-      },
-      {
-        tip: "condac", nr: 9,
-        text: "Toată firea îngerească se bucură de sfințenia ta, Sfinte Nicolae, și noi, păcătoșii, alergăm la tine cu credință, cerând ajutorul tău. Drept aceea, cu mulțumire cântăm lui Dumnezeu: Aliluia!"
-      },
-      {
-        tip: "icos", nr: 9,
-        intro: "Pe cei ce te cheamă cu credință, Sfinte Nicolae, nu-i lăsa fără ajutor, ci ascultă rugăciunile noastre și mijlocește pentru noi la Dumnezeu. Drept aceea, cu evlavie grăim ție:",
-        bucurate: [
-          "cel care ești grabnic ajutător al celor în nevoi",
-          "cel care ești apărătorul celor nedreptățiți",
-          "cel care ești ocrotitorul celor săraci",
-          "cel care ești mângâierea celor întristați",
-          "cel care ești tămăduitorul celor bolnavi",
-          "cel care ești izbăvitorul celor din primejdie",
-          "cel care ești liman al celor naufragiați",
-          "cel care ești povățuitorul celor rătăciți",
-          "cel care ești lumina celor din întuneric",
-          "cel care ești nădejdea celor deznădăjduiți",
-          "cel care ești bucuria celor necăjiți",
-          "cel care ești cununa celor ce te iubesc"
-        ],
-        refren: "Bucură-te, Sfinte Ierarhe Nicolae, mare făcător de minuni!"
-      },
-      {
-        tip: "condac", nr: 10,
-        text: "Vrând să mântuiești pe cei ce alergau la tine, Sfinte Nicolae, ai săvârșit minuni nenumărate și ai ajutat pe toți cei ce te chemau cu credință. Drept aceea, cu mulțumire cântăm lui Dumnezeu: Aliluia!"
-      },
-      {
-        tip: "icos", nr: 10,
-        intro: "Zid de apărare ești pentru credincioși, Sfinte Nicolae, și toți cei ce aleargă la tine primesc ajutor. Drept aceea, cu evlavie grăim ție:",
-        bucurate: [
-          "mai înainte arătătorul dreptății",
-          "întunecătorul nedreptății",
-          "de Dumnezeu încununate ierarhe",
-          "cel care îngrădești gurile celor hulitori de Dumnezeu",
-          "lumina cea aprinsă cu dumnezeiască văpaie",
-          "că ai stins văpaia cea diavolească",
-          "aur de Dumnezeu lămurit",
-          "că ai afundat pe satana ca pe plumb, în adânc",
-          "mărgăritar mult-luminos",
-          "cel care ești mai mare între preoți",
-          "cel care ești întâistătător pe scaunul Mirelor",
-          "cel care ești lumină înaltă"
-        ],
-        refren: "Bucură-te, Sfinte Ierarhe Nicolae, mare făcător de minuni!"
-      },
-      {
-        tip: "condac", nr: 11,
-        text: "Tu ești păstorul cel bun, Nicolae, că pe turma ta o povățuiești către pășunea cea duhovnicească și din izvorul Raiului o adapi pe ea. Pentru aceea, împreună cu tine cântăm lui Dumnezeu: Aliluia!"
-      },
-      {
-        tip: "icos", nr: 11,
-        intro: "Pom al Raiului fiind, fericite, că ai stâlpări de rugăciuni neîncetate către Dumnezeu, dă-ne nouă sub umbra acelora totdeauna a ne umbri, ca să grăim ție:",
-        bucurate: [
-          "viețuitorule în lăcașul Celui Preaînalt",
-          "cel care ai înecat pe fiii diavolești",
-          "păzitorul rânduielii tale",
-          "mitropolite",
-          "că ai rușinat basmul eresurilor lui Arie",
-          "maica mulțimii popoarelor pământului",
-          "rana mulțimii diavolilor",
-          "părinte și învățătorule",
-          "că pe dascălul eresurilor l-ai rușinat",
-          "cel care ai cinstit căruntețile, înfrumusețându-le cu înțelepciune duhovnicească",
-          "cel care ai rușinat căruntețile lui Arie cele urâte",
-          "că prin tine ne-am învățat a ne închina Ziditorului în Treime"
-        ],
-        refren: "Bucură-te, Sfinte Ierarhe Nicolae, mare făcător de minuni!"
-      },
-      {
-        tip: "condac", nr: 12,
-        text: "Înțelepciunea ta cea întru tot cinstită pe Arie cel rătăcit l-a rușinat și mintea ta a stricat mulțimea zeilor. Mântuiește și sufletele noastre cele rătăcite și ne învață a cânta cu tine lui Dumnezeu: Aliluia!"
-      },
-      {
-        tip: "icos", nr: 12,
-        intro: "Cu inima ne-am înspăimântat, cu sufletul ne-am tulburat, cu limba nu pricepem ce să grăim, fără numai acestea:",
-        bucurate: [
-          "cel care ești mai mare între preoți",
-          "cel care ești întâistătător pe scaunul Mirelor",
-          "împreună-șezătorule pe scaun cu Apostolii",
-          "cel care ești lumină înaltă",
-          "cel care ai surpat înălțările gândurilor celor diavolești ale lui Arie cel bârfitor",
-          "rădăcina dumnezeiescului pom",
-          "că ai tăiat rădăcina eresurilor satanei",
-          "pomul cel sădit de îngeri",
-          "cel care ai încuiat pe îngerul satanei întru adânc",
-          "liman lin al celor învăluiți",
-          "bun cârmuitor al corabiei celei duhovnicești",
-          "că prin tine ne învrednicim de viața cea fără de sfârșit"
-        ],
-        refren: "Bucură-te, Sfinte Ierarhe Nicolae, mare făcător de minuni!"
-      },
-      {
-        tip: "condac", nr: 13,
-        text: "O, preaminunate părinte Nicolae, plângem și alergăm către al tău sprijin, aducând ție acum această puțină rugăciune, ca să ne izbăvești de chinul cel de veci prin rugăciunile tale, ierarhe prealăudate, și să ne învrednicești veșnicei Împărății, ca dimpreună cu tine să cântăm cântarea lui Dumnezeu: Aliluia! (acest condac de zice de trei ori)"
-      },
-      {
-        tip: "rugaciune",
-        titlu: "Rugăciune către Sfântul Ierarh Nicolae",
-        text: "O, preabunule părinte Nicolae, păstorul și învățătorul celor care aleargă cu credință către a ta folosire și cu fierbinte rugăciune te cheamă pe tine, sârguiește degrab a le ajuta. Izbăvește turma lui Hristos de lupii ce o răpesc pe ea și toate părțile creștinești le ocrotește și le păzește prin sfintele tale rugăciuni, de gâlcevile lumești, de cutremur, de venirea altor neamuri, de robie și de războiul cel dintre noi, de foamete, de potop, de sabie, de boală și de moarte grabnică.\n\nȘi precum ai miluit pe cei trei bărbați care ședeau în temniță și i-ai izbăvit pe ei de mânia împăratului și de tăierea sabiei, așa ne miluiește și pe noi, cei care cu mintea, cu cuvântul și cu lucrul suntem întru întunericul păcatelor, și ne izbăvește de mânia lui Dumnezeu și de chinul cel veșnic, pentru ca prin mijlocirea ta, cu ajutorul, cu mila și cu harul lui Hristos, Dumnezeu să ne dea viață liniștită și fără de păcat, ca să viețuim în veacul acesta, și de partea stării de-a stânga să ne izbăvească și de partea de-a dreapta, împreună cu toți sfinții, să ne învrednicim. Amin."
+        "tip": "condac",
+        "nr": 13,
+        "text": "O, preaînțelepte de Dumnezeu purtătorule Antonie, căpetenia părinților și slavă cuvioșilor, primește de la noi aceste laude ce cu tot sufletul le aducem ție și roagă-te lui Dumnezeu pentru noi cei ce cântăm: Aliluia! <em>(Acest condac se zice de trei ori)</em><br><br><em>Apoi se zice iarăși Icosul 1 și Condacul 1.</em>"
       }
     ]
   }
