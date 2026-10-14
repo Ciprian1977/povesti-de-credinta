@@ -186,7 +186,7 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
       return {
         ...baza,
         // toți abonații, cu excepția celor care au oprit explicit notificarea de dimineață
-        filters: [{ field: 'tag', key: 'dimineata', relation: 'not_exists' }, { operator: 'OR' }, { field: 'tag', key: 'dimineata', relation: '=', value: 'true' }, { operator: 'OR' }, { field: 'tag', key: 'dimineata', relation: '=', value: '1' }],
+        filters: filtrePornit('dimineata'),
         headings: { ro: `☀️ ${sfant}`, en: `☀️ ${sfant}` },
         contents: {
           ro: badge
@@ -199,7 +199,7 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
     case 'pranz':
       return {
         ...baza,
-        filters: [{ field: 'tag', key: 'pranz', relation: '=', value: 'true' }, { operator: 'OR' }, { field: 'tag', key: 'pranz', relation: '=', value: '1' }],
+        filters: filtrePornit('pranz'),
         headings: { ro: '🍽️ Rugăciunea de la prânz' },
         contents: {
           ro: 'O clipă de mulțumire la mijlocul zilei. „Toate către Tine așteaptă, ca să le dai lor hrană la bună vreme." Apasă pentru rugăciunea mesei.'
@@ -210,7 +210,7 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
     case 'seara':
       return {
         ...baza,
-        filters: [{ field: 'tag', key: 'seara', relation: '=', value: 'true' }, { operator: 'OR' }, { field: 'tag', key: 'seara', relation: '=', value: '1' }],
+        filters: filtrePornit('seara'),
         headings: { ro: '🌙 Rugăciunea de seară' },
         contents: {
           ro: 'Liniștea nopții. Înainte de culcare, încredințează ziua lui Dumnezeu prin rugăciunile din Ceaslov. Apasă pentru rânduiala serii.'
@@ -222,7 +222,7 @@ function construistePayload(segment, dataISO, continut, oraActuala) {
       if (ALERTE_POST_OPRITE) throw new Error('Segmentul alerte_post este oprit provizoriu.');
       return {
         ...baza,
-        filters: [{ field: 'tag', key: 'alerte_post', relation: '=', value: 'true' }, { operator: 'OR' }, { field: 'tag', key: 'alerte_post', relation: '=', value: '1' }],
+        filters: filtrePornit('alerte_post'),
         headings: { ro: badge ? `🕯️ ${badge}` : '🕯️ Calendar ortodox' },
         contents: {
           ro: badge
@@ -251,18 +251,31 @@ function cheieUnica(text) { // UUID determinist (v5-like) din text
   const h = require('crypto').createHash('sha1').update('povestidecredinta|' + text).digest('hex');
   return `${h.slice(0, 8)}-${h.slice(8, 12)}-5${h.slice(13, 16)}-${((parseInt(h[16], 16) & 3) | 8).toString(16)}${h.slice(17, 20)}-${h.slice(20, 32)}`;
 }
+// Tag-uri (din cauza limitei de 6 tag-uri/abonat a planului gratuit OneSignal):
+//   format nou:  <segment> = "HH:MM" (pornit, la ora aleasă) | "false" (oprit)
+//   format vechi: <segment> = "true" + <segment>_ora = "HH:MM" (păstrat pentru compatibilitate)
 const ACTIV = (seg) => [{ field: 'tag', key: seg, relation: '=', value: 'true' }];
 
-// Filtru OneSignal: abonații cu segmentul pornit ȘI ora aleasă = `ora`.
+// Filtru OneSignal: abonații cu segmentul pornit la ora `ora`.
 // Pentru ora implicită intră și cei care nu au ales nicio oră. La dimineață intră și cei fără niciun tag.
 function filtrePentruOra(seg, ora) {
-  const grupe = [[...ACTIV(seg), { field: 'tag', key: `${seg}_ora`, relation: '=', value: ora }]];
+  const grupe = [
+    [{ field: 'tag', key: seg, relation: '=', value: ora }],
+    [...ACTIV(seg), { field: 'tag', key: `${seg}_ora`, relation: '=', value: ora }]
+  ];
   if (ora === ORE[seg].implicit) {
     grupe.push([...ACTIV(seg), { field: 'tag', key: `${seg}_ora`, relation: 'not_exists' }]);
     if (seg === 'dimineata') grupe.push([{ field: 'tag', key: 'dimineata', relation: 'not_exists' }]);
   }
   const f = [];
   grupe.forEach((g, i) => { if (i) f.push({ operator: 'OR' }); f.push(...g); });
+  return f;
+}
+
+// Filtru pentru trimiterea manuală ACUM: oricine are segmentul pornit, indiferent de oră.
+function filtrePornit(seg) {
+  const f = [{ field: 'tag', key: seg, relation: 'exists' }, { field: 'tag', key: seg, relation: '!=', value: 'false' }];
+  if (seg === 'dimineata') f.push({ operator: 'OR' }, { field: 'tag', key: 'dimineata', relation: 'not_exists' });
   return f;
 }
 
