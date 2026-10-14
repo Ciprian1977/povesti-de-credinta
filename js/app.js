@@ -1765,11 +1765,19 @@ async function cerePermisiuneNotificari() {
   return false;
 }
 
-async function sincronizeazaTag(cheie, valoare) {
-  const OS = await asteaptaOneSignal();
-  if (!OS) return;
-  try { OS.User.addTag(cheie, String(valoare)); } catch (e) { console.warn(`⚠️ Tag ${cheie}:`, e); }
+/* OneSignal (planul gratuit) acceptă cel mult 6 tag-uri pe abonat; o cerere cu mai multe e respinsă ÎNTREG.
+   De aceea fiecare notificare are UN singur tag: ora aleasă („06:30”) când e pornită, „false” când e oprită. */
+const ORE_IMPLICITE_NOTIF = { dimineata: '07:30', pranz: '13:00', seara: '21:30', alerte_post: '07:30' };
+function tagDinPreferinta(pref, s) {
+  return pref[s] ? String(pref[s + '_ora'] || ORE_IMPLICITE_NOTIF[s]) : 'false';
 }
+function preferintaDinTag(valoare, s) { // acceptă și formatul vechi („true” + „<segment>_ora”)
+  if (/^\d{2}:\d{2}$/.test(valoare || '')) return { activ: true, ora: valoare };
+  if (valoare === 'true' || valoare === '1') return { activ: true, ora: null };
+  return { activ: false, ora: null };
+}
+
+async function sincronizeazaTag() { return sincronizeazaToateTagurile(); }
 
 /** Trimite la OneSignal toate preferințele salvate pe acest dispozitiv (cu orele alese). */
 async function sincronizeazaToateTagurile() {
@@ -1777,24 +1785,31 @@ async function sincronizeazaToateTagurile() {
   if (!OS) return;
   let raw = null;
   try { raw = localStorage.getItem(PDC_NOTIF_KEY); } catch (e) {}
+  let existente = {};
+  try { existente = (OS.User.getTags && await OS.User.getTags()) || {}; } catch (e) {}
   if (!raw) {
     // Nimic salvat pe acest dispozitiv (ex. aplicația instalată pe iPhone are memorie separată de Safari):
     // nu ștergem abonările existente — le recuperăm din OneSignal.
-    try {
-      const tags = (OS.User.getTags && await OS.User.getTags()) || {};
-      if (SEGMENTE_NOTIF.some((s) => tags[s] === 'true')) {
-        const pref = { ...NOTIF_DEFAULTS };
-        SEGMENTE_NOTIF.forEach((s) => { pref[s] = tags[s] === 'true'; if (tags[s + '_ora']) pref[s + '_ora'] = tags[s + '_ora']; });
-        salveazaPreferinteNotif(pref);
-        if (document.getElementById('toggle-dimineata')) initSetariNotificari();
-      }
-    } catch (e) {}
+    if (SEGMENTE_NOTIF.some((s) => preferintaDinTag(existente[s], s).activ)) {
+      const pref = { ...NOTIF_DEFAULTS };
+      SEGMENTE_NOTIF.forEach((s) => {
+        const p = preferintaDinTag(existente[s], s);
+        pref[s] = p.activ;
+        if (p.ora) pref[s + '_ora'] = p.ora; else if (existente[s + '_ora']) pref[s + '_ora'] = existente[s + '_ora'];
+      });
+      salveazaPreferinteNotif(pref);
+      if (document.getElementById('toggle-dimineata')) initSetariNotificari();
+    }
     return;
   }
   const pref = getPreferinteNotif();
   const t = {};
-  SEGMENTE_NOTIF.forEach((s) => { t[s] = String(!!pref[s]); if (pref[s + '_ora']) t[s + '_ora'] = pref[s + '_ora']; });
-  try { OS.User.addTags(t); } catch (e) { console.warn('⚠️ Tag-uri:', e); }
+  SEGMENTE_NOTIF.forEach((s) => { t[s] = tagDinPreferinta(pref, s); });
+  try {
+    const vechi = Object.keys(existente).filter((k) => /_ora$/.test(k));
+    if (vechi.length && OS.User.removeTags) await OS.User.removeTags(vechi); // eliberăm locul ocupat de formatul vechi
+    if (SEGMENTE_NOTIF.some((s) => existente[s] !== t[s])) await OS.User.addTags(t);
+  } catch (e) { console.warn('⚠️ Tag-uri:', e); }
 }
 
 /** Comutatorul unei notificări: salvăm IMEDIAT, apoi cerem permisiunea dacă e nevoie. */
@@ -1835,8 +1850,7 @@ async function onToggleSchimbat(checkbox) {
   }
 
   // Sincronizarea cu OneSignal se face în fundal; dacă acum nu merge, se reface la următoarea deschidere
-  sincronizeazaTag(segment, activ);
-  if (pref[`${segment}_ora`]) sincronizeazaTag(`${segment}_ora`, pref[`${segment}_ora`]);
+  sincronizeazaToateTagurile();
 }
 
 /**
@@ -1898,7 +1912,8 @@ function onOraSchimbata(inputOra) {
   salveazaPreferinteNotif(pref);
   // Sincronizez ora cu OneSignal dacă segmentul este activ
   if (pref[segmentKey]) {
-    sincronizeazaTag(`${segmentKey}_ora`, inputOra.value);
+    sincronizeazaToateTagurile();
+    afiseazaMesajSetari(`✅ Salvat. Vei primi notificarea la ${inputOra.value}.`, 'succes');
   }
 }
 
@@ -1920,7 +1935,7 @@ async function stergeDefinitivID() {
     if (typeof OneSignal !== 'undefined') {
       await OneSignal.User.PushSubscription.optOut();
       // Ștergem și tag-urile pentru a fi siguri
-      await OneSignal.User.deleteTags(['dimineata', 'pranz', 'seara', 'dimineata_ora', 'pranz_ora', 'seara_ora', 'alerte_post', 'alerte_post_ora']);
+      try { await OneSignal.User.removeTags(['dimineata', 'pranz', 'seara', 'alerte_post', 'dimineata_ora', 'pranz_ora', 'seara_ora', 'alerte_post_ora']); } catch (e) {}
     }
 
     afiseazaMesajSetari('✅ Te-ai dezabonat cu succes. Datele de notificare au fost șterse.', 'succes');
@@ -1937,7 +1952,7 @@ async function onOraSearaSchimbata(input) {
   const pref = getPreferinteNotif();
   pref.seara_ora = ora;
   salveazaPreferinteNotif(pref);
-  await sincronizeazaTag('seara_ora', ora);
+  await sincronizeazaToateTagurile();
   if (pref.seara) {
     afiseazaMesajSetari(`🌙 Ora rugăciunii de seară a fost setată la ${ora}.`, 'succes');
   }
