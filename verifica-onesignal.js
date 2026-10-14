@@ -59,7 +59,7 @@ async function get(url, hdr = H) {
   log(`\n[D] Notificări OneSignal: HTTP ${n.status}, total=${n.j && n.j.total_count} | programate=${L.filter((x) => !x.completed_at && !x.canceled && (x.send_after || 0) > acum).length} | trimise=${L.filter((x) => x.completed_at).length} | anulate=${L.filter((x) => x.canceled).length}`);
   L.forEach((x) => {
     const t = ((x.headings || {}).ro || '') + ' | ' + ((x.contents || {}).ro || '') + ' | ' + (x.web_url || '');
-    log(`    ${x.id.slice(0, 8)} programat=${x.send_after ? new Date(x.send_after * 1000).toISOString().slice(0, 16) + 'Z' : '-'} trimis=${!!x.completed_at} anulat=${!!x.canceled} destinatari=${x.successful ?? '-'}/${x.remaining ?? '-'} | ${RX.test(t) ? '⚠️ CONȚINE post/dezlegare/cuvânt de folos' : 'text curat'} | ${t.slice(0, 160)}`);
+    log(`    ${x.id.slice(0, 8)} programat=${x.send_after ? new Date(x.send_after * 1000).toISOString().slice(0, 16) + 'Z' : '-'} trimis=${!!x.completed_at} anulat=${!!x.canceled} destinatari=${x.successful ?? '-'}/${x.remaining ?? '-'} | ${RX.test(t) ? '⚠️ CONȚINE post/dezlegare/cuvânt de folos' : 'text curat'} | ${t.slice(0, 90)} | filtre=${JSON.stringify(x.filters||x.included_segments||'').replace(/"field":"tag",|"relation":/g,'').slice(0,260)} | ok=${x.successful} err=${x.errored} fail=${x.failed} conv=${x.converted} recv=${JSON.stringify(x.platform_delivery_stats||{}).slice(0,160)}`);
   });
   fin();
 })();
