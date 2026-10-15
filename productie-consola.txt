@@ -1,0 +1,4 @@
+mobil /: H1='† Sf. Magdalena de la Mălainița; Sf. Sfințit Mc. Lucian, preotul din Antiohia' | text='Sfânta Magdalena de la Mălainița este o sfântă româncă contemporană, ale cărei sfinte moaște se află' | erori=[]
+mobil /sfintii-zilei: H1='† Sf. Magdalena de la Mălainița; Sf. Sfințit Mc. Lucian, preotul din Antiohia' | text='Sfânta Magdalena de la Mălainița este o sfântă româncă contemporană, ale cărei sfinte moaște se află' | erori=[]
+desktop /: H1='† Sf. Magdalena de la Mălainița; Sf. Sfințit Mc. Lucian, preotul din Antiohia' | text='Sfânta Magdalena de la Mălainița este o sfântă româncă contemporană, ale cărei sfinte moaște se află' | erori=[]
+desktop /sfintii-zilei: H1='† Sf. Magdalena de la Mălainița; Sf. Sfințit Mc. Lucian, preotul din Antiohia' | text='Sfânta Magdalena de la Mălainița este o sfântă româncă contemporană, ale cărei sfinte moaște se află' | erori=[]

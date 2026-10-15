@@ -1,0 +1,23 @@
+[A] Producție www.povestidecredinta.ro
+    /sw.js: HTTP 200 | live=a1f0ce9823 | main=a1f0ce9823 | IDENTIC cu main
+    /js/app.js: HTTP 200 | live=298154b49e | main=298154b49e | IDENTIC cu main
+    /js/min/app.min.js: HTTP 200 | live=e921ed945d | main=e921ed945d | IDENTIC cu main
+    /scripts/trimite-notificari.js: HTTP 404 | live=- | main=dd077bbbfc | 
+    /js/corectura-provizorie.js (PR #5): HTTP 200 (404 = PR #5 încă nepublicat)
+    antete: server=Vercel x-vercel-cache=HIT age=19
+
+[B] Abonamente (GET /players): HTTP 200, total=1
+    cod …123E39 tip=5 notification_types=undefined invalid=false sesiuni=24 creat=2026-10-11T05:25 activ=2026-10-15T10:52 sdk=160610 tags(vechiul API)={"seara":"19:00","pranz":"11:30","alerte_post":"07:30","dimineata":"08:30"}
+
+[C] Utilizatorul legat de fiecare abonament (noul API /users):
+    cod …123E39 → identitate HTTP 200; chei identitate: onesignal_id
+      utilizator …E61456: HTTP 200; tags={"alerte_post":"07:30","dimineata":"08:30","pranz":"11:30","seara":"19:00"}; nr_tag-uri=4; limbă=ro; fus=Europe/Berlin; prima_activitate=2026-10-11T05:25; ultima=2026-10-15T10:52
+      abonament …123E39 tip=ChromePush activ=true notification_types=1 sdk=160610 device=Linux armv81
+
+[D] Notificări OneSignal: HTTP 200, total=6 | programate=1 | trimise=5 | anulate=0
+    0ce58fb6 programat=2026-10-15T16:30Z trimis=false anulat=false destinatari=0/1 | text curat | 🌙 Rugăciunea de seară | Liniștea nopții. Înainte de culcare, încredințează ziua lui Dumne | filtre=[{"key":"seara","value":"19:30","="},{"operator":"OR"},{"key":"seara","value":"true","="},{"key":"seara_ora","value":"19:30","="}] | ok=0 err=0 fail=0 conv=0 recv={}
+    dcbad0b2 programat=2026-10-15T08:30Z trimis=true anulat=false destinatari=1/0 | text curat | 🍽️ Rugăciunea de la prânz | O clipă de mulțumire la mijlocul zilei. „Toate către Tine așt | filtre=[{"key":"pranz","value":"11:30","="},{"operator":"OR"},{"key":"pranz","value":"true","="},{"key":"pranz_ora","value":"11:30","="}] | ok=1 err=0 fail=0 conv=0 recv={"chrome_web_push":{"successful":1,"failed":0,"errored":0,"converted":0,"received":0,"suppressed":0}}
+    e75959b7 programat=2026-10-15T05:30Z trimis=true anulat=false destinatari=1/0 | text curat | ☀️ Sf. Magdalena de la Mălainița; Sf. Sfințit Mc. Lucian, preotul din Antiohia | Bună dimi | filtre=[{"key":"dimineata","value":"08:30","="},{"operator":"OR"},{"key":"dimineata","value":"true","="},{"key":"dimineata_ora","value":"08:30","="}] | ok=1 err=0 fail=0 conv=0 recv={"chrome_web_push":{"successful":1,"failed":0,"errored":0,"converted":0,"received":0,"suppressed":0}}
+    e5f9d62d programat=2026-10-14T04:30Z trimis=true anulat=false destinatari=1/0 | text curat | ☀️ Sf. Cuv. Parascheva de la Iași; Sf. Mc. Nazarie, Ghervasie, Protasie și Chelsie | Bună  | filtre=[{"key":"dimineata","value":"true","="},{"key":"dimineata_ora","value":"07:30","="},{"operator":"OR"},{"key":"dimineata","value":"true","="},{"key":"dimineata_ora","not_exists"},{"operator":"OR"},{"key":"dimineata","not_exists"}] | ok=1 err=0 fail=0 conv=1 recv={"chrome_web_push":{"successful":1,"failed":0,"errored":0,"converted":1,"received":0,"suppressed":0}}
+    8e7c08c3 programat=2026-10-13T04:30Z trimis=true anulat=false destinatari=1/0 | text curat | ☀️ Aducerea moaștelor Sfântului Apostol Andrei la Iași; Sf. Mc. Carp, Papil, Agatodor, Aga | filtre=[{"key":"dimineata","value":"true","="},{"key":"dimineata_ora","value":"07:30","="},{"operator":"OR"},{"key":"dimineata","value":"true","="},{"key":"dimineata_ora","not_exists"},{"operator":"OR"},{"key":"dimineata","not_exists"}] | ok=1 err=0 fail=0 conv=1 recv={"chrome_web_push":{"successful":1,"failed":0,"errored":0,"converted":1,"received":0,"suppressed":0}}
+    5929be98 programat=2026-10-12T04:30Z trimis=true anulat=false destinatari=1/0 | text curat | ☀️ Sf. Mc. Prov, Tarah și Andronic; Sf. Ier. Cosma, episcopul Maiumei | Bună dimineața! As | filtre=[{"key":"dimineata","value":"true","="},{"key":"dimineata_ora","value":"07:30","="},{"operator":"OR"},{"key":"dimineata","value":"true","="},{"key":"dimineata_ora","not_exists"},{"operator":"OR"},{"key":"dimineata","not_exists"}] | ok=1 err=0 fail=0 conv=1 recv={"chrome_web_push":{"successful":1,"failed":0,"errored":0,"converted":1,"received":0,"suppressed":0}}
