@@ -822,7 +822,8 @@ function actualizeazaMetaTaguri(path, d, azi, isDateSpecificRoute) {
 
   // Actualizează H1
   const h1Element = document.querySelector("h1");
-  if (h1Element) {
+  // Titlul cardului „Sfinții zilei” (#sfant-nume) rămâne numele sfinților, nu se înlocuiește cu „Calendar Ortodox - <data>”
+  if (h1Element && h1Element.id !== 'sfant-nume') {
     h1Element.textContent = titlu.split(" — ")[0].split(" | ")[0]; // Folosim doar prima parte a titlului pentru H1
   }
 
@@ -871,7 +872,9 @@ function afiseazaSfantulZilei() {
   if (sfantNumeEl) sfantNumeEl.textContent = date.sfant_nume || 'Sfântul zilei';
 
   if (sfantScurtEl) {
-    const textScurt = date.sinaxar || date.sfant_viata;
+    // viața sfântului începe direct cu sfântul; sinaxarul începe de obicei cu o frază generală („În ziua de …, Biserica …”)
+    const disponibil = (x) => x && !/nu este disponibil/.test(x);
+    const textScurt = (disponibil(date.sfant_viata) && date.sfant_viata) || (disponibil(date.sinaxar) && date.sinaxar);
     sfantScurtEl.textContent = textScurt
       ? textScurt.substring(0, 150) + '...'
       : `Prăznuit în calendarul ortodox pe ${azi.getDate()} ${LUNI_GENITIV[azi.getMonth()]} ${azi.getFullYear()}.`;
