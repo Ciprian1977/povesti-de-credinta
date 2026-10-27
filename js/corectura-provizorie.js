@@ -15,7 +15,7 @@
   var C = window.PDC_CORECTURA = { activ: true };
   // Datele zilei salvate pe telefon (localStorage, valabile toată ziua) au fost filtrate de versiunea de atunci a acestui
   // fișier. La o versiune nouă a corecturii, se șterg, ca pagina să ia din nou textul zilei, filtrat cu regulile noi.
-  var VERSIUNE = '8';
+  var VERSIUNE = '9';
   try {
     if (localStorage.getItem('pdc_corectura_v') !== VERSIUNE) {
       localStorage.removeItem('pdc_cache_v5');
@@ -38,7 +38,7 @@
   // Are prioritate la afișare față de numele din Supabase și față de calendarul static vechi.
   // Supabase NU se modifică; generarea zilnică NU este atinsă.
   var fetchOriginal = window.fetch ? window.fetch.bind(window) : null;
-  var URL_VALIDAT = '/data/calendar-validat-2026-t4.json?v=1';
+  var URL_VALIDAT = '/data/calendar-validat-2026-t4.json?v=2';
   var pValidat = null;
   function calendarValidat() {
     if (!pValidat) {
@@ -115,6 +115,12 @@
   function aplicaValidat(rand, V) {
     var z = rand && typeof rand === 'object' && rand.data_calendaristica && V[rand.data_calendaristica];
     if (!z) return;
+    // Text verificat (din Viețile Sfinților) pentru zilele unde textul generat are erori: îl înlocuiește pe cel generat
+    if (z.viata_verificata) {
+      var vv = z.viata_verificata + (z.sursa_viata ? '\n\nSursa: ' + z.sursa_viata + '.' : '');
+      if ('sfant_viata' in rand) rand.sfant_viata = vv;
+      if ('sinaxar' in rand) rand.sinaxar = vv;
+    }
     var straine = pomeniriStraine(rand.sfant_nume, z);
     Object.keys(NEUTRU).forEach(function (k) {
       if (typeof rand[k] !== 'string') return;
