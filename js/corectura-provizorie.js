@@ -15,7 +15,7 @@
   var C = window.PDC_CORECTURA = { activ: true };
   // Datele zilei salvate pe telefon (localStorage, valabile toată ziua) au fost filtrate de versiunea de atunci a acestui
   // fișier. La o versiune nouă a corecturii, se șterg, ca pagina să ia din nou textul zilei, filtrat cu regulile noi.
-  var VERSIUNE = '9';
+  var VERSIUNE = '10';
   try {
     if (localStorage.getItem('pdc_corectura_v') !== VERSIUNE) {
       localStorage.removeItem('pdc_cache_v5');
@@ -112,6 +112,18 @@
   }
   var NEUTRU = { sfant_viata: 'Viața sfântului zilei nu este disponibilă momentan.', sinaxar: 'Sinaxarul zilei nu este disponibil momentan.',
                  tropar: 'Troparul nu este disponibil momentan.', condac: 'Condacul nu este disponibil momentan.', predica: 'Predica zilei nu este disponibilă momentan.' };
+  // Troparele și condacele de peste săptămână (Octoih), din sursă de domeniu public (vezi scripts/rugaciuni/genereaza-tropare-saptamana.py).
+  // Înlocuiesc troparul generat automat (care nu se afișează, fiind fără sursă sigură). Duminica: niciunul (troparul Învierii depinde de glas).
+  var TS = /*TROPARE_SAPTAMANA*/{"1": {"tropare": [{"eticheta": "Tropar, glasul al 4-lea", "text": "Mai-marilor Voievozi ai oștilor cerești, rugămu-vă pe voi, noi nevrednicii, ca să ne acoperiți pe noi, prin rugăciunile voastre, cu acoperământul aripilor măririi voastre celei netrupești, păzindu-ne pe noi cei ce cădem cu deadinsul și strigăm: Izbăviți-ne din nevoi, ca cei ce sunteți mai mari peste cetele puterilor celor de sus."}], "condace": [{"eticheta": "Condac, glasul al 2-lea", "text": "Mai-marilor Voievozi ai lui Dumnezeu, slujitori ai dumnezeieștii slave, căpeteniile îngerilor și povățuitori ai oamenilor, cele de folos cereți nouă și mare milă, ca cei ce sunteți mai-mari Voievozi ai celor fără de trup."}], "tema": "Sfinții Îngeri"}, "2": {"tropare": [{"eticheta": "Tropar, glasul al 2-lea", "text": "Pomenirea dreptului este cu laude; iar ție destul îți este mărturia Domnului, Înaintemergătorule; că te-ai arătat cu adevărat și decât proorocii mai cinstit, și a boteza în repejuni pe Cel propovăduit te-ai învrednicit. Drept aceea, pentru adevăr nevoindu-te, bucurându-te, ai binevestit și celor din iad pe Dumnezeu Cel ce S-a arătat în trup, pe Cel ce a ridicat păcatul lumii și ne-a dăruit nouă mare milă."}], "condace": [{"eticheta": "Condac, glasul al 3-lea", "text": "Ceea ce mai înainte era stearpă, astăzi pe Înaintemergătorul lui Hristos naște, că el este plinirea a toată proorocia; că pe Care proorocii mai înainte L-au propovăduit, pe Acesta în Iordan mâna punându-și, s-a arătat Cuvântului lui Dumnezeu Prooroc propovăduitor, împreună și Înaintemergător."}], "tema": "Sfântul Ioan Botezătorul"}, "3": {"tropare": [{"eticheta": "Tropar, glasul 1", "text": "Mântuiește, Doamne, poporul Tău și binecuvintează moștenirea Ta. Biruință drept-credincioșilor creștini asupra celor potrivnici dăruiește și cu Crucea Ta păzește pe poporul Tău."}], "condace": [{"eticheta": "Condac, glasul al 4-lea", "text": "Cel ce Te-ai înălțat pe Cruce de bunăvoie, poporului Tău celui nou, numit cu numele Tău, îndurările Tale dăruiește-i, Hristoase Dumnezeule. Veselește cu puterea Ta pe binecredinciosul nostru popor, dăruindu-i lui biruință asupra potrivnicilor, având ajutorul Tău armă de pace, nebiruită biruință."}], "tema": "Sfânta Cruce"}, "4": {"tropare": [{"eticheta": "Tropar, glasul al 3-lea", "text": "Sfinților Apostoli, rugați pe milostivul Dumnezeu ca să dea iertare de păcate sufletelor noastre."}, {"eticheta": "Alt tropar, glasul al 4-lea", "text": "Îndreptător credinței și chip blândeților, învățător înfrânării te-a arătat pe tine turmei tale adevărul lucrurilor. Pentru aceasta ai câștigat cu smerenia cele înalte, cu sărăcia cele bogate. Părinte Ierarhe Nicolae, roagă pe Hristos Dumnezeu ca să mântuiască sufletele noastre."}], "condace": [{"eticheta": "Condac, glasul al 2-lea", "text": "Pe propovăduitorii cei tari și de Dumnezeu vestitori, căpeteniile ucenicilor Tăi, Doamne, i-ai primit întru desfătarea bunătăților Tale și în odihnă; că chinurile acelora și moartea ai primit, mai vârtos decât toată roada, Unule, Cel ce știi cele din inimă."}, {"eticheta": "Alt condac, glasul al 8-lea", "text": "În Mira Lichiei, sfinte, sfinților te-ai arătat; că Evanghelia lui Hristos plinind-o, cuvioase, ți-ai pus sufletul pentru poporul tău; scăpat-ai pe cei nevinovați din moarte. Pentru aceasta te-ai sfințit, ca un mare cunoscător al harului lui Dumnezeu."}], "tema": "Sfinții Apostoli și Sfântul Ierarh Nicolae"}, "5": {"tropare": [{"eticheta": "Tropar, glasul 1", "text": "Mântuiește, Doamne, poporul Tău și binecuvintează moștenirea Ta. Biruință drept-credincioșilor creștini asupra celor potrivnici dăruiește și cu Crucea Ta păzește pe poporul Tău."}], "condace": [{"eticheta": "Condac, glasul al 4-lea", "text": "Cel ce Te-ai înălțat pe Cruce de bunăvoie, poporului Tău celui nou, numit cu numele Tău, îndurările Tale dăruiește-i, Hristoase Dumnezeule. Veselește cu puterea Ta pe binecredinciosul nostru popor, dăruindu-i lui biruință asupra potrivnicilor, având ajutorul Tău armă de pace, nebiruită biruință."}], "tema": "Sfânta Cruce"}, "6": {"tropare": [{"eticheta": "Tropar, glasul al 2-lea", "text": "Apostolilor, Mucenicilor și Proorocilor, Ierarhilor, Cuvioșilor și Drepților, care bine ați săvârșit lupta și credința ați păzit, îndrăznire având către Mântuitorul, pe Acela, ca un bun, rugați-L pentru noi, să mântuiască, rugămu-vă, sufletele noastre."}, {"eticheta": "Alt tropar, glasul al 2-lea", "text": "Pomenește, Doamne, ca un bun pe robii Tăi și câte în viață au greșit, iartă-le, că nimenea nu este fără de păcat, numai Tu singur, Cel ce poți și celor adormiți a le da odihnă."}, {"eticheta": "Slavă... glasul al 8-lea", "text": "Cu sfinții odihnește, Hristoase, sufletele adormiților robilor Tăi, unde nu este durere, nici întristare, nici suspin, ci viață fără de sfârșit."}], "condace": [{"eticheta": "Și acum..., glasul al 8-lea", "text": "Ca niște pârgă a firii, ție, săditorul făpturii, lumea Îți aduce, Doamne, pe purtătorii de Dumnezeu mucenici; pentru ale căror rugăciuni, în pace adâncă, Biserica Ta, pentru Născătoarea de Dumnezeu, păzește-o, mult-Milostive."}], "tema": "Toți Sfinții și cei adormiți"}}/*SFARSIT*/;
+  var ZILE_NUME = ['duminică', 'luni', 'marți', 'miercuri', 'joi', 'vineri', 'sâmbătă'];
+  function mare(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+  function troparZi(iso) {
+    var d = new Date(String(iso).slice(0, 10) + 'T12:00:00Z'), n = d.getUTCDay(), z = TS[n];
+    if (!z) return null;
+    var f = function (l) { return l.map(function (x) { return mare(x.eticheta) + ':\n' + x.text; }).join('\n\n'); };
+    return { tropar: 'Troparul zilei de ' + ZILE_NUME[n] + ' (' + z.tema + ')\n\n' + f(z.tropare), condac: z.condace.length ? f(z.condace) : '' };
+  }
+  window.pdcTroparZi = troparZi;
   function aplicaValidat(rand, V) {
     var z = rand && typeof rand === 'object' && rand.data_calendaristica && V[rand.data_calendaristica];
     if (!z) return;
@@ -128,6 +140,9 @@
       if (!strain && !(LIMITE[k] && (POST.test(rand[k]) || CITAT.test(rand[k])))) return;
       rand[k] = (LIMITE[k] && textFaraStraini(rand[k], straine, k)) || NEUTRU[k];
     });
+    var tz = troparZi(rand.data_calendaristica);
+    if ('tropar' in rand) rand.tropar = tz ? tz.tropar : '';
+    if ('condac' in rand) rand.condac = tz ? tz.condac : '';
     if ('sfant_nume' in rand) rand.sfant_nume = numeValidat(z);
     if ('sfinti_secundari' in rand) rand.sfinti_secundari = null;
     if ('meta_description' in rand) {
@@ -319,9 +334,27 @@
     el.innerHTML = t.split(/\n+/).map(function (p) { return '<p style="margin:0 0 12px">' + escapa(p) + '</p>'; }).join('');
     var tt = document.getElementById('viata-titlu'); if (tt) tt.textContent = 'Din Sinaxarul zilei';
   }
+  // Caseta „Troparul și Condacul” de pe paginile vechi (/sinaxar, /sinaxarul-zilei): troparul zilei de peste săptămână
+  function completeazaTropar() {
+    var tz = troparZi(isoRo(0));
+    [['tropar-text', 'tropar'], ['condac-text', 'condac']].forEach(function (p) {
+      var el = document.getElementById(p[0]);
+      if (!el) return;
+      var t = el.textContent || '';
+      if (/nu este disponibil|Se încarcă/.test(t)) {
+        if (tz && tz[p[1]]) { el.textContent = tz[p[1]]; }
+        else if (p[0] === 'tropar-text') { var s = el.closest('section, .card, div[style*="border"]'); if (s && s.id !== 'pagina-acasa') s.style.display = 'none'; }
+        else { var e = el.previousElementSibling; el.style.display = 'none'; if (e && /condac/i.test(e.textContent || '')) e.style.display = 'none'; }
+      }
+    });
+    document.querySelectorAll('#tropar-text, .tropar-text, #condac-text, #sfintii-tropar, #modal-detalii-tropar').forEach(function (el) {
+      if (/^Troparul zilei de|^Condac/.test((el.textContent || '').trim())) el.style.whiteSpace = 'pre-line';
+    });
+  }
   function aplica() {
     if (!C.activ) return;
     completeazaSinaxar();
+    completeazaTropar();
     TINTE.forEach(function (t) {
       document.querySelectorAll('#' + t[0]).forEach(function (el) {
         if (el.getAttribute('data-corectura') === '1' && el.querySelector('.lectura-sursa')) return;

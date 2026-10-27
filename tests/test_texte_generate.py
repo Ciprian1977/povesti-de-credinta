@@ -56,7 +56,7 @@ CAZURI = {
         "predica": "Iubiți credincioși, viața Sfintei Parascheva ne arată calea smereniei, cum spune și Sfântul Ioan Gură de Aur.",
         "meta_description": "Calendar ortodox 14 octombrie 2026.",
         "apostol_carte": "Galateni", "apostol_versete": "5, 22-26", "evanghelie_carte": "Luca", "evanghelie_versete": "7, 36-50"},
-        interzis=['Viața sfântului zilei nu este disponibilă', 'Sinaxarul zilei nu este disponibil', 'Predica zilei nu este disponibilă'], pastrat=['Epivata', 'Pustnicească', 'calea smereniei']),
+        interzis=['Viața sfântului zilei nu este disponibilă', 'Sinaxarul zilei nu este disponibil', 'Predica zilei nu este disponibilă'], pastrat=['Epivata', 'Mântuiește, Doamne, poporul Tău', 'calea smereniei']),
 }
 PAGINI = ['/', '/sfantul-zilei', '/sfintii-zilei', '/sinaxar', '/sinaxarul-zilei', '/predica-zilei', '/calendar-ortodox-azi']
 rez = {'cazuri': {}, 'probleme': []}
