@@ -131,7 +131,7 @@ with sync_playwright() as p:
     pg.goto(B + '/', wait_until='networkidle'); pg.wait_for_timeout(2500); pg.reload(wait_until='networkidle'); pg.wait_for_timeout(1500)
     pg.goto(B + '/calendar', wait_until='networkidle'); pg.wait_for_timeout(1500)
     rez['pwa_cache'] = pg.evaluate('caches.keys()')
-    rez['pwa_date_in_cache'] = pg.evaluate("caches.keys().then(async ks=>{for(const k of ks){const c=await caches.open(k);if(await c.match('/data/calendar-validat-2026-t4.json?v=1'))return k}return null})")
+    rez['pwa_date_in_cache'] = pg.evaluate("caches.keys().then(async ks=>{for(const k of ks){const c=await caches.open(k);if(await c.match('/data/calendar-validat-2026-t4.json?v=2'))return k}return null})")
     c.set_offline(True)
     try:
         r = pg.goto(B + '/calendar', wait_until='domcontentloaded', timeout=15000); pg.wait_for_timeout(2500)
