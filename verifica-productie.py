@@ -1,22 +1,18 @@
-# DOAR CITIRE: caută tropare/condace (Minei) pe ro.wikisource.
-import json, urllib.request, urllib.parse, os, time
-UA={'User-Agent':'povestidecredinta-cercetare/1.0 (site povestidecredinta.ro)'}
-def api(**p):
-    p.update(format='json',formatversion=2)
-    for i in range(4):
-        try: return json.load(urllib.request.urlopen(urllib.request.Request('https://ro.wikisource.org/w/api.php?'+urllib.parse.urlencode(p),headers=UA),timeout=60))
-        except Exception as e: time.sleep(8*(i+1)); err=e
-    raise err
-os.makedirs('out/tr',exist_ok=True); L=[]; T=[]
-for q in ['intitle:Troparele','intitle:Tropar','intitle:Mineiul','"Troparul Sfântului Dimitrie"','"Basarabov"','"glasul al 4-lea" tropar octombrie','intitle:Condacele']:
-    d=api(action='query',list='search',srsearch=q,srlimit=15); time.sleep(3)
-    r=[(x['title'],x['snippet'][:120]) for x in d['query']['search']]; L.append(f'== {q}: {len(r)}'); L+=[f'   {t} | {s}' for t,s in r]
-    T+=[t for t,s in r if any(k in t.lower() for k in ['tropar','minei','condac'])]
-d=api(action='query',list='allpages',apprefix='Tropar',aplimit=50); L.append('allpages Tropar*: '+str([x['title'] for x in d['query']['allpages']])); T+=[x['title'] for x in d['query']['allpages']]; time.sleep(3)
-d=api(action='query',list='allpages',apprefix='Mineiul',aplimit=50); L.append('allpages Mineiul*: '+str([x['title'] for x in d['query']['allpages']])); time.sleep(3)
-for t in list(dict.fromkeys(T))[:6]:
-    d=api(action='query',titles=t,prop='revisions|categories|templates',rvprop='content',rvslots='main',cllimit=50,tllimit=30); time.sleep(4); pg=d['query']['pages'][0]
-    if 'revisions' in pg:
-        w=pg['revisions'][0]['slots']['main']['content']; open('out/tr/'+t.replace('/','_')+'.wiki','w').write(w)
-        L.append(f'## {t}: {len(w)} car.; cat={[c["title"] for c in pg.get("categories",[])]}; tpl={[x["title"] for x in pg.get("templates",[])][:8]}; început={w[:300]!r}')
+# DOAR CITIRE: tropar/condac după #25.
+import os
+from playwright.sync_api import sync_playwright
+os.makedirs('out',exist_ok=True); L=[]
+with sync_playwright() as p:
+    b=p.chromium.launch()
+    for nume,vp,mob in [('mobil',{'width':390,'height':844},True),('desktop',{'width':1366,'height':900},False)]:
+        c=b.new_context(viewport=vp,is_mobile=mob,locale='ro-RO',timezone_id='Europe/Bucharest',service_workers='block')
+        c.route('**/*',lambda r: r.abort() if any(x in r.request.url for x in ['onesignal','/_vercel/insights']) else r.continue_())
+        for path in ['/sinaxar','/sinaxarul-zilei','/sfantul-zilei','/sfintii-zilei','/']:
+            pg=c.new_page(); e=[]; pg.on('pageerror',lambda x:e.append(str(x)[:100]))
+            pg.goto('https://www.povestidecredinta.ro'+path+'?v='+str(os.getpid()),wait_until='networkidle'); pg.wait_for_timeout(3000)
+            t=pg.inner_text('body')
+            L.append(f"{nume} {path}: erori={e} tropar_zi={'Pomenirea dreptului este cu laude' in t} condac={'Ceea ce mai înainte era stearpă' in t} indisponibil={'Troparul nu este disponibil' in t or 'Condacul nu este disponibil' in t} tropar_AI={'Cu viaţă îmbunătăţită' in t} Basarabov={'Basarabov' in t}")
+            pg.close()
+        c.close()
+    b.close()
 open('out/productie.txt','w').write('\n'.join(L)+'\n'); print('\n'.join(L))
