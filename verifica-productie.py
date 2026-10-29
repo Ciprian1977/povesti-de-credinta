@@ -1,12 +1,9 @@
-# DOAR CITIRE: redirecționări www / fără www / .html / slash.
-import urllib.request, os
-os.makedirs('out',exist_ok=True); L=[]
-class N(urllib.request.HTTPRedirectHandler):
-    def redirect_request(self,*a,**k): return None
-op=urllib.request.build_opener(N)
-for u in ['https://povestidecredinta.ro/','https://povestidecredinta.ro/evanghelia-zilei','https://povestidecredinta.ro/evanghelia-zilei/','https://www.povestidecredinta.ro/evanghelia-zilei/','https://povestidecredinta.ro/faq.html','https://www.povestidecredinta.ro/faq.html','http://povestidecredinta.ro/','http://www.povestidecredinta.ro/sfantul-zilei','https://www.povestidecredinta.ro/rugaciuni-diminetii','https://www.povestidecredinta.ro/sfanta-parascheva/rugaciuni']:
-    try:
-        r=op.open(urllib.request.Request(u,headers={'User-Agent':'Mozilla/5.0'}),timeout=20); L.append(f'{u} -> {r.status}')
-    except urllib.error.HTTPError as e: L.append(f'{u} -> {e.code} {e.headers.get("Location")}')
-    except Exception as e: L.append(f'{u} -> eroare {e}')
-open('out/productie.txt','w').write('\n'.join(L)+'\n'); print('\n'.join(L))
+# Test fără publicare: rulează pre-randarea din ramura prerandare-lecturi cu datele reale. Nu împinge nimic.
+import subprocess, os
+os.makedirs('out',exist_ok=True)
+subprocess.run(['git','clone','-q','--depth','1','-b','prerandare-lecturi','https://github.com/Ciprian1977/povesti-de-credinta.git','/tmp/pr'],check=True)
+r=subprocess.run(['python','scripts/prerandare/prerandeaza.py'],cwd='/tmp/pr',capture_output=True,text=True)
+d=subprocess.run(['git','diff','--stat'],cwd='/tmp/pr',capture_output=True,text=True).stdout
+t=subprocess.run(['grep','-o','<title id="meta-title">[^<]*','evanghelia-zilei/index.html','apostolul-zilei/index.html'],cwd='/tmp/pr',capture_output=True,text=True).stdout
+open('out/productie.txt','w').write(r.stdout+r.stderr[-1500:]+'\n'+d+'\n'+t)
+print(r.stdout, r.stderr[-800:], d, t)
