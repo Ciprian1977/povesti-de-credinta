@@ -1,0 +1,39 @@
+name: Pre-randare lecturi zilei (pentru Google)
+
+# În fiecare noapte, după miezul nopții (ora României), scrie direct în HTML referința și textul
+# Evangheliei și Apostolului zilei (aceleași ca pe site, din Biblia 1914), ca Google să le vadă.
+# Doar fișierele evanghelia-zilei/index.html și apostolul-zilei/index.html se schimbă.
+on:
+  schedule:
+    - cron: '20 21 * * *'   # 00:20 ora României vara
+    - cron: '20 22 * * *'   # 00:20 ora României iarna
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prerandare-lecturi
+  cancel-in-progress: false
+
+jobs:
+  prerandare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Instalează browserul
+        run: |
+          pip install -q playwright==1.48.0
+          python -m playwright install --with-deps chromium > /dev/null
+      - name: Pre-randează
+        run: python scripts/prerandare/prerandeaza.py
+      - name: Salvează (doar dacă s-a schimbat ceva)
+        run: |
+          git add evanghelia-zilei/index.html apostolul-zilei/index.html
+          if git diff --cached --quiet; then echo "Nimic nou."; exit 0; fi
+          git -c user.name="povesti-bot" -c user.email="povesti-bot@users.noreply.github.com" commit -q -m "chore: lecturile zilei în HTML [prerandare]"
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0; sleep 5; done
+          exit 1
