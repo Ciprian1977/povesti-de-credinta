@@ -1,18 +1,12 @@
-# DOAR CITIRE: tropar/condac după #25.
-import os
-from playwright.sync_api import sync_playwright
+# DOAR CITIRE: redirecționări www / fără www / .html / slash.
+import urllib.request, os
 os.makedirs('out',exist_ok=True); L=[]
-with sync_playwright() as p:
-    b=p.chromium.launch()
-    for nume,vp,mob in [('mobil',{'width':390,'height':844},True),('desktop',{'width':1366,'height':900},False)]:
-        c=b.new_context(viewport=vp,is_mobile=mob,locale='ro-RO',timezone_id='Europe/Bucharest',service_workers='block')
-        c.route('**/*',lambda r: r.abort() if any(x in r.request.url for x in ['onesignal','/_vercel/insights']) else r.continue_())
-        for path in ['/sinaxar','/sinaxarul-zilei','/sfantul-zilei','/sfintii-zilei','/']:
-            pg=c.new_page(); e=[]; pg.on('pageerror',lambda x:e.append(str(x)[:100]))
-            pg.goto('https://www.povestidecredinta.ro'+path+'?v='+str(os.getpid()),wait_until='networkidle'); pg.wait_for_timeout(3000)
-            t=pg.inner_text('body')
-            L.append(f"{nume} {path}: erori={e} tropar_zi={'Pomenirea dreptului este cu laude' in t} condac={'Ceea ce mai înainte era stearpă' in t} indisponibil={'Troparul nu este disponibil' in t or 'Condacul nu este disponibil' in t} tropar_AI={'Cu viaţă îmbunătăţită' in t} Basarabov={'Basarabov' in t}")
-            pg.close()
-        c.close()
-    b.close()
+class N(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self,*a,**k): return None
+op=urllib.request.build_opener(N)
+for u in ['https://povestidecredinta.ro/','https://povestidecredinta.ro/evanghelia-zilei','https://povestidecredinta.ro/evanghelia-zilei/','https://www.povestidecredinta.ro/evanghelia-zilei/','https://povestidecredinta.ro/faq.html','https://www.povestidecredinta.ro/faq.html','http://povestidecredinta.ro/','http://www.povestidecredinta.ro/sfantul-zilei','https://www.povestidecredinta.ro/rugaciuni-diminetii','https://www.povestidecredinta.ro/sfanta-parascheva/rugaciuni']:
+    try:
+        r=op.open(urllib.request.Request(u,headers={'User-Agent':'Mozilla/5.0'}),timeout=20); L.append(f'{u} -> {r.status}')
+    except urllib.error.HTTPError as e: L.append(f'{u} -> {e.code} {e.headers.get("Location")}')
+    except Exception as e: L.append(f'{u} -> eroare {e}')
 open('out/productie.txt','w').write('\n'.join(L)+'\n'); print('\n'.join(L))
