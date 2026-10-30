@@ -8,9 +8,9 @@
 // ═════════════════════════════════════════════════════════════════
 // OneSignal are propriul service worker în /onesignal/ (scope separat), ca să nu se bată cu acesta.
 
-const CACHE_STATIC = 'pdc-static-v29';
-const CACHE_PAGES  = 'pdc-pages-v29';
-const CACHE_API    = 'pdc-api-v29';
+const CACHE_STATIC = 'pdc-static-v30';
+const CACHE_PAGES  = 'pdc-pages-v30';
+const CACHE_API    = 'pdc-api-v30';
 
 // Resurse statice pre-cache la instalare
 const STATIC_ASSETS = [
