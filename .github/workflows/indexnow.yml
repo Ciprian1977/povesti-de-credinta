@@ -1,0 +1,20 @@
+name: Anunță Bing (IndexNow)
+
+# După fiecare publicare pe main, anunță prin IndexNow (Bing, Yandex etc.) paginile HTML adăugate sau schimbate.
+# Doar trimite o listă de adrese publice; nu schimbă nimic pe site.
+on:
+  push:
+    branches: [main]
+    paths: ['**.html']
+
+jobs:
+  anunta:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Așteaptă publicarea pe Vercel
+        run: sleep 120
+      - name: Anunță paginile schimbate
+        run: python3 scripts/indexnow/anunta.py --git "${{ github.event.before }}" "${{ github.sha }}" || true
