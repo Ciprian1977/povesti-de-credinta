@@ -1,10 +1,8 @@
-# DOAR CITIRE: fișierul cheie IndexNow e accesibil pe site + test IndexNow (doar validare, o adresă).
-import urllib.request, os, json
-os.makedirs('out',exist_ok=True); L=[]
-K='2471b908229056566eb5ef6409e3d067'
-import time; time.sleep(60)
-try:
-    r=urllib.request.urlopen(f'https://www.povestidecredinta.ro/{K}.txt',timeout=20); b=r.read().decode().strip()
-    L.append(f'cheie: HTTP {r.status} conținut_corect={b==K} tip={r.headers.get("content-type")}')
-except Exception as e: L.append('cheie: eroare '+str(e))
+# DOAR CITIRE: imaginile noi (logo) pe site.
+import urllib.request, hashlib, os, time
+os.makedirs('out',exist_ok=True); L=[]; time.sleep(60)
+for f in ['images/og-image.jpg','images/icon-192.png','images/icon-512.png','images/favicon.png','sw.js']:
+    live=urllib.request.urlopen(urllib.request.Request('https://www.povestidecredinta.ro/'+f+'?v='+str(time.time()),headers={'User-Agent':'Mozilla/5.0'}),timeout=30).read()
+    main=urllib.request.urlopen('https://raw.githubusercontent.com/Ciprian1977/povesti-de-credinta/main/'+f,timeout=30).read()
+    L.append(f"{f}: {len(live)} octeți, identic cu main={hashlib.sha1(live).hexdigest()==hashlib.sha1(main).hexdigest()}")
 open('out/productie.txt','w').write('\n'.join(L)+'\n'); print('\n'.join(L))
