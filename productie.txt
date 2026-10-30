@@ -1,0 +1,5 @@
+/: HTTP 200 erori=[] elemente=4 meniu=2 overflow=False titlu='Calendar Ortodox - vineri, 30 octombrie 2026 — Sf. Sfințit M'
+/articole: HTTP 200 erori=[] elemente=15 meniu=1 overflow=False titlu='Sărbători și articole ortodoxe – Povești de Credință'
+/sfantul-andrei: HTTP 200 erori=[] elemente=4 meniu=2 overflow=False titlu='Sfântul Andrei 2026 – luni, 30 noiembrie: Ocrotitorul Români'
+/mosii-de-toamna: HTTP 200 erori=[] elemente=4 meniu=2 overflow=False titlu='Pomenirea morților 2026: Moșii de toamnă, sâmbătă 7 noiembri'
+sitemap: True
