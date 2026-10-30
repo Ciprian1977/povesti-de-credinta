@@ -8,9 +8,9 @@
 // ═════════════════════════════════════════════════════════════════
 // OneSignal are propriul service worker în /onesignal/ (scope separat), ca să nu se bată cu acesta.
 
-const CACHE_STATIC = 'pdc-static-v30';
-const CACHE_PAGES  = 'pdc-pages-v30';
-const CACHE_API    = 'pdc-api-v30';
+const CACHE_STATIC = 'pdc-static-v31';
+const CACHE_PAGES  = 'pdc-pages-v31';
+const CACHE_API    = 'pdc-api-v31';
 
 // Resurse statice pre-cache la instalare
 const STATIC_ASSETS = [
@@ -18,7 +18,7 @@ const STATIC_ASSETS = [
   '/index.html',
   '/css/style.css',
   '/css/style.min.css',
-  '/css/tema.css?v=14',
+  '/css/tema.css?v=15',
   '/js/ui.js?v=11',
   '/js/corectura-provizorie.js?v=10',
   '/js/min/app.min.js?v=23',
@@ -43,7 +43,8 @@ const STATIC_ASSETS = [
   '/calendar-ortodox-azi/',
   '/images/icon-192.png',
   '/images/icon-512.png',
-  '/images/favicon.png'
+  '/images/favicon.png',
+  '/images/logo/logo-128.png'
 ];
 
 // ─── INSTALL: pre-cache resurse statice ─────────────────────────────────────
