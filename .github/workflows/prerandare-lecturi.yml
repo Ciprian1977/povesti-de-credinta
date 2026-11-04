@@ -38,13 +38,13 @@ jobs:
         run: |
           git config user.name "povesti-bot"
           git config user.email "povesti-bot@users.noreply.github.com"
-          git add evanghelia-zilei/index.html apostolul-zilei/index.html
+          git add evanghelia-zilei/index.html apostolul-zilei/index.html sinaxarul-zilei/index.html sfantul-zilei/index.html
           if git diff --cached --quiet; then echo "Nimic nou."; exit 0; fi
           git commit -q -m "chore: lecturile zilei în HTML [prerandare]"
           for i in 1 2 3; do
             if git pull -q --rebase origin main && git push -q origin HEAD:main; then
               sleep 120   # se așteaptă publicarea pe Vercel, apoi se anunță Bing (IndexNow)
-              python scripts/indexnow/anunta.py evanghelia-zilei/index.html apostolul-zilei/index.html || true
+              python scripts/indexnow/anunta.py evanghelia-zilei/index.html apostolul-zilei/index.html sinaxarul-zilei/index.html sfantul-zilei/index.html || true
               exit 0
             fi
             sleep 5

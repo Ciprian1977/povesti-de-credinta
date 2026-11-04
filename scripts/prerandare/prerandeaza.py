@@ -16,6 +16,15 @@ PAGINI = {
     'evanghelia-zilei/index.html': dict(ruta='/evanghelia-zilei', ref='ev-referinta', text='ev-text', nume='Evanghelia zilei'),
     'apostolul-zilei/index.html': dict(ruta='/apostolul-zilei', ref='apostol-referinta', text='apostol-text', nume='Apostolul zilei'),
 }
+# Paginile cu sfinții zilei: numele din calendarul validat (BOR) și viața afișată vizitatorului (textul verificat sau mesajul neutru)
+PAGINI_SFINTI = {
+    'sinaxarul-zilei/index.html': dict(ruta='/sinaxarul-zilei', nume='Sinaxarul zilei', extra=['tropar-text', 'condac-text'],
+        desc='Viața sfinților zilei, troparul și condacul, după calendarul Bisericii Ortodoxe Române.'),
+    'sfantul-zilei/index.html': dict(ruta='/sfantul-zilei', nume='Sfântul zilei', extra=['tropar-text'],
+        desc='Sfinții pomeniți azi în calendarul ortodox românesc, viața lor și troparul zilei.'),
+}
+NEINCARCAT = r'Se încarcă|Pregătim'
+
 
 class H(http.server.SimpleHTTPRequestHandler):
     def __init__(s, *a, **k): super().__init__(*a, directory=ROOT, **k)
@@ -85,6 +94,40 @@ def main():
             if nou != src:
                 open(fis, 'w', encoding='utf8').write(nou)
                 rez.append(f'✅ {fis}: {ref} ({len(d["txt"])} caractere)')
+            else:
+                rez.append(f'= {fis}: neschimbat')
+        for fis, P in PAGINI_SFINTI.items():
+            pg = c.new_page()
+            pg.goto(B + P['ruta'], wait_until='networkidle')
+            try:
+                pg.wait_for_function("""ids => ids.every(id => { const e = document.getElementById(id); return e && e.innerText.trim().length > 3 && !/""" + NEINCARCAT + """/.test(e.innerText); })""",
+                                     arg=['sfant-principal', 'viata-text'] + P['extra'], timeout=30000)
+            except Exception:
+                rez.append(f'⚠️ {fis}: textul nu s-a încărcat — fișierul rămâne neschimbat'); pg.close(); continue
+            pg.wait_for_timeout(1500)
+            d = pg.evaluate("ids => Object.fromEntries(ids.map(id => [id, { html: document.getElementById(id).innerHTML.trim(), txt: document.getElementById(id).innerText.trim() }]))",
+                            ['sfant-principal', 'viata-text'] + P['extra'])
+            pg.close()
+            sfinti = re.sub(r'\s+', ' ', d['sfant-principal']['txt']).strip(' ✝️')
+            if len(sfinti) < 5 or any('<script' in v['html'].lower() for v in d.values()):
+                rez.append(f'⚠️ {fis}: verificarea a eșuat (sfinți={sfinti!r}) — fișierul rămâne neschimbat'); continue
+            src = open(fis, encoding='utf8').read(); nou = src
+            primul = sfinti.split(';')[0].strip()  # în titlu doar primul (Google arată ~60 de caractere); lista completă e în descriere
+            titlu = f"{P['nume']} de azi, {DATA_TXT} — {primul} | Povești de Credință"
+            desc = f"{P['nume']} de azi, {DATA_TXT}: {sfinti}. {P['desc']}"
+            if len(desc) > 300: desc = desc[:297].rsplit(' ', 1)[0] + '…'
+            nou = re.sub(r'(<title id="meta-title">)[^<]*(</title>)', lambda m: m.group(1) + html.escape(titlu, quote=False) + m.group(2), nou, count=1)
+            nou = re.sub(r'(<meta name="description" id="meta-desc" content=")[^"]*(")', lambda m: m.group(1) + html.escape(desc) + m.group(2), nou, count=1)
+            nou = re.sub(r'(<meta property="og:title" id="og-title" content=")[^"]*(")', lambda m: m.group(1) + html.escape(titlu) + m.group(2), nou, count=1)
+            nou = re.sub(r'(<meta property="og:description" id="og-desc" content=")[^"]*(")', lambda m: m.group(1) + html.escape(desc) + m.group(2), nou, count=1)
+            zi = html.escape(DATA_TXT[0].upper() + DATA_TXT[1:])
+            nou = inlocuieste(nou, 'hero-data', zi)
+            nou = inlocuieste(nou, 'data-completa', zi)
+            for id_ in ['sfant-principal', 'viata-text'] + P['extra']:
+                nou = inlocuieste(nou, id_, d[id_]['html'])
+            if nou != src:
+                open(fis, 'w', encoding='utf8').write(nou)
+                rez.append(f'✅ {fis}: {sfinti[:60]} (viața: {len(d["viata-text"]["txt"])} caractere)')
             else:
                 rez.append(f'= {fis}: neschimbat')
         b.close()
