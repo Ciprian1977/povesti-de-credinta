@@ -1,7 +1,7 @@
-# DOAR CITIRE: rândul din 2-6 noiembrie (cheie publică), pentru diagnostic sinaxar.
-import os, json, urllib.request
-os.makedirs('out',exist_ok=True)
-K='sb_publishable_gWS1MsHXjvIMth8yuYAnog_fBiv9DHk'
-u='https://smuqpipxeotkbttolivp.supabase.co/rest/v1/zile_ortodoxe?data_calendaristica=gte.2026-11-01&data_calendaristica=lte.2026-11-08&select=data_calendaristica,sfant_nume,sinaxar,sfant_viata&order=data_calendaristica'
-r=json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'apikey':K,'Authorization':'Bearer '+K}),timeout=30).read())
-open('out/productie.txt','w').write(json.dumps(r,ensure_ascii=False,indent=1)); print(len(r))
+# DOAR CITIRE: după #36 – versiuni live.
+import os, time, urllib.request
+os.makedirs('out',exist_ok=True); time.sleep(60); L=[]
+for u in ['/sw.js','/sinaxarul-zilei','/data/calendar-validat-2026-t4.json?v=3']:
+    t=urllib.request.urlopen('https://www.povestidecredinta.ro'+u+('&' if '?' in u else '?')+'x='+str(time.time()),timeout=30).read().decode()
+    L.append(f"{u}: v32={'-v32' in t} corectura11={'corectura-provizorie.js?v=11' in t} viata2nov={'Aftonie și Elpidifor au fost uciși' in t}")
+open('out/productie.txt','w').write('\n'.join(L)+'\n')
