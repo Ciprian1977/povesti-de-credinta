@@ -1,7 +1,13 @@
-# DOAR CITIRE: după #36 – versiuni live.
-import os, time, urllib.request
+# DOAR CITIRE: după #38 – bannerul de cookie-uri.
+import os, time
+from playwright.sync_api import sync_playwright
 os.makedirs('out',exist_ok=True); time.sleep(60); L=[]
-for u in ['/sw.js','/sinaxarul-zilei','/data/calendar-validat-2026-t4.json?v=3']:
-    t=urllib.request.urlopen('https://www.povestidecredinta.ro'+u+('&' if '?' in u else '?')+'x='+str(time.time()),timeout=30).read().decode()
-    L.append(f"{u}: v32={'-v32' in t} corectura11={'corectura-provizorie.js?v=11' in t} viata2nov={'Aftonie și Elpidifor au fost uciși' in t}")
+with sync_playwright() as p:
+    b=p.chromium.launch()
+    c=b.new_context(viewport={'width':390,'height':844},is_mobile=True,service_workers='block')
+    c.route('**/*',lambda r: r.abort() if 'onesignal' in r.request.url else r.continue_())
+    pg=c.new_page(); pg.goto('https://www.povestidecredinta.ro/?x='+str(time.time()),wait_until='networkidle'); pg.wait_for_timeout(3000)
+    r=pg.evaluate("""()=>[...document.querySelectorAll('#cookie-banner button')].map(x=>{const r=x.getBoundingClientRect();const e=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return [x.innerText.trim(),Math.round(r.bottom),!!(e&&e.closest('#cookie-banner'))]})""")
+    L.append('butoane: '+str(r)+' tema16: '+str(pg.evaluate("!!document.querySelector('link[href*=\"tema.css?v=16\"]')")))
+    b.close()
 open('out/productie.txt','w').write('\n'.join(L)+'\n')
