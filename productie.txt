@@ -1,0 +1,1 @@
+butoane: [['Accept', 826, True], ['Refuz', 826, True]] tema16: True
