@@ -8,9 +8,9 @@
 // ═════════════════════════════════════════════════════════════════
 // OneSignal are propriul service worker în /onesignal/ (scope separat), ca să nu se bată cu acesta.
 
-const CACHE_STATIC = 'pdc-static-v34';
-const CACHE_PAGES  = 'pdc-pages-v34';
-const CACHE_API    = 'pdc-api-v34';
+const CACHE_STATIC = 'pdc-static-v35';
+const CACHE_PAGES  = 'pdc-pages-v35';
+const CACHE_API    = 'pdc-api-v35';
 
 // Resurse statice pre-cache la instalare
 const STATIC_ASSETS = [
@@ -20,13 +20,13 @@ const STATIC_ASSETS = [
   '/css/style.min.css',
   '/css/tema.css?v=16',
   '/js/ui.js?v=11',
-  '/js/corectura-provizorie.js?v=12',
+  '/js/corectura-provizorie.js?v=13',
   '/js/min/app.min.js?v=23',
   '/js/app.js?v=23',
   '/manifest.json',
   '/offline.html',
   '/data/calendar.json',
-  '/data/calendar-validat-2026-t4.json?v=4',
+  '/data/calendar-validat-2026-t4.json?v=5',
   '/data/lectionar.json',
   '/rugaciuni.html',
   '/calendar.html',
