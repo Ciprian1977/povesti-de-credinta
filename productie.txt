@@ -1,0 +1,4 @@
+/lasata-secului-postul-craciunului: 200 Lăsata secului pentru Postul Crăciunului 2026: sâmbătă, 14 noiembrie. Ce înseamn lasata=True
+/posturi/postul-craciunului-2026: 200 Postul Crăciunului 2026 (Postul Nașterii Domnului): 15 noiembrie – 24 decembrie, lasata=True
+/sitemap.xml: 200  lasata=True
+/: 200 Povești de Credință — Calendar Ortodox Românesc 2026 | Sfântul Zilei lasata=True
