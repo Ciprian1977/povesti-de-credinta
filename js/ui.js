@@ -122,6 +122,26 @@
   document.addEventListener('click', function (e) {
     if (e.target.closest && e.target.closest('.instalare-meniu, .instalare-buton')) { e.preventDefault(); instaleaza(); }
   });
+  /* Bară mică „Instalează aplicația” pe orice pagină (vizitatorii vin des pe alte pagini decât prima, din Facebook/Google).
+     Apare după ce s-a răspuns la cookie-uri; „×” o ascunde 7 zile. */
+  var CHEIE = 'pdc-bara-instalare-ascunsa', bara = null;
+  function ascunsaRecent() { try { var x = +localStorage.getItem(CHEIE); return x && Date.now() - x < 7 * 864e5; } catch (e) { return true; } }
+  function cookieRaspuns() { if (!document.getElementById('cookie-banner')) return true; try { return !!localStorage.getItem('cookies-acceptate'); } catch (e) { return true; } }
+  function pozitie() { if (!bara) return; var n = document.querySelector('.bottom-nav'); var h = n && getComputedStyle(n).display !== 'none' ? n.getBoundingClientRect().height : 0; bara.style.bottom = Math.round(h) + 'px'; }
+  function arataBara() {
+    if (instalata || bara || ascunsaRecent() || !cookieRaspuns() || !document.body) return;
+    bara = document.createElement('div');
+    bara.className = 'bara-instalare instalare-intrare'; bara.setAttribute('role', 'region'); bara.setAttribute('aria-label', 'Instalează aplicația');
+    bara.innerHTML = '<button type="button" class="bara-instalare-buton">' + ICON + '<span><strong>Instalează aplicația</strong><small>Gratuit, fără cont · sfântul zilei la o atingere</small></span></button>' +
+      '<button type="button" class="bara-instalare-x" aria-label="Nu acum">×</button>';
+    bara.querySelector('.bara-instalare-buton').addEventListener('click', function () { instaleaza(); });
+    bara.querySelector('.bara-instalare-x').addEventListener('click', function () { try { localStorage.setItem(CHEIE, String(Date.now())); } catch (e) {} bara.remove(); bara = null; });
+    document.body.appendChild(bara); pozitie();
+  }
+  window.addEventListener('resize', pozitie);
+  document.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('#cookie-banner button')) setTimeout(arataBara, 700); });
+  window.addEventListener('load', function () { setTimeout(arataBara, 2500); });
+
   adauga();
   document.addEventListener('DOMContentLoaded', adauga);
 })();

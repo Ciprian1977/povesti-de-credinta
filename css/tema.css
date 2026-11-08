@@ -388,3 +388,10 @@ main.articol{max-width:720px;margin:0 auto!important;padding:22px 20px 40px!impo
 #cookie-banner{bottom:0!important;z-index:400!important;padding:18px 16px calc(18px + env(safe-area-inset-bottom))!important;box-shadow:0 -6px 24px rgba(0,0,0,.25)}
 #cookie-banner div{gap:12px!important}
 #cookie-banner button{min-height:48px;padding:12px 28px!important;font-size:1rem!important;flex:1;max-width:220px}
+/* Bara „Instalează aplicația” (deasupra barei de jos) */
+.bara-instalare{position:fixed;left:10px;right:10px;bottom:0;z-index:290;display:flex;align-items:center;gap:6px;background:#fff;border-radius:16px;padding:6px 6px 6px 8px;box-shadow:0 6px 28px rgba(0,26,77,.28);margin-bottom:10px;max-width:560px;margin-left:auto;margin-right:auto}
+.bara-instalare-buton{flex:1;display:flex;align-items:center;gap:12px;min-height:56px;padding:8px 10px;border:0;background:none;text-align:left;cursor:pointer;color:var(--albastru);font:inherit}
+.bara-instalare-buton svg{width:30px;height:30px;flex:0 0 30px}
+.bara-instalare-buton strong{display:block;font:600 1.08rem var(--sans);color:var(--albastru)}
+.bara-instalare-buton small{display:block;font-size:.9rem;color:var(--text-sec);margin-top:2px}
+.bara-instalare-x{flex:0 0 48px;height:48px;border:0;background:none;font-size:1.8rem;line-height:1;color:var(--text-sec);cursor:pointer;border-radius:12px}
