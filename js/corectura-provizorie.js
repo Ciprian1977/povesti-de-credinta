@@ -15,7 +15,7 @@
   var C = window.PDC_CORECTURA = { activ: true };
   // Datele zilei salvate pe telefon (localStorage, valabile toată ziua) au fost filtrate de versiunea de atunci a acestui
   // fișier. La o versiune nouă a corecturii, se șterg, ca pagina să ia din nou textul zilei, filtrat cu regulile noi.
-  var VERSIUNE = '13';
+  var VERSIUNE = '14';
   try {
     if (localStorage.getItem('pdc_corectura_v') !== VERSIUNE) {
       localStorage.removeItem('pdc_cache_v5');
@@ -38,7 +38,7 @@
   // Are prioritate la afișare față de numele din Supabase și față de calendarul static vechi.
   // Supabase NU se modifică; generarea zilnică NU este atinsă.
   var fetchOriginal = window.fetch ? window.fetch.bind(window) : null;
-  var URL_VALIDAT = '/data/calendar-validat-2026-t4.json?v=5';
+  var URL_VALIDAT = '/data/calendar-validat-2026-t4.json?v=6';
   var pValidat = null;
   function calendarValidat() {
     if (!pValidat) {
